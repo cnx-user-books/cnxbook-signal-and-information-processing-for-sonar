@@ -1,0 +1,591 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Random Parameters</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>1f50dfff-ee96-4686-bf30-31d157befb11</md:uuid>
+</metadata>
+
+  <content>
+    <para id="whenwe">
+      When we know the density of
+      <m:math>
+	<m:ci type="vector">θ</m:ci>
+      </m:math>, the likelihood function can be expressed as
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+	    <m:bvar>
+	      <m:ci type="vector">r</m:ci>
+	    </m:bvar>
+	    <m:condition>
+	      <m:ci><m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	    </m:condition>
+	    <m:ci type="vector">r</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:int/>
+	    <m:bvar><m:ci type="vector">θ</m:ci></m:bvar>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci type="vector">r</m:ci>
+		</m:bvar>
+		<m:condition>
+		  <m:ci><m:msub>
+		      <m:mi>ℳ</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:condition>
+		<m:condition>
+		  <m:mi>θ</m:mi>
+		</m:condition>
+		<m:ci type="vector">r</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci type="vector">θ</m:ci>
+		</m:bvar>
+		<m:ci type="vector">θ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      and the likelihood ratio in the random parameter case becomes
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">Λ</m:ci>
+	    <m:ci type="vector">r</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:divide/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci type="vector">θ</m:ci></m:bvar>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		  <m:bvar>
+		    <m:ci type="vector">r</m:ci>
+		  </m:bvar>
+		  <m:condition>
+		    <m:ci><m:msub>
+			<m:mi>ℳ</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:condition>
+		  <m:condition>
+		    <m:mi>θ</m:mi>
+		  </m:condition>
+		  <m:ci type="vector">r</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		  <m:bvar>
+		    <m:ci type="vector">θ</m:ci>
+		  </m:bvar>
+		  <m:ci type="vector">θ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci type="vector">θ</m:ci></m:bvar>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		  <m:bvar>
+		    <m:ci type="vector">r</m:ci>
+		  </m:bvar>
+		  <m:condition>
+		    <m:ci><m:msub>
+			<m:mi>ℳ</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:condition>
+		  <m:condition>
+		    <m:mi>θ</m:mi>
+		  </m:condition>
+		  <m:ci type="vector">r</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		  <m:bvar>
+		    <m:ci type="vector">θ</m:ci>
+		  </m:bvar>
+		  <m:ci type="vector">θ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      Unfortunately, there are many examples where either the
+      integrals involved are intractable or the sufficient statistic
+      is virtually the same as the likelihood ratio, which can be
+      difficult to compute.
+    </para>
+    <example id="ex1">
+      <para id="asimple">
+	A simple, but interesting, example that results in a
+	computable answer occurs when the mean of Gaussian random
+	variables is either zero (model 0) or is
+	<m:math>
+	  <m:apply>
+	    <m:mo>±</m:mo>
+	    <m:ci>m</m:ci>
+	  </m:apply>
+	</m:math>
+	with equal probability (hypothesis 1).  The second hypothesis
+	means that a non-zero mean is present, but its sign is not
+	known.  We are therefore stating that if hypothesis one is in
+	fact valid, the mean has fixed sign for each observation -
+	what is random is its <foreign>a priori</foreign> value.  As
+	before,
+	<m:math>
+	  <m:ci>L</m:ci>
+	</m:math>
+	statistically independent observations are made.
+	<m:math display="block">
+	  <m:mrow>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	    <m:mo>:</m:mo>
+	    
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	      <m:ci>r</m:ci>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+		<m:cn>0</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>σ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:ci>I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	<m:math display="block">
+	  <m:mrow>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	    <m:mo>:</m:mo>
+
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	      <m:ci>r</m:ci>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+		<m:ci>m</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>σ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:ci>I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>m</m:ci>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#stochastic"/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#stochasticpiece"/>
+		<m:vector>
+		  <m:ci>m</m:ci>
+		  <m:ci>…</m:ci>
+		  <m:ci>m</m:ci>
+		</m:vector>
+		<m:cn type="rational">1<m:sep/>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#stochasticpiece"/>
+		<m:vector>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>m</m:ci>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>m</m:ci>
+		  </m:apply>
+		</m:vector>
+		<m:cn type="rational">1<m:sep/>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	The numerator of the likelihood ratio is the sum of two
+	Gaussian densities weighted by 
+	<m:math>
+	  <m:cn type="rational">1<m:sep/>2</m:cn> </m:math> (the
+	<foreign>a priori</foreign> probability values), one having a
+	positive mean, the other negative.  The likelihood ratio,
+	after simple cancellation of common terms, becomes
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">Λ</m:ci>
+	      <m:ci type="vector">r</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:ci>m</m:ci>
+			<m:apply>
+			  <m:apply>
+			    <m:sum/>
+			    <m:bvar><m:ci>l</m:ci></m:bvar>
+			    <m:lowlimit>
+			      <m:cn>0</m:cn>
+			    </m:lowlimit>
+			    <m:uplimit>
+			      <m:apply>
+				<m:minus/>
+				<m:ci>L</m:ci>
+				<m:cn>1</m:cn>
+			      </m:apply>
+			    </m:uplimit>
+			    <m:ci><m:msub>
+				<m:mi>r</m:mi>
+				<m:mi>l</m:mi>
+			      </m:msub></m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:ci>L</m:ci>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>m</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>σ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>-2</m:cn>
+			<m:ci>m</m:ci>
+			<m:apply>
+			  <m:apply>
+			    <m:sum/>
+			    <m:bvar><m:ci>l</m:ci></m:bvar>
+			    <m:lowlimit>
+			      <m:cn>0</m:cn>
+			    </m:lowlimit>
+			    <m:uplimit>
+			      <m:apply>
+				<m:minus/>
+				<m:ci>L</m:ci>
+				<m:cn>1</m:cn>
+			      </m:apply>
+			    </m:uplimit>
+			    <m:ci><m:msub>
+				<m:mi>r</m:mi>
+				<m:mi>l</m:mi>
+			      </m:msub></m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:ci>L</m:ci>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>m</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>σ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	and the decision rule takes the form
+	<m:math display="block">
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:cosh/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>m</m:ci>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>σ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>l</m:ci></m:bvar>
+		  <m:lowlimit>
+		    <m:cn>0</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>L</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:uplimit>
+		  <m:ci><m:msub>
+		      <m:mi>r</m:mi>
+		      <m:mi>l</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+
+	    <m:munderover>
+	      <m:mo>≷</m:mo>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:munderover>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>η</m:ci>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>L</m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>m</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>σ</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	where
+	<m:math>
+	  <m:apply>
+	    <m:cosh/>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	</m:math>
+	is the <term>hyperbolic cosine</term> given simply as
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:exp/>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>x</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>.  As this quantity is an even function, the sign of
+	its argument has no effect on the result.  The decision rule
+	can be written more simply as
+	<m:math display="block">
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:abs/>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>l</m:ci></m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:uplimit>
+		<m:ci><m:msub>
+		    <m:mi>r</m:mi>
+		    <m:mi>l</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:munderover>
+	      <m:mo>≷</m:mo>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:munderover>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>σ</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:abs/>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:arccosh/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>η</m:ci>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>L</m:ci>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>m</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>σ</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	The sufficient statistic equals the
+	<emphasis>magnitude</emphasis> of the sum of the observations
+	in this case.  While the right side of this expression, which
+	equals
+	<m:math>
+	  <m:ci>γ</m:ci> </m:math>, is complicated, it need only
+	be computed once.  Calculation of the performance
+	probabilities can be complicated; in this case, the
+	false-alarm probability is easy to find and the others more
+	difficult.
+      </para>
+    </example>  
+  </content>
+  
+</document>

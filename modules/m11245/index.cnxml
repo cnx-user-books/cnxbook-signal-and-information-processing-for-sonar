@@ -1,0 +1,494 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Foundations of Probability Theory: Basic Definitions</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>4b203858-c839-478e-82b9-a8b2e2203628</md:uuid>
+</metadata>
+
+  <content>
+    <section id="section1">
+      <title>Basic Definitions</title>
+      <para id="para1">
+	The basis of probability theory is a set of events - sample
+	space - and a systematic set of numbers - probabilities -
+	assigned to each event.  The key aspect of the theory is the
+	system of assigning probabilities.  Formally, a <term>sample
+	space</term> is the set <m:math><m:ci>Ω</m:ci></m:math>
+	of all possible outcomes <m:math> <m:ci><m:msub>
+	<m:mi>ω</m:mi> <m:mi>i</m:mi> </m:msub></m:ci> </m:math>
+	of an experiment.  An <term>event</term> is a collection of
+	sample points <m:math> <m:ci><m:msub> <m:mi>ω</m:mi>
+	<m:mi>i</m:mi> </m:msub></m:ci> </m:math> determined by some
+	set-algebraic rules governed by the laws of Boolean algebra.
+	Letting <m:math><m:ci>A</m:ci></m:math> and
+	<m:math><m:ci>B</m:ci></m:math> denote events, these laws are
+	  <m:math display="block">
+	    <m:mtext>Union:</m:mtext>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:union/>
+		<m:ci>A</m:ci>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	      <m:set>
+		<m:bvar><m:ci>ω</m:ci></m:bvar>
+		<m:condition>
+		  <m:apply>
+		    <m:or/>
+		    <m:apply>
+		      <m:in/>
+		      <m:ci>ω</m:ci>
+		      <m:ci>A</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:in/>
+		      <m:ci>ω</m:ci>
+		      <m:ci>B</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:condition>
+	      </m:set>
+	    </m:apply>
+	  </m:math>
+
+	<m:math display="block">
+	  <m:mtext>Intersection:</m:mtext>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:intersect/>
+	      <m:ci>A</m:ci>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	    <m:set>
+	      <m:bvar><m:ci>ω</m:ci></m:bvar>
+	      <m:condition>
+		<m:apply>
+		  <m:and/>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci>ω</m:ci>
+		    <m:ci>A</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci>ω</m:ci>
+		    <m:ci>B</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math>
+
+	<m:math display="block">
+	  <m:mtext>Complement:</m:mtext>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#complement"/>
+	      <m:ci>A</m:ci>
+	    </m:apply>
+	    <m:set>
+	      <m:bvar><m:ci>ω</m:ci></m:bvar>
+	      <m:condition>
+		<m:apply>
+		  <m:notin/>
+		  <m:ci>ω</m:ci>
+		  <m:ci>A</m:ci>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math>
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#complement"/>
+	      <m:apply>
+		<m:union/>
+		<m:ci>A</m:ci>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:intersect/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#complement"/>
+		<m:ci>A</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#complement"/>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	The null set <m:math><m:emptyset/></m:math> is the complement
+	of <m:math><m:ci>Ω</m:ci></m:math>.  Events are said to
+	be <term>mutually exclusive</term> if there is no element
+	common to both events:
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:intersect/>
+	      <m:ci>A</m:ci>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	    <m:emptyset/>
+	  </m:apply>
+	</m:math>.
+      </para>
+      <para id="para2">
+	Associated with each event 
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>A</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	</m:math> is a <term>probability measure</term> <m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>A</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:math>, sometimes denoted by
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>π</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	</m:math>, that obeys the <term>axioms of probability</term>.
+
+	<list id="list1" list-type="bulleted">
+	  <item><m:math>
+	      <m:apply>
+		<m:geq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:ci><m:msub>
+		      <m:mi>A</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math></item>
+	  <item><m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:ci>Ω</m:ci>
+		</m:apply>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:math></item>
+	  <item>If <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:intersect/>
+		  <m:ci>A</m:ci>
+		  <m:ci>B</m:ci>
+		</m:apply>
+		<m:emptyset/>
+	      </m:apply>
+	    </m:math>, then <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:apply>
+		    <m:union/>
+		    <m:ci>A</m:ci>
+		    <m:ci>B</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:ci>A</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:ci>B</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>.
+	  </item>
+	</list>
+	The consistent set of probabilities 
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	    <m:ci>·</m:ci>
+	  </m:apply>
+	</m:math> assigned to events are known as the <term><foreign>a
+	priori</foreign> probabilities</term>.  From the axioms,
+	probability assignments for Boolean expressions can be
+	computed.  For example, simple Boolean manipulations (<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:union/>
+	      <m:ci>A</m:ci>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:union/>
+	      <m:ci>A</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#complement"/>
+		  <m:ci>A</m:ci>
+		</m:apply>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>) lead to
+	<equation id="eqn2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:union/>
+		  <m:ci>A</m:ci>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:ci>A</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:ci>B</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:apply>
+		      <m:intersect/>
+		      <m:ci>A</m:ci>
+		      <m:ci>B</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <para id="para3">
+	Suppose <m:math>
+	  <m:apply>
+	    <m:neq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>.  Suppose we know that the event
+	<m:math><m:ci>B</m:ci></m:math> has occurred; what is the
+	probability that event <m:math><m:ci>A</m:ci></m:math> has
+	also occurred?  This calculation is known as the
+	<term>conditional probability</term> of
+	<m:math><m:ci>A</m:ci></m:math> given
+	<m:math><m:ci>B</m:ci></m:math> and is denoted by 
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	    <m:condition>
+	      <m:ci>B</m:ci>
+	    </m:condition>
+	    <m:ci>A</m:ci>
+	  </m:apply>
+	</m:math>. To evaluate conditional probabilities, consider
+	<m:math><m:ci>B</m:ci></m:math> to be the sample space rather
+	than <m:math><m:ci>Ω</m:ci></m:math>. To obtain a
+	probability assignment under these circumstances consistent
+	with the axioms of probability, we must have
+	<equation id="eqn3">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:condition>
+		  <m:ci>B</m:ci>
+		</m:condition>
+		<m:ci>A</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:apply>
+		    <m:intersect/>
+		    <m:ci>A</m:ci>
+		    <m:ci>B</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	The event is said to be <term>statistically independent</term>
+	of <m:math><m:ci>B</m:ci></m:math> if <m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:condition>
+		<m:ci>B</m:ci>
+	      </m:condition>
+	      <m:ci>A</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:ci>A</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>: the occurrence of the event
+	<m:math><m:ci>B</m:ci></m:math> does not change the
+	probability that <m:math><m:ci>A</m:ci></m:math> occurred.
+	When independent, the probability of their intersection
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	    <m:apply>
+	      <m:intersect/>
+	      <m:ci>A</m:ci>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> is given by the product of the <foreign>a
+	priori</foreign> probabilities <m:math>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:ci>A</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>. This property is necessary and sufficient for the
+	independence of the two events.  As <m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:condition>
+		<m:ci>B</m:ci>
+	      </m:condition>
+	      <m:ci>A</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:intersect/>
+		  <m:ci>A</m:ci>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> and <m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:condition>
+		<m:ci>A</m:ci>
+	      </m:condition>
+	      <m:ci>B</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:intersect/>
+		  <m:ci>A</m:ci>
+		  <m:ci>B</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:ci>A</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, we obtain <term>Bayes' Rule</term>.
+	<equation id="eqn4">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:condition>
+		  <m:ci>A</m:ci>
+		</m:condition>
+		<m:ci>B</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:condition>
+		      <m:ci>B</m:ci>
+		    </m:condition>
+		    <m:ci>A</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:ci>B</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:ci>A</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+      </para>
+    </section>
+  </content>
+  
+</document>

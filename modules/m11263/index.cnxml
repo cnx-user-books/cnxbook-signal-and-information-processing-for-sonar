@@ -1,0 +1,385 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Introduction to Estimation Theory</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>aa1f7cb6-6c11-4501-a3f9-b985b7715226</md:uuid>
+</metadata>
+
+  <content>
+    <para id="intro">
+      In searching for methods of extracting information from noisy
+      observations, this chapter describes <term>estimation
+      theory</term>, which has the goal of <emphasis>extracting from
+      noise-corrupted observations the values of disturbance
+      parameters (noise variance, for example), signal parameters
+      (amplitude or propagation direction), or signal
+      waveforms</emphasis>.  Estimation theory assumes that the
+      observations contain an information-bearing quantity, thereby
+      tacitly assuming that detection-based preprocessing has been
+      performed (in other words, do I have something in the
+      observations worth estimating?).  Conversely, detection theory
+      often requires estimation of unknown parameters: Signal presence
+      is assumed, parameter estimates are incorporated into the
+      detection statistic, and consistency of observations and
+      assumptions tested.  Consequently, detection and estimation
+      theory form a symbiotic relationship, each requiring the other
+      to yield high-quality signal processing algorithms.
+    </para>
+    <para id="footnote">
+      Despite a wide variety of error criteria and problem frameworks,
+      the optimal detector is characterized by a single result: the
+      likelihood ratio test.  Surprisingly, optimal detectors thus
+      derived are usually easy to implement, not often requiring
+      simplification to obtain a feasible realization in hardware or
+      software.  In contrast to detection theory, no fundamental
+      result in estimation theory exists to be summoned to attack the
+      problem at hand. The choice of error criterion and its
+      optimization heavily influences the form of the estimation
+      procedure.  Because of the variety of criterion-dependent
+      estimators, arguments frequently rage about which of several
+      optimal estimators is "better."  Each procedure is optimum for
+      its assumed error criterion; thus, the argument becomes which
+      error criterion best describes some intuitive notion of quality.
+      When more ad hoc, noncriterion-based procedures<footnote id="idp9351216">This governmentese phrase concisely means
+      guessing.</footnote> are used, we cannot assess the quality of the
+      resulting estimator relative to the best achievable.  As shown
+      <link document="m11266">later</link>, bounds on the estimation
+      error do exist, but their tightness and applicability to a given
+      situation are always issues in assessing estimator quality.  At
+      best, estimation theory is less structured than detection
+      theory.  Detection is science, estimation art.  Inventiveness
+      coupled with an understanding of the problem (what types of
+      errors are critically important, for example) are key elements
+      to deciding which estimation procedure "fits" a given problem
+      well.
+    </para>
+    <section id="terminology">
+      <title>Terminology in Estimation Theory</title>
+      <para id="estimate">
+	More so than detection theory, estimation theory relies on
+	jargon to characterize the properties of estimators.  Without
+	knowing any estimation technique, let's use parameter
+	estimation as our discussion prototype.  The parameter
+	estimation problem is to determine from a set of
+	<m:math>
+	  <m:ci>L</m:ci>
+	</m:math> observations, represented by the 
+	<m:math>
+	  <m:ci>L</m:ci>
+	</m:math>-dimensional vector 
+	<m:math>
+	  <m:ci type="vector">r</m:ci> 
+	</m:math>, the values of
+	parameters denoted by the vector 
+	<m:math>
+	  <m:ci type="vector">θ</m:ci> </m:math>.  We write the
+	<emphasis>estimate</emphasis> of this parameter vector as 
+	<m:math>
+	  <m:apply>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+	      <m:ci type="fn">θ</m:ci>
+	    </m:apply>
+	    <m:ci type="vector">r</m:ci>
+	  </m:apply>
+	</m:math>, where the "hat" denotes the estimate, and the
+	functional dependence on 
+	<m:math>
+	  <m:ci type="vector">r</m:ci> </m:math> explicitly denotes
+	the dependence of the estimate on the observations.  This
+	dependence is always present<footnote id="idp10311840">Estimating the value
+	of a parameter given no data may be an interesting problem in
+	clairvoyance, but not in estimation theory.</footnote>, but we
+	frequently denote the estimate compactly as 
+	<m:math>
+	  <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+	      <m:ci>θ</m:ci>
+	    </m:apply>
+	</m:math>.  Because of the probabilistic nature of the
+	problems considered in this chapter, a parameter estimate is
+	itself a random vector, having its own statistical
+	characteristics.  The <term>estimation error</term>
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">ε</m:ci>
+	    <m:ci type="vector">r</m:ci>
+	  </m:apply>
+	</m:math> equals the estimate minus the actual
+	parameter value: 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">ε</m:ci>
+	      <m:ci type="vector">r</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+		  <m:ci type="fn">θ</m:ci>
+		</m:apply>
+		<m:ci type="vector">r</m:ci>
+	      </m:apply>
+	      <m:ci type="fn">θ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.  It too is a random quantity and is often used in
+	the criterion function.  For example, the <term>mean-squared
+	error</term> is given by
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="vector">ε</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">ε</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>; the minimum mean-squared error estimate would
+	minimize this quantity.  The mean-squared error matrix is 
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="vector">ε</m:ci>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="vector">ε</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>; on the main diagonal, its entries are the
+	mean-squared estimation errors for each component of the
+	parameter vector, whereas the off-diagonal terms express the
+	correlation between the errors.  The <term>mean-squared
+	estimation error</term>
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="vector">ε</m:ci>
+	      </m:apply>
+	      <m:ci type="vector">ε</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> equals the trace of the mean-squared error matrix
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">tr</m:ci>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	      <m:apply>
+		<m:times/>
+		<m:ci type="vector">ε</m:ci>
+		<m:apply>
+		  <m:transpose/>
+		  <m:ci type="vector">ε</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+      </para>
+      <section id="bias">
+	<title>Bias</title>
+	<para id="biased">
+	  An estimate is said to be <term>unbiased</term> if the
+	  expected value of the estimate equals the true value of the
+	  parameter:
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:condition>
+		  <m:ci>θ</m:ci>
+		</m:condition>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+		  <m:ci>θ</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>θ</m:ci>
+	    </m:apply>
+	  </m:math>.  Otherwise, the estimate is said to be
+	  <term>biased</term>: 
+	  <m:math>
+	    <m:apply>
+	      <m:neq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:condition>
+		  <m:ci>θ</m:ci>
+		</m:condition>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+		  <m:ci>θ</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>θ</m:ci>
+	    </m:apply>
+	  </m:math>.  The <term>bias</term> 
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="vector">b</m:ci>
+	      <m:ci>θ</m:ci>
+	    </m:apply>
+	  </m:math> is usually considered to be additive, so that
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="vector">b</m:ci>
+		<m:ci>θ</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		  <m:condition>
+		    <m:ci>θ</m:ci>
+		  </m:condition>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+		    <m:ci>θ</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci>θ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.  When we have a biased estimate, the bias usually
+	  depends on the number of observations 
+	  <m:math>
+	    <m:ci>L</m:ci> </m:math>.  An estimate is said to be
+	  <term>asymptotically unbiased</term> if the bias tends to zero
+	  for large 
+	  <m:math>
+	    <m:ci>L</m:ci>
+	  </m:math>: 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:limit/>
+		<m:bvar>
+		  <m:ci>L</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:infinity/>
+		</m:lowlimit>
+		<m:ci type="vector">b</m:ci>
+	      </m:apply>
+	      <m:cn type="vector">0</m:cn>
+	    </m:apply>
+	  </m:math>.  An estimate's variance equals the mean-squared
+	  estimation error <emphasis>only</emphasis> if the estimate is
+	  unbiased.
+	</para>
+	<para id="entirelytext">
+	  An unbiased estimate has a probability distribution where
+	  the mean equals the actual value of the parameter.  Should
+	  the lack of bias be considered a desirable property?  If
+	  many unbiased estimates are computed from statistically
+	  independent sets of observations having the same parameter
+	  value, the average of these estimates will be close to this
+	  value.  This property does <emphasis>not</emphasis> mean
+	  that the estimate has less error than a biased one; there
+	  exist biased estimates whose mean-squared errors are smaller
+	  than unbiased ones.  In such cases, the biased estimate is
+	  usually asymptotically unbiased.  Lack of bias is good, but
+	  that is just one aspect of how we evaluate estimators.
+	</para>
+      </section>
+      <section id="consistency">
+	<title>Consistency</title>
+	<para id="consistent">
+	  We term an estimate <term>consistent</term> if the
+	  mean-squared estimation error tends to zero as the number of
+	  observations becomes large: 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:limit/>
+		<m:bvar>
+		  <m:ci>L</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:infinity/>
+		</m:lowlimit>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:transpose/>
+		      <m:ci type="vector">ε</m:ci>
+		    </m:apply>
+		    <m:ci type="vector">ε</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>.  Thus, a consistent estimate must be at least
+	  asymptotically unbiased.  Unbiased estimates do exist whose
+	  errors never diminish as more data are collected: Their
+	  variances remain nonzero no matter how much data are
+	  available.  Inconsistent estimates may provide reasonable
+	  estimates when the amount of data is limited, but have the
+	  counterintuitive property that the quality of the estimate
+	  does not improve as the number of observations increases.
+	  Although appropriate in the proper circumstances (smaller
+	  mean-squared error than a consistent estimate over a
+	  pertinent range of values of <m:math><m:ci>L</m:ci>
+	  </m:math>, consistent estimates are usually favored in
+	  practice.
+	</para>
+      </section>
+      <section id="efficiency">
+	<title>Efficiency</title>
+	<para id="efficient">
+	  As estimators can be derived in a variety of ways, their
+	  error characteristics must always be analyzed and compared.
+	  In practice, many problems and the estimators derived for
+	  them are sufficiently complicated to render analytic studies
+	  of the errors difficult, if not impossible.  Instead,
+	  numerical simulation and comparison with lower bounds on the
+	  estimation error are frequently used instead to assess the
+	  estimator performance.  An
+	  <term><emphasis>efficient</emphasis> estimate</term> has a
+	  mean-squared error that equals a particular lower bound: the
+	  <link document="m11266">Cramér-Rao bound</link>.  If
+	  an efficient estimate exists (the Cramér-Rao bound is
+	  the greatest lower bound), it is optimum in the mean-squared
+	  sense: No other estimate has a smaller mean-squared error
+	  (see <link document="m11269">Maximum Likelihood
+	  Estimators</link> for details).
+	</para>
+	<para id="CR">
+	  For many problems no efficient estimate exists.  In such
+	  cases, the Cramér-Rao bound remains a lower bound,
+	  but its value is smaller than that achievable by any
+	  estimator.  How much smaller is usually not known.  However,
+	  practitioners frequently use the Cramér-Rao bound in
+	  comparisons with numerical error calculations.  Another
+	  issue is the choice of mean-squared error as the estimation
+	  criterion; it may not suffice to pointedly assess estimator
+	  performance in a particular problem.  Nevertheless, every
+	  problem is usually subjected to a Cramér-Rao bound
+	  computation and the existence of an efficient estimate
+	  considered.
+	</para>
+      </section>
+    </section>
+  </content>
+  
+</document>

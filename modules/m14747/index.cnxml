@@ -1,0 +1,351 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Summary of Basic Rules for Probability Theory</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>2e96ba74-d254-42f5-88a6-4b808e544f4f</md:uuid>
+</metadata>
+  <content>
+    <para id="id11153625">“Probability theory is nothing but common sense reduced to calculation” (Laplace).</para>
+    <section id="id-369545840181">
+      <title>Introduction</title>
+      <para id="id11217961">This module was adapted from E.T. Jaynes’ manuscript entitled: “Probability Theory with Applications to Science and Engineering – A Series of Informal Lectures”, 1974. The entire manuscript is available at <link url="http://bayes.wustl.edu/etj/science.pdf.html">http://bayes.wustl.edu/etj/science.pdf.html</link>. </para>
+      <para id="id3092346">A second and significantly expanded edition of this manuscript is available on Amazon. The first 3 chapters of the second edition are available here <link url="http://bayes.wustl.edu/etj/prob/book.pdf">http://bayes.wustl.edu/etj/prob/book.pdf</link>.</para>
+    </section>
+    <section id="id-309091710652">
+      <title>Deductive Logic (Boolean Algebra)</title>
+      <para id="id10651027">Denote propositions by A, B, etc., their denials by 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>A</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{A rSub { size 8{c} } } {}</m:annotation></m:semantics></m:math>, 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{B rSub { size 8{c} } } {}</m:annotation></m:semantics></m:math> etc. Define the logical product and logical sum by</para>
+      <para id="id11230596"><m:math><m:semantics><m:mtable><m:mtr><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>AB</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">≡</m:mo><m:mrow/></m:mrow><m:mrow/></m:mrow></m:mtr><m:mtr><m:mstyle fontsize="12pt"><m:mrow><m:mrow/></m:mrow></m:mstyle></m:mtr></m:mtable><m:annotation encoding="StarMath 5.0"> size 12{ ital "AB" equiv } {}</m:annotation></m:semantics></m:math> “Both A and B are true”</para>
+      <para id="id10593144"><m:math><m:semantics><m:mtable><m:mtr><m:mrow><m:mrow><m:mrow><m:mi>A</m:mi><m:mo stretchy="false">+</m:mo><m:mi>B</m:mi></m:mrow><m:mo stretchy="false">≡</m:mo><m:mrow/></m:mrow><m:mrow/></m:mrow></m:mtr><m:mtr><m:mstyle fontsize="12pt"><m:mrow><m:mrow/></m:mrow></m:mstyle></m:mtr></m:mtable><m:annotation encoding="StarMath 5.0"> size 12{A+B equiv } {}</m:annotation></m:semantics></m:math> “At least one of the propositions, A, B are true”</para>
+      <para id="id10439861">Deductive reasoning then consists of applying relations such as </para>
+      <para id="id10593118"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mi>A</m:mi><m:mo stretchy="false">+</m:mo><m:mi>A</m:mi></m:mrow><m:mo stretchy="false">=</m:mo><m:mi>A</m:mi></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{A+A=A} {}</m:annotation></m:semantics></m:math>; </para>
+      <para id="id11493213"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>A </m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mrow><m:mi>B</m:mi><m:mo stretchy="false">+</m:mo><m:mi>C</m:mi></m:mrow><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mo stretchy="false">(</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>AB</m:mtext></m:mrow></m:mstyle><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">+</m:mo><m:mo stretchy="false">(</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>AC</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ ital "A " \( B+C \)  =  \(  ital "AB" \) + \(  ital "AC" \) } {}</m:annotation></m:semantics></m:math>; </para>
+      <para id="id9658578">if 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>D </m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">=</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext> A</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle></m:mrow><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>c </m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ ital "D "= ital " A" rSub { size 8{c} } B rSub { size 8{ ital "c "} } } {}</m:annotation></m:semantics></m:math>then 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>D</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">=</m:mo><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext> A</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">+</m:mo><m:mi>B</m:mi></m:mrow></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{D rSub { size 8{c} }  = ital " A"+B} {}</m:annotation></m:semantics></m:math>.</para>
+    </section>
+    <section id="id-748620428477">
+      <title>Inductive Logic (Probability Theory)</title>
+      <para id="id10183109">Inductive logic is the extension of deductive logic, describing the reasoning of an idealized “robot”, who represents degrees of plausibility of a logical proposition by real numbers:</para>
+      <para id="id10874024"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:mi>A</m:mi><m:mo stretchy="false">∣</m:mo><m:mi>B</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{p \( A \lline B \)  } {}</m:annotation></m:semantics></m:math>= probability of A, given B.</para>
+      <para id="id11113307">We use the original term “robot” advocated by Jaynes, it is intended to mean the use of inductive logic that follows a set of consistent rules that can be agreed upon. In this formulation of probability theory, conditional probabilities are fundamental. The elementary requirements of common sense and consistency determine these basic rules of reasoning (see Jaynes for the derivation). </para>
+      <para id="id10285865">In these rules, one can think of the proposition 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mi>C</m:mi></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{C} {}</m:annotation></m:semantics></m:math> being the prior information that is available to assign probabilities to logical propositions, but these rules are true without this interpretation. </para>
+      <para id="id9236178">Rule 1: 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext>AB</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">∣</m:mo><m:mi>C</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext> p</m:mtext></m:mrow></m:mstyle></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>A</m:mi><m:mo stretchy="false">∣</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext>BC</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">)</m:mo><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:mi>B</m:mi><m:mo stretchy="false">∣</m:mo><m:mi>C</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mi>p</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>B</m:mi><m:mo stretchy="false">∣</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext>AC</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">)</m:mo><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:mi>A</m:mi><m:mo stretchy="false">∣</m:mo><m:mi>C</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{p \(  ital "AB" \lline C \)  = ital " p" \( A \lline  ital "BC" \) p \( B \lline C \) =p \( B \lline  ital "AC" \) p \( A \lline C \)  } {}</m:annotation></m:semantics></m:math></para>
+      <para id="id11437065">Rule 2: 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:mi>A</m:mi><m:mo stretchy="false">∣</m:mo><m:mi>B</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">+</m:mo><m:mi>p</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:msub><m:mi>A</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">∣</m:mo><m:mi>B</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mn>1</m:mn></m:mrow></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{p \( A \lline B \) +p \( A rSub { size 8{c} }  \lline B \)  = 1} {}</m:annotation></m:semantics></m:math></para>
+      <para id="id10875013">Rule 3: 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:mrow><m:mi>A</m:mi><m:mo stretchy="false">+</m:mo><m:mi>B</m:mi></m:mrow><m:mo stretchy="false">∣</m:mo><m:mi>C</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mi>p</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>A</m:mi><m:mo stretchy="false">∣</m:mo><m:mi>C</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">+</m:mo><m:mi>p</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>B</m:mi><m:mo stretchy="false">∣</m:mo><m:mi>C</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:mi>p</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext>AB</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">∣</m:mo><m:mi>C</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{p \( A+B \lline C \) =p \( A \lline C \) +p \( B \lline C \)  - p \(  ital "AB" \lline C \) } {}</m:annotation></m:semantics></m:math></para>
+      <para id="id10433200">Rule 4: If 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mo stretchy="false">{</m:mo><m:mrow><m:msub><m:mi>A</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mi>,</m:mi><m:mo stretchy="false">…</m:mo><m:msub><m:mi>A</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>N</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">}</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ lbrace A rSub { size 8{1} } , dotslow A rSub { size 8{N} }  rbrace } {}</m:annotation></m:semantics></m:math>are mutually exclusive and exhaustive, and information 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mi>B</m:mi></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{B} {}</m:annotation></m:semantics></m:math>is indifferent to tem; i.e. if 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mi>B</m:mi></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{B} {}</m:annotation></m:semantics></m:math> gives no preference to one over any other then:</para>
+      <para id="id9844556"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:msub><m:mi>A</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">∣</m:mo><m:mi>B</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mrow><m:mn>1</m:mn><m:mo stretchy="false">/</m:mo><m:mi>n</m:mi></m:mrow></m:mrow><m:mi>,</m:mi><m:mrow><m:mi>i</m:mi><m:mo stretchy="false">=</m:mo><m:mn>1</m:mn></m:mrow><m:mo stretchy="false">…</m:mo><m:mi>n</m:mi></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{p \( A rSub { size 8{i} }  \lline B \) =1/n,i=1 dotslow n} {}</m:annotation></m:semantics></m:math> (principle of insufficient reason)</para>
+      <para id="id10286766">From rule 1 we obtain Bayes’ theorem:</para>
+      <para id="id10856429">
+        <m:math>
+          <m:semantics>
+            <m:mrow>
+              <m:mstyle fontsize="12pt">
+                <m:mrow>
+                  <m:mrow>
+                    <m:mi>p</m:mi>
+                    <m:mo stretchy="false">(</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mo stretchy="false">∣</m:mo>
+                    <m:mstyle fontstyle="italic">
+                      <m:mrow>
+                        <m:mtext>BC</m:mtext>
+                      </m:mrow>
+                    </m:mstyle>
+                    <m:mrow>
+                      <m:mo stretchy="false">)</m:mo>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:mi>p</m:mi>
+                    </m:mrow>
+                    <m:mo stretchy="false">(</m:mo>
+                    <m:mi>A</m:mi>
+                    <m:mo stretchy="false">∣</m:mo>
+                    <m:mi>C</m:mi>
+                    <m:mo stretchy="false">)</m:mo>
+                    <m:mfrac>
+                      <m:mrow>
+                        <m:mi>p</m:mi>
+                        <m:mo stretchy="false">(</m:mo>
+                        <m:mi>B</m:mi>
+                        <m:mo stretchy="false">∣</m:mo>
+                        <m:mstyle fontstyle="italic">
+                          <m:mrow>
+                            <m:mtext>AC</m:mtext>
+                          </m:mrow>
+                        </m:mstyle>
+                        <m:mo stretchy="false">)</m:mo>
+                      </m:mrow>
+                      <m:mrow>
+                        <m:mi>p</m:mi>
+                        <m:mo stretchy="false">(</m:mo>
+                        <m:mi>B</m:mi>
+                        <m:mo stretchy="false">∣</m:mo>
+                        <m:mi>C</m:mi>
+                        <m:mo stretchy="false">)</m:mo>
+                      </m:mrow>
+                    </m:mfrac>
+                  </m:mrow>
+                </m:mrow>
+              </m:mstyle>
+              <m:mrow/>
+            </m:mrow>
+            <m:annotation encoding="StarMath 5.0"> size 12{p \( A \lline  ital "BC" \) =p \( A \lline C \)  {  {p \( B \lline  ital "AC" \) }  over  {p \( B \lline C \) } } } {}</m:annotation>
+          </m:semantics>
+        </m:math>
+      </para>
+      <para id="id11430203">From Rule 3, if 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mo stretchy="false">{</m:mo><m:mrow><m:msub><m:mi>A</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mi>,</m:mi><m:mo stretchy="false">…</m:mo><m:msub><m:mi>A</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>N</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">}</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ lbrace A rSub { size 8{1} } , dotslow A rSub { size 8{N} }  rbrace } {}</m:annotation></m:semantics></m:math>are mutually exclusive,</para>
+      <para id="id11288008">
+        <m:math>
+          <m:semantics>
+            <m:mrow>
+              <m:mstyle fontsize="12pt">
+                <m:mrow>
+                  <m:mrow>
+                    <m:mi>p</m:mi>
+                    <m:mo stretchy="false">(</m:mo>
+                    <m:mrow>
+                      <m:msub>
+                        <m:mi>A</m:mi>
+                        <m:mstyle fontsize="8pt">
+                          <m:mrow>
+                            <m:mn>1</m:mn>
+                          </m:mrow>
+                        </m:mstyle>
+                      </m:msub>
+                      <m:mo stretchy="false">+</m:mo>
+                      <m:mo stretchy="false">…</m:mo>
+                    </m:mrow>
+                    <m:msub>
+                      <m:mi>A</m:mi>
+                      <m:mstyle fontsize="8pt">
+                        <m:mrow>
+                          <m:mi>N</m:mi>
+                        </m:mrow>
+                      </m:mstyle>
+                    </m:msub>
+                    <m:mo stretchy="false">∣</m:mo>
+                    <m:mi>B</m:mi>
+                    <m:mrow>
+                      <m:mo stretchy="false">)</m:mo>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:mrow>
+                        <m:munderover>
+                          <m:mo stretchy="false">∑</m:mo>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mrow>
+                                <m:mi>i</m:mi>
+                                <m:mo stretchy="false">=</m:mo>
+                                <m:mn>1</m:mn>
+                              </m:mrow>
+                            </m:mrow>
+                          </m:mstyle>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>n</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:munderover>
+                        <m:mrow>
+                          <m:mi>p</m:mi>
+                          <m:mo stretchy="false">(</m:mo>
+                          <m:msub>
+                            <m:mi>A</m:mi>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>i</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                          <m:mo stretchy="false">∣</m:mo>
+                          <m:mi>B</m:mi>
+                          <m:mo stretchy="false">)</m:mo>
+                        </m:mrow>
+                      </m:mrow>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mrow>
+              </m:mstyle>
+              <m:mrow/>
+            </m:mrow>
+            <m:annotation encoding="StarMath 5.0"> size 12{p \( A rSub { size 8{1} } + dotslow A rSub { size 8{N} }  \lline B \) = Sum cSub { size 8{i=1} }  cSup { size 8{n} }  {p \( A rSub { size 8{i} }  \lline B \) } } {}</m:annotation>
+          </m:semantics>
+        </m:math>
+      </para>
+      <para id="id10984513">If in addition, the 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>A</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{A rSub { size 8{i} } } {}</m:annotation></m:semantics></m:math>are exhaustive, we obtain the chain rule:</para>
+      <para id="id11203956">
+        <m:math>
+          <m:semantics>
+            <m:mrow>
+              <m:mstyle fontsize="12pt">
+                <m:mrow>
+                  <m:mrow>
+                    <m:mi>p</m:mi>
+                    <m:mo stretchy="false">(</m:mo>
+                    <m:mi>B</m:mi>
+                    <m:mo stretchy="false">∣</m:mo>
+                    <m:mi>C</m:mi>
+                    <m:mrow>
+                      <m:mrow>
+                        <m:mo stretchy="false">)</m:mo>
+                        <m:mo stretchy="false">=</m:mo>
+                        <m:mrow>
+                          <m:munderover>
+                            <m:mo stretchy="false">∑</m:mo>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mrow>
+                                  <m:mi>i</m:mi>
+                                  <m:mo stretchy="false">=</m:mo>
+                                  <m:mn>1</m:mn>
+                                </m:mrow>
+                              </m:mrow>
+                            </m:mstyle>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>n</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:munderover>
+                          <m:mrow>
+                            <m:mi>p</m:mi>
+                            <m:mo stretchy="false">(</m:mo>
+                            <m:mstyle fontstyle="italic">
+                              <m:mrow>
+                                <m:msub>
+                                  <m:mtext>BA</m:mtext>
+                                  <m:mstyle fontsize="8pt">
+                                    <m:mrow>
+                                      <m:mi>i</m:mi>
+                                    </m:mrow>
+                                  </m:mstyle>
+                                </m:msub>
+                              </m:mrow>
+                            </m:mstyle>
+                            <m:mo stretchy="false">∣</m:mo>
+                            <m:mi>C</m:mi>
+                            <m:mo stretchy="false">)</m:mo>
+                          </m:mrow>
+                        </m:mrow>
+                      </m:mrow>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:mrow>
+                        <m:munderover>
+                          <m:mo stretchy="false">∑</m:mo>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mrow>
+                                <m:mi>i</m:mi>
+                                <m:mo stretchy="false">=</m:mo>
+                                <m:mn>1</m:mn>
+                              </m:mrow>
+                            </m:mrow>
+                          </m:mstyle>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mi>n</m:mi>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:munderover>
+                        <m:mrow>
+                          <m:mi>p</m:mi>
+                          <m:mo stretchy="false">(</m:mo>
+                          <m:mi>B</m:mi>
+                          <m:mo stretchy="false">∣</m:mo>
+                          <m:msub>
+                            <m:mi>A</m:mi>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>i</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                          <m:mi>C</m:mi>
+                          <m:mo stretchy="false">)</m:mo>
+                        </m:mrow>
+                      </m:mrow>
+                    </m:mrow>
+                    <m:mi>p</m:mi>
+                    <m:mo stretchy="false">(</m:mo>
+                    <m:msub>
+                      <m:mi>A</m:mi>
+                      <m:mstyle fontsize="8pt">
+                        <m:mrow>
+                          <m:mi>i</m:mi>
+                        </m:mrow>
+                      </m:mstyle>
+                    </m:msub>
+                    <m:mo stretchy="false">∣</m:mo>
+                    <m:mi>C</m:mi>
+                    <m:mo stretchy="false">)</m:mo>
+                  </m:mrow>
+                </m:mrow>
+              </m:mstyle>
+              <m:mrow/>
+            </m:mrow>
+            <m:annotation encoding="StarMath 5.0"> size 12{p \( B \lline C \) = Sum cSub { size 8{i=1} }  cSup { size 8{n} }  {p \(  ital "BA" rSub { size 8{i} }  \lline C \) } = Sum cSub { size 8{i=1} }  cSup { size 8{n} }  {p \( B \lline A rSub { size 8{i} } C \) } p \( A rSub { size 8{i} }  \lline C \) } {}</m:annotation>
+          </m:semantics>
+        </m:math>
+      </para>
+    </section>
+    <section id="id-103389700757">
+      <title>Prior Probabilities</title>
+      <para id="id11278970">The initial information available to the robot at the beginning of any problem is denoted by 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mi>X</m:mi></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{X} {}</m:annotation></m:semantics></m:math>. 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:mi>A</m:mi><m:mo stretchy="false">∣</m:mo><m:mi>X</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{p \( A \lline X \)  } {}</m:annotation></m:semantics></m:math>is then the prior probability of 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mi>A</m:mi></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{A} {}</m:annotation></m:semantics></m:math>. Applying Bayes’ theorem to take account of new evidence 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mi>E</m:mi></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{E} {}</m:annotation></m:semantics></m:math>yields the posterior probability 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:mi>A</m:mi><m:mo stretchy="false">∣</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext>EX</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{p \( A \lline  ital "EX" \) } {}</m:annotation></m:semantics></m:math>. In a posterior probability we sometimes leave off the 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mi>X</m:mi></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{X} {}</m:annotation></m:semantics></m:math> for brevity: 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:mi>A</m:mi><m:mo stretchy="false">∣</m:mo><m:mi>E</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">≡</m:mo><m:mi>p</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>A</m:mi><m:mo stretchy="false">∣</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext>EX</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">)</m:mo><m:mtext>.</m:mtext></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{p \( A \lline E \)   equiv p \( A \lline  ital "EX" \)  "." } {}</m:annotation></m:semantics></m:math></para>
+      <para id="id10432918">Prior probabilities are determined by Rule 4 when applicable; or more generally by the principle of maximum entropy. </para>
+    </section>
+    <section id="id-39601676233">
+      <title>Decision Theory</title>
+      <para id="id11288549">Enumerate the possible decisions 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>D</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mi>,</m:mi><m:mo stretchy="false">…</m:mo><m:msub><m:mi>D</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{D rSub { size 8{1} } , dotslow D rSub { size 8{k} } } {}</m:annotation></m:semantics></m:math>and introduce the loss function 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>L</m:mi><m:mo stretchy="false">(</m:mo><m:msub><m:mi>D</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub><m:mi>,</m:mi><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{L \( D rSub { size 8{i} } ,θ rSub { size 8{i} }  \) } {}</m:annotation></m:semantics></m:math>representing the “loss” incurred by making decision 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>D</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{D rSub { size 8{i} } } {}</m:annotation></m:semantics></m:math>if 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>j</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{θ rSub { size 8{j} } } {}</m:annotation></m:semantics></m:math>is the true state of nature. After accumulating new evidence E, make that decision 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>D</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{D rSub { size 8{i} } } {}</m:annotation></m:semantics></m:math>which minimizes the expected loss over the posterior distribution of 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>j</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{θ rSub { size 8{j} } } {}</m:annotation></m:semantics></m:math> :</para>
+      <para id="id10935083">Choose the decision 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>D</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{D rSub { size 8{i} } } {}</m:annotation></m:semantics></m:math>which minimizes 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mrow><m:mo stretchy="false">〈</m:mo><m:mi>L</m:mi><m:mo stretchy="false">〉</m:mo></m:mrow><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">=</m:mo><m:mrow><m:munder><m:mo stretchy="false">∑</m:mo><m:mstyle fontsize="8pt"><m:mrow><m:mi>j</m:mi></m:mrow></m:mstyle></m:munder><m:mrow><m:mi>L</m:mi><m:mo stretchy="false">(</m:mo><m:msub><m:mi>D</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub><m:mi>,</m:mi><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>j</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">)</m:mo><m:mi>p</m:mi><m:mo stretchy="false">(</m:mo><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>j</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">∣</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext>EX</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ langle L rangle  rSub { size 8{i} } = Sum cSub { size 8{j} }  {L \( D rSub { size 8{i} } ,θ rSub { size 8{j} }  \) p \( θ rSub { size 8{j} }  \lline  ital "EX" \) } } {}</m:annotation></m:semantics></m:math></para>
+      <para id="id11109576">
+        <m:math>
+          <m:semantics>
+            <m:mrow>
+              <m:mstyle fontsize="12pt">
+                <m:mrow>
+                  <m:mrow>
+                    <m:mtext>choose </m:mtext>
+                    <m:msub>
+                      <m:mi>D</m:mi>
+                      <m:mstyle fontsize="8pt">
+                        <m:mrow>
+                          <m:mi>i</m:mi>
+                        </m:mrow>
+                      </m:mstyle>
+                    </m:msub>
+                    <m:mtext> such that  is minimized</m:mtext>
+                  </m:mrow>
+                </m:mrow>
+              </m:mstyle>
+              <m:mrow/>
+            </m:mrow>
+            <m:annotation encoding="StarMath 5.0"> size 12{"choose "D rSub { size 8{i} } " such that  is minimized"} {}</m:annotation>
+          </m:semantics>
+        </m:math>
+      </para>
+    </section>
+  </content>
+</document>

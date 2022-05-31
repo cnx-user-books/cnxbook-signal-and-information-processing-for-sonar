@@ -1,0 +1,518 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Decibel scale with signal processing applications</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>ffde771e-2493-49c0-935c-33a80f4ff014</md:uuid>
+</metadata>
+  <content>
+    <section id="s1">
+      <title>Introduction</title>
+      <para id="id2883497">The concept of decibel originates from
+	telephone engineers who were working with power loss in a telephone
+	line consisting of cascaded circuits. The power loss in each circuit is the ratio of
+	the power in to the power out, or equivivalently, the power gain is
+	the ratio of the power out to the power in.</para>
+      <para id="id2883517">Let 
+	<m:math><m:ci><m:msub><m:mi>P</m:mi><m:mi>in</m:mi></m:msub></m:ci></m:math> 
+	be the power input to a telephone line and
+	<m:math><m:ci><m:msub><m:mi>P</m:mi><m:mi>out</m:mi></m:msub></m:ci></m:math> 
+	the power out. The power gain is then given by 
+
+	<equation id="eq1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>Gain</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:ci><m:msub><m:mi>P</m:mi><m:mi>out</m:mi></m:msub></m:ci>
+		<m:ci><m:msub><m:mi>P</m:mi><m:mi>in</m:mi></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	Taking the logarithm of the gain formula we obtain a
+	comparative measure called Bel. 
+	<note type="Bel" id="idm484736"><label>Bel</label>
+	  <m:math>         
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>Gain</m:ci>
+		<m:mtext>Bel</m:mtext>
+	      </m:apply>
+	      <m:apply>
+		<m:log/>
+		<m:logbase><m:cn>10</m:cn></m:logbase>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci><m:msub><m:mi>P</m:mi><m:mi>out</m:mi></m:msub></m:ci>
+		  <m:ci><m:msub><m:mi>P</m:mi><m:mi>in</m:mi></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</note>
+
+	This measure is in honour of Alexander G. Bell, see <link target-id="fig1"/>.
+      </para>
+
+      <figure id="fig1">
+	<media id="idp1298768" alt=""><image src="../../media/agbell.jpg" mime-type="image/jpeg" height="220" width="340"/></media>
+	<caption>Alexander G. Bell</caption>
+      </figure>
+
+    </section>
+    <section id="s2">
+      <title>Decibel</title>
+      <para id="id2883608">Bel is often a to large quantity, so we
+	define a more useful measure, decibel:
+	<equation id="eq2">
+	  <m:math>         
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>Gain</m:ci>
+		<!--	      <m:ci>s</m:ci>-->
+		<m:mtext>dB</m:mtext>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>10</m:cn>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>10</m:cn></m:logbase>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci><m:msub><m:mi>P</m:mi><m:mi>out</m:mi></m:msub></m:ci>
+		    <m:ci><m:msub><m:mi>P</m:mi><m:mi>in</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	Please note from the definition that the gain in dB is relative to the input power. 
+	In general we define:
+	<equation id="eq3">
+	  <m:math>         
+	    <m:apply>
+	      <m:eq/>
+		<m:ci>Number of decibels</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:cn>10</m:cn>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>10</m:cn></m:logbase>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>P</m:ci>
+		    <m:ci><m:msub><m:mi>P</m:mi><m:mi>ref</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>      
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+      
+      <para id="id2883650">
+	If no reference level is given it is customary 	to use 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>P</m:mi><m:mi>ref</m:mi></m:msub></m:ci>
+	    <m:cn>1 W</m:cn>
+	  </m:apply>
+	</m:math>, 
+	in which case we have: 
+	<note type="Decibel" id="idm7095712"><label>Decibel</label>
+	  <m:math>         
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>Number of decibels</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:cn>10</m:cn>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>10</m:cn></m:logbase>
+		  <m:apply>
+		    <m:ci>P</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>      
+	    </m:apply>
+	  </m:math>
+	</note>
+      </para>
+      
+	<example id="exa1">
+	<para id="exa1p1">
+	  Given the power spectrum density (psd) function of a
+	  signal 
+	  <m:math><m:apply><m:ci>x</m:ci><m:ci>n</m:ci></m:apply></m:math>, 
+	  <m:math>
+	    <m:apply>
+	      <m:ci><m:msub><m:mi>S</m:mi><m:mi>xx</m:mi></m:msub></m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:ci>f</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>. Express the magnitude of the psd in decibels.
+	</para>
+	<para id="exa1p2">
+	  We find
+	   <m:math>         
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci><m:msub><m:mi>S</m:mi><m:mi>xx</m:mi></m:msub></m:ci>
+		<m:mtext>dB</m:mtext>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>10</m:cn>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>10</m:cn></m:logbase>
+<!--		  <m:apply>-->
+		    <m:apply>
+		      <m:abs/>
+		      <m:apply>
+			<m:ci><m:msub><m:mi>S</m:mi><m:mi>xx</m:mi></m:msub></m:ci>
+			<m:apply>
+			  <m:times/>
+			  <m:imaginaryi/>
+			  <m:ci>f</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+<!--		  </m:apply>-->
+		</m:apply>
+	      </m:apply>      
+	    </m:apply>
+	  </m:math>.
+	</para>
+	</example>
+    </section>
+    <section id="s3">
+      <title>More about decibels</title>      
+
+      <para id="id2883765">Above we’ve calculated the decibel
+	equivalent of power. Power is a quadratic variable, whereas voltage
+	and current are linear variables. This can be seen, for example,
+	from the formulas 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>P</m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>V</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:ci>R</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> and
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>P</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>I</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:ci>R</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+      </para>
+      
+      <para id="id2883783">So if we want to find the decibel value of a
+	current or voltage, or more general an amplitude we use: 
+	
+	<equation id="eq4">
+	  <m:math>         
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>Amplitude</m:ci>
+		<m:mtext>dB</m:mtext>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>20</m:cn>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>10</m:cn></m:logbase>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>Amplitude</m:ci>
+		    <m:ci><m:msub><m:mi>Amplitude</m:mi><m:mi>ref</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>      
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	This is illustrated in the following example.
+      </para>
+
+      <example id="exa2">
+	<para id="exa2p1">
+	  Express the magnitude of the filter 
+	  <m:math>
+	    <m:apply>
+	      <m:ci>H</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:ci>f</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  in dB scale.
+	</para>
+	<para id="exa2p2">
+	  The magnitude is given by
+	  <m:math>
+	    <m:apply>
+	      <m:abs/>
+	      <m:apply>
+		<m:ci>H</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>f</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>,
+	  
+	  which gives: 
+	  
+	  <m:math>         
+	    <m:apply>
+	      <m:eq/>
+	      <!--	      <m:apply>-->
+	      <m:apply>
+		<m:abs/>
+		<m:apply>
+		  <m:ci>H</m:ci>
+		  <m:mtext>dB</m:mtext>
+		</m:apply>
+		</m:apply>
+
+<!--	      </m:apply>-->
+	      <m:apply>
+		<m:times/>
+		<m:cn>20</m:cn>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>10</m:cn></m:logbase>
+<!--		  <m:apply>-->
+		    <m:apply>
+		      <m:abs/>
+		      <m:apply>
+			<m:ci>H</m:ci>
+			<m:apply>
+			  <m:times/>
+			  <m:imaginaryi/>
+			  <m:ci>f</m:ci>
+			</m:apply>
+<!--		      </m:apply>-->
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>      
+	    </m:apply>
+	  </m:math>.
+
+<!--	  |H(jf)|^2.-->
+
+</para>
+      </example>
+      <para id="id2883831">Plots of the magnitude of an example filter
+	<m:math>
+	  <m:apply>
+	    <m:abs/>
+	    <m:apply>
+	      <m:ci>H</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:ci>f</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	and its decibel equivalent are shown in <link target-id="fig2"/>.
+	<figure id="fig2">
+	<media id="idp3433632" alt=""><image src="../../media/filters.png" mime-type="image/png"/></media>
+	<caption>Magnitude responses.</caption>
+      </figure>
+	
+      </para>
+      
+    </section>
+
+    <section id="s4">
+      <title>Some basic arithmetic</title>
+
+      <para id="id2883856">The ratios 1,10,100, 1000 give dB values 0 dB,
+	10 dB, 20 dB and 30 dB respectively. This implies that an increase
+	of 10 dB corresponds to a ratio increase by a factor 10.</para>
+      <para id="id2883866">This can easily be shown: Given a ratio R we
+	have R[dB] = 10 log R. Increasing the ratio by a factor of 10 we
+	have: 10 log (10*R) = 10 log 10 + 10 log R = 10 dB + R dB.</para>
+      <para id="id2883876">Another important dB-value is 3dB. This comes
+	from the fact that:</para>
+      <para id="id2883881">An increase by a factor 2 gives: an increase
+	of 10 log 2 ≈ 3 dB. A “increase” by a factor 1/2
+	gives: an “increase” of 10 log 1/2 ≈ -3
+	dB.</para>
+      <example id="exa3">
+	<para id="exa3p1">
+	  In filter terminology the <emphasis>cut-off frequency</emphasis> is
+	  a term that often appears. The cutoff frequency (for lowpass and highpass <link document="m11868">filters</link>), 
+	  <m:math><m:ci><m:msub><m:mi>f</m:mi><m:mi>c</m:mi></m:msub></m:ci></m:math>,
+	  is the frequency at which the squared magnitude response in dB is ½. In decibel
+	  scale this corresponds to about -3 dB.
+	</para>
+      </example>
+    </section>
+    <section id="s5">
+      <title>Decibels in linear systems</title>
+      <para id="id2883942">In signal processing we have the following
+	relations for linear systems:
+	<equation id="eq5">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>Y</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>f</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		<m:ci>H</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>f</m:ci>
+		  </m:apply>
+		</m:apply>
+
+		<m:apply>
+		  <m:ci>X</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>f</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	where X and H denotes the input signal and the filter respectively.
+	Taking absolute values on both sides of <link target-id="eq5"/> and converting to decibels we get:
+	
+	<note type="Input and output relations for linear systems" id="idm7822560"><label>Input and output relations for linear systems</label>
+	  The output amplitude at a
+	  given frequency is simply given by the sum of the filter gain and
+	  the input amplitude, both in dB.
+	</note>
+	
+<!--	<equation id='eq6'>
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:abs/>
+		<m:apply>
+		  <m:ci>Y</m:ci>
+		</m:apply>
+		  <m:apply>
+		    <m:mtext>dB</m:mtext>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>		
+		<m:apply>
+		  <m:ci>H</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>f</m:ci>
+		  </m:apply>
+		  <m:mtext>dB</m:mtext>
+		  
+		</m:apply>
+		<m:apply>
+		  <m:ci>X</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>f</m:ci>
+		  </m:apply>
+		  <m:mtext>dB</m:mtext>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>-->
+      </para>
+    </section>
+
+    <section id="s6">
+      <title>Other references:</title>
+      <para id="s6p1">Above we have used 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>P</m:mi><m:mi>ref</m:mi></m:msub></m:ci>
+	    <m:cn>1 W</m:cn>
+	  </m:apply>
+	</m:math> 
+	as a reference and obtained the standard dB measure. In some applications it is more
+	useful to use
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>P</m:mi><m:mi>ref</m:mi></m:msub></m:ci>
+	    <m:cn>1 mW</m:cn>
+	  </m:apply>
+	</m:math> 
+	and we then have the dBm measure.</para>
+      <para id="id2883999">Another example is when calculating the gain
+	of different antennas. Then it is customary to use an isotropic
+	(equal radiation in all directions) antenna as a reference. So for
+	a given antenna  we can use the dBi measure. (i -&gt; isotropic)</para>
+    </section>
+    <section id="s7">
+       <title>Matlab files</title>
+       <para id="s7p1">
+       <link document="m12452" resource="filter_example.m">filter_example.m</link>
+
+         </para>
+</section>
+  </content>
+</document>

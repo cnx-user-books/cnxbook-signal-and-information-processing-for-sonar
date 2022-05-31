@@ -1,0 +1,293 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Signal Energy vs. Signal Power</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>22e7ef31-128f-4119-85a2-ac5ae6e668e0</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">
+      The idea of the "size" of a signal is crucial to many
+      applications.  It is nice to know how much electricity can be
+      used in a defibrillator without ill effects, for instance.  It is
+      also nice to know if the signal driving a set of headpones is
+      enough to create a sound.  While both of these examples deal
+      with electric signals, they are clearly very different signals
+      with very different tolerances.  For this reason, it is
+      convenient to quantify this idea of "size".  This leads to the
+      ideas of signal energy and signal power.
+    </para>
+
+    <section id="energy">
+      <title>Signal Energy</title>
+      <para id="para2">
+	Since we often think of signal as a function of varying
+	amplitude through time, it seems to reason that a good
+	measurement of the strength of a signal would be the area
+	under the curve.  However, this area may have a negative part.
+	This negative part does not have less strength than a positive
+	signal of the same size (reversing your grip on the paper clip
+	in the socket is not going to make you any more lively).  This
+	suggests either squaring the signal or taking its absolute
+	value, then finding the area under that curve.  It turns out
+	that what we call the <term>energy</term> of a signal is the
+	area under the squared signal.
+      </para>
+
+      <figure id="fig1">
+	<media id="idm7257792" alt=""><image src="../../media/sigsize1.png" mime-type="image/png"/></media>
+	<caption>The energy of this signal is the shaded region.</caption>
+      </figure>
+      
+      <equation id="eqn1">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>E</m:mi>
+		<m:mi>f</m:mi>
+	      </m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>t</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:apply>
+		  <m:minus/>
+		  <m:infinity/>
+		</m:apply>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:infinity/>
+	      </m:uplimit>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:abs/>
+		  <m:apply>
+		    <m:ci type="function">f</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+    </section>
+
+    <section id="power">
+      <title>Signal Power</title>
+      <para id="para3">
+	Our definition of energy seems reasonable, and it is.
+	However, what if the signal does not decay?  In this case we
+	have infinite energy for any such signal.  Does this mean that
+	a sixty hertz sine wave feeding into your headphones is as
+	strong as the sixty hertz sine wave coming out of your outlet?
+	Obviously not.  This is what leads us to the idea of
+	<term>signal power</term>.
+      </para>
+      
+      <figure id="fig2">
+	<media id="idp2966912" alt=""><image src="../../media/sigsize2.png" mime-type="image/png"/></media>
+	<caption>A simple, common signal with infinite energy.</caption>
+      </figure>
+
+      <para id="para4">
+	Power is a time average of energy (energy per unit time).
+	This is useful when the energy of the signal goes to infinity.
+
+	<equation id="eqn2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>P</m:mi>
+		  <m:mi>f</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:limit/>
+		<m:bvar>
+		  <m:ci>T</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:infinity/>
+		</m:lowlimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:int/>
+		    <m:bvar>
+		      <m:ci>t</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:divide/>
+			  <m:ci>T</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>T</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:abs/>
+			<m:apply>
+			  <m:ci>f</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <figure id="fig3">
+	<media id="idp2452688" alt=""><image src="../../media/sigsize3.png" mime-type="image/png"/></media>
+	<caption>
+	  We compute the energy per a specific unit of time, then
+	  allow that time to go to infinity.
+	</caption>
+      </figure>
+
+      <list id="list1" list-type="enumerated">
+	<item>Compute
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>Energy</m:ci>
+	      <m:ci>T</m:ci>
+	    </m:apply>
+	  </m:math>
+	</item>
+	<item>Then look at
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:limit/>
+	      <m:bvar>
+		<m:ci>T</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:infinity/>
+	      </m:lowlimit>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>Energy</m:ci>
+		<m:ci>T</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</item>
+      </list>
+
+      <para id="para5">
+	<m:math display="inline">
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi>
+	      <m:mi>f</m:mi>
+	    </m:msub></m:ci>
+	</m:math>
+	is often called the mean-square value of
+	<m:math display="inline"><m:ci>f</m:ci></m:math>.
+	<m:math display="inline">
+	  <m:apply>
+	    <m:root/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>f</m:mi>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:math>
+	is then called the <term>root mean squared</term>
+	(<term>RMS</term>) value of <m:math><m:ci>f</m:ci></m:math>.
+      </para>
+    </section>
+
+    <section id="sect3">
+      <title>Energy vs. Power</title>
+      <list id="list2">
+	<item>"Energy signals" have finite energy.</item>
+	<item>"Power signals" have finite and non-zero power.</item>
+      </list>
+
+      <exercise id="exc1">
+	<problem id="idm533712"> 
+	  <para id="exc1a">
+	    Are all energy signals also power signals?
+	  </para>
+	</problem>
+	<solution id="idp500208"> 
+	  <para id="exc1b">
+	    No.  In fact, any signal with finite energy will have zero
+	    power.
+	  </para>
+	</solution>
+      </exercise>
+
+      <exercise id="exc2">
+	<problem id="idm5914704"> 
+	  <para id="exc2a">
+	    Are all power signals also energy signals?
+	  </para>
+	</problem>
+	<solution id="idm5837008"> 
+	  <para id="exc2b">
+	    No, any signal with non-zero power will have infinite
+	    energy.
+	  </para>
+	</solution>
+      </exercise>
+
+      <exercise id="exc3">
+	<problem id="idp640160"> 
+	  <para id="exc3a">
+	    Are <emphasis>all</emphasis> signals either energy or
+	    power signals?  
+	  </para>
+	</problem> 
+	<solution id="idm6788480"> 
+	  <para id="exc3b">
+	    No.  Any infinite-duration, increasing-magnitude function
+	    will not be either.  (eg
+	    <m:math display="inline">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="function">f</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:math>
+	    is neither)
+	  </para>
+	</solution>
+      </exercise>
+    </section>
+  </content>
+</document>

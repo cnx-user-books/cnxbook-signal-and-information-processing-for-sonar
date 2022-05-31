@@ -1,0 +1,147 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Introduction to Detection Theory</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>7c519ea5-9b57-4f78-b8fe-1f67fc258442</md:uuid>
+</metadata>
+
+
+  <content>
+    <section id="sect1">
+      <title>Introduction</title>
+      <para id="para1">
+	The intent of <term>detection theory</term> is to provide
+	rational (instead of arbitrary) techniques for determining
+	which of several conceptions--models--of data generation and
+	measurement is most "consistent" with a given set of data.  In
+	digital communication, the received signal must be processed
+	to determine whether it represents a binary "0" or "1"; in
+	radar or sonar, the presence or absence of a target must be
+	determined from measurements of propagating fields; in seismic
+	problems, the presence of oil deposits must be inferred from
+	measurements of sound propagation in the earth.  Using
+	detection theory, we will derive signal processing algorithms
+	which will give good answers to questions such as these when
+	the information-bearing signals are corrupted by superfluous
+	signals (noise).
+      </para>
+      <para id="para2">
+	The detection theory's foundation rests on statistical
+	hypothesis testing (<cite target-id="bib1"><cite-title>Cramér, 1946, Chapter
+	35</cite-title></cite>; <cite target-id="bib2"><cite-title>Lehman, 1986</cite-title></cite>; <cite target-id="bib3"><cite-title>Poor, 1988, Chapter 2</cite-title></cite>; <cite target-id="bib4"><cite-title>van
+	Trees, 1968, pp 19-52</cite-title></cite>).  Given a probabilistic model (an event
+	space <m:math><m:ci>Ω</m:ci></m:math> and the associated
+	probabilistic structures), a random vector <m:math><m:ci type="vector">r</m:ci></m:math> expressing the observed data,
+	and a listing of the probabilistic models--the
+	<term>hypotheses</term>--which may have generated
+	<m:math><m:ci type="vector">r</m:ci></m:math>, we want a
+	systematic, optimal method of determining which model
+	corresponds to the data.  In the simple case where only two
+	models--
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math> and <m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math>--are possible, we ask, for each set of observations,
+	what is the "best" method of deciding whether <m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math> or <m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math> was true?  We have many ways of mathematically
+	stating what "best" means: we shall initially choose the
+	average cost of each decision as our criterion for
+	correctness.  This seemingly arbitrary choice of criterion
+	will be shown later <emphasis>not</emphasis> to impose rigid
+	constraints on the algorithms that solve the hypothesis
+	testing problem.  Over a variety of reasonable criteria, one
+	central solution to evaluating which model describes
+	observations--the likelihood ratio test--will persistently
+	emerge; this result will form the basis of
+	<emphasis>all</emphasis> detection algorithms.
+      </para>
+      <para id="para3">
+	Detection problems become more elaborate and complicated when models
+	become vague.  Models are characterized by probability distributions,
+	and these distributions suffice in the likelihood ratio test.
+	Vagueness does not refer to this stochastic framework; rather, it
+	refers to uncertainties in the probability distribution itself.  The
+	distribution may depend on unknown parameters, like noise power level.
+	The distribution most certainly depends on signal structure; suppose
+	that is partially or completely unknown? The most difficult (and
+	interesting) problems emerge when uncertainties arise in the
+	probability distributions themselves.  For example, suppose the only
+	model information we have is through data; how would an optimal
+	detector be derived then?
+      </para>
+      <para id="para4">
+	Along the way we will discover that a general geometric picture of
+	detection emerges: Ease of a detection problem depends on how "far
+	apart" the models are from each other.  This geometric framework
+	turns out to be elaborate, but underlies modern detection theory
+	and forms links to information theory.
+      </para>
+    </section>
+  </content>
+
+    <bib:file>
+      <bib:entry id="bib1">
+	<bib:book>
+	  <bib:author>H. Cramér</bib:author>
+	  <bib:title>Mathematical Methods of Statistics</bib:title>
+	  <bib:publisher>Princeton University Press</bib:publisher>
+	  <bib:year>1946</bib:year>
+	  <bib:address>Princeton, NJ</bib:address>
+	</bib:book>
+      </bib:entry>
+      <bib:entry id="bib2">
+	<bib:book>
+	  <bib:author>E. L. Lehmann</bib:author>
+	  <bib:title>Testing Statistical Hypotheses</bib:title>
+	  <bib:publisher>John Wiley &amp; Sons</bib:publisher>
+	  <bib:year>1986</bib:year>
+	  <bib:address>New York</bib:address>
+	  <bib:edition>Second Edition.</bib:edition>
+	</bib:book>
+      </bib:entry>
+      <bib:entry id="bib3">
+	<bib:book>
+	  <bib:author>H. V. Poor</bib:author>
+	  <bib:title>An Introduction to Signal Detection and
+	  Estimation</bib:title>
+	  <bib:publisher>Springer-Verlag</bib:publisher>
+	  <bib:year>1988</bib:year>
+	  <bib:address>New York</bib:address>
+	</bib:book>
+      </bib:entry>
+      <bib:entry id="bib4">
+	<bib:book>
+	  <bib:author>H. L. van Trees</bib:author>
+	  <bib:title>Detection, Estimation, and Modulation Theory,
+	  Part I</bib:title>
+	  <bib:publisher>John Wiley &amp; Sons</bib:publisher>
+	  <bib:year>1968</bib:year>
+	  <bib:address>New York</bib:address>
+	</bib:book>
+      </bib:entry>
+    </bib:file>
+
+
+</document>

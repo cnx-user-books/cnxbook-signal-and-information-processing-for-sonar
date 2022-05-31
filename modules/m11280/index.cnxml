@@ -1,0 +1,599 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Discrete-Time Detection Theory</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>878c34ec-705f-473e-bb2e-1ba9682c0fce</md:uuid>
+</metadata>
+
+  <content>
+    <section id="sect1">
+      <title>Introduction</title>
+      <para id="para1">
+	Detection theory applies optimal model evaluation to signals
+	(<cite target-id="helstrom"><cite-title>Helstrom</cite-title></cite>, <cite target-id="poor"><cite-title>Poor</cite-title></cite>, <cite target-id="trees"><cite-title>van Trees</cite-title></cite>).
+	Usually, we measure a signal in the presence of additive noise
+	over some finite number of samples. Each observed datum is of
+	the form
+	<m:math>
+	  <m:apply> 
+	    <m:plus/> 
+	    <m:apply>
+	      <m:ci type="fn">s</m:ci>
+	      <m:ci>l</m:ci>
+	    </m:apply>  
+	    <m:apply>
+	      <m:ci type="fn">n</m:ci>
+	      <m:ci>l</m:ci></m:apply> 
+	  </m:apply>
+	</m:math>
+	
+	, where 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">s</m:ci>
+	    <m:ci>l</m:ci>
+	  </m:apply>
+	</m:math> 
+	
+	denotes the 
+	<m:math>
+	  <m:msup>
+	    <m:mi>l</m:mi>
+	    <m:mi>th</m:mi>
+	  </m:msup>
+	</m:math> 
+
+	signal value and 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">n</m:ci>
+	    <m:ci>l</m:ci>
+	  </m:apply>
+	</m:math> 
+
+	the 
+	<m:math>
+	  <m:msup>
+	    <m:mi>l</m:mi>
+	    <m:mi>th</m:mi>
+	  </m:msup>
+	</m:math> 
+
+	noise value. In this and in succeeding sections of this
+	chapter, we focus the general methods of evaluating models.
+      </para>
+    </section>
+
+    <section id="sect2">
+      <title> Detection of Signals in Gaussian Noise </title>
+      <para id="para2">
+	For the moment, we assume we know the joint distribution of
+	the noise values. In most cases, the various models for the
+	form of the observations - the hypothesis - do not differ
+	because of noise characteristics. Rather, the signal component
+	determines model variations and the noise is statistically
+	independent of the signal; such is the specificity of
+	detection problems in contrast to the generality of model
+	evaluation. For example, we may want to determine whether a
+	signal characteristic of a particular ship is present in a
+	sonar array's output (the signal is known) or whether no ship
+	is present (zero-valued signal).
+      </para>
+
+      <para id="para3">
+	To apply optimal hypothesis testing procedures previously
+	derived, we first obtain a finite number
+	<m:math><m:mi>L</m:mi></m:math> of observations
+
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">r</m:ci>
+	    <m:ci>l</m:ci>
+	  </m:apply>
+	</m:math>,
+
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci>l</m:ci>
+	    <m:set>
+	      <m:cn>0</m:cn>
+	      <m:ci>…</m:ci>
+	      <m:apply>
+		<m:minus/>
+		  <m:ci>L</m:ci>
+		  <m:cn>1</m:cn>
+	      </m:apply>
+	    </m:set>
+	  </m:apply>
+	</m:math>
+	
+	. These observations are usually obtained from continuous-time
+	observations in one of two ways. Two commonly used methods for
+	passing from continuous-time to discrete-time are known:
+	<term>integrate-and-dump</term> and
+	<term>sampling</term>. These techniques are illustrated in
+	<link target-id="two_discretization_methods" strength="3"/>.
+      </para>
+	
+      <figure id="two_discretization_methods" orient="vertical">
+	<subfigure id="idp1379824">
+	<media id="idp1380208" alt=""><image src="../../media/elec530chp5pic.png" mime-type="image/png"/></media>
+<caption>Integrate-and-Dump</caption>
+	</subfigure>
+<subfigure id="idp3203328">
+	<media id="idp3203712" alt=""><image src="../../media/elec530chp5pic2.png" mime-type="image/png"/></media>
+<caption>Sampling</caption>
+	</subfigure>
+	<caption>
+	  The two most common methods of converting continuous-time
+	  observations into discrete-time ones are shown. In the upper
+	  panel, the integrate-and-dump method is shown: the input is
+	  integrated over an interval of duration
+	  <m:math><m:ci>Δ</m:ci></m:math> and the result
+	  sampled. In the lower panel, the sampling method merely
+	  samples the input every
+	  <m:math><m:ci>Δ</m:ci></m:math> seconds.
+	</caption>
+      </figure>
+      
+      <section id="sect3-1">
+	<title>Integrate-and-Dump</title>
+	<para id="para4">
+	  In this procedure, no attention is paid to the bandwidth of
+	  the noise in selecting the sampling rate. Instead, the
+	  sampling interval <m:math><m:ci>Δ</m:ci></m:math> is
+	  selected according to the characteristics of the signal
+	  set. Because of the finite duration of the integrator,
+	  successive samples are statistically independent when the
+	  noise bandwidth exceeds
+	  <m:math>
+	    <m:apply>
+	      <m:divide/>
+		<m:cn>1</m:cn>
+		<m:ci>Δ</m:ci>
+	    </m:apply>
+	  </m:math>
+	  Consequently, the sampling rate can be varied to some extent
+	  while retaining this desirable analytic property.
+	</para>
+      </section>
+      
+      <section id="sect3-2">
+	<title>Sampling</title>
+	<para id="para5">
+	  Traditional engineering considerations governed the
+	  selection of the sampling filter and the sampling rate. As
+	  in the integrate-and-dump procedure, the sampling rate is
+	  chosen according to signal properties. Presumably, changes
+	  in sampling rate would force changes in the filter. As we
+	  shall see, this linkage has dramatic implications on
+	  performance.
+	</para>
+      </section>
+
+      <para id="para6">
+	With either method, the continuous-time detection problem of
+	selecting between models (a binary selection is used here for
+	simplicity)
+	<m:math display="block">
+	  <m:mrow>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	    <m:mo>:</m:mo>
+	    <m:apply>
+	      <m:eq/> 
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msup>
+		      <m:mi>s</m:mi><m:mn>0</m:mn>
+		    </m:msup>
+		  </m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">n</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:mi> </m:mi><m:mi> </m:mi>
+
+	    <m:apply>
+	      <m:lt/>
+	      <m:apply>
+		<m:leq/>
+		<m:cn>0</m:cn>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:ci>T</m:ci>  
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+
+	<m:math display="block">
+	  <m:mrow>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:mo>:</m:mo>
+	  
+	    <m:apply>
+	      <m:eq/> 
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msup>
+		      <m:mi>s</m:mi><m:mn>1</m:mn>
+		    </m:msup>
+		  </m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">n</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:mi> </m:mi><m:mi> </m:mi>
+
+	    <m:apply>
+	      <m:lt/>
+	      <m:apply>
+		<m:leq/>
+		<m:cn>0</m:cn>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:ci>T</m:ci>  
+	  </m:apply>
+	  </m:mrow>
+	</m:math>
+
+	where 
+	<m:math>
+	  <m:set>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msup><m:mi>s</m:mi><m:mi>i</m:mi></m:msup>
+	      </m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:set>
+	</m:math>
+
+	denotes the known signal set and 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">n</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:math>
+	    
+	denotes additive noise modeled as a stationary stochastic
+	process <footnote id="idm6851664">We are <emphasis>not</emphasis>
+	assuming the amplitude distribution of the noise to be
+	Gaussian.</footnote> is converted into the discrete-time detection
+	problem 
+	<m:math display="block">
+	  <m:mrow>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	    <m:mo>:</m:mo>
+	    
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>r</m:mi>
+		  <m:mi>l</m:mi>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:msubsup>
+		  <m:mi>s</m:mi>
+		  <m:mi>l</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msubsup>
+		<m:msub>
+		  <m:mi>n</m:mi>
+		  <m:mi>l</m:mi>
+		</m:msub>
+	      </m:apply>
+	    </m:apply>
+	    <m:mi> </m:mi><m:mi> </m:mi>
+
+	    <m:apply>
+	      <m:lt/>
+	      <m:apply>
+		<m:leq/>
+		<m:cn>0</m:cn>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:ci>L</m:ci>  
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+
+	<m:math display="block">
+	  <m:mrow>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:mo>:</m:mo>
+	    
+	    <m:apply>
+	      <m:eq/>
+	      <m:msub>
+		<m:mi>r</m:mi>
+		<m:mi>l</m:mi>
+	      </m:msub>
+	      <m:apply>
+		<m:plus/>
+		<m:msubsup>
+		  <m:mi>s</m:mi>
+		  <m:mi>l</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msubsup>
+		<m:msub>
+		  <m:mi>n</m:mi>
+		  <m:mi>l</m:mi>
+		</m:msub>
+	      </m:apply>
+	    </m:apply>
+	    <m:mi> </m:mi><m:mi> </m:mi>
+
+	    <m:apply>
+	      <m:lt/>
+	      <m:apply>
+		<m:leq/>
+		<m:cn>0</m:cn>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:ci>L</m:ci>  
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+
+	where the sampling interval is <emphasis>always</emphasis>
+	taken to divide the observation interval
+
+	<m:math>
+	  <m:mrow>
+	    <m:ci>T</m:ci>
+	    <m:mo>:</m:mo>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>L</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>T</m:ci>
+		<m:ci>Δ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>. We form the discrete-time observations into a
+	vector:
+
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="vector">r</m:ci>
+	    <m:vector>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <m:ci>…</m:ci>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>L</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:vector>
+	  </m:apply>
+	</m:math>. The binary detection problem is to distinguish
+	between two possible signals present in the noisy output
+	waveform.
+
+	<m:math display="block">
+	  <m:mrow>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	    <m:mo>:</m:mo>
+	    
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector">r</m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+		<m:ci type="vector">n</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+
+	<m:math display="block">
+	  <m:mrow>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	    <m:mo>:</m:mo>
+
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector">r</m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci type="vector">n</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	
+	To apply our model evaluation results, we need the probability
+	density of <m:math><m:ci type="vector">r</m:ci></m:math> under
+	each model. As the only probabilistic component of the
+	observations is the noise, the required density for the
+	detection problem is given by
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+	      <m:bvar>
+		<m:ci type="vector">r</m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>ℳ</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		</m:ci>
+	      </m:condition>
+	      <m:ci type="vector">r</m:ci>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+	      <m:bvar>
+		<m:ci type="vector">n</m:ci>
+	      </m:bvar>
+	      <m:apply>
+		<m:minus/>
+		  <m:ci type="vector">r</m:ci>
+		  <m:ci type="vector"><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	and the corresponding likelihood ratio by
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">Λ</m:ci>
+	      <m:ci type="vector">r</m:ci>
+	    </m:apply>
+	   
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci type="vector">n</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci type="vector">r</m:ci>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+		
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci type="vector">n</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci type="vector">r</m:ci>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	Much of detection theory revolves about interpreting this
+	likelihood ratio and deriving the detection threshold (either
+	<m:math><m:ci>threshold</m:ci></m:math> or
+	<m:math><m:ci>γ</m:ci></m:math>).
+      </para>
+      
+    </section>
+    
+  </content>
+
+  <bib:file>
+    <bib:entry id="helstrom">
+      <bib:book>
+	<bib:author>C. W. Helstrom</bib:author>
+	<bib:title> Statistical Theory of Signal Detection</bib:title>
+	<bib:publisher>Pergamon Press</bib:publisher>
+	<bib:year>1968</bib:year>
+	<bib:address>Oxford</bib:address>
+	<bib:edition>Second Edition</bib:edition>
+      </bib:book>
+    </bib:entry>
+
+    <bib:entry id="poor">
+      <bib:book>
+	<bib:author>H. V. Poor</bib:author>
+	<bib:title>An Introduction 
+	  to Signal Detection and Estimation</bib:title>
+	<bib:publisher>Springer-Verlag</bib:publisher>
+	<bib:year>1988</bib:year>
+	<bib:address>New York</bib:address>
+      </bib:book>
+    </bib:entry>
+
+    <bib:entry id="trees">
+      <bib:book>
+	<bib:author>H. L. van Trees</bib:author>
+	<bib:title>Detection, Estimation, and Modulation Theory, 
+	  Part I</bib:title>
+	<bib:publisher>John Wiley &amp; Sons</bib:publisher>
+	<bib:year>1968</bib:year>
+	<bib:address>New York</bib:address>
+      </bib:book>
+    </bib:entry>
+  </bib:file>
+
+</document>

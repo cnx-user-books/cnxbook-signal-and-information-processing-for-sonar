@@ -1,0 +1,541 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>The Q-function</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>843539bb-3680-4cfd-bf9e-4b51253da084</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">The <m:math><m:ci type="fn">Q</m:ci></m:math>-function is a convenient way to
+    express right-tail probabilities for normal (Gaussian) random
+    variables. For
+      <m:math>
+	<m:apply>
+	  <m:in/>
+	  <m:ci>x</m:ci>
+	  <m:reals/>
+	</m:apply>
+      </m:math>,
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">Q</m:ci>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math> is defined as the probability that a standard normal
+      random variable (zero mean, unit variance) exceeds
+      <m:math><m:ci>x</m:ci></m:math>:
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">Q</m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:root/>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>t</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:ci>x</m:ci>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:infinity/>
+	      </m:uplimit>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>t</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      <m:math><m:ci type="fn">Q</m:ci></m:math> is a mapping from
+      <m:math><m:reals/></m:math> to
+      <m:math>
+	<m:set>
+	  <m:cn>0</m:cn>
+	  <m:cn>1</m:cn>
+	</m:set>
+      </m:math>. One may also define
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">Q</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:infinity/>
+	    </m:apply>
+	  </m:apply>
+	  <m:cn>1</m:cn>
+	</m:apply>
+      </m:math> and
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">Q</m:ci>
+	    <m:infinity/>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>. <note type="Aside" id="idm8124512"><label>Aside</label>Some authors define the
+      <m:math><m:ci type="fn">Q</m:ci></m:math>-function in different
+      ways. One alternative is to define
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">Q</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:ci type="fn">F</m:ci>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">F</m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>. This definition is discussed at <link url="http://mathworld.wolfram.com/NormalDistributionFunction.html">MathWorld</link>.
+      </note>
+      
+      <figure id="fig1">
+	<media id="idm7396528" alt=""><image src=".png" mime-type="image/png"/></media>
+	<caption>
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">Q</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math> is represented by the shaded region.
+	</caption>
+      </figure>
+      
+      Since
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">Q</m:ci>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math> is monotonically decreasing, it has a well-defined inverse
+      <m:math>
+	<m:mrow>
+	  <m:apply>
+	    <m:inverse/>
+	    <m:ci type="fn">Q</m:ci>
+	  </m:apply>
+	  <m:mo>:</m:mo>
+	  <m:set>
+	    <m:cn>0</m:cn>
+	    <m:cn>1</m:cn>
+	  </m:set>
+	  <m:mo>→</m:mo>
+	  <m:reals/>
+	</m:mrow>
+      </m:math>.
+
+      <figure id="fig2">
+	<media id="idm7410608" alt=""><image src=".png" mime-type="image/png"/></media>
+	<caption>A plot of
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">Q</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>
+	</caption>
+      </figure>
+      If
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">F</m:ci>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math> denotes the cumulative distribution function of a
+      standard normal, then clearly
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">Q</m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:minus/>
+	    <m:cn>1</m:cn>
+	    <m:apply>
+	      <m:ci type="fn">F</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>. For this reason <m:math><m:ci type="fn">Q</m:ci></m:math> is also called the
+      <term>complementary cumulative distribution function</term>. The
+      <m:math><m:ci type="fn">Q</m:ci></m:math>-function is useful
+      because the tail probability cannot be evaluated symbolically,
+      and so
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">Q</m:ci>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math> offers a concise notation for this integral. It is
+      similar to the gamma and beta functions in this respect.  
+    </para>
+	
+    <section id="amv">
+      <title>Arbitrary Mean and Variance</title>
+
+      <para id="amv1">The <m:math><m:ci type="fn">Q</m:ci></m:math>-function is also useful for
+      expressing right-tail probabilities of nonstandard normal
+      variates. If
+	<m:math display="block">
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	    <m:ci>X</m:ci>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+	      <m:ci>μ</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:ci>σ</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	then
+	<m:math display="block">
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>X</m:ci>
+		<m:ci>μ</m:ci>
+	      </m:apply>
+	      <m:ci>σ</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+	      <m:cn>0</m:cn>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	To express 
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	    <m:apply>
+	      <m:gt/>
+	      <m:ci>X</m:ci>
+	      <m:ci>γ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> in terms of <m:math><m:ci type="fn">Q</m:ci></m:math>, where
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci>γ</m:ci>
+	    <m:reals/>
+	  </m:apply>
+	</m:math>, define
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>η</m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>γ</m:ci>
+		<m:ci>μ</m:ci>
+	      </m:apply>
+	      <m:ci>σ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>. Then
+	<equation id="eqn1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:gt/>
+		  <m:ci>X</m:ci>
+		  <m:ci>γ</m:ci>
+		</m:apply>
+	      </m:apply>
+
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:gt/>	      
+		  <m:ci>X</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>η</m:ci>
+		      <m:ci>σ</m:ci>
+		    </m:apply>
+		    <m:ci>μ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>X</m:ci>
+		      <m:ci>μ</m:ci>
+		    </m:apply>
+		    <m:ci>σ</m:ci>
+		  </m:apply>
+		  <m:ci>η</m:ci>
+		</m:apply>
+	      </m:apply>
+
+	      <m:apply>
+		<m:ci type="fn">Q</m:ci>
+		<m:ci>η</m:ci>
+	      </m:apply>
+
+	      <m:apply>
+		<m:ci type="fn">Q</m:ci>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>γ</m:ci>
+		    <m:ci>μ</m:ci>
+		  </m:apply>
+		  <m:ci>σ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+    </section>
+
+    <section id="erf">
+      <title>Relation to Erf and Erfinv</title>
+
+      <para id="erf1">The <m:math><m:ci type="fn">erf</m:ci></m:math>
+      function is defined as
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">erf</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>2</m:cn>
+		<m:apply>
+		  <m:root/>
+		  <m:pi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>t</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>x</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>t</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	Both <m:math><m:ci type="fn">erf</m:ci></m:math> and its
+	inverse, <m:math><m:ci type="fn">erfinv</m:ci></m:math>, are
+	built into many common mathematical software packages such as
+	Mathematica and Matlab. Therefore, they can be used to
+	numerically evaluate <m:math><m:ci type="fn">Q</m:ci></m:math> and
+	<m:math>
+	  <m:apply>
+	    <m:inverse/>
+	    <m:ci type="fn">Q</m:ci>
+	  </m:apply>
+	</m:math>. By a change of variables, we have
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">Q</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:ci type="fn">erf</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>x</m:ci>
+		    <m:apply>
+		      <m:root/>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> and
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:apply>
+		<m:ci type="fn">Q</m:ci>
+		<m:ci>y</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:root/>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">erfinv</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci>y</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+
+    <section id="approx">
+      <title>Approximations</title>
+
+      <para id="app1">One approximation that is sometimes useful for
+      <m:math><m:ci>x</m:ci></m:math> away from zero is
+	<m:math display="block">
+	  <m:apply>
+	    <m:approx/>
+	    <m:apply>
+	      <m:ci type="fn">Q</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>x</m:ci>
+		  <m:apply>
+		    <m:root/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>-1</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>x</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<!-- Future versions of the module should expand the
+	discussion of approximations. -->
+      </para>
+    </section>
+
+  </content>
+  
+</document>

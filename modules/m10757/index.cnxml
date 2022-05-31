@@ -1,0 +1,1433 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  
+  <title>Cauchy-Schwarz Inequality</title>
+
+  <metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m10757</md:content-id>
+  <md:title>Cauchy-Schwarz Inequality</md:title>
+  <md:abstract>This module provides both statement and proof of the Cauchy-Schwarz inequality and discusses its practical implications with regard to the matched filter detector.</md:abstract>
+  <md:uuid>cb2f1a14-84dd-4586-89b2-8aa37a855f53</md:uuid>
+</metadata>
+
+<content>
+    <section id="intro" class="in"><title>Introduction</title><para id="id62167">Any treatment of linear algebra as relates to signal processing would not be complete without a discussion of the Cauchy-Schwarz ineqaulity, a relation that enables a wide array of signal procesing applications related to pattern matching through a method called the matched filter. Recall that in standard Euclidean space, the angle <m:math overflow="scroll"><m:mi>θ</m:mi></m:math> between two vectors <m:math overflow="scroll"><m:mrow><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi></m:mrow></m:math> is given by</para>
+      <equation id="id62194a">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mo form="prefix">cos</m:mo>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>θ</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfrac>
+              <m:mrow>
+                <m:mo>〈</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>〉</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>|</m:mo>
+                <m:mo>|</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>|</m:mo>
+                <m:mo>|</m:mo>
+                <m:mo>|</m:mo>
+                <m:mo>|</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>|</m:mo>
+                <m:mo>|</m:mo>
+              </m:mrow>
+            </m:mfrac>
+            <m:mo>.</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id62593a">Since <m:math overflow="scroll"><m:mrow><m:mo form="prefix">cos</m:mo><m:mo>(</m:mo><m:mi>θ</m:mi><m:mo>)</m:mo><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math>, it follows that</para>
+      <equation id="id62620a">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mrow>
+                <m:mo>|</m:mo>
+                <m:mrow>
+                  <m:mo>〈</m:mo>
+                  <m:mi>x</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mi>y</m:mi>
+                  <m:mo>〉</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>≤</m:mo>
+            <m:mrow>
+              <m:mo>〈</m:mo>
+              <m:mi>x</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>x</m:mi>
+              <m:mo>〉</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>〈</m:mo>
+              <m:mi>y</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>y</m:mi>
+              <m:mo>〉</m:mo>
+            </m:mrow>
+            <m:mo>.</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id62679a">Furthermore, equality holds if and only if <m:math overflow="scroll"><m:mrow><m:mo form="prefix">cos</m:mo><m:mo>(</m:mo><m:mi>θ</m:mi><m:mo>)</m:mo><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math>, implying that</para>
+      <equation id="id62105a">
+        <m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:msup>
+              <m:mrow>
+                <m:mo>|</m:mo>
+                <m:mrow>
+                  <m:mo>〈</m:mo>
+                  <m:mi>x</m:mi>
+                  <m:mo>,</m:mo>
+                  <m:mi>y</m:mi>
+                  <m:mo>〉</m:mo>
+                </m:mrow>
+                <m:mo>|</m:mo>
+              </m:mrow>
+              <m:mn>2</m:mn>
+            </m:msup>
+            <m:mo>=</m:mo>
+            <m:mrow>
+              <m:mo>〈</m:mo>
+              <m:mi>x</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>x</m:mi>
+              <m:mo>〉</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>〈</m:mo>
+              <m:mi>y</m:mi>
+              <m:mo>,</m:mo>
+              <m:mi>y</m:mi>
+              <m:mo>〉</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation>
+      <para id="id62943a">if and only if <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>x</m:mi></m:mrow></m:math> for some real <m:math overflow="scroll"><m:mi>a</m:mi></m:math>. This relation can be extended to all inner product spaces over a real or complex field and is known as the Cauchy-Schwarz inequality, which is of great importance to the study of signals.</para>
+    </section>
+
+    <section id="eip-261" class="th"><title>The Cauchy-Schwarz Inequality</title><section id="uid1"><title>Statement of the Cauchy-Schwarz Inequality</title><para id="id62990">The general statement of the Cauchy-Schwarz inequality mirrors the intuition for standard Euclidean space. Let <m:math overflow="scroll"><m:mi>V</m:mi></m:math> be an inner product space over the field of complex numbers <m:math overflow="scroll"><m:mi mathvariant="double-struck">C</m:mi></m:math> with inner product <m:math overflow="scroll"><m:mrow><m:mo>〈</m:mo><m:mo>·</m:mo><m:mo>,</m:mo><m:mo>·</m:mo><m:mo>〉</m:mo></m:mrow></m:math>. For every pair of vectors <m:math overflow="scroll"><m:mrow><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>∈</m:mo><m:mi>V</m:mi></m:mrow></m:math> the inequality</para>
+        <equation id="id63048">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>|</m:mo>
+                  <m:mrow>
+                    <m:mo>〈</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>y</m:mi>
+                    <m:mo>〉</m:mo>
+                  </m:mrow>
+                  <m:mo>|</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>≤</m:mo>
+              <m:mrow>
+                <m:mo>〈</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>〉</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>〈</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>〉</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id63105">holds. Furthermore, the equality</para>
+        <equation id="id63110">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>|</m:mo>
+                  <m:mrow>
+                    <m:mo>〈</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>y</m:mi>
+                    <m:mo>〉</m:mo>
+                  </m:mrow>
+                  <m:mo>|</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>=</m:mo>
+              <m:mrow>
+                <m:mo>〈</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>〉</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>〈</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>〉</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id63167">holds if and only if <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>x</m:mi></m:mrow></m:math> for some <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi mathvariant="double-struck">C</m:mi></m:mrow></m:math>. That is, equality holds if and only if <m:math overflow="scroll"><m:mi>x</m:mi></m:math> and <m:math overflow="scroll"><m:mi>y</m:mi></m:math> are linearly dependent.</para>
+      </section>
+      <section id="uid2"><title>Proof of the Cauchy-Schwarz Inequality</title><para id="id268165">Let <m:math overflow="scroll"><m:mi>V</m:mi></m:math> be a vector space over the real or complex field <m:math overflow="scroll"><m:mi>F</m:mi></m:math>, and let <m:math overflow="scroll"><m:mrow><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>∈</m:mo><m:mi>V</m:mi></m:mrow></m:math> be given. In order to prove the Cauchy-Schwarz inequality, it will first be proven that <m:math overflow="scroll"><m:mrow><m:msup><m:mrow><m:mo>|</m:mo><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow><m:mo>|</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>x</m:mi><m:mo>〉</m:mo></m:mrow><m:mrow><m:mo>〈</m:mo><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow></m:mrow></m:math> if <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>x</m:mi></m:mrow></m:math> for some <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi>F</m:mi></m:mrow></m:math>. It will then be shown that <m:math overflow="scroll"><m:mrow><m:msup><m:mrow><m:mo>|</m:mo><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow><m:mo>|</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>&lt;</m:mo><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>x</m:mi><m:mo>〉</m:mo></m:mrow><m:mrow><m:mo>〈</m:mo><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow></m:mrow></m:math> if <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>≠</m:mo><m:mi>a</m:mi><m:mi>x</m:mi></m:mrow></m:math> for all <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi>F</m:mi></m:mrow></m:math>.</para>
+        <para id="id268371">Consider the case in which <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>x</m:mi></m:mrow></m:math> for some <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi>F</m:mi></m:mrow></m:math>. From the properties of inner products, it is clear that</para>
+        <equation id="uid3a">
+          <m:math overflow="scroll" mode="display">
+            <m:mtable displaystyle="true">
+              <m:mtr>
+                <m:mtd columnalign="right">
+                  <m:msup>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                    <m:mn>2</m:mn>
+                  </m:msup>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:msup>
+                      <m:mrow>
+                        <m:mo>|</m:mo>
+                        <m:mrow>
+                          <m:mo>〈</m:mo>
+                          <m:mi>x</m:mi>
+                          <m:mo>,</m:mo>
+                          <m:mi>a</m:mi>
+                          <m:mi>x</m:mi>
+                          <m:mo>〉</m:mo>
+                        </m:mrow>
+                        <m:mo>|</m:mo>
+                      </m:mrow>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd/>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mo>=</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                    <m:mover>
+                      <m:mi>a</m:mi>
+                      <m:mo>¯</m:mo>
+                    </m:mover>
+                    <m:msup>
+                      <m:mrow>
+                        <m:mrow>
+                          <m:mo>〈</m:mo>
+                          <m:mi>x</m:mi>
+                          <m:mo>,</m:mo>
+                          <m:mi>x</m:mi>
+                          <m:mo>〉</m:mo>
+                        </m:mrow>
+                        <m:mo>|</m:mo>
+                      </m:mrow>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:mo>.</m:mo>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:math>
+        </equation>
+        <para id="id268516">
+Hence, it follows that</para>
+        <equation id="uid4">
+          <m:math overflow="scroll" mode="display">
+            <m:mtable displaystyle="true">
+              <m:mtr>
+                <m:mtd columnalign="right">
+                  <m:msup>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                    <m:mn>2</m:mn>
+                  </m:msup>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mo>=</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                    <m:mover>
+                      <m:mi>a</m:mi>
+                      <m:mo>¯</m:mo>
+                    </m:mover>
+                    <m:msup>
+                      <m:mrow>
+                        <m:mo>|</m:mo>
+                      </m:mrow>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:msup>
+                      <m:mrow>
+                        <m:mo>|</m:mo>
+                        <m:mrow>
+                          <m:mo>〈</m:mo>
+                          <m:mi>x</m:mi>
+                          <m:mo>,</m:mo>
+                          <m:mi>x</m:mi>
+                          <m:mo>〉</m:mo>
+                        </m:mrow>
+                        <m:mo>|</m:mo>
+                      </m:mrow>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd/>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:msup>
+                      <m:mrow>
+                        <m:mo>|</m:mo>
+                        <m:mi>a</m:mi>
+                        <m:mo>|</m:mo>
+                      </m:mrow>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:msup>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:mo>.</m:mo>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:math>
+        </equation>
+        <para id="id268650">
+Similarly, it is clear that</para>
+        <equation id="uid5">
+          <m:math overflow="scroll" mode="display">
+            <m:mtable displaystyle="true">
+              <m:mtr>
+                <m:mtd columnalign="right">
+                  <m:mrow>
+                    <m:mo>〈</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>〉</m:mo>
+                    <m:mo>〈</m:mo>
+                    <m:mi>y</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>y</m:mi>
+                    <m:mo>〉</m:mo>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mo>〈</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>〉</m:mo>
+                    <m:mo>〈</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mi>x</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mi>x</m:mi>
+                    <m:mo>〉</m:mo>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd/>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                    <m:mi>a</m:mi>
+                    <m:mover>
+                      <m:mi>a</m:mi>
+                      <m:mo>¯</m:mo>
+                    </m:mover>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd/>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:msup>
+                      <m:mrow>
+                        <m:mo>|</m:mo>
+                        <m:mi>a</m:mi>
+                        <m:mo>|</m:mo>
+                      </m:mrow>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:msup>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:mo>.</m:mo>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:math>
+        </equation>
+        <para id="id268809">
+Thus, it is proven that <m:math overflow="scroll"><m:mrow><m:msup><m:mrow><m:mo>|</m:mo><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow><m:mo>|</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>x</m:mi><m:mo>〉</m:mo></m:mrow><m:mrow><m:mo>〈</m:mo><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow></m:mrow></m:math> if <m:math overflow="scroll"><m:mrow><m:mi>x</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>y</m:mi></m:mrow></m:math> for some <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi>F</m:mi></m:mrow></m:math>.</para>
+        <para id="id268897">Next, consider the case in which <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>≠</m:mo><m:mi>a</m:mi><m:mi>x</m:mi></m:mrow></m:math> for all <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi>F</m:mi></m:mrow></m:math>, which implies that <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>≠</m:mo><m:mn>0</m:mn></m:mrow></m:math> so <m:math overflow="scroll"><m:mrow><m:mo>〈</m:mo><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo><m:mo>≠</m:mo><m:mn>0</m:mn></m:mrow></m:math>. Thus, it follows by the properties of inner products that, for all <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi>F</m:mi></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>-</m:mo><m:mi>a</m:mi><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>x</m:mi><m:mo>-</m:mo><m:mi>a</m:mi><m:mi>y</m:mi><m:mo>〉</m:mo><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>.</m:mo></m:mrow></m:math>
+This can be expanded using the properties of inner products to the expression</para>
+        <equation id="uid6">
+          <m:math overflow="scroll" mode="display">
+            <m:mtable displaystyle="true">
+              <m:mtr>
+                <m:mtd columnalign="right">
+                  <m:mrow>
+                    <m:mo>〈</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mi>y</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mi>y</m:mi>
+                    <m:mo>〉</m:mo>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mo>〈</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mi>y</m:mi>
+                    <m:mo>〉</m:mo>
+                    <m:mo>-</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo>〈</m:mo>
+                    <m:mi>y</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mi>y</m:mi>
+                    <m:mo>〉</m:mo>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd/>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mover>
+                      <m:mi>a</m:mi>
+                      <m:mo>¯</m:mo>
+                    </m:mover>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>y</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>y</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                    <m:mo>+</m:mo>
+                    <m:msup>
+                      <m:mrow>
+                        <m:mo>|</m:mo>
+                        <m:mi>a</m:mi>
+                        <m:mo>|</m:mo>
+                      </m:mrow>
+                      <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>y</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>y</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:math>
+        </equation>
+        <para id="id269187">
+Choosing <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>=</m:mo><m:mfrac><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow><m:mrow><m:mo>〈</m:mo><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow></m:mfrac></m:mrow></m:math>,</para>
+        <equation id="uid7">
+          <m:math overflow="scroll" mode="display">
+            <m:mtable displaystyle="true">
+              <m:mtr>
+                <m:mtd columnalign="right">
+                  <m:mrow>
+                    <m:mo>〈</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mi>y</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mi>y</m:mi>
+                    <m:mo>〉</m:mo>
+                  </m:mrow>
+                </m:mtd>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mfrac>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                    </m:mfrac>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>y</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mfrac>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                    </m:mfrac>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>y</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                    <m:mo>+</m:mo>
+                    <m:mfrac>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>〉</m:mo>
+                        <m:mo>〈</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                      <m:msup>
+                        <m:mrow>
+                          <m:mo>〈</m:mo>
+                          <m:mi>y</m:mi>
+                          <m:mo>,</m:mo>
+                          <m:mi>y</m:mi>
+                          <m:mo>〉</m:mo>
+                        </m:mrow>
+                        <m:mn>2</m:mn>
+                      </m:msup>
+                    </m:mfrac>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>y</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>y</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+              <m:mtr>
+                <m:mtd/>
+                <m:mtd columnalign="left">
+                  <m:mrow>
+                    <m:mo>=</m:mo>
+                    <m:mrow>
+                      <m:mo>〈</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>〉</m:mo>
+                    </m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mfrac>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>〉</m:mo>
+                        <m:mo>〈</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                      <m:mrow>
+                        <m:mo>〈</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:mi>y</m:mi>
+                        <m:mo>〉</m:mo>
+                      </m:mrow>
+                    </m:mfrac>
+                  </m:mrow>
+                </m:mtd>
+              </m:mtr>
+            </m:mtable>
+          </m:math>
+        </equation>
+        <para id="id269495">
+Hence, it follows that
+<m:math overflow="scroll"><m:mrow><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>x</m:mi><m:mo>〉</m:mo></m:mrow><m:mo>-</m:mo><m:mfrac><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo><m:mo>〈</m:mo><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>x</m:mi><m:mo>〉</m:mo></m:mrow><m:mrow><m:mo>〈</m:mo><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow></m:mfrac><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>.</m:mo></m:mrow></m:math>
+Consequently,
+<m:math overflow="scroll"><m:mrow><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>x</m:mi><m:mo>〉</m:mo></m:mrow><m:mrow><m:mo>〈</m:mo><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow><m:mo>-</m:mo><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow><m:mover><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi></m:mrow><m:mo>¯</m:mo></m:mover><m:mrow><m:mo>〉</m:mo><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>.</m:mo></m:mrow></m:mrow></m:math>
+Thus, it can be concluded that <m:math overflow="scroll"><m:mrow><m:msup><m:mrow><m:mo>|</m:mo><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow><m:mo>|</m:mo></m:mrow><m:mn>2</m:mn></m:msup><m:mo>&lt;</m:mo><m:mrow><m:mo>〈</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>x</m:mi><m:mo>〉</m:mo></m:mrow><m:mrow><m:mo>〈</m:mo><m:mi>y</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>〉</m:mo></m:mrow></m:mrow></m:math> if <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>≠</m:mo><m:mi>a</m:mi><m:mi>x</m:mi></m:mrow></m:math> for all <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi>F</m:mi></m:mrow></m:math>.</para>
+        <para id="id269728">Therefore, the inequality</para>
+        <equation id="id269732">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>|</m:mo>
+                  <m:mrow>
+                    <m:mo>〈</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>y</m:mi>
+                    <m:mo>〉</m:mo>
+                  </m:mrow>
+                  <m:mo>|</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>≤</m:mo>
+              <m:mrow>
+                <m:mo>〈</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>〉</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>〈</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>〉</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id269790">holds for all <m:math overflow="scroll"><m:mrow><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>∈</m:mo><m:mi>V</m:mi></m:mrow></m:math>, and equality</para>
+        <equation id="id269815">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msup>
+                <m:mrow>
+                  <m:mo>|</m:mo>
+                  <m:mrow>
+                    <m:mo>〈</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo>,</m:mo>
+                    <m:mi>y</m:mi>
+                    <m:mo>〉</m:mo>
+                  </m:mrow>
+                  <m:mo>|</m:mo>
+                </m:mrow>
+                <m:mn>2</m:mn>
+              </m:msup>
+              <m:mo>=</m:mo>
+              <m:mrow>
+                <m:mo>〈</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>〉</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>〈</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>〉</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id269874">holds if and only if <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>x</m:mi></m:mrow></m:math> for some <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi>F</m:mi></m:mrow></m:math>.</para>
+      </section>
+      <section id="uid3"><title>Additional Mathematical Implications</title><para id="id63630">Consider the maximization of <m:math overflow="scroll"><m:mfenced separators="" open="|" close="|"><m:mfenced separators="" open="〈" close="〉"><m:mfrac><m:mi>x</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>x</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac><m:mo>,</m:mo><m:mfrac><m:mi>y</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>y</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac></m:mfenced></m:mfenced></m:math> where the norm <m:math overflow="scroll"><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mo>·</m:mo><m:mo>|</m:mo><m:mo>|</m:mo><m:mo>=</m:mo><m:mo>〈</m:mo><m:mo>·</m:mo><m:mo>,</m:mo><m:mo>·</m:mo><m:mo>〉</m:mo></m:mrow></m:math> is induced by the inner product. By the Cauchy-Schwarz inequality, we know that
+<m:math overflow="scroll"><m:mrow><m:msup><m:mfenced separators="" open="|" close="|"><m:mfenced separators="" open="〈" close="〉"><m:mfrac><m:mi>x</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>x</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac><m:mo>,</m:mo><m:mfrac><m:mi>y</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>y</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac></m:mfenced></m:mfenced><m:mn>2</m:mn></m:msup><m:mo>≤</m:mo><m:mn>1</m:mn></m:mrow></m:math> and that <m:math overflow="scroll"><m:mrow><m:msup><m:mfenced separators="" open="|" close="|"><m:mfenced separators="" open="〈" close="〉"><m:mfrac><m:mi>x</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>x</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac><m:mo>,</m:mo><m:mfrac><m:mi>y</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>y</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac></m:mfenced></m:mfenced><m:mn>2</m:mn></m:msup><m:mo>=</m:mo><m:mn>1</m:mn></m:mrow></m:math> if and only if <m:math overflow="scroll"><m:mrow><m:mfrac><m:mi>y</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>y</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac><m:mo>=</m:mo><m:mi>a</m:mi><m:mfrac><m:mi>x</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>x</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac></m:mrow></m:math> for some <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi mathvariant="double-struck">C</m:mi></m:mrow></m:math>. Hence, <m:math overflow="scroll"><m:mfenced separators="" open="|" close="|"><m:mfenced separators="" open="〈" close="〉"><m:mfrac><m:mi>x</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>x</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac><m:mo>,</m:mo><m:mfrac><m:mi>y</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>y</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac></m:mfenced></m:mfenced></m:math> attains a maximum where <m:math overflow="scroll"><m:mrow><m:mfrac><m:mi>y</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>y</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac><m:mo>=</m:mo><m:mi>a</m:mi><m:mfrac><m:mi>x</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>x</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac></m:mrow></m:math> for some <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mo>∈</m:mo><m:mi mathvariant="double-struck">C</m:mi></m:mrow></m:math>. Thus, collecting the scalar variables, <m:math overflow="scroll"><m:mfenced separators="" open="|" close="|"><m:mfenced separators="" open="〈" close="〉"><m:mfrac><m:mi>x</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>x</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac><m:mo>,</m:mo><m:mfrac><m:mi>y</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>y</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac></m:mfenced></m:mfenced></m:math> attains a maximum where <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>x</m:mi></m:mrow></m:math>. This result will be particulaly useful in developing the matched filter detector techniques.</para>
+      </section>
+    </section><section id="eip-646" class="ap"><title>Matched Filter Detector</title><section id="eip-830"><title>Background Concepts</title><para id="id65472">A great many applications in signal processing, image processing, and beyond involve determining the presence and location of a target signal within some other signal. A radar system, for example, searches for copies of a transmitted radar pulse in order to determine the presence of and distance to reflective objects such as building or aircraft. A communication system searches for copies of waveforms representing digital 0s and 1s in order to receive a message.</para>
+      <para id="id62474">As has already been shown, the expression <m:math overflow="scroll"><m:mfenced separators="" open="|" close="|"><m:mfenced separators="" open="〈" close="〉"><m:mfrac><m:mi>x</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>x</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac><m:mo>,</m:mo><m:mfrac><m:mi>y</m:mi><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>y</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac></m:mfenced></m:mfenced></m:math> attains its upper bound, which is 1, when <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>=</m:mo><m:mi>a</m:mi><m:mi>x</m:mi></m:mrow></m:math> for some scalar <m:math overflow="scroll"><m:mi>a</m:mi></m:math> in a real or complex field. The lower bound, which is 0, is attained when <m:math overflow="scroll"><m:mi>x</m:mi></m:math> and <m:math overflow="scroll"><m:mi>y</m:mi></m:math> are orthogonal. In informal intuition, this means that the expression is maximized when the vectors <m:math overflow="scroll"><m:mi>x</m:mi></m:math> and <m:math overflow="scroll"><m:mi>y</m:mi></m:math> have the same shape or pattern and minimized when <m:math overflow="scroll"><m:mi>x</m:mi></m:math> and <m:math overflow="scroll"><m:mi>y</m:mi></m:math> are very different. A pair of vectors with similar but unequal shapes or patterns will produce relatively large value of the expression less than 1, and a pair of vectors with very different but not orthogonal shapes or patterns will produce relatively small values of the expression greater than 0. Thus, the above expression carries with it a notion of the degree to which two signals are “alike”, the magnitude of the normalized correlation between the signals in the case of the standard inner products.</para>
+      <para id="id65697">This concept can be extremely useful. For instance consider a situation in which we wish to determine which signal, if any, from a set <m:math overflow="scroll"><m:mi>X</m:mi></m:math> of signals most resembles a particular signal <m:math overflow="scroll"><m:mi>y</m:mi></m:math>. In order to accomplish this, we might evaluate the above expression for every signal <m:math overflow="scroll"><m:mrow><m:mi>x</m:mi><m:mo>∈</m:mo><m:mi>X</m:mi></m:mrow></m:math>, choosing the one that results in maxima provided that those maxima are above some threshold of “likeness”. This is the idea behind the matched filter detector, which compares a set of signals against a target signal using the above expression in order to determine which among them are most like the target signal.  For a detailed treatment of the applications of the <link url="http://cnx.org/content/m34670/latest/">matched filter detector</link> see the liked module.</para>
+    </section><section id="uid9"><title>Signal Comparison</title><para id="id65757">The simplest variant of the matched filter detector scheme would be to find the member signal in a set <m:math overflow="scroll"><m:mi>X</m:mi></m:math> of signals that most closely matches a target signal <m:math overflow="scroll"><m:mi>y</m:mi></m:math>. Thus, for every <m:math overflow="scroll"><m:mrow><m:mi>x</m:mi><m:mo>∈</m:mo><m:mi>X</m:mi></m:mrow></m:math> we wish to evaluate</para>
+        <equation id="id65794">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>m</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>,</m:mo>
+                <m:mi>y</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mfenced separators="" open="|" close="|">
+                <m:mfenced separators="" open="〈" close="〉">
+                  <m:mfrac>
+                    <m:mi>x</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mfrac>
+                  <m:mo>,</m:mo>
+                  <m:mfrac>
+                    <m:mi>y</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>y</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mfrac>
+                </m:mfenced>
+              </m:mfenced>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id65869">in order to compare every member of <m:math overflow="scroll"><m:mi>X</m:mi></m:math> to the target signal <m:math overflow="scroll"><m:mi>y</m:mi></m:math>. Since the member of <m:math overflow="scroll"><m:mi>X</m:mi></m:math> which most closely matches the target signal <m:math overflow="scroll"><m:mi>y</m:mi></m:math> is desired, ultimately we wish to evaluate</para>
+        <equation id="id65911">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msub>
+                <m:mi>x</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mo form="prefix">argmax</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mfenced separators="" open="|" close="|">
+                <m:mfenced separators="" open="〈" close="〉">
+                  <m:mfrac>
+                    <m:mi>x</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mfrac>
+                  <m:mo>,</m:mo>
+                  <m:mfrac>
+                    <m:mi>y</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>y</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mfrac>
+                </m:mfenced>
+              </m:mfenced>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id65998">Note that the target signal does not technically need to be normalized to produce a maximum, but gives the desirable property that <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>)</m:mo></m:mrow></m:math> is bounded to <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math>.</para>
+        <para id="id66043">The element <m:math overflow="scroll"><m:mrow><m:msub><m:mi>x</m:mi><m:mi>m</m:mi></m:msub><m:mo>∈</m:mo><m:mi>X</m:mi></m:mrow></m:math> that produces the maximum value of <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>)</m:mo></m:mrow></m:math> is not necessarily unique, so there may be more than one matching signal in <m:math overflow="scroll"><m:mi>X</m:mi></m:math>. Additionally, the signal <m:math overflow="scroll"><m:mrow><m:msub><m:mi>x</m:mi><m:mi>m</m:mi></m:msub><m:mo>∈</m:mo><m:mi>X</m:mi></m:mrow></m:math> producing the maximum value of <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>)</m:mo></m:mrow></m:math> may not produce a very large value of <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>)</m:mo></m:mrow></m:math> and thus not be very much like the target signal <m:math overflow="scroll"><m:mi>y</m:mi></m:math>. Hence, another matched filter scheme might identify the argument producing the maximum but only above a certain threshold, returning no matching signals in <m:math overflow="scroll"><m:mi>X</m:mi></m:math> if the maximum is below the threshold. There also may be a signal <m:math overflow="scroll"><m:mrow><m:mi>x</m:mi><m:mo>∈</m:mo><m:mi>X</m:mi></m:mrow></m:math> that produces a large value of <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>)</m:mo></m:mrow></m:math> and thus has a high degree of “likeness” to <m:math overflow="scroll"><m:mi>y</m:mi></m:math> but does not produce the maximum value of <m:math overflow="scroll"><m:mrow><m:mi>m</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>,</m:mo><m:mi>y</m:mi><m:mo>)</m:mo></m:mrow></m:math>. Thus, yet another matched filter scheme might identify all signals in <m:math overflow="scroll"><m:mi>X</m:mi></m:math> producing local maxima that are above a certain threshold.</para>
+<example id="eip-947">
+<para id="id66252">For example, consider the target signal given in <link target-id="fig1"/> and the set of two signals given in <link target-id="fig2"/>. By inspection, it is clear that the signal <m:math overflow="scroll"><m:msub><m:mi>g</m:mi><m:mn>2</m:mn></m:msub></m:math> is most like the target signal <m:math overflow="scroll"><m:mi>f</m:mi></m:math>. However, to make that conclusion mathematically, we use the matched filter detector with the <m:math overflow="scroll"><m:msub><m:mi>L</m:mi><m:mn>2</m:mn></m:msub></m:math> inner product. If we were to actually make the necessary computations, we would first normalize each signal and then compute the necessary inner products in order to compare the signals in <m:math overflow="scroll"><m:mi>X</m:mi></m:math> with the target signal <m:math overflow="scroll"><m:mi>f</m:mi></m:math>. We would notice that the absolute value of the inner product for <m:math overflow="scroll"><m:msub><m:mi>g</m:mi><m:mn>2</m:mn></m:msub></m:math> with <m:math overflow="scroll"><m:mi>f</m:mi></m:math> when normalized is greater than the absolute value of the inner product of <m:math overflow="scroll"><m:msub><m:mi>g</m:mi><m:mn>1</m:mn></m:msub></m:math> with <m:math overflow="scroll"><m:mi>f</m:mi></m:math> when normalized, mathematically stated as</para>
+        <equation id="id66366">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msub>
+                <m:mi>g</m:mi>
+                <m:mn>2</m:mn>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mo form="prefix">argmax</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mo>{</m:mo>
+                  <m:msub>
+                    <m:mi>g</m:mi>
+                    <m:mn>1</m:mn>
+                  </m:msub>
+                  <m:mo>,</m:mo>
+                  <m:msub>
+                    <m:mi>g</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msub>
+                  <m:mo>}</m:mo>
+                </m:mrow>
+              </m:msub>
+              <m:mfenced separators="" open="|" close="|">
+                <m:mfenced separators="" open="〈" close="〉">
+                  <m:mfrac>
+                    <m:mi>x</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mfrac>
+                  <m:mo>,</m:mo>
+                  <m:mfrac>
+                    <m:mi>f</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>f</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mfrac>
+                </m:mfenced>
+              </m:mfenced>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation>
+      	<figure id="fig1"><title>Template Signal</title><media id="id1168938873141" alt=""><image src="../../media/csi_f1.png" mime-type="image/png"/></media>
+	  
+	<caption>We wish to find a match for this target signal in the set of signals below.</caption></figure>
+	
+	<figure id="fig2" orient="horizontal"><title>Candidate Signals</title><subfigure id="subf1">
+	    <media id="id1168938588198" alt=""><image src="../../media/csi_f2.png" mime-type="image/png"/></media>
+	  </subfigure>
+	  <subfigure id="subf2">
+	    <media id="id1168938588217" alt=""><image src="../../media/csi_f3.png" mime-type="image/png"/></media>
+	  </subfigure>
+	  
+	<caption>We wish to find a match for the above target signal in this set of signals.</caption></figure>
+</example>
+</section>
+
+
+
+<section id="eip-265"><title>Pattern Detection</title><para id="id68047">A somewhat more involved matched filter detector scheme would involve attempting to match a target time limited signal <m:math overflow="scroll"><m:mrow><m:mi>y</m:mi><m:mo>=</m:mo><m:mi>f</m:mi></m:mrow></m:math> to a set of of time shifted and windowed versions of a single signal <m:math overflow="scroll"><m:mrow><m:mi>X</m:mi><m:mo>=</m:mo><m:mo>{</m:mo><m:mi>w</m:mi><m:msub><m:mi>S</m:mi><m:mi>t</m:mi></m:msub><m:mi>g</m:mi><m:mo>|</m:mo><m:mi>t</m:mi><m:mo>∈</m:mo><m:mi mathvariant="double-struck">R</m:mi><m:mo>}</m:mo></m:mrow></m:math> indexed by <m:math overflow="scroll"><m:mi mathvariant="double-struck">R</m:mi></m:math>. The windowing funtion is given by <m:math overflow="scroll"><m:mrow><m:mi>w</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mi>u</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>-</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>)</m:mo></m:mrow><m:mo>-</m:mo><m:mi>u</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>-</m:mo><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>)</m:mo></m:mrow></m:mrow></m:math> where <m:math overflow="scroll"><m:mrow><m:mo>[</m:mo><m:msub><m:mi>t</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:msub><m:mi>t</m:mi><m:mn>2</m:mn></m:msub><m:mo>]</m:mo></m:mrow></m:math> is the interval to which <m:math overflow="scroll"><m:mi>f</m:mi></m:math> is time limited. This scheme could be used to find portions of <m:math overflow="scroll"><m:mi>g</m:mi></m:math> that have the same shape as <m:math overflow="scroll"><m:mi>f</m:mi></m:math>. If the absolute value of the inner product of the normalized versions of <m:math overflow="scroll"><m:mi>f</m:mi></m:math> and <m:math overflow="scroll"><m:mrow><m:mi>w</m:mi><m:msub><m:mi>S</m:mi><m:mi>t</m:mi></m:msub><m:mi>g</m:mi></m:mrow></m:math> is large, which is the absolute value of the normalized correlation for standard inner products, then <m:math overflow="scroll"><m:mi>g</m:mi></m:math> has a high degree of “likeness” to <m:math overflow="scroll"><m:mi>f</m:mi></m:math> on the interval to which <m:math overflow="scroll"><m:mi>f</m:mi></m:math> is time limited but left shifted by <m:math overflow="scroll"><m:mi>t</m:mi></m:math>. Of course, if <m:math overflow="scroll"><m:mi>f</m:mi></m:math> is not time limited, it means that the entire signal has a high degree of “likeness” to <m:math overflow="scroll"><m:mi>f</m:mi></m:math> left shifted by <m:math overflow="scroll"><m:mi>t</m:mi></m:math>.</para>
+        <para id="id68328">Thus, in order to determine the most likely locations of a signal with the same shape as the target signal <m:math overflow="scroll"><m:mi>f</m:mi></m:math> in a signal <m:math overflow="scroll"><m:mi>g</m:mi></m:math> we wish to compute</para>
+        <equation id="id68349">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mo form="prefix">argmax</m:mo>
+                <m:mrow>
+                  <m:mi>t</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi mathvariant="double-struck">R</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mfenced separators="" open="|" close="|">
+                <m:mfenced separators="" open="〈" close="〉">
+                  <m:mfrac>
+                    <m:mi>f</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>f</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mfrac>
+                  <m:mo>,</m:mo>
+                  <m:mfrac>
+                    <m:mrow>
+                      <m:mi>w</m:mi>
+                      <m:msub>
+                        <m:mi>S</m:mi>
+                        <m:mi>t</m:mi>
+                      </m:msub>
+                      <m:mi>g</m:mi>
+                    </m:mrow>
+                    <m:mrow>
+                      <m:mrow>
+                        <m:mo>|</m:mo>
+                        <m:mo>|</m:mo>
+                        <m:mi>w</m:mi>
+                      </m:mrow>
+                      <m:msub>
+                        <m:mi>S</m:mi>
+                        <m:mi>t</m:mi>
+                      </m:msub>
+                      <m:mi>g</m:mi>
+                      <m:mrow>
+                        <m:mo>|</m:mo>
+                        <m:mo>|</m:mo>
+                      </m:mrow>
+                    </m:mrow>
+                  </m:mfrac>
+                </m:mfenced>
+              </m:mfenced>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id68458">to provide the desired shift. Assuming the inner product space examined is <m:math overflow="scroll"><m:mrow><m:msub><m:mi>L</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="double-struck">R</m:mi></m:mrow></m:mrow></m:math> (similar results hold for <m:math overflow="scroll"><m:mrow><m:msub><m:mi>L</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="double-struck">R</m:mi><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>l</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="double-struck">Z</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>l</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="double-struck">Z</m:mi><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:mrow></m:math>), this produces</para>
+        <equation id="id68585">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mo form="prefix">argmax</m:mo>
+                <m:mrow>
+                  <m:mi>t</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi mathvariant="double-struck">R</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mfenced separators="" open="|" close="|">
+                <m:mfrac>
+                  <m:mn>1</m:mn>
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>f</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>w</m:mi>
+                    </m:mrow>
+                    <m:msub>
+                      <m:mi>S</m:mi>
+                      <m:mi>t</m:mi>
+                    </m:msub>
+                    <m:mi>g</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mfrac>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mrow>
+                    <m:mo>-</m:mo>
+                    <m:mi>∞</m:mi>
+                  </m:mrow>
+                  <m:mi>∞</m:mi>
+                </m:msubsup>
+                <m:mi>f</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>τ</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>w</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>τ</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mover>
+                  <m:mrow>
+                    <m:mi>g</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>τ</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>t</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mo>¯</m:mo>
+                </m:mover>
+                <m:mi>d</m:mi>
+                <m:mi>τ</m:mi>
+              </m:mfenced>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id68728">Since <m:math overflow="scroll"><m:mi>f</m:mi></m:math> and <m:math overflow="scroll"><m:mi>w</m:mi></m:math> are time limited to the same interval</para>
+        <equation id="id68752">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mo form="prefix">argmax</m:mo>
+                <m:mrow>
+                  <m:mi>t</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi mathvariant="double-struck">R</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mfenced separators="" open="|" close="|">
+                <m:mfrac>
+                  <m:mn>1</m:mn>
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>f</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>w</m:mi>
+                    </m:mrow>
+                    <m:msub>
+                      <m:mi>S</m:mi>
+                      <m:mi>t</m:mi>
+                    </m:msub>
+                    <m:mi>g</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mfrac>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mrow>
+                    <m:msub>
+                      <m:mi>t</m:mi>
+                      <m:mn>1</m:mn>
+                    </m:msub>
+                  </m:mrow>
+                  <m:msub>
+                    <m:mi>t</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msub>
+                </m:msubsup>
+                <m:mi>f</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>τ</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mover>
+                  <m:mrow>
+                    <m:mi>g</m:mi>
+                    <m:mo>(</m:mo>
+                    <m:mi>τ</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mi>t</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mo>¯</m:mo>
+                </m:mover>
+                <m:mi>d</m:mi>
+                <m:mi>τ</m:mi>
+              </m:mfenced>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id68892">Making the subsitution <m:math overflow="scroll"><m:mrow><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mover><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>¯</m:mo></m:mover></m:mrow></m:math>,</para>
+        <equation id="id68934">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mo form="prefix">argmax</m:mo>
+                <m:mrow>
+                  <m:mi>t</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi mathvariant="double-struck">R</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mfenced separators="" open="|" close="|">
+                <m:mfrac>
+                  <m:mn>1</m:mn>
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>f</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>w</m:mi>
+                    </m:mrow>
+                    <m:msub>
+                      <m:mi>S</m:mi>
+                      <m:mi>t</m:mi>
+                    </m:msub>
+                    <m:mi>g</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mfrac>
+                <m:msubsup>
+                  <m:mo>∫</m:mo>
+                  <m:mrow>
+                    <m:msub>
+                      <m:mi>t</m:mi>
+                      <m:mn>1</m:mn>
+                    </m:msub>
+                  </m:mrow>
+                  <m:msub>
+                    <m:mi>t</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msub>
+                </m:msubsup>
+                <m:mi>f</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>τ</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>h</m:mi>
+                <m:mrow>
+                  <m:mo>(</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mi>τ</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mi>d</m:mi>
+                <m:mi>τ</m:mi>
+              </m:mfenced>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id69070">Noting that this expression contains a convolution operation</para>
+        <equation id="id69076">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msub>
+                <m:mi>t</m:mi>
+                <m:mi>m</m:mi>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mo form="prefix">argmax</m:mo>
+                <m:mrow>
+                  <m:mi>t</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi mathvariant="double-struck">R</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mfenced separators="" open="|" close="|">
+                <m:mfrac>
+                  <m:mrow>
+                    <m:mo>(</m:mo>
+                    <m:mi>f</m:mi>
+                    <m:mo>*</m:mo>
+                    <m:mi>h</m:mi>
+                    <m:mo>)</m:mo>
+                    <m:mo>(</m:mo>
+                    <m:mi>t</m:mi>
+                    <m:mo>)</m:mo>
+                  </m:mrow>
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>f</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>w</m:mi>
+                    </m:mrow>
+                    <m:msub>
+                      <m:mi>S</m:mi>
+                      <m:mi>t</m:mi>
+                    </m:msub>
+                    <m:mi>g</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mfrac>
+              </m:mfenced>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id69178">where <m:math overflow="scroll"><m:mi>h</m:mi></m:math> is the conjugate of the time reversed version of <m:math overflow="scroll"><m:mi>g</m:mi></m:math> defined by <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>h</m:mi>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>t</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mover>
+                <m:mrow>
+                  <m:mi>g</m:mi>
+                  <m:mo>(</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>t</m:mi>
+                  <m:mo>)</m:mo>
+                </m:mrow>
+                <m:mo>¯</m:mo>
+              </m:mover>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </para>
+        
+        <para id="id69241">In the special case in which the target signal <m:math overflow="scroll"><m:mi>f</m:mi></m:math> is not time limited, <m:math overflow="scroll"><m:mi>w</m:mi></m:math> has unit value on the entire real line. Thus, the norm can be evaluated as <m:math overflow="scroll"><m:mrow><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>w</m:mi></m:mrow><m:msub><m:mi>S</m:mi><m:mi>t</m:mi></m:msub><m:mrow><m:mi>g</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow><m:mo>=</m:mo><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow><m:msub><m:mi>S</m:mi><m:mi>t</m:mi></m:msub><m:mrow><m:mi>g</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow><m:mo>=</m:mo><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>g</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow><m:mo>=</m:mo><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>h</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mrow></m:math>. Therefore, the function reduces to
+<m:math overflow="scroll"><m:mrow><m:msub><m:mi>t</m:mi><m:mi>m</m:mi></m:msub><m:mo>=</m:mo><m:msub><m:mo form="prefix">argmax</m:mo><m:mrow><m:mi>t</m:mi><m:mo>∈</m:mo><m:mi mathvariant="double-struck">R</m:mi></m:mrow></m:msub><m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>f</m:mi><m:mo>*</m:mo><m:mi>h</m:mi><m:mo>)</m:mo><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>f</m:mi><m:mo>|</m:mo><m:mo>|</m:mo><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>h</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac></m:mrow></m:math>
+where <m:math overflow="scroll"><m:mrow><m:mi>h</m:mi><m:mrow><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>=</m:mo><m:mover><m:mrow><m:mi>g</m:mi><m:mo>(</m:mo><m:mo>-</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mo>¯</m:mo></m:mover><m:mo>.</m:mo></m:mrow></m:math> The function
+<m:math overflow="scroll"><m:mrow><m:mi>f</m:mi><m:mo>☆</m:mo><m:mi>g</m:mi><m:mo>=</m:mo><m:mfrac><m:mrow><m:mo>(</m:mo><m:mi>f</m:mi><m:mo>*</m:mo><m:mi>h</m:mi><m:mo>)</m:mo><m:mo>(</m:mo><m:mi>t</m:mi><m:mo>)</m:mo></m:mrow><m:mrow><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>f</m:mi><m:mo>|</m:mo><m:mo>|</m:mo><m:mo>|</m:mo><m:mo>|</m:mo><m:mi>h</m:mi><m:mo>|</m:mo><m:mo>|</m:mo></m:mrow></m:mfrac></m:mrow></m:math>
+is known as the normalized cross-correlation of <m:math overflow="scroll"><m:mi>f</m:mi></m:math> and <m:math overflow="scroll"><m:mi>g</m:mi></m:math>.</para>
+        <para id="id69539">Hence, this matched filter scheme can be implemented as a convolution. Therefore, it may be expedient to implement it in the frequency domain. Similar results hold for the <m:math overflow="scroll"><m:mrow><m:msub><m:mi>L</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="double-struck">R</m:mi><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, <m:math overflow="scroll"><m:mrow><m:msub><m:mi>l</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="double-struck">Z</m:mi><m:mo>)</m:mo></m:mrow></m:mrow></m:math>, and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>l</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="double-struck">Z</m:mi><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>]</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:mrow></m:math> spaces. It is especially useful to implement the <m:math overflow="scroll"><m:mrow><m:msub><m:mi>l</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="double-struck">Z</m:mi><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>]</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:mrow></m:math> cases in the frequency domain as the power of the Fast Fourier Transform algorithm can be leveraged to quickly perform the computations in a computer program. In the <m:math overflow="scroll"><m:mrow><m:msub><m:mi>L</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="double-struck">R</m:mi><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>)</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:mrow></m:math> and <m:math overflow="scroll"><m:mrow><m:msub><m:mi>l</m:mi><m:mn>2</m:mn></m:msub><m:mrow><m:mo>(</m:mo><m:mi mathvariant="double-struck">Z</m:mi><m:mrow><m:mo>[</m:mo><m:mi>a</m:mi><m:mo>,</m:mo><m:mi>b</m:mi><m:mo>]</m:mo></m:mrow><m:mo>)</m:mo></m:mrow></m:mrow></m:math> cases, care must be taken to zero pad the signal if wrap-around effects are not desired. Similar results also hold for spaces on higher dimensional intervals with the same inner products.</para>
+        <para id="id69754">Of course, there is not necessarily exactly one instance of a target signal in a given signal. There could be one instance, more than one instance, or no instance of a target signal. Therefore, it is often more practical to identify all shifts corresponding to local maxima that are above a certain threshold.</para>
+        <example id="eip-582">
+<para id="id69760">The signal in <link target-id="fig4"/> contains an instance of the template signal seen in <link target-id="fig3"/> beginning at time <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:msub><m:mi>s</m:mi><m:mn>1</m:mn></m:msub></m:mrow></m:math> as shown by the plot in <link target-id="figconv1"/>. Therefore,</para>
+        <equation id="id69791">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:msub>
+                <m:mi>s</m:mi>
+                <m:mn>1</m:mn>
+              </m:msub>
+              <m:mo>=</m:mo>
+              <m:msub>
+                <m:mo form="prefix">argmax</m:mo>
+                <m:mrow>
+                  <m:mi>t</m:mi>
+                  <m:mo>∈</m:mo>
+                  <m:mi mathvariant="double-struck">R</m:mi>
+                </m:mrow>
+              </m:msub>
+              <m:mfenced separators="" open="|" close="|">
+                <m:mfenced separators="" open="〈" close="〉">
+                  <m:mfrac>
+                    <m:mi>f</m:mi>
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                      <m:mi>f</m:mi>
+                      <m:mo>|</m:mo>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mfrac>
+                  <m:mo>,</m:mo>
+                  <m:mfrac>
+                    <m:mrow>
+                      <m:mi>w</m:mi>
+                      <m:msub>
+                        <m:mi>S</m:mi>
+                        <m:mi>t</m:mi>
+                      </m:msub>
+                      <m:mi>g</m:mi>
+                    </m:mrow>
+                    <m:mrow>
+                      <m:mrow>
+                        <m:mo>|</m:mo>
+                        <m:mo>|</m:mo>
+                        <m:mi>w</m:mi>
+                      </m:mrow>
+                      <m:msub>
+                        <m:mi>S</m:mi>
+                        <m:mi>t</m:mi>
+                      </m:msub>
+                      <m:mi>g</m:mi>
+                      <m:mrow>
+                        <m:mo>|</m:mo>
+                        <m:mo>|</m:mo>
+                      </m:mrow>
+                    </m:mrow>
+                  </m:mfrac>
+                </m:mfenced>
+              </m:mfenced>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation>
+      
+      
+
+	<figure id="fig3"><title>Pattern Signal</title><media id="id1168938588596" alt=""><image src="../../media/csi_pattern.png" mime-type="image/png"/></media>
+	  
+	<caption>This function shows tha pattern we are looking for in the signal below, which occurs at time <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:msub><m:mi>s</m:mi><m:mn>1</m:mn></m:msub></m:mrow></m:math>.</caption></figure>
+	
+	<figure id="fig4"><title>Longer Signal</title><media id="id1168938588631" alt=""><image src="../../media/csi_long.png" mime-type="image/png"/></media>
+	  
+	<caption>This signal contains an instance of the above signal starting at time <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:msub><m:mi>s</m:mi><m:mn>1</m:mn></m:msub></m:mrow></m:math>.</caption></figure>
+
+	
+      
+
+<figure id="figconv1"><title>Absolute Value of Output</title><media id="matchedconv" alt=""><image src="../../media/mfout2-d54b.png" mime-type="image/png"/></media>
+      <caption>This signal shows a sketch of the absolute value of the matched filter output for the interval shown.  Note that this was just an "eyeball approximation" sketch.  Observe the pronounced peak at time <m:math overflow="scroll"><m:mrow><m:mi>t</m:mi><m:mo>=</m:mo><m:msub><m:mi>s</m:mi><m:mn>1</m:mn></m:msub></m:mrow></m:math>.</caption></figure>
+</example></section></section><section id="eip-719" class="vd"><title>Cauchy-Schwarz Inequality Video Lecture</title><para id="eip-524"><figure id="cauchy-schwarz"><title>Proof of the Cauchy-Schwarz Inequality</title><media id="yt-media" display="block" alt="Proof of the Cauchy-Schwarz Inequality">
+  <flash id="yt-video" mime-type="application/x-shockwave-flash" src="http://www.youtube.com/v/r2PogGDl8_U&amp;hl=en_US&amp;fs=1&amp;rel=0" width="425" height="344">
+   <param name="allowscriptaccess" value="always"/>
+   <param name="allowsfullscreen" value="true"/>
+  </flash>
+ </media>
+<caption>Video lecture on the proof of the Cauchy-Schwarz inequality from Khan Academy.  Only part of the theorem is proven.</caption></figure></para></section><section id="eip-413" class="cn"><title>Cauchy-Schwarz Inequality Summary</title><para id="id299893">As can be seen, the Cauchy-Schwarz inequality is a property of inner product spaces over real or complex fields that is of particular importance to the study of signals. Specifically, the implication that the absolute value of an inner product is maximized over normal vectors when the two arguments are linearly dependent is key to the justification of the matched filter detector. Thus, it enables the use of matched filters for such pattern matching applications as image detection, communications demodulation, and radar signal analysis.</para></section>
+
+    
+
+  </content>
+</document>

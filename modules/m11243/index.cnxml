@@ -1,0 +1,2216 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Time-Delay Estimation</title>
+  <metadata>
+  <md:content-id>m11243</md:content-id><md:title>Time-Delay Estimation</md:title>
+  <md:abstract/>
+  <md:uuid>88b5bdec-22fa-4e68-ad0b-488c66da1a86</md:uuid>
+</metadata>
+
+  <content>
+    <para id="timedelay">
+      An important signal parameter estimation problem is time-delay
+      estimation.  Here the unknown is the time origin of the signal:
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">s</m:ci>
+	    <m:ci>l</m:ci>
+	    <m:ci>θ</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">s</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci>l</m:ci>
+	      <m:ci>θ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  The duration of the signal (the domain over which
+      the signal is defined) is assumed brief compared with the
+      observation interval 
+      <m:math>
+	<m:ci>L</m:ci> 
+      </m:math>.  Although in continuous time the signal delay is a
+      continuous-valued variable, in discrete time it is not.
+      Consequently, the maximum likelihood estimate
+      <emphasis>cannot</emphasis> be found by differentiation, and we
+      must determine the maximum likelihood estimate of signal delay
+      by the most fundamental expression of the maximization
+      procedure.  Assuming Gaussian noise, the maximum likelihood
+      estimate of delay is the solution of
+      <m:math display="block">
+	<m:apply>
+	  <m:min/>
+	  <m:bvar>
+	    <m:ci>θ</m:ci>
+	  </m:bvar>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:apply>
+		<m:minus/>
+		<m:ci type="vector">r</m:ci>
+		<m:apply>
+		  <m:ci type="vector">s</m:ci>
+		  <m:ci>θ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci type="matrix">
+		<m:msub>
+		  <m:mi>K</m:mi>
+		  <m:mi>n</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci type="vector">r</m:ci>
+	      <m:apply>
+		<m:ci type="vector">s</m:ci>
+		<m:ci>θ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      The term 
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:apply>
+	    <m:transpose/>
+	    <m:ci type="vector">s</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:inverse/>
+	    <m:ci type="matrix">
+	      <m:msub>
+		<m:mi>K</m:mi>
+		<m:mi>n</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	  <m:ci type="vector">s</m:ci>
+	</m:apply>
+      </m:math> is usually assumed not to vary with the presumed time
+      origin of the signal because of the signal's short duration.  If
+      the noise is white, this term is constant except near the
+      "edges" of the observation interval.  If not white, the kernel
+      of this quadratic form is equivalent to a whitening filter.  As
+      discussed <link document="m11260">later</link>, this filter may
+      be time varying.  For noise spectra that are rational and have
+      only poles, the whitening filter's unit-sample response varies
+      only near the edges (see the <link document="m11260" target-id="eq1">example</link>).  Thus, near the edges, this
+      quadratic form varies with presumed delay and the maximization
+      is analytically difficult.  Taking the "easy way out" by
+      ignoring edge effects, the estimate is the solution of
+      <m:math display="block">
+	<m:apply>
+	  <m:max/>
+	  <m:bvar>
+	    <m:ci>θ</m:ci>
+	  </m:bvar>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:ci type="vector">r</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci type="matrix">
+		<m:msub>
+		  <m:mi>K</m:mi>
+		  <m:mi>n</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="vector">s</m:ci>
+	      <m:ci>θ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> Thus, the delay estimate is the signal time origin
+      that maximizes the matched filter's output.
+    </para>
+    <para id="discretenature">
+      In addition to the complexity of finding the maximum likelihood
+      estimate, the discrete-valued nature of the parameter also calls
+      into question the use of the Cramér-Rao bound.  One of
+      the fundamental assumptions of the bound's derivation is the
+      differentiability of the likelihood function with respect to the
+      parameter.  Mathematically, a sequence cannot be differentiated
+      with respect to the integers.  A sequence can be differentiated
+      with respect to its argument if we consider the variable to be
+      continuous valued.  This approximation can be used only if the
+      sampling interval, unity for the integers, is dense with respect
+      to variations of the sequence.  This condition means that the
+      signal must be oversampled to apply the Cramér-Rao bound
+      in a meaningful way.  Under these conditions, the mean-squared
+      estimation error for <emphasis>unbiased estimators</emphasis>
+      can be no smaller than the Cramér-Rao bound, which is
+      given by
+      <m:math display="block">
+	<m:apply>
+	  <m:geq/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>ε</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar>
+		<m:ci>k</m:ci>
+	      </m:bvar>
+	      <m:bvar>
+		<m:ci>l</m:ci>
+	      </m:bvar>
+	      <m:domainofapplication>
+		<m:set>
+		  <m:ci>k</m:ci>
+		  <m:ci>l</m:ci>
+		</m:set>
+	      </m:domainofapplication>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:selector/>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>K</m:mi>
+			<m:mi>n</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci>k</m:ci>
+		  <m:ci>l</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:apply>
+		    <m:diff/>
+		    <m:ci type="fn">s</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>k</m:ci>
+		    <m:ci>θ</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:apply>
+		    <m:diff/>
+		    <m:ci type="fn">s</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>l</m:ci>
+		    <m:ci>θ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> which, in the white-noise case, becomes
+      <equation id="unbiasedest">
+	<m:math>
+	  <m:apply>
+	    <m:geq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>ε</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>σ</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:domainofapplication>
+		  <m:ci>l</m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:apply>
+		      <m:diff/>
+		      <m:ci type="fn">s</m:ci>
+		    </m:apply>
+		    <m:ci>l</m:ci>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation> Here,
+      <m:math>
+	<m:apply>
+	  <m:apply>
+	    <m:diff/>
+	    <m:ci type="fn">s</m:ci>
+	  </m:apply>
+	  <m:ci>·</m:ci>
+	</m:apply>
+      </m:math> denotes the "derivative" of the discrete-time signal.
+      To justify using this Cramér-Rao bound, we must face the
+      issue of whether an unbiased estimator for time delay
+      <emphasis>exists</emphasis>.  No general answer exists; each
+      estimator, including the maximum likelihood one, must be
+      examined individually.
+    </para>    
+    <example id="matchedfilters">
+      <para id="assumewhite">
+	Assume that the noise is white.  Because of this assumption,
+	we determine the time delay by maximizing the match-filtered
+	observations.
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#argmax"/>
+	      <m:domainofapplication>
+		<m:ci>θ</m:ci>
+	      </m:domainofapplication>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>l</m:ci>
+		</m:bvar>
+		<m:domainofapplication>
+		  <m:ci>l</m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		      <m:ci>l</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">s</m:ci>
+		    <m:apply>
+			<m:minus/>
+		      <m:ci>l</m:ci>
+		      <m:ci>θ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+	      <m:ci><m:msub>
+		  <m:mi>θ</m:mi>
+		  <m:mi>ML</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	The number of terms in the sum equals the signal duration.
+	<link target-id="mfout2"/> illustrates the
+	match-filtered output in two separate situations; in one the
+	signal has a relatively low-frequency spectrum as compared
+	with the second.
+      </para>
+      <figure id="mfout2">
+	<media id="id1164599649448" alt=""><image src="../../media/mfout2-7346.png" mime-type="image/png"/></media> 
+	<caption>The matched filter outputs are shown for two separate
+	  signal situations.  In each case, the observation interval
+	  (100 samples), the signal's duration (50 samples) and energy
+	  (unity) are the same.  The difference lies in the signal
+	  waveform; both are sinusoids with the first having a
+	  frequency of
+	  <m:math>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+	      </m:apply>
+	      <m:cn>0.04</m:cn>
+	    </m:apply>
+	  </m:math> and the second
+	  <m:math>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+	      </m:apply>
+	      <m:cn>0.25</m:cn>
+	    </m:apply>
+	  </m:math>.  Each output is the signal's autocorrelation
+	  function.  Few, broad peaks characterize the low-frequency
+	  example whereas many narrow peaks are found in the high
+	  frequency one.  
+	</caption> 
+      </figure>
+      <para id="symmetry">
+	Because of the symmetry of the autocorrelation function, the
+	estimate <emphasis>should</emphasis> be unbiased so long as
+	the autocorrelation function is completely contained within
+	the observation interval.  Direct proof of this claim is left
+	to the masochistic reader.  For sinusoidal signals of energy
+	<m:math>
+	  <m:ci>E</m:ci>
+	</m:math> and frequency 
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>ω</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	  </m:ci>
+	</m:math>, the Cramér-Rao bound is given by 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>ε</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>σ</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>ω</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub>
+		  </m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci>E</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.  This bound on the error is accurate only if the
+	measured maximum frequently occurs in the dominant peak of the
+	signal's autocorrelation function.  Otherwise, the maximum
+	likelihood estimate "skips" a cycle and produces values
+	concentrated near one of the smaller peaks.  The interval
+	between zero crossings of the dominant peak is
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:pi/>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>ω</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>; the signal-to-noise ratio 
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>E</m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>σ</m:mi>
+		  <m:mi>n</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math> must exceed 
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:cn>4</m:cn>
+	    <m:apply>
+	      <m:power/>
+	      <m:pi/>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math> (about 0.5).  Remember that this result implicitly
+	assumed a low-frequency sinusoid.  The second example
+	demonstrates that cycle skipping occurs more frequently than
+	this guideline suggests when a high-frequency sinusoid is
+	used.
+      </para>
+    </example>
+    <para id="errorsize">
+      The size of the errors encountered in the time-delay estimation
+      problem can be more accurately assessed by a bounding technique
+      tailored to the problem: the Ziv-Zakai bound (<cite target-id="WeissWeinstein"><cite-title>Wiess and Weinstein</cite-title></cite>, <cite target-id="ZivZakai"><cite-title>Ziv and Zakai</cite-title></cite>). The derivation of this
+      bound relies on results from detection theory (<cite target-id="ChazanZakaiZiv"><cite-title>Chazan, Zakai, and Ziv</cite-title></cite>).
+      <footnote id="id1164599649743">
+	This result is an example of detection and estimation theory
+	complementing each other to advantage.
+      </footnote>
+      Consider the detection problem in which we must distinguish the
+      signals 
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">s</m:ci>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci>l</m:ci>
+	    <m:ci>τ</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math> and
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">s</m:ci>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci>l</m:ci>
+	    <m:apply>
+	      <m:plus/>
+	      <m:ci>τ</m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> while observing them in the presence of white noise
+      that is not necessarily Gaussian.  Let hypothesis 
+      <m:math>
+	<m:ci>
+	  <m:msub>
+	    <m:mi>ℳ</m:mi>
+	    <m:mn>0</m:mn>
+	  </m:msub>
+	</m:ci>
+      </m:math> represent the case in which the delay, denoted by our
+      parameter symbol 
+      <m:math>
+	<m:ci>θ</m:ci>
+      </m:math>, is 
+      <m:math>
+	<m:ci>τ</m:ci>
+      </m:math> and 
+      <m:math>
+	<m:ci>
+	  <m:msub>
+	    <m:mi>ℳ</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub>
+	</m:ci>
+      </m:math> the case in which 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>θ</m:ci>
+	  <m:apply>
+	    <m:plus/>
+	    <m:ci>τ</m:ci>
+	    <m:ci>Δ</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  The <emphasis>suboptimum</emphasis> test statistic
+      consists of estimating the delay, then determining the closest
+      <foreign>a priori</foreign> delay to the estimate.
+      <m:math display="block">
+	<m:mrow>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+	    <m:ci>θ</m:ci>
+	  </m:apply>
+	  <m:munderover>
+	    <m:mi>≷</m:mi>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	  </m:munderover>
+	  <m:apply>
+	    <m:plus/>
+	    <m:ci>τ</m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>Δ</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:mrow>
+      </m:math> By using this ad hoc hypothesis test as an essential
+      part of the derivation, the bound can apply to many situations.
+      Furthermore, by not restricting the type of parameter estimate,
+      the bound applies to any estimator.  The probability of error
+      for the optimum hypothesis test (derived from the likelihood
+      ratio) is denoted by
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn"><m:msub>
+	      <m:mi>P</m:mi>
+	      <m:mi>e</m:mi>
+	    </m:msub></m:ci>
+	  <m:ci>τ</m:ci>
+	  <m:ci>Δ</m:ci>
+	</m:apply>
+      </m:math>.  Assuming equally likely hypotheses, the probability
+      of error resulting from the <foreign>ad hoc</foreign> test must
+      be greater than that of the optimum.
+      <m:math display="block">
+	<m:apply>
+	  <m:leq/>
+	  <m:apply>
+	    <m:ci type="fn"><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>e</m:mi>
+	      </m:msub></m:ci>
+	    <m:ci>τ</m:ci>
+	    <m:ci>Δ</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn type="rational">1<m:sep/>2</m:cn>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:condition>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>ℳ</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub>
+		  </m:ci>
+		</m:condition>
+		<m:apply>
+		  <m:gt/>
+		  <m:ci>ε</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>Δ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn type="rational">1<m:sep/>2</m:cn>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:condition>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>ℳ</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:ci>
+		</m:condition>
+		<m:apply>
+		  <m:lt/>
+		  <m:ci>ε</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:ci>Δ</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>  Here, 
+      <m:math>
+	<m:ci>ε</m:ci> 
+      </m:math> denotes the estimation error appropriate to the
+      hypothesis.
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>ε</m:ci>
+	  <m:piecewise>
+	    <m:piece>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+		  <m:ci>θ</m:ci>
+		</m:apply>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	      <m:mrow>
+		<m:mtext>under </m:mtext>
+		<m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub>
+	      </m:mrow>
+	    </m:piece>
+	    <m:piece>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+		    <m:ci>θ</m:ci>
+		  </m:apply>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+		<m:ci>Δ</m:ci>
+	      </m:apply>
+	      <m:mrow>
+		<m:mtext>under </m:mtext>
+		<m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:mrow>
+	    </m:piece>
+	  </m:piecewise>
+	</m:apply>
+      </m:math> The delay is assumed to range uniformly between 0 and
+      <m:math>
+	<m:ci>L</m:ci> 
+      </m:math>.  Combining this restriction to the hypothesized
+      delays yields bounds on both 
+      <m:math> 
+	<m:ci>τ</m:ci>
+      </m:math> and 
+      <m:math> 
+	<m:ci>Δ</m:ci> 
+      </m:math>:
+      <m:math>
+	<m:apply>
+	  <m:leq/>
+	  <m:cn>0</m:cn>
+	  <m:apply>
+	    <m:lt/>
+	    <m:ci>τ</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci>L</m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> and 
+      <m:math>
+	<m:apply>
+	  <m:leq/>
+	  <m:cn>0</m:cn>
+	  <m:apply>
+	    <m:lt/>
+	    <m:ci>Δ</m:ci>
+	    <m:ci>L</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  Simple manipulations show that the integral of this
+      inequality with respect to 
+      <m:math>
+	<m:ci>τ</m:ci>
+      </m:math> over the possible range of delays is given by <footnote id="id1164599650336">Here again, the issue of the discrete nature of
+      the delay becomes a consideration; this step in the derivation
+      implicitly assumes that the delay is continuous valued.  This
+      approximation can be greeted more readily as it involves
+      integration rather than differentiation (as in the
+      Cramér-Rao bound).</footnote> 
+      <m:math display="block">
+	<m:apply>
+	  <m:leq/>
+	  <m:apply>
+	    <m:int/>
+	    <m:bvar>
+	      <m:ci>τ</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:cn>0</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:ci>Δ</m:ci>
+	      </m:apply>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>P</m:mi>
+		  <m:mi>e</m:mi>
+		</m:msub></m:ci>
+	      <m:ci>τ</m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn type="rational">1<m:sep/>2</m:cn>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>τ</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>0</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:ci>L</m:ci>
+	      </m:uplimit>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:condition>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>ℳ</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub>
+		  </m:ci>
+		</m:condition>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>ε</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>Δ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      Note that if we define 
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>L</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">
+	      <m:mover>
+		<m:mi>P</m:mi>
+		<m:mo>∼</m:mo>
+	      </m:mover>
+	    </m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:mi>Δ</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> to be the right side of this equation so that
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">
+	      <m:mover>
+		<m:mi>P</m:mi>
+		<m:mo>∼</m:mo>
+	      </m:mover>
+	    </m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>Δ</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:ci>L</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>τ</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>0</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:ci>L</m:ci>
+	      </m:uplimit>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:condition>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>ℳ</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub>
+		  </m:ci>
+		</m:condition>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>ε</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>Δ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">
+	    <m:mover>
+	      <m:mi>P</m:mi>
+	      <m:mo>∼</m:mo>
+	    </m:mover>
+	  </m:ci>
+	  <m:ci>·</m:ci>
+	</m:apply>
+      </m:math> is the complementary distribution function <footnote id="id1164599650704"> The complementary distribution function of a
+      probability distribution function 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">P</m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	</m:math> is defined to be 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:mover>
+		  <m:mi>P</m:mi>
+		  <m:mo>∼</m:mo>
+		</m:mover>
+	      </m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:ci type="fn">P</m:ci>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, the probability that a random variable exceeds
+	<m:math>
+	  <m:ci>x</m:ci> 
+	</m:math>.</footnote> of the magnitude of the average estimation
+      error.  Multiplying
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">
+	    <m:mover>
+	      <m:mi>P</m:mi>
+	      <m:mo>∼</m:mo>
+	    </m:mover>
+	  </m:ci>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>Δ</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math> by 
+      <m:math>
+	<m:ci>Δ</m:ci> 
+      </m:math> and integrating, the result is
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:int/>
+	    <m:bvar>
+	      <m:ci>Δ</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:cn>0</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:ci>L</m:ci>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>Δ</m:ci>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:mover>
+		    <m:mi>P</m:mi>
+		    <m:mo>∼</m:mo>
+		  </m:mover>
+		</m:ci>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>Δ</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>-2</m:cn>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>x</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>0</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>L</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>x</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:diff/>
+		  <m:bvar>
+		    <m:ci>x</m:ci>
+		  </m:bvar>
+		  <m:ci type="fn">
+		    <m:mover>
+		      <m:mi>P</m:mi>
+		      <m:mo>∼</m:mo>
+		    </m:mover>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> The reason for these rather obscure manipulations is
+      now revealed: Because
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">
+	    <m:mover>
+	      <m:mi>P</m:mi>
+	      <m:mo>∼</m:mo>
+	    </m:mover>
+	  </m:ci>
+	  <m:ci>·</m:ci>
+	</m:apply>
+      </m:math> is related to the probability distribution function of
+      the absolute error, the right side of this equation is twice the
+      mean-squared error
+      <m:math>
+	<m:apply>
+	  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>ε</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  The general Ziv-Zakai bound for the mean-squared
+      estimation error of signal delay is thus expressed as
+      <m:math display="block">
+	<m:apply>
+	  <m:geq/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>ε</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:ci>L</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>Δ</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>0</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:ci>L</m:ci>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:ci>Δ</m:ci>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>τ</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>0</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>L</m:ci>
+		      <m:ci>Δ</m:ci>
+		    </m:apply>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub>
+			<m:mi>P</m:mi>
+			<m:mi>e</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci>τ</m:ci>
+		    <m:ci>Δ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      In many cases, the optimum probability of error 
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn"><m:msub>
+	      <m:mi>P</m:mi>
+	      <m:mi>e</m:mi>
+	    </m:msub></m:ci>
+	  <m:ci>τ</m:ci>
+	  <m:ci>Δ</m:ci>
+	</m:apply>
+      </m:math> does not depend on 
+      <m:math>
+	<m:ci>τ</m:ci>
+      </m:math>, the time origin of the observations.  This lack of
+      dependence is equivalent to ignoring edge effects and simplifies
+      calculation of the bound.  Thus, the Ziv-Zakai bound for
+      time-delay estimation relates the mean-squared estimation error
+      for delay to the probability of error incurred by the optimal
+      detector that is deciding whether a nonzero delay is present or
+      not.
+      <equation id="zivzakai">
+	<m:math>
+	  <m:apply>
+	    <m:geq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>ε</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:ci>L</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>Δ</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>L</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>Δ</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:ci>Δ</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub>
+			<m:mi>P</m:mi>
+			<m:mi>e</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci>Δ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>L</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:cn>6</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn"><m:msub>
+		      <m:mi>P</m:mi>
+		      <m:mi>e</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci>L</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>Δ</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>L</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>Δ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>Δ</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:cn>3</m:cn>
+			<m:ci>L</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:diff/>
+		    <m:bvar>
+		      <m:ci>Δ</m:ci>
+		    </m:bvar>
+		    <m:ci type="fn"><m:msub>
+			<m:mi>P</m:mi>
+			<m:mi>e</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      To apply this bound to time-delay estimates (unbiased or not),
+      the optimum probability of error for the type of noise and the
+      relative delay between the two signals must be determined.
+      Substituting this expression into either integral yields the
+      Ziv-Zakai bound.
+    </para>
+
+    <para id="generalbehavior">
+      The general behavior of this bound at parameter extremes can be
+      evaluated in some cases.  Note that the Cramér-Rao bound
+      in this problem approaches infinity as either the noise variance
+      grows or the observation interval shrinks to 0 (either forces
+      the signal-to-noise ratio to approach 0).  This result is
+      unrealistic as the actual delay is bounded, lying between 0 and
+      <m:math>
+	<m:ci>L</m:ci> 
+      </m:math>.  In this very noisy situation, one should ignore the
+      observations and "guess" <emphasis>any</emphasis> reasonable
+      value for the delay; the estimation error is smaller.  The
+      probability of error approaches 
+      <m:math>
+	<m:cn type="rational">1<m:sep/>2</m:cn> 
+      </m:math> in this situation no matter what the delay
+      <m:math>
+	<m:ci>Δ</m:ci> 
+      </m:math> may be.  Considering the simplified form of the
+      Ziv-Zakai bound, the integral in the second form is 0 in this
+      extreme case.
+      <m:math display="block">
+	<m:apply>
+	  <m:geq/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>ε</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:divide/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>L</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:cn>12</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      The Ziv-Zakai bound is exactly the variance of a random variable
+      uniformly distributed over 
+      <m:math>
+	<m:interval>
+	  <m:cn>0</m:cn>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci>L</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:interval>
+      </m:math>.  The Ziv-Zakai bound thus predicts the size of
+      mean-squared errors more accurately than does the
+      Cramér-Rao bound.
+    </para>
+
+    <example id="Zakai">
+      <para id="Guassian">
+	Let the noise be Gaussian of variance 
+	<m:math>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>σ</m:mi>
+		<m:mi>n</m:mi>
+	      </m:msub>
+	    </m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math> and the signal have energy 
+	<m:math>
+	  <m:ci>E</m:ci>
+	</m:math>.  The probability of error resulting from the
+	likelihood ratio test is given by
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>P</m:mi>
+		  <m:mi>e</m:mi>
+		</m:msub></m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">Q</m:ci>
+	      <m:apply>
+		<m:root/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>E</m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>σ</m:mi>
+			    <m:mi>n</m:mi>
+			  </m:msub>
+			</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:ci type="fn">ρ</m:ci>
+		      <m:ci>Δ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	The quantity 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">ρ</m:ci>
+	    <m:ci>Δ</m:ci>
+	  </m:apply>
+	</m:math> is the normalized autocorrelation function of the
+	signal evaluated at the delay 
+	<m:math>
+	  <m:ci>Δ</m:ci>
+	</m:math>.
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">ρ</m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:ci>E</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:domainofapplication>
+		  <m:ci>l</m:ci>
+		</m:domainofapplication>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn">s</m:ci>
+		    <m:ci>l</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">s</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>l</m:ci>
+		      <m:ci>Δ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> Evaluation of the Ziv-Zakai bound for a general
+	signal is very difficult in this Gaussian noise case.
+	Fortunately, the normalized autocorrelation function can be
+	bounded by a relatively simple expression to yield a more
+	manageable expression.  The key quantity
+	<m:math>
+	  <m:apply>
+	    <m:minus/>
+	    <m:cn>1</m:cn>
+	    <m:apply>
+	      <m:ci type="fn">ρ</m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> in the probability of error expression can be
+	rewritten using Parseval's Theorem.
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:ci type="fn">ρ</m:ci>
+		<m:ci>Δ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:ci>E</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>ω</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:pi/>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:abs/>
+		      <m:apply>
+			<m:ci type="fn">S</m:ci>
+			<m:ci>ω</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:cos/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>ω</m:ci>
+			<m:ci>Δ</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>  Using the inequality 
+	<m:math>
+	  <m:apply>
+	    <m:leq/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:cos/>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>x</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, 
+	<m:math>
+	  <m:apply>
+	    <m:minus/>
+	    <m:cn>1</m:cn>
+	    <m:apply>
+	      <m:ci type="fn">ρ</m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> is bounded from above by
+	<m:math>
+	  <m:apply>
+	    <m:min/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>Δ</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>β</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>, where 
+	<m:math>
+	  <m:ci>β</m:ci> 
+	</m:math> is the root-mean-squared (<term>RMS</term>) signal
+	bandwidth.
+	<equation id="beta">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>β</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>ω</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:pi/>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:pi/>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>ω</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:abs/>
+			<m:apply>
+			  <m:ci type="fn">S</m:ci>
+			  <m:ci>ω</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>ω</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:pi/>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:pi/>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:abs/>
+		      <m:apply>
+			<m:ci type="fn">S</m:ci>
+			<m:ci>ω</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	Because 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">Q</m:ci>
+	    <m:ci>·</m:ci>
+	  </m:apply>
+	</m:math> is a decreasing function, we have 
+	<m:math>
+	  <m:apply>
+	    <m:geq/>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>P</m:mi>
+		  <m:mi>e</m:mi>
+		</m:msub></m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">Q</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:ci>μ</m:ci>
+		<m:apply>
+		  <m:min/>
+		  <m:ci>Δ</m:ci>
+		  <m:ci>
+		    <m:msup>
+		      <m:mi>Δ</m:mi>
+		      <m:mo>*</m:mo>
+		    </m:msup>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, where 
+	<m:math>
+	  <m:ci>μ</m:ci> 
+	</m:math> is a combination of all of the constants involved in
+	the argument of
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">Q</m:ci>
+	    <m:ci>·</m:ci>
+	  </m:apply>
+	</m:math>: 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>μ</m:ci>
+	    <m:apply>
+	      <m:root/>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>E</m:ci>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>β</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>4</m:cn>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>σ</m:mi>
+			<m:mi>n</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.  This quantity varies with the product of the
+	signal-to-noise ratio 
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>E</m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>σ</m:mi>
+		  <m:mi>n</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math> and the squared RMS bandwidth
+	<m:math>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>β</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>.  The parameter 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msup>
+		<m:mi>Δ</m:mi>
+		<m:mo>*</m:mo>
+	      </m:msup>
+	    </m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>2</m:cn>
+	      <m:ci>β</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> is known as the <term>critical delay</term> and is
+	twice the reciprocal RMS bandwidth.  We can use this lower
+	bound for the probability of error in the Ziv-Zakai bound to
+	produce a lower bound on the mean-squared estimation error.
+	The integral in the first form of the bound yields the
+	complicated, but computable result
+	<m:math display="block">
+	  <m:apply>
+	    <m:geq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>ε</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>L</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:cn>6</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">Q</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>μ</m:ci>
+		    <m:apply>
+		      <m:min/>
+		      <m:ci>L</m:ci>
+		      <m:ci>
+			<m:msup>
+			  <m:mi>Δ</m:mi>
+			  <m:mo>*</m:mo>
+			</m:msup>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>4</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>μ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">P</m:csymbol>
+		    <m:bvar>
+		      <m:ci><m:msubsup>
+			  <m:mi>χ</m:mi>
+			  <m:mn>3</m:mn>
+			  <m:mn>2</m:mn>
+			</m:msubsup></m:ci>
+		    </m:bvar>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>μ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:min/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>L</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>
+			    <m:msup>
+			      <m:mi>Δ</m:mi>
+			      <m:mo>*</m:mo>
+			    </m:msup>
+			  </m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>3</m:cn>
+		      <m:apply>
+			<m:root/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			</m:apply>
+		      </m:apply>
+		      <m:ci>L</m:ci>
+		      <m:apply>
+			<m:power/>
+			<m:ci>μ</m:ci>
+			<m:cn>3</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:plus/>
+			<m:cn>1</m:cn>
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:power/>
+			      <m:ci>μ</m:ci>
+			      <m:cn>2</m:cn>
+			    </m:apply>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			  <m:apply>
+			    <m:min/>
+			    <m:apply>
+			      <m:power/>
+			      <m:ci>L</m:ci>
+			      <m:cn>2</m:cn>
+			    </m:apply>
+			    <m:apply>
+			      <m:power/>
+			      <m:ci>
+				<m:msup>
+				  <m:mi>Δ</m:mi>
+				  <m:mo>*</m:mo>
+				</m:msup>
+			      </m:ci>
+			      <m:cn>2</m:cn>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:exp/>
+			<m:apply>
+			  <m:minus/>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:times/>
+			      <m:apply>
+				<m:power/>
+				<m:ci>μ</m:ci>
+				<m:cn>2</m:cn>
+			      </m:apply>
+			      <m:apply>
+				<m:min/>
+				<m:apply>
+				  <m:power/>
+				  <m:ci>L</m:ci>
+				  <m:cn>2</m:cn>
+				</m:apply>
+				<m:apply>
+				  <m:power/>
+				  <m:ci>
+				    <m:msup>
+				      <m:mi>Δ</m:mi>
+				      <m:mo>*</m:mo>
+				    </m:msup>
+				  </m:ci>
+				  <m:cn>2</m:cn>
+				</m:apply>
+			      </m:apply>
+			    </m:apply>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	The quantity 
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">P</m:csymbol>
+	    <m:bvar>
+	      <m:ci><m:msubsup>
+		  <m:mi>χ</m:mi>
+		  <m:mn>3</m:mn>
+		  <m:mn>2</m:mn>
+		</m:msubsup></m:ci>
+	    </m:bvar>
+	    <m:ci>·</m:ci>
+	  </m:apply>
+	</m:math> is the probability distribution function of a
+	<m:math>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>χ</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math> random variable having three degrees of
+	freedom.<footnote id="id1164599653103"> This distribution function has
+	the "closed-form" expression
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">P</m:csymbol>
+		<m:bvar>
+		  <m:ci><m:msubsup>
+		      <m:mi>χ</m:mi>
+		      <m:mn>3</m:mn>
+		      <m:mn>2</m:mn>
+		    </m:msubsup></m:ci>
+		</m:bvar>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:ci type="fn">Q</m:ci>
+		      <m:apply>
+			<m:root/>
+			<m:ci>x</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:root/>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>x</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:divide/>
+			  <m:ci>x</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.</footnote> Thus, the threshold effects in this
+	expression for the mean-squared estimation error depend on the
+	relation between the critical delay and the signal duration.
+	In most cases, the minimum equals the critical delay
+	<m:math>
+	  <m:ci>
+	    <m:msup>
+	      <m:mi>Δ</m:mi>
+	      <m:mo>*</m:mo>
+	    </m:msup>
+	  </m:ci>
+	</m:math>, with the opposite choice possible for very low
+	bandwidth signals.
+      </para>
+
+      <para id="lastparaofthesection">
+	<figure id="zz">
+	  <media id="id1164599653267" alt=""><image src="../../media/zz.jpg" mime-type="image/jpeg"/></media> 
+	  <caption>
+	    The Ziv-Zakai bound and the Cramér-Rao bound for
+	    the estimation of the time delay of a signal observed in
+	    the presence of Gaussian noise is shown as a function of
+	    the signal-to-noise ratio.  For this plot,
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>L</m:ci>
+		<m:cn>20</m:cn>
+	      </m:apply>
+	    </m:math> and 
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>β</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		  <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		  <m:cn>0.2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:math>.  The Ziv-Zakai bound is much larger than the
+	    Cramér-Rao bound for signal-to-noise ratios less than
+	    13 dB; the Ziv-Zakai bound can be as much as 30 times
+	    larger.</caption>
+	</figure>
+	The Ziv-Zakai bound and the Cramér-Rao bound for the
+	time-delay estimation problem are shown in <link target-id="zz"/>.  Note how the Ziv-Zakai bound matches the
+	Cramér-Rao bound only for large signal-to-noise ratios,
+	where they both equal
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn type="rational">1<m:sep/>4</m:cn>
+	      <m:apply>
+		<m:power/>
+		<m:ci>μ</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>σ</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci>E</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>β</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.  For smaller values, the former bound is much
+	larger and provides a better indication of the size of the
+	estimation errors.  These errors are because of the "cycle
+	skipping" phenomenon described earlier.  The Ziv-Zakai bound
+	describes them well, whereas the Cramér-Rao bound
+	ignores them.
+      </para>
+    </example>
+  </content>
+				  
+  <bib:file>
+    <bib:entry id="WeissWeinstein">
+      <bib:article>
+	<bib:author>A.J. Weiss and E. Weinstein</bib:author>
+	<bib:title>Fundamental limitations in passive time delay
+	estimation: I. Narrow-band systems</bib:title>
+	<bib:journal>IEEE Trans. Acoustics, Speech and Signal
+	Processing</bib:journal> 
+	<bib:year>1983</bib:year>
+	<bib:volume>ASSP-31</bib:volume>
+	<bib:pages>472-486</bib:pages>
+	<bib:month>April</bib:month>
+      </bib:article>
+    </bib:entry>
+    <bib:entry id="ZivZakai">
+      <bib:article>
+	<bib:author>J. Ziv and M. Zakai</bib:author>
+	<bib:title>Some lower bounds on signal parameter estimation</bib:title>
+	<bib:journal>IEEE Trans. Info. Th.</bib:journal> 
+	<bib:year>1969</bib:year>
+	<bib:volume>IT-15</bib:volume>
+	<bib:pages>386-391</bib:pages>
+	<bib:month>May</bib:month>
+      </bib:article>
+    </bib:entry>
+    <bib:entry id="ChazanZakaiZiv">
+      <bib:article>
+	<bib:author>D. Chazan, M. Zakai, and J. Ziv</bib:author>
+	<bib:title>Improved lower bounds on signal parameter
+	estimation</bib:title> 
+	<bib:journal>IEEE Trans. Info. Th.</bib:journal> 
+	<bib:year>1975</bib:year>
+	<bib:volume>IT-21</bib:volume>
+	<bib:pages>90-93</bib:pages>
+	<bib:month>January</bib:month> 
+      </bib:article>
+    </bib:entry>
+  </bib:file>
+</document>

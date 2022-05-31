@@ -1,0 +1,933 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Non-Random Parameters</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>d26c8bfc-4f12-40a9-8577-0ae7e6f09815</md:uuid>
+</metadata>
+
+  <content>
+    <para id="inthose">
+      In those cases where a probability density for the parameters
+      cannot be assigned, the model evaluation problem can be solved
+      in several ways; the methods used depend on the form of the
+      likelihood ratio and the way in which the parameter(s) enter the
+      problem.  In the Gaussian problem we have discussed so often,
+      the threshold used in the likelihood ratio test
+      <m:math>
+	<m:ci>η</m:ci>
+      </m:math>
+      may be unity.  In this case, examination of the resulting
+      computations required reveals that implementing the test
+      <emphasis>does not require knowledge of the variance of the
+      observations</emphasis> (see <link document="m11271" target-id="problem25">this problem</link>).  Thus, if the common
+      variance of the underlying Gaussian distributions is not known,
+      this lack of knowledge has <emphasis>no effect</emphasis> on the
+      optimum decision rule.  This happy situation - knowledge of the
+      value of a parameter is not required by the optimum decision
+      rule - occurs rarely, but should be checked before using more
+      complicated procedures.
+    </para>
+    <para id="asecond">
+      A second fortuitous situation occurs when the sufficient
+      statistic as well as its probability density under one of the
+      models do <emphasis>not</emphasis> depend on the unknown
+      parameter(s).  Although the sufficient statistic's threshold
+      <m:math>
+	<m:ci>γ</m:ci>
+      </m:math>
+      expressed in terms of the likelihood ratio's threshold
+      <m:math>
+	<m:ci>η</m:ci>
+      </m:math>
+      depends on the unknown parameters,
+      <m:math>
+	<m:ci>γ</m:ci>
+      </m:math>
+      may be computed as a single value using the Neyman-Pearson
+      criterion <emphasis>if the computation of the false-alarm
+      probability does not involve the unknown parameters</emphasis>.
+    </para>
+    <example id="ex1">
+      <para id="continuing">
+	Continuing the example of the <link document="m11605" target-id="ex1">previous section</link>, let's consider the
+	situation where the value of the mean of each observation
+	under model
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math>
+	is not known.  The sufficient statistic is the sum of the
+	observations (that quantity doesn't depend on
+	<m:math>
+	  <m:ci>m</m:ci>
+	</m:math>)
+	and the distribution of the observation vector under model
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub></m:ci>
+	</m:math>
+	does not depend on
+	<m:math>
+	  <m:ci>m</m:ci>
+	</m:math>
+	(allowing computation of the false-alarm probability).
+	However, a subtlety emerges; in the derivation of the
+	sufficient statistic, we had to divide by the value of the
+	mean.  The critical step occurs once the logarithm of the
+	likelihood ratio is manipulated to obtain
+	<m:math display="block">
+	  <m:mrow>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>m</m:ci>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>l</m:ci></m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:uplimit>
+		<m:ci><m:msub>
+		    <m:mi>r</m:mi>
+		    <m:mi>l</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:munderover>
+		<m:mi>≷</m:mi>
+		<m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub>
+		<m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:munderover>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>σ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ln/>
+		    <m:ci>η</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>L</m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>m</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	Recall that only <emphasis>positively</emphasis> monotonic
+	transformations can be applied; if a negatively monotonic
+	operation is applied to this inequality (such as multiplying
+	both sides by -1), the <emphasis>inequality
+	reverses</emphasis>.  If the sign of
+	<m:math>
+	  <m:ci>m</m:ci>
+	</m:math>
+	is known, it can be taken into account explicitly and a
+	sufficient statistic results.  If, however, the sign is not
+	known, the above expression cannot be manipulated further and
+	the left side constitutes the sufficient statistic for this
+	problem.  The sufficient statistic then depends on the unknown
+	parameter and we cannot develop a decision rule in this case.
+	If the sign is known, we can proceed.  Assuming the sign of
+	<m:math>
+	  <m:ci>m</m:ci>
+	</m:math>
+	is positive, the sufficient statistic is the sum of the
+	observations and the threshold
+	<m:math>
+	  <m:ci>γ</m:ci>
+	</m:math>
+	is found by
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>γ</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:root/>
+		<m:ci>L</m:ci>
+	      </m:apply>
+	      <m:ci>σ</m:ci>
+	      <m:apply>
+		<m:apply>
+		  <m:inverse/>
+		  <m:ci type="fn">Q</m:ci>
+		</m:apply>
+		<m:ci><m:msub>
+		    <m:mi>P</m:mi>
+		    <m:mi>F</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	Note that if the variance
+	<m:math>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>σ</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>
+	instead of the mean were unknown, we could not compute the
+	threshold.  The difficulty lies not with the sufficient
+	statistic (it doesn't depend on the variance), but with the
+	false alarm probability as the expression indicates.  Another
+	approach is required to deal with the unknown-variance
+	problem.
+      </para>
+    </example>
+    <para id="whenthis">
+      When this situation occurs - the sufficient statistic
+      <emphasis>and</emphasis> the false-alarm probability can be
+      computed without needing the parameter in question, we have
+      established what is known as a <term>uniformly most powerful
+      test</term> (or UMP test) (<cite target-id="cramer"><cite-title>Cramér;
+      p.529-531</cite-title></cite>), (<cite target-id="vanTrees"><cite-title>van Trees;
+      p.89ff</cite-title></cite>).  If an UMP test does not exist, which can only
+      be demonstrated by explicitly finding the sufficient statistic
+      and evaluating its probability distribution, then the composite
+      hypothesis testing problem cannot be solved without some value
+      for the parameter being used.
+    </para>
+    <para id="thisseemingly">
+      This seemingly impossible situation - we need the value of the
+      parameter that is assumed unknown - can be approached by noting
+      that some data is available for "guessing" the value of the
+      parameter.  If a reasonable guess could be obtained, it could
+      then be used in our model evaluation procedures developed in
+      this chapter.  <emphasis>The data available for estimating
+      unknown parameters are precisely the data used in the decision
+      rule</emphasis>.  Procedures intended to yield "good" guesses of
+      the value of a parameter are said to be <emphasis>parameter
+      estimates</emphasis>.  Estimation procedures are the topic of
+      the next chapter; there we will explore a variety of estimation
+      techniques and develop measure of estimate quality.  For the
+      moment, these issues are secondary; even if we knew the size of
+      the estimation error, for example, the more pertinent issue is
+      how the imprecise parameter value affects the performance
+      probabilities.  We can compute these probabilities
+      <emphasis>without</emphasis> explicitly determining the
+      estimate's error characteristics.
+    </para>
+    <para id="oneparameter">
+      One parameter estimation procedure that fits nicely into the
+      composite hypothesis testing problem is the <emphasis>maximum
+      likelihood estimate</emphasis>. <footnote id="idm7139264">The maximum
+      likelihood estimation procedure and its characteristics are
+      fully described in <link document="m11269">this
+      section</link>.</footnote> Letting
+      <m:math>
+	<m:ci type="vector">r</m:ci>
+      </m:math>
+      denote the vector of observables and
+      <m:math>
+	<m:ci type="vector">θ</m:ci>
+      </m:math>
+      a vector of parameters, the maximum likelihood estimate of
+      <m:math>
+	<m:ci type="vector">θ</m:ci>
+      </m:math>,
+      <m:math>
+	<m:apply>
+	  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+	  <m:ci><m:msub>
+	      <m:mi>θ</m:mi>
+	      <m:mi>ML</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>, is that value of
+      <m:math>
+	<m:ci type="vector">θ</m:ci>
+      </m:math>
+      that maximizes the conditional density
+      <m:math>
+	<m:apply>
+	  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+	  <m:bvar>
+	    <m:ci type="vector">r</m:ci>
+	  </m:bvar>
+	  <m:condition>
+	    <m:ci type="vector">θ</m:ci>
+	  </m:condition>
+	  <m:ci type="vector">r</m:ci>
+	</m:apply>
+      </m:math>
+      of the observations given the parameter values.  To use
+      <m:math>
+	<m:apply>
+	  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+	  <m:ci><m:msub>
+	      <m:mi>θ</m:mi>
+	      <m:mi>ML</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>
+      in our decision rule, we estimate the parameter vector
+      <emphasis>separately</emphasis> for each model, use the
+      estimated value in the conditional density of the observations,
+      and compute the likelihood ratio.  This procedure is termed the
+      <term>generalized likelihood ratio test</term> for the unknown
+      parameter problem in hypothesis testing (<cite target-id="lehmann"><cite-title>Lehmann; p.16</cite-title></cite>), (<cite target-id="vanTrees"><cite-title>van
+      Trees; p.92ff</cite-title></cite>).
+      <equation id="glr">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">Λ</m:ci>
+	      <m:ci type="vector">r</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:max/>
+		<m:bvar>
+		  <m:ci>θ</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		  <m:bvar>
+		    <m:ci type="vector">r</m:ci>
+		  </m:bvar>
+		  <m:condition>
+		    <m:ci><m:msub>
+			<m:mi>ℳ</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:condition>
+		  <m:condition>
+		    <m:ci>θ</m:ci>
+		  </m:condition>
+		  <m:ci type="vector">r</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:max/>
+		<m:bvar>
+		  <m:ci>θ</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		  <m:bvar>
+		    <m:ci type="vector">r</m:ci>
+		  </m:bvar>
+		  <m:condition>
+		    <m:ci><m:msub>
+			<m:mi>ℳ</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub></m:ci>
+		  </m:condition>
+		  <m:condition>
+		    <m:ci>θ</m:ci>
+		  </m:condition>
+		  <m:ci type="vector">r</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      Note that we do <emphasis>not</emphasis> find that value of the
+      parameter that (necessarily) maximizes the likelihood ratio.
+      Rather, we estimate the parameter value most consistent with the
+      observed data in the context of each assumed model (hypothesis)
+      of data generation.  In this way, the estimate conforms with
+      each potential model rather than being determined by some
+      amalgam of supposedly mutually exclusive models.
+    </para>
+    <example id="ex2">
+      <para id="returningto">
+	Returning to our Gaussian example, assume that the variance
+	<m:math>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>σ</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:math>
+	is known but that the mean under
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math>
+	is unknown.
+	<m:math display="block">
+	  <m:mrow>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	    <m:mo>:</m:mo>
+	    <m:mi> </m:mi>
+	  
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	      <m:ci>r</m:ci>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldist"/>
+		<m:cn>0</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>σ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:ci>I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	<m:math display="block">
+	  <m:mrow>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	    <m:mo>:</m:mo>
+	    <m:mi> </m:mi>
+
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	      <m:ci>r</m:ci>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldist"/>
+		<m:ci>m</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>σ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:ci>I</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	<m:math display="block">
+	  <m:mrow>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>m</m:ci>
+	      <m:vector>
+		<m:ci>m</m:ci>
+		<m:ci>…</m:ci>
+		<m:ci>m</m:ci>
+	      </m:vector>
+	    </m:apply>
+	    <m:mo>,</m:mo>
+	    <m:mi> </m:mi>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>m</m:ci>
+	      <m:ci>?</m:ci>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	The unknown quantity occurs only in the exponent of the
+	conditional density under
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math>;
+	to maximize this density, we need only to maximize the
+	exponent.  Thus, we consider the derivative of the exponent
+	with respect to
+	<m:math>
+	  <m:ci>m</m:ci>
+	</m:math>.
+	<m:math display="block">
+	  <m:apply>
+	    <m:implies/>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		<m:bvar><m:ci>m</m:ci></m:bvar>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+		    <m:ci><m:msub>
+			<m:mi>m</m:mi>
+			<m:mi>ML</m:mi>
+		    </m:msub></m:ci>
+		  </m:apply>
+		</m:lowlimit>
+		<m:apply>
+		  <m:partialdiff/>
+		  <m:bvar><m:ci>m</m:ci></m:bvar>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:divide/>
+			<m:cn>1</m:cn>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:apply>
+			    <m:power/>
+			    <m:ci>σ</m:ci>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:sum/>
+		      <m:bvar><m:ci>l</m:ci></m:bvar>
+		      <m:lowlimit>
+			<m:cn>0</m:cn>
+		      </m:lowlimit>
+		      <m:uplimit>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>L</m:ci>
+			  <m:cn>1</m:cn>
+			</m:apply>
+		      </m:uplimit>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci><m:msub>
+			      <m:mi>r</m:mi>
+			      <m:mi>l</m:mi>
+			    </m:msub></m:ci>
+			  <m:ci>m</m:ci>
+			</m:apply>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>l</m:ci></m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:uplimit>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>r</m:mi>
+		      <m:mi>l</m:mi>
+		    </m:msub></m:ci>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+		    <m:ci><m:msub>
+			<m:mi>m</m:mi>
+			<m:mi>ML</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	The solution of this equation is the average value of the
+	observations
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+	      <m:ci><m:msub>
+		  <m:mi>m</m:mi>
+		  <m:mi>ML</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:ci>L</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>l</m:ci></m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:uplimit>
+		<m:ci><m:msub>
+		    <m:mi>r</m:mi>
+		    <m:mi>l</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	To derive the decision rule, we substitute this estimate in
+	the conditional density for
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math>.
+	The critical term, the exponent of this density, is
+	manipulated to obtain
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>σ</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>l</m:ci></m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:uplimit>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>r</m:mi>
+			<m:mi>l</m:mi>
+		      </m:msub></m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:divide/>
+			<m:cn>1</m:cn>
+			<m:ci>L</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:sum/>
+			<m:bvar><m:ci>k</m:ci></m:bvar>
+			<m:lowlimit>
+			  <m:cn>0</m:cn>
+			</m:lowlimit>
+			<m:uplimit>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci>L</m:ci>
+			    <m:cn>1</m:cn>
+			  </m:apply>
+			</m:uplimit>
+			<m:ci><m:msub>
+			    <m:mi>r</m:mi>
+			    <m:mi>k</m:mi>
+			  </m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>σ</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>l</m:ci></m:bvar>
+		  <m:lowlimit>
+		    <m:cn>0</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>L</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:uplimit>
+		  <m:ci><m:msubsup>
+		      <m:mi>r</m:mi>
+		      <m:mi>l</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msubsup></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci>L</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:sum/>
+		      <m:bvar><m:ci>l</m:ci></m:bvar>
+		      <m:lowlimit>
+			<m:cn>0</m:cn>
+		      </m:lowlimit>
+		      <m:uplimit>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>L</m:ci>
+			  <m:cn>1</m:cn>
+			</m:apply>
+		      </m:uplimit>
+		      <m:ci><m:msub>
+			  <m:mi>r</m:mi>
+			  <m:mi>l</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	Noting that the first term in this exponent is identical to
+	the exponent of the denominator in the likelihood ratio, the
+	generalized likelihood ratio becomes
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">Λ</m:ci>
+	      <m:ci type="vector">r</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci>L</m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>σ</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:sum/>
+		    <m:bvar><m:ci>l</m:ci></m:bvar>
+		    <m:lowlimit>
+		      <m:cn>0</m:cn>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>L</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		      </m:uplimit>
+		    <m:ci><m:msub>
+			<m:mi>r</m:mi>
+			<m:mi>l</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	The sufficient statistic thus becomes the square (or
+	equivalently the magnitude) of the summed observations.
+	Compare this result with that obtained in <link target-id="ex1"/>.  There, an UMP test existed
+	<emphasis>if</emphasis> we knew the sign of
+	<m:math>
+	  <m:ci>m</m:ci>
+	</m:math>
+	and the sufficient statistic was the sum of the observations.
+	Here, where we employed the generalized likelihood ratio test,
+	we made no such assumptions about
+	<m:math>
+	  <m:ci>m</m:ci>
+	</m:math>;
+	this generality accounts for the difference in sufficient
+	statistic.  Which test do you think would lead to a greater
+	detection probability for a given false-alarm probability?
+      </para>
+    </example>
+    <para id="oncethe">
+      Once the generalized likelihood ratio is determined, we need to
+      determine the threshold.  If the <foreign>a priori</foreign>
+      probabilities
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>π</m:mi>
+	    <m:mn>0</m:mn>
+	  </m:msub></m:ci>
+      </m:math> and
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>π</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math>
+      are known, the evaluation of the threshold proceeds in the usual
+      way.  If they are not known, all of the conditional densities
+      must not depend on the unknown parameters lest the performance
+      probabilities also depend upon them.  In most cases, the
+      original model evaluation problem is posed in such a way that
+      one of the models does not depend on the unknown parameter; a
+      criterion on the performance probability related to that model
+      can then be established via the Neyman-Pearson procedure.  If
+      not the case, the threshold cannot be computed and the threshold
+      must be set experimentally: we force one of the models to be
+      true and modify the threshold on the sufficient statistic until
+      the desired level of performance is reached.  Despite this
+      non-mathematical approach, the overall performance of the model
+      evaluation procedure will be optimum because of the results
+      surrounding the Neyman-Pearson criterion.
+      <figure id="fig1">
+	<media id="idm7241168" alt=""><image src="../../media/bsc1.png" mime-type="image/png"/></media>
+	<caption>
+	  The two-model testing problem can be abstractly described as
+	  a communication channel where the inputs are the models and
+	  the outputs are the decisions.  The transition probabilities
+	  are related to the false-alarm
+	  (<m:math>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>F</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>) and detection
+	  (<m:math>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>D</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>) probabilities.
+	</caption>
+      </figure>
+    </para>
+  </content>
+
+  <bib:file>
+    <bib:entry id="cramer">
+      <bib:book>
+   	<bib:author>H. Cramér</bib:author>
+    	<bib:title>Mathematical Methods of Statistics</bib:title>
+    	<bib:publisher>Princeton University Press</bib:publisher>
+    	<bib:year>1946</bib:year>
+    	<bib:address>Princeton, NJ</bib:address>
+      </bib:book>
+    </bib:entry>
+    <bib:entry id="vanTrees">
+      <bib:book>
+   	<bib:author>H.L. van Trees</bib:author>
+    	<bib:title>Detection, Estimation, and Modulation Theory, Part I</bib:title>
+	<bib:publisher>John Wiley and Sons</bib:publisher>
+    	<bib:year>1968</bib:year>
+	<bib:address>New York</bib:address>
+      </bib:book>
+    </bib:entry>
+    <bib:entry id="lehmann">
+      <bib:book>
+   	<bib:author>E.L. Lehmann</bib:author>
+    	<bib:title>Testing Statistical Hypotheses</bib:title>
+	<bib:publisher>John Wiley and Sons</bib:publisher>
+    	<bib:year>1986</bib:year>
+	<bib:address>New York</bib:address>
+	<bib:edition>second edition</bib:edition>
+      </bib:book>
+    </bib:entry>
+  </bib:file>
+</document>

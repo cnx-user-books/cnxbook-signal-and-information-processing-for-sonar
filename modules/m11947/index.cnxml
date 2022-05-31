@@ -1,0 +1,692 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Introduction to Statistical Signal Processing</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>f04c7dc7-97ed-43b9-8eec-e6f0c8a74450</md:uuid>
+</metadata>
+
+  <content>
+    <section id="dsp">
+      <title>Digital Signal Processing</title>
+      <para id="para1">
+	<list id="list1">
+	  <item>Digital ≡ sampled, discrete-time, quantized</item> 
+	  <item>Signal ≡ waveform, sequnce of
+	    measurements or observations</item> 
+	  <item>Processing ≡ analyze, modify, filter,
+	    synthesize</item> 
+	</list> 
+      </para>
+    </section>
+
+    <section id="eds">
+      <title>Examples of Digital Signals</title>
+      <para id="para2">
+	<list id="list2">
+	  <item>sampled speech waveform</item>
+	  <item>"pixelized" image</item>
+	  <item>Dow-Jones Index</item>
+	</list>
+      </para>
+    </section>
+
+    <section id="dspa">
+      <title>DSP Applications</title>
+      <para id="para3">
+	<list id="list3">
+	  <item>Filtering (noise reduction)</item>
+	  <item>Pattern recognition (speech, faces,
+	  fingerprints)</item>
+	  <item>Compression</item>
+	</list>
+      </para>
+    </section>
+
+    <section id="amd">
+      <title>A Major Difficulty</title>
+      <para id="para4">In many (perhaps most) DSP applications we
+      don't have complete or perfect knowledge of the signals we wish
+      to process. We are faced with many <term>unknowns</term> and
+      <term>uncertainties</term>.
+      </para>
+    </section>
+
+    <section id="examples">
+      <title>Examples</title>
+      <para id="para5">
+	<list id="list5">
+	  <item>noisy measurements</item>
+	  <item>unknown signal parameters</item>
+	  <item>noisy system or environmental conditions</item>
+	  <item>natural variability in the signals encountered</item>
+	</list>
+      </para>
+
+      <!-- FIXME, missing figure, looks like from a textbook -->
+      <figure id="fig1">
+	<title>Functional Magnetic Resonance Imaging</title>
+	<media id="idp1287568" alt=""><image src="FMRI.png" mime-type="image/png"/></media>
+	<caption>Challenges are measurement noise and intrinsic 
+	  uncertainties in signal behavior.</caption>
+      </figure>
+
+      <para id="para5b">How can we design signal processing algorithms
+      in the face of such uncertainty?
+      </para>
+
+      <para id="para5c">Can we model the uncertainty and incorporate
+      this model into the design process?</para>
+
+      <para id="para5d"><term>Statistical signal processing</term> is the
+      study of these questions.</para>
+    </section>
+
+    <section id="mu">
+      <title>Modeling Uncertainty</title>
+      <para id="para6">The most widely accepted and commonly used
+      approach to modeling uncertainty is <term>Probability
+      Theory</term> (although other alternatives exist such as Fuzzy
+      Logic).
+      </para>
+
+      <para id="para6b">Probability Theory models uncertainty by
+      specifying the <emphasis>chance</emphasis> of observing certain
+      signals.
+      </para>
+
+      <para id="para6c">Alternatively, one can view probability as
+      specifying the degree to which we <emphasis>believe</emphasis> a
+      signal reflects the true <term>state of nature</term>.
+      </para>
+    </section>
+
+    <section id="epm">
+      <title>Examples of Probabilistic Models</title>
+      <para id="para7">
+	<list id="list7">
+	  <item>errors in a measurement (due to an imprecise measuring
+	  device) modeled as realizations of a Gaussian random
+	  variable.</item>
+	  <item>uncertainty in the phase of a sinusoidal signal
+	  modeled as a uniform random variable on
+	    <m:math>
+	      <m:interval closure="closed-open">
+		<m:cn>0</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		</m:apply>
+	      </m:interval>
+	    </m:math>.
+	  </item>
+	  <item>uncertainty in the number of photons stiking a CCD per
+	  unit time modeled as a Poisson random variable.</item>
+	</list>
+      </para>
+    </section>
+
+    <section id="si">
+      <title>Statistical Inference</title>
+      <para id="para8">A <term>statistic</term> is a function of
+      observed data.
+      </para>
+      
+      <example id="ex1">
+	<para id="ex1p1">Suppose we observe
+	<m:math><m:ci>N</m:ci></m:math> scalar values 
+	  <m:math>
+	    <m:mrow>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	      <m:mo>,</m:mo>
+	      <m:mi>…</m:mi>
+	      <m:mo>,</m:mo>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mi>N</m:mi>
+	      </m:msub>
+	    </m:mrow>
+	  </m:math>. The following are statistics:
+	  <list id="list8">
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:mean/>
+		    <m:ci>x</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci>N</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:sum/>
+		      <m:bvar>
+			<m:ci>n</m:ci>
+		      </m:bvar>
+		      <m:lowlimit>
+			<m:cn>1</m:cn>
+		      </m:lowlimit>
+		      <m:uplimit>
+			<m:ci>N</m:ci>
+		      </m:uplimit>
+		      <m:ci><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mi>n</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math> (sample mean)
+	    </item>
+
+	    <item>
+	      <m:math>
+		<m:mrow>
+		  <m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		  <m:mo>,</m:mo>
+		  <m:mi>…</m:mi>
+		  <m:mo>,</m:mo>
+		  <m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>N</m:mi>
+		  </m:msub>
+		</m:mrow>
+	      </m:math> (the data itself)
+	    </item>
+
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:min/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>…</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>N</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:math> (order statistic)
+	    </item>
+
+	    <item>
+	      (<m:math>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    <m:apply>
+		      <m:sin/>
+		      <m:ci><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>, 
+	      <m:math>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>3</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>)
+	    </item>
+	  </list>
+
+	  A statistic <emphasis>cannot</emphasis> depend on
+	  <term>unknown parameters</term>.
+	</para>
+      </example>
+
+      <para id="para8b"><term>Probability</term> is used to model
+      uncertainty.</para>
+      
+      <para id="para8c"><term>Statistics</term> are used to draw
+      conclusions about probability models.
+      </para>
+
+      <figure id="fig2">
+	<media id="idm6374992" alt=""><image src="../../media/probStat.png" mime-type="image/png"/></media>
+      </figure>
+
+      <para id="para8d">Probability models our uncertainty about
+      signals we <emphasis>may</emphasis> observe.</para>
+
+      <para id="para8e">Statistics reasons from the measured signal to
+      the population of possible signals.</para>
+    </section>
+
+    <section id="ssp">
+      <title>Statistical Signal Processing</title>
+      <list list-type="labeled-item" id="list9">
+	<item><label>Step 1</label>
+	  
+	  Postulate a probability model (or models) that reasonably
+	  capture the uncertainties at hand
+	</item>
+
+	<item><label>Step 2</label>
+	  
+	  Collect data
+	</item>
+
+	<item><label>Step 3</label>
+	  
+	  Formulate statistics that allow us to interpret or
+	  understand our probability model(s)
+	</item>
+      </list>
+    </section>
+
+    <section id="itc">
+      <title>In this class</title>
+      <para id="para10">The two major kinds of problems that we will
+      study are <term>detection</term> and
+      <term>estimation</term>. Most SSP problems fall under one of
+      these two headings.
+      </para>
+    </section>
+    
+    <section id="dt">
+      <title>Detection Theory</title>
+      <para id="para11">Given two (or more) probability models, which
+	on best explains the signal?</para>
+      
+      <section id="dt1">
+	<title>Examples</title>
+	<list id="list11" list-type="enumerated">
+	  <item>Decode wireless comm signal into string of 0's and
+	    1's</item>
+	  
+	  <item>Pattern recognition
+	    <list id="list11b">
+	      <item>voice recognition</item>
+	      <item>face recognition</item>
+	      <item>handwritten character recognition</item>
+	    </list>
+	  </item>
+	  
+	  <item>Anomaly detection
+	    <list id="list11c">
+	      <item>radar, sonar</item>
+	      <item>irregular, heartbeat</item>
+	      <item>gamma-ray burst in deep space</item>
+	    </list>
+	  </item>
+	</list>
+      </section>
+    </section>
+
+    <section id="et">
+      <title>Estimation Theory</title>
+      <para id="para12">If our probability model has free parameters,
+	what are the best parameter settings to describe the signal
+	we've observed?</para>
+      
+      <section id="ed1">
+	<title>Examples</title>
+	<list id="list12" list-type="enumerated">
+	  <item>Noise reduction</item>
+
+	  <item>Determine parameters of a sinusoid (phase, amplitude,
+	    frequency)</item>
+
+	  <item>Adaptive filtering
+	    <list id="list12b">
+	      <item>track trajectories of space-craft</item>
+	      <item>automatic control systems</item>
+	      <item>channel equalization</item>
+	    </list>
+	  </item>
+
+	  <item>Determine location of a submarine (sonar)</item>
+	  
+	  <item>Seismology: estimate depth below ground of an oil
+	    deposit</item>
+
+	</list>
+      </section>
+    </section>
+
+    <example id="de">
+      <title>Detection Example</title>
+      <para id="para13">Suppose we observe
+	<m:math><m:ci>N</m:ci></m:math> tosses of an unfair coin. We
+	would like to decide which side the coin favors, heads or tails.
+      </para>
+      <list id="list13" list-type="labeled-item">
+	<item><label>Step 1</label>
+	  
+	  Assume each toss is a realization of a Bernoulli random
+	  variable.
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:ci>Heads</m:ci>
+	      </m:apply>
+	      <m:ci>p</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:ci>Tails</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  Must decide
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>p</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> vs.
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>p</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	</item>
+	
+	<item><label>Step 2</label>
+	  
+	  Collect data
+	  <m:math>
+	    <m:mrow>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	      <m:mo>,</m:mo>
+	      <m:mi>…</m:mi>
+	      <m:mo>,</m:mo>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mi>N</m:mi>
+	      </m:msub>
+	    </m:mrow>
+	  </m:math>
+	  <m:math display="block">
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub></m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	      <m:mtext>Heads</m:mtext>
+	    </m:apply>
+	  </m:math>
+	  <m:math display="block">
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub></m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	      <m:mtext>Tails</m:mtext>
+	    </m:apply>
+	  </m:math>
+	</item>
+
+	<item><label>Step 3</label>
+	  
+	  Formulate a useful statistic
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>k</m:ci>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>n</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>N</m:ci>
+		</m:uplimit>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  If
+	  <m:math>
+	    <m:apply>
+	      <m:lt/>
+	      <m:ci>k</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>N</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>, guess
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>p</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>. If
+	  <m:math>
+	    <m:apply>
+	      <m:gt/>
+	      <m:ci>k</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>N</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>, guess
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>p</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	</item>
+      </list>
+    </example>
+
+    <example id="ee">
+      <title>Estimation Example</title>
+      <para id="para14">Suppose we take
+	<m:math><m:ci>N</m:ci></m:math> measurements of a DC voltage
+	<m:math><m:ci>A</m:ci></m:math> with a noisy voltmeter. We would
+	like to estimate <m:math><m:ci>A</m:ci></m:math>.
+	
+	<list id="list14" list-type="labeled-item">
+	  <item><label>Step 1</label>
+	    
+	    Assume a Gaussian noise model
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>A</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>w</m:mi>
+		      <m:mi>n</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math> where
+	    <m:math>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+		<m:ci><m:msub>
+		    <m:mi>w</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+		  <m:cn>0</m:cn>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:math>.
+	  </item>
+
+	  <item><label>Step 2</label>
+	    
+	    Gather data
+	    <m:math>
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+		<m:mo>,</m:mo>
+		<m:mi>…</m:mi>
+		<m:mo>,</m:mo>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>N</m:mi>
+		</m:msub>
+	      </m:mrow>
+	    </m:math>
+	  </item>
+
+	  <item><label>Step 3</label>
+	    
+	    Compute the sample mean,
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#estimate"/>
+		  <m:ci>A</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci>N</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:sum/>
+		    <m:bvar>
+		      <m:ci>n</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:cn>1</m:cn>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:ci>N</m:ci>
+		    </m:uplimit>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>n</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math> and use this as an estimate.
+	  </item>
+	</list>
+      </para>
+    </example>
+
+    <para id="para15">In these examples (<link target-id="de"/> and 
+      <link target-id="ee"/>), we solved detection and
+      estimation problems using intuition and heuristics (in Step 3).
+    </para>
+
+    <para id="para16">This course will focus on developing principled
+    and mathematically rigorous approaches to detection and estimation,
+    using the theoretical framework of probability and statistics.
+    </para>
+
+    <section id="summary">
+      <title>Summary</title>
+      <list id="list17">
+	<item>DSP ≡ processing signals with computer
+	algorithms.</item>
+
+	<item>SSP ≡ statistical DSP ≡ processing
+	in the presence of uncertainties and unknowns.
+	</item>
+      </list>
+    </section>
+  </content>
+  
+</document>

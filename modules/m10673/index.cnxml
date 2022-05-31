@@ -1,0 +1,901 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Correlation and Covariance of a Random Signal</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>03ca1295-d676-4866-989a-81db56c593e4</md:uuid>
+</metadata>
+
+  <content>
+    <para id="delete_me">
+      When we take the <link document="m10656" strength="3">expected
+      value</link>, or average, of a <link document="m10649" target-id="rp" strength="3">random process</link>, we measure
+      several important characteristics about how the process behaves
+      in general.  This proves to be a very important observation.
+      However, suppose we have several random processes measuring
+      different aspects of a system.  The relationship between these
+      different processes will also be an important observation.  The
+      covariance and correlation are two important tools in finding
+      these relationships.  Below we will go into more details as to
+      what these words mean and how these tools are helpful.  Note
+      that much of the following discussions refer to just random
+      variables, but keep in mind that these variables can represent
+      random signals or random processes.
+    </para>
+
+    <section id="cov">
+      <title>Covariance</title>
+      <para id="p1_cov">
+	To begin with, when dealing with more than one random process,
+	it should be obvious that it would be nice to be able to have
+	a number that could quickly give us an idea of how similar
+	the processes are.  To do this, we use the
+	<term>covariance</term>, which is analogous to the variance of
+	a single variable.  
+
+	<definition id="def_cov">
+	  <term>Covariance</term>
+	  <meaning id="idp410400">
+	    A measure of how much the deviations of two or more
+	    variables or processes match.
+	  </meaning>
+	</definition>
+
+	For two processes, <m:math><m:ci>X</m:ci></m:math> and
+	<m:math><m:ci>Y</m:ci> </m:math>, if they are
+	<emphasis>not</emphasis> closely related then the covariance
+	will be small, and if they are similar then the covariance
+	will be large.  Let us clarify this statement by describing
+	what we mean by "related" and "similar."  Two processes are
+	"closely related" if their distribution spreads are almost
+	equal and they are around the same, or a very slightly
+	different, mean.
+      </para>
+      <para id="p2_cov">
+	Mathematically, covariance is often written as
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>σ</m:mi>
+		<m:mrow>
+		  <m:mi>x</m:mi>
+		  <m:mi>y</m:mi>
+		</m:mrow>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:math>
+
+	and is defined as
+
+	<equation id="eq_cov">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">cov</m:ci>
+		<m:ci>X</m:ci>
+		<m:ci>Y</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>σ</m:mi>
+		    <m:mrow>
+		      <m:mi>x</m:mi>
+		      <m:mi>y</m:mi>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>	
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>X</m:ci>
+		    <m:apply>
+		      <m:mean/>
+		      <m:ci>X</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>Y</m:ci>
+		    <m:apply>
+		      <m:mean/>
+		      <m:ci>Y</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      
+	This can also be reduced and rewritten in the following two
+	forms:
+
+	<equation id="eqa_cov">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>σ</m:mi>
+		    <m:mrow>
+		      <m:mi>x</m:mi>
+		      <m:mi>y</m:mi>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:mean/>
+		  <m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>x</m:ci>
+		      <m:ci>y</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>  <!-- Two applies used to separate means -->
+		    <m:apply>
+		      <m:mean/>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:apply>
+		      <m:mean/>
+		      <m:ci>y</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	<equation id="eq2_cov">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>σ</m:mi>
+		    <m:mrow>
+		      <m:mi>x</m:mi>
+		      <m:mi>y</m:mi>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>y</m:ci>
+		</m:bvar>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>x</m:ci>
+		  </m:bvar>
+		  <m:uplimit>
+		    <m:infinity/>
+		  </m:uplimit>
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:infinity/>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>X</m:ci>
+		      <m:apply>
+			<m:mean/>
+			<m:ci>X</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>Y</m:ci>
+		      <m:apply>
+			<m:mean/>
+			<m:ci>Y</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>x</m:ci>
+		      <m:ci>y</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <section id="cov_sub1">
+	<title>Useful Properties</title>
+	
+	<list id="l_cov">
+
+	  <item>
+	    If <m:math><m:ci>X</m:ci></m:math> and
+	    <m:math><m:ci>Y</m:ci></m:math> are independent and
+	    uncorrelated or one of them has zero mean value, then
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>σ</m:mi>
+		      <m:mrow>
+			<m:mi>x</m:mi>
+			<m:mi>y</m:mi>
+		      </m:mrow>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math>
+	  </item>
+
+	  <item>
+	    If  <m:math><m:ci>X</m:ci></m:math> and
+	    <m:math><m:ci>Y</m:ci></m:math> are orthogonal, then
+	    
+	     <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>σ</m:mi>
+		      <m:mrow>
+			<m:mi>x</m:mi>
+			<m:mi>y</m:mi>
+		      </m:mrow>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		      <m:ci>X</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		      <m:ci>Y</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	  
+	  <item>
+	    The covariance is symmetric	    
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">cov</m:ci>
+		  <m:ci>X</m:ci>
+		  <m:ci>Y</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">cov</m:ci>
+		  <m:ci>Y</m:ci>
+		  <m:ci>X</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>	    
+	  </item>
+
+	  <item>
+	    Basic covariance identity
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">cov</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>X</m:ci>
+		    <m:ci>Y</m:ci>
+		  </m:apply>
+		  <m:ci>Z</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:ci type="fn">cov</m:ci>
+		    <m:ci>X</m:ci>
+		    <m:ci>Z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">cov</m:ci>
+		    <m:ci>Y</m:ci>
+		    <m:ci>Z</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>	
+	  </item>
+
+	  <item>
+	    Covariance of equal variables
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">cov</m:ci>
+		  <m:ci>X</m:ci>
+		  <m:ci>X</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">Var</m:ci>
+		  <m:ci>X</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>	  
+	  </item>
+
+	</list>
+	
+      </section>
+    </section>
+    
+    <section id="corr">
+      <title>Correlation</title>
+      <para id="p1_corr">
+	For anyone who has any kind of statistical background, you
+	should be able to see that the idea of dependence/independence
+	among variables and signals plays an important role when
+	dealing with random processes.  Because of this, the
+	<term>correlation</term> of two variables provides us with a
+	measure of how the two variables affect one another.
+
+	<definition id="def_corr">
+	  <term>Correlation</term>
+	  <meaning id="idp4724816">
+	    A measure of how much one random variable depends upon the
+	    other.
+	  </meaning>
+	</definition>
+	
+	This measure of association between the variables will provide
+	us with a clue as to how well the value of one variable can be
+	predicted from the value of the other.  The correlation is
+	equal to the average of the product of two random variables
+	and is defined as
+
+	<equation id="eq_cor">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">cor</m:ci>
+		<m:ci>X</m:ci>
+		<m:ci>Y</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>X</m:ci>
+		  <m:ci>Y</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>y</m:ci>
+		</m:bvar>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>x</m:ci>
+		  </m:bvar>
+		  <m:uplimit>
+		    <m:infinity/>
+		  </m:uplimit>
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:infinity/>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>x</m:ci>
+		    <m:ci>y</m:ci>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>x</m:ci>
+		      <m:ci>y</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <section id="cor_sub1">
+	<title>Correlation Coefficient</title>
+	<para id="p1_s1">
+	  It is often useful to express the correlation of random
+	  variables with a range of numbers, like a percentage.  For a
+	  given set of variables, we use the <term>correlation
+	  coefficient</term> to give us the linear relationship
+	  between our variables.  The correlation coefficient of two
+	  variables is defined in terms of their covariance and <link document="m10656" target-id="std" strength="3">standard
+	  deviations</link>, denoted by
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>σ</m:mi>
+		  <m:mi>x</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:math>, as seen below
+	  
+	  <equation id="eq2_cor">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>ρ</m:ci>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:ci type="fn">cov</m:ci>
+		    <m:ci>X</m:ci>
+		    <m:ci>Y</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>σ</m:mi>
+			  <m:mi>x</m:mi>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>σ</m:mi>
+			  <m:mi>y</m:mi>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  where we will always have 
+
+	  <m:math display="block">
+	    <m:apply>
+	      <m:leq/>
+	      <m:apply>
+		<m:leq/>
+		<m:cn>-1</m:cn>
+		<m:ci>ρ</m:ci>
+	      </m:apply>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	  </m:math>
+
+	  This provides us with a quick and easy way to view the
+	  correlation between our variables.  If there is no
+	  relationship between the variables then the correlation
+	  coefficient will be zero and if there is a perfect positive
+	  match it will be one.  If there is a perfect inverse
+	  relationship, where one set of variables increases while the
+	  other decreases, then the correlation coefficient will be
+	  negative one.  This type of correlation is often referred to
+	  more specifically as the <term>Pearson's Correlation
+	  Coefficient</term>,or Pearson's Product Moment Correlation.
+	</para>
+
+	
+	<figure orient="horizontal" id="fig_corr">
+	  <subfigure id="subfig1">
+	    <media id="idm1342512" alt=""><image src="../../media/corr_inc.png" mime-type="image/png"/></media>
+	    <caption>
+	      Positive Correlation
+	    </caption>
+	  </subfigure>
+	  <subfigure id="subfig2">
+	    <media id="idp4981232" alt=""><image src="../../media/corr_dec.png" mime-type="image/png"/></media>
+	    <caption>
+	      Negative Correlation
+	    </caption>
+	  </subfigure>
+	  <subfigure id="subfig3">
+	    <media id="idm125648" alt=""><image src="../../media/corr_unc.png" mime-type="image/png"/></media>
+	    <caption>
+	      Uncorrelated (No Correlation)
+	    </caption>
+	  </subfigure>
+	  <caption>
+	    Types of Correlation
+	  </caption>
+	</figure>
+
+      </section>
+
+      <para id="p33">
+	<note type="note" id="idp1237616">
+	  So far we have dealt with correlation simply as a number
+	  relating the relationship between any two variables.
+	  However, since our goal will be to relate random processes
+	  to each other, which deals with signals as a function of
+	  time, we will want to continue this study by looking at
+	  <term><link document="m10676" strength="3">correlation
+	  functions</link></term>.
+	</note>
+      </para>
+    </section>
+
+    <section id="example">
+      <title>Example</title>
+      <para id="p1_eg">
+	Now let us take just a second to look at a simple example that
+	involves calculating the covariance and correlation of two
+	sets of random numbers.  We are given the following data sets:
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>x</m:ci>
+	    <m:apply>
+	      <m:set>
+		<m:cn>3</m:cn>
+		<m:cn>1</m:cn>
+		<m:cn>6</m:cn>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:set>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>y</m:ci>
+	    <m:apply>
+	      <m:set>
+		<m:cn>1</m:cn>
+		<m:cn>5</m:cn>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+		<m:cn>3</m:cn>
+	      </m:set>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	To begin with, for the covariance we will need to find the
+	<link document="m10656" strength="3">expected value</link>, or
+	mean, of <m:math><m:ci>x</m:ci></m:math> and
+	<m:math><m:ci>y</m:ci></m:math>.
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:mean/>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>5</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:cn>3</m:cn>
+		<m:cn>1</m:cn>
+		<m:cn>6</m:cn>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>3.4</m:cn>
+	  </m:apply>
+	</m:math>
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:mean/>
+	      <m:ci>y</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>5</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:cn>1</m:cn>
+		<m:cn>5</m:cn>
+		<m:cn>3</m:cn>
+		<m:cn>4</m:cn>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>3.2</m:cn>
+	  </m:apply>
+	</m:math>
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:mean/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>x</m:ci>
+		<m:ci>y</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>5</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:cn>3</m:cn>
+		<m:cn>5</m:cn>
+		<m:cn>18</m:cn>
+		<m:cn>12</m:cn>
+		<m:cn>12</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>10</m:cn>
+	  </m:apply>
+	</m:math>
+
+	Next we will solve for the standard deviations of our two sets
+	using the formula below (for a review <link document="m10656" target-id="var" strength="3">click here</link>).
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>σ</m:ci>
+	    <m:apply>
+	      <m:root/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>X</m:ci>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		      <m:ci>X</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>σ</m:mi>
+		  <m:mi>x</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:root/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>5</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:cn>0.16</m:cn>
+		  <m:cn>5.76</m:cn>
+		  <m:cn>6.76</m:cn>
+		  <m:cn>0.16</m:cn>
+		  <m:cn>0.36</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>1.625</m:cn>
+	  </m:apply>
+	</m:math>
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>σ</m:mi>
+		  <m:mi>y</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:root/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>6</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:cn>4.84</m:cn>
+		  <m:cn>3.24</m:cn>
+		  <m:cn>0.04</m:cn>
+		  <m:cn>0.64</m:cn>
+		  <m:cn>0.04</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>1.327</m:cn>
+	  </m:apply>
+	</m:math>
+
+	Now we can finally calculate the covariance using one of the
+	two formulas found above.  Since we calculated the three
+	means, we will use that <link target-id="eqa_cov" strength="2">formula</link> since it will be much simpler.
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>σ</m:mi>
+		  <m:mrow>
+		    <m:mi>x</m:mi>
+		    <m:mi>y</m:mi>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>10</m:cn>
+	      <m:apply>
+		<m:times/>
+		<m:cn>3.4</m:cn>
+		<m:cn>3.2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>-0.88</m:cn>
+	  </m:apply>
+	</m:math>
+	    
+	And for our last calculation, we will solve for the
+	correlation coefficient, <m:math><m:ci>ρ</m:ci></m:math>.
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>ρ</m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>-0.88</m:cn>
+	      <m:apply>
+		<m:times/>
+		<m:cn>1.625</m:cn>
+		<m:cn>1.327</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>-0.408</m:cn>
+	  </m:apply>
+	</m:math>
+      </para>
+      
+      <section id="eg_code">
+	<title>Matlab Code for Example</title>
+	<para id="p34">
+	  The above example can be easily calculated using Matlab.
+	  Below I have included the code to find all of the values
+	  above.
+	</para>
+	
+	<code display="block" id="forloopexample">
+	  	
+	  x = [3 1 6 3 4];
+	  y = [1 5 3 4 3];
+
+	  mx = mean(x)
+	  my = mean(y)
+	  mxy = mean(x.*y)
+	  
+	  % Standard Dev. from built-in Matlab Functions
+	  std(x,1)
+	  std(y,1)
+
+	  % Standard Dev. from Equation Above (same result as std(?,1))
+	  sqrt( 1/5 * sum((x-mx).^2))  
+	  sqrt( 1/5 * sum((y-my).^2))
+
+	  cov(x,y,1)
+
+	  corrcoef(x,y)
+	  
+
+	</code>
+
+      </section>
+
+    </section>
+      
+  </content>
+</document>

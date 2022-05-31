@@ -1,0 +1,977 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Sufficient Statistics</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>7f1ff922-d368-490e-a842-f713f01dacc0</md:uuid>
+</metadata>
+  
+  <content>
+    <section id="intro">
+      <title>Introduction</title>
+
+      <para id="para1">Sufficient statistics arise in nearly every
+      aspect of statistical inference. It is important to understand
+      them before progressing to areas such as hypothesis testing and
+      parameter estimation.
+      </para>
+
+      <para id="para2">Suppose we observe an
+      <m:math><m:ci>N</m:ci></m:math>-dimensional random vector
+      <m:math><m:ci type="vector">X</m:ci></m:math>, characterized by
+      the density or mass function
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+	    <m:bvar>
+	      <m:ci type="vector">θ</m:ci>
+	    </m:bvar>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply> 
+	</m:math>, where <m:math><m:ci type="vector">θ</m:ci></m:math> is a
+	<m:math><m:ci>p</m:ci></m:math>-dimensional vector of
+	parameters to be estimated. The functional form of
+	<m:math><m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+	    <m:ci>x</m:ci>
+	  </m:apply></m:math> is assumed known. The
+	parameter <m:math><m:ci type="vector">θ</m:ci></m:math>
+	completely determines the distribution of <m:math><m:ci type="vector">X</m:ci></m:math>. Conversely, a measurement
+	<m:math><m:ci type="vector">x</m:ci></m:math> of <m:math><m:ci type="vector">X</m:ci></m:math> provides information about
+	<m:math><m:ci type="vector">θ</m:ci></m:math> through
+	the probability law
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+	    <m:bvar>
+	      <m:ci type="vector">θ</m:ci>
+	    </m:bvar>
+	    <m:ci type="vector">x</m:ci>
+	  </m:apply>
+	</m:math>.
+      </para>
+
+      <example id="ex1">
+	<para id="ex1p1">Suppose
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector">X</m:ci>
+	      <m:vector>
+		<m:ci><m:msub>
+		    <m:mi>X</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>X</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:vector>
+	    </m:apply>
+	  </m:math>, where
+	  <m:math>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	      <m:ci><m:msub>
+		  <m:mi>X</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+		<m:ci>θ</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> are IID. Here
+	  <m:math><m:ci>θ</m:ci></m:math> is a scalar parameter
+	  specifying the mean. The distribution of <m:math><m:ci type="vector">X</m:ci></m:math> is determined by
+	  <m:math><m:ci>θ</m:ci></m:math> through the density
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>θ</m:ci>
+		</m:bvar>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:root/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci><m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub></m:ci>
+			  <m:ci>θ</m:ci>
+			</m:apply>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:root/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci><m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mn>2</m:mn>
+			    </m:msub></m:ci>
+			  <m:ci>θ</m:ci>
+			</m:apply>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  On the other hand, if we observe
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector">x</m:ci>
+	      <m:vector>
+		<m:cn>100</m:cn>
+		<m:cn>102</m:cn>
+	      </m:vector>
+	    </m:apply>
+	  </m:math>, 
+	  then we may safely assume
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>θ</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math> is highly unlikely.
+	</para>
+      </example>
+
+      <para id="para4">The <m:math><m:ci>N</m:ci></m:math>-dimensional
+      observation <m:math><m:ci type="vector">X</m:ci></m:math>
+      carries information about the
+      <m:math><m:ci>p</m:ci></m:math>-dimensional parameter vector
+      <m:math><m:ci type="vector">θ</m:ci></m:math>. If
+	<m:math>
+	  <m:apply>
+	    <m:lt/>
+	    <m:ci>p</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math>, one may ask the following question: Can we compress
+	<m:math><m:ci type="vector">x</m:ci></m:math> into a
+	low-dimensional statistic without any loss of information?
+	Does there exist some function 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="vector">t</m:ci>
+	    <m:apply>
+	      <m:ci type="fn">T</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, where the dimension of <m:math><m:ci type="vector">t</m:ci></m:math> is 
+	<m:math>
+	  <m:apply>
+	    <m:lt/>
+	    <m:ci>M</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math>, such that <m:math><m:ci type="vector">t</m:ci></m:math> carries all the useful
+	information about <m:math><m:ci type="vector">θ</m:ci></m:math>?
+      </para>
+
+      <para id="para5">If so, for the purpose of studying
+      <m:math><m:ci type="vector">θ</m:ci></m:math> we could
+      discard the raw measurements <m:math><m:ci type="vector">x</m:ci></m:math> and retain only the
+      low-dimensional statistic <m:math><m:ci type="vector">t</m:ci></m:math>. We call <m:math><m:ci type="vector">t</m:ci></m:math> a <term>sufficient
+      statistic</term>. The following definition captures this notion
+      precisely:
+	
+	<definition id="def1">
+	  <term/>
+	  <meaning id="idm6850192">Let
+	    <m:math>
+	      <m:mrow>
+		<m:ci type="vector">
+		  <m:msub>
+		    <m:mi>X</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:ci>
+		<m:mo>,</m:mo>
+		<m:mi>…</m:mi>
+		<m:mo>,</m:mo>
+		<m:ci type="vector">
+		  <m:msub>
+		    <m:mi>X</m:mi>
+		    <m:mi>M</m:mi>
+		  </m:msub>
+		</m:ci>
+	      </m:mrow>
+	    </m:math> be a random sample, governed by the density or
+	    probability mass function
+	    <m:math>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:condition>
+		  <m:ci type="vector">θ</m:ci>
+		</m:condition>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply> 
+	    </m:math>. The statistic
+	    <m:math>
+	      <m:apply>
+		<m:ci type="fn">T</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:math> is <term>sufficient</term> for <m:math><m:ci type="vector">θ</m:ci></m:math> if the conditional
+	    distribution of <m:math><m:ci type="vector">x</m:ci></m:math>, given
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">T</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci type="vector">t</m:ci>
+	      </m:apply>
+	    </m:math>, is independent of <m:math><m:ci type="vector">θ</m:ci></m:math>. Equivalently, the
+	    functional form of 
+	    <m:math>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci type="vector">θ</m:ci>
+		</m:bvar>
+		<m:condition>
+		  <m:ci type="vector">t</m:ci>
+		</m:condition>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply> 
+	    </m:math> does not involve <m:math><m:ci type="vector">θ</m:ci></m:math>.
+	  </meaning>
+	</definition>
+     
+	How should we interpret this definition? Here are some
+	possibilities:
+      </para>
+
+      <section id="sec1">
+	<para id="s1p1">1. Let
+	  <m:math>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+	      <m:bvar>
+		<m:ci type="vector">θ</m:ci>
+	      </m:bvar>
+	      <m:ci type="vector">x</m:ci>
+	      <m:ci type="vector">t</m:ci>
+	    </m:apply>
+	  </m:math> denote the joint density or probability mass
+	  function on
+	  <m:math>
+	    <m:mrow>
+	      <m:mo>(</m:mo>
+	      <m:ci type="vector">X</m:ci>
+	      <m:mo>,</m:mo>
+	      <m:ci type="vector">T</m:ci>
+	      <m:mo>(</m:mo>
+	      <m:ci type="vector">X</m:ci>
+	      <m:mo>)</m:mo>
+	      <m:mo>)</m:mo>
+	    </m:mrow>
+	  </m:math>. If
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">T</m:ci>
+	      <m:ci type="vector">X</m:ci>
+	    </m:apply>
+	  </m:math> is a sufficient statistic for <m:math><m:ci type="vector">θ</m:ci></m:math>, then
+	  <equation id="eqn1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		  <m:bvar>
+		    <m:ci type="vector">θ</m:ci>
+		  </m:bvar>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		  <m:bvar>
+		    <m:ci type="vector">θ</m:ci>
+		  </m:bvar>
+		  <m:ci type="vector">x</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">T</m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		    <m:bvar>
+		      <m:ci type="vector">θ</m:ci>
+		    </m:bvar>
+		    <m:condition>
+		      <m:ci type="vector">t</m:ci>
+		    </m:condition>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		    <m:bvar>
+		      <m:ci type="vector">θ</m:ci>
+		    </m:bvar>
+		    <m:ci type="vector">t</m:ci>
+		  </m:apply>
+		</m:apply>
+
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		    <m:condition>
+		      <m:ci type="vector">t</m:ci>
+		    </m:condition>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		    <m:bvar>
+		      <m:ci type="vector">θ</m:ci>
+		    </m:bvar>
+		    <m:ci type="vector">t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  Therefore, the parametrization of the probability law for
+	  the measurement <m:math><m:ci type="vector">x</m:ci></m:math> is manifested in the
+	  parametrization of the probability law for the statistic
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">T</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</para>
+      </section>
+      
+      <section id="sec2">
+	<para id="s2p1">2. Given
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector">t</m:ci>
+	      <m:apply>
+		<m:ci type="fn">T</m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>, full knowledge of the measurement <m:math><m:ci type="vector">x</m:ci></m:math> brings no additional
+	  information about <m:math><m:ci type="vector">θ</m:ci></m:math>. Thus, we may
+	  discard <m:math><m:ci type="vector">x</m:ci></m:math> and
+	  retain on the compressed statistic <m:math><m:ci type="vector">t</m:ci></m:math>.
+	</para>
+      </section>
+
+      <section id="sec3">
+	<para id="s3p1">3. Any inference strategy based on 
+	  <m:math>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+	      <m:bvar>
+		<m:ci type="vector">θ</m:ci>
+	      </m:bvar>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	  </m:math> may be replaced by a strategy based on
+	  <m:math>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+	      <m:bvar>
+		<m:ci type="vector">θ</m:ci>
+	      </m:bvar>
+	      <m:ci type="vector">t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</para>
+      </section>
+
+      <example id="ex2">
+	<section id="ex2sec1">
+	  <title>Binary Information Source</title>
+
+	  <para id="ex2para1">(<cite target-id="scharf"><cite-title>Scharf,
+	      pp.78</cite-title></cite>)
+	    Suppose a binary information source emits
+	      a sequence of binary (0 or 1) valued, independent
+	      variables
+	    <m:math>
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+		<m:mo>,</m:mo>
+		<m:mi>…</m:mi>
+		<m:mo>,</m:mo>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>N</m:mi>
+		</m:msub>
+	      </m:mrow>
+	    </m:math>. Each binary symbol may be viewed as a
+	    realization of a Bernoulli trial:
+	    <m:math>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:ci type="fn">Bernoulli</m:ci>
+		  <m:ci>θ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>, iid. The parameter 
+	    <m:math>
+	      <m:apply>
+		<m:in/>
+		<m:ci>θ</m:ci>
+		<m:interval>
+		  <m:cn>0</m:cn>
+		  <m:cn>1</m:cn>
+		</m:interval>
+	      </m:apply>
+	    </m:math> is to be estimated.
+	  </para>
+	  <para id="ex2para2">The probability mass function for the
+	  random sample 
+	    <m:math display="inline">
+	      <m:apply>
+		<m:eq/>
+		<m:ci type="vector">x</m:ci>
+		<m:vector>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>…</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>N</m:mi>
+		    </m:msub></m:ci>
+		</m:vector>
+	      </m:apply>
+	    </m:math> is
+	    <equation id="eqn2">
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		    <m:bvar>
+		      <m:ci>θ</m:ci>
+		    </m:bvar>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+
+		  <m:apply>
+		    <m:product/>
+		    <m:bvar>
+		      <m:ci>n</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:cn>1</m:cn>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:ci>N</m:ci>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		      <m:bvar>
+			<m:ci>θ</m:ci>
+		      </m:bvar>
+		      <m:ci><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mi>n</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		
+		<m:apply>
+		  <m:product/>
+		  <m:bvar>
+		    <m:ci>n</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>N</m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>θ</m:ci><m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		      <m:bvar>
+			<m:ci type="vector">θ</m:ci>
+		      </m:bvar>   
+		      <m:ci type="vector">x</m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mi>n</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:cn>1</m:cn>
+			<m:ci>θ</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:cn>1</m:cn>
+			<m:ci><m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mi>n</m:mi>
+			  </m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>θ</m:ci>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:cn>1</m:cn>
+		      <m:ci>θ</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>N</m:ci>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      </m:math>
+	    </equation>
+	    where
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>k</m:ci>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>n</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>N</m:ci>
+		  </m:uplimit>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>n</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math> is the number of 1's in the sample.
+	  </para>
+
+	  <para id="ex2para3">We will show that
+	  <m:math><m:ci>k</m:ci></m:math> is a sufficient statistic
+	  for <m:math><m:ci type="vector">x</m:ci></m:math>. This will
+	  entail showing that the conditional probability mass
+	  function
+	    <m:math>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>θ</m:ci>
+		</m:bvar>
+		<m:condition>
+		  <m:ci>k</m:ci>
+		</m:condition>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply> 
+	    </m:math> does not depend on
+	    <m:math><m:ci>θ</m:ci></m:math>.
+	  </para>
+
+	  <para id="ex2para4">The distribution of the number of ones
+	  in <m:math><m:ci>N</m:ci></m:math> independent Bernoulli
+	  trials is binomial:
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		  <m:bvar>
+		    <m:ci>θ</m:ci>
+		  </m:bvar>
+		  <m:ci>k</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://www.openmath.org/cd/combinat1.ocd"/>
+		    <m:ci>N</m:ci>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>θ</m:ci>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:cn>1</m:cn>
+		      <m:ci>θ</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>N</m:ci>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    Next, consider the joint distribution of
+	    <m:math>
+	      <m:mrow>
+		<m:mo>(</m:mo>
+		<m:ci type="vector">x</m:ci>
+		<m:mo>,</m:mo>
+		<m:apply>
+		  <m:sum/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>n</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:mo>)</m:mo>
+	      </m:mrow>
+	    </m:math>. We have
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		  <m:bvar>
+		    <m:ci>θ</m:ci>
+		  </m:bvar>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		  <m:bvar>
+		    <m:ci>θ</m:ci>
+		  </m:bvar>
+		  <m:ci type="vector">x</m:ci>
+		  <m:apply>
+		    <m:sum/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>n</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    Thus, the conditional probability may be written
+	    <equation id="eqn3">
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		    <m:bvar>
+		      <m:ci>θ</m:ci>
+		    </m:bvar>
+		    <m:condition>
+		      <m:ci>k</m:ci>
+		    </m:condition>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		      <m:bvar>
+			<m:ci>θ</m:ci>
+		      </m:bvar>   
+		      <m:ci type="vector">x</m:ci>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		      <m:bvar>
+			<m:ci>θ</m:ci>
+		      </m:bvar>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		      <m:bvar>
+			<m:ci>θ</m:ci>
+		      </m:bvar>   
+		      <m:ci type="vector">x</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		      <m:bvar>
+			<m:ci>θ</m:ci>
+		      </m:bvar>   
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>θ</m:ci>
+			<m:ci>k</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:cn>1</m:cn>
+			  <m:ci>θ</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>N</m:ci>
+			  <m:ci>k</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:csymbol definitionURL="http://www.openmath.org/cd/combinat1.ocd"/>
+			<m:ci>N</m:ci>
+			<m:ci>k</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:power/>
+			<m:ci>θ</m:ci>
+			<m:ci>k</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:cn>1</m:cn>
+			  <m:ci>θ</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>N</m:ci>
+			  <m:ci>k</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://www.openmath.org/cd/combinat1.ocd"/>
+		      <m:ci>N</m:ci>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	    This shows that <m:math><m:ci>k</m:ci></m:math> is indeed
+	    a sufficient statistic for
+	    <m:math><m:ci>θ</m:ci></m:math>. The
+	    <m:math><m:ci>N</m:ci></m:math> values
+	    <m:math>
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+		<m:mo>,</m:mo>
+		<m:mi>…</m:mi>
+		<m:mo>,</m:mo>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>N</m:mi>
+		</m:msub>
+	      </m:mrow>
+	    </m:math> can be replaced by the quantity
+	    <m:math><m:ci>k</m:ci></m:math> without losing information
+	    about <m:math><m:ci>θ</m:ci></m:math>.
+	  </para>
+	</section>
+      </example>
+	
+      <exercise id="exer1">
+	<problem id="idp2911456">
+	  <para id="exer1para1">In the <link target-id="ex2">previous
+	  example</link>, suppose we wish to store in memory the
+	  information we possess about
+	  <m:math><m:ci>θ</m:ci></m:math>. Compare the savings,
+	  in terms of bits, we gain by storing the sufficient
+	  statistic <m:math><m:ci>k</m:ci></m:math> instead of the
+	  full sample
+	    <m:math>
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+		<m:mo>,</m:mo>
+		<m:mi>…</m:mi>
+		<m:mo>,</m:mo>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>N</m:mi>
+		</m:msub>
+	      </m:mrow>
+	    </m:math>.
+	  </para>
+	</problem>
+      </exercise>
+    </section>
+
+    <section id="dss">
+      <title>Determining Sufficient Statistics</title>
+
+      <para id="dss1">In the <link target-id="ex2">example above</link>,
+      we had to guess the sufficient statistic, and work out the
+      conditional probability by hand. In general, this will be a
+      tedious way to go about finding sufficient
+      statistics. Fortunately, spotting sufficient statistics can be
+      made easier by the <link document="m11480">Fisher-Neyman
+      Factorization Theorem</link>.
+      </para>
+    </section>
+
+    <section id="uss">
+      <title>Uses of Sufficient Statistics</title>
+      <para id="uss1">Sufficient statistics have many uses in statistical
+      inference problems. In hypothesis testing, the 
+	<link url="http://workshop.molecularevolution.org/resources/lrt.php">Likelihood Ratio Test</link> can often be reduced to a sufficient statistic of the data. In parameter estimation, the
+	<link document="m11426">Minimum Variance Unbiased
+      Estimator</link> of a parameter <m:math><m:ci type="vector">θ</m:ci></m:math> can be characterized by
+      sufficient statistics and the  <link url="http://en.wikipedia.org/wiki/Rao-Blackwell_theorem">Rao-Blackwell
+	  Theorem</link>.
+      </para>
+    </section>
+
+    <section id="fs">
+      <title>Minimality and Completeness</title>
+      <para id="fs1"><term>Minimal</term> sufficient statistics are,
+      roughly speaking, sufficient statistics that cannot be
+      compressed any more without losing information about the unknown
+      parameter. <term>Completeness</term> is a technical
+      characterization of sufficient statistics that allows one to
+      prove minimality. These topics are covered in detail in 
+	<link url="http://en.wikipedia.org/wiki/Completeness">this</link> 
+	module.
+      </para>
+
+      <para id="fs2">Further examples of sufficient statistics may be
+      found in the module on the <link document="m11480">Fisher-Neyman
+      Factorization Theorem</link>.
+      </para>
+    </section>
+
+  </content>
+  
+  <bib:file>
+    <bib:entry id="scharf">
+      <bib:book>
+	<bib:author>L. Scharf</bib:author>
+	<bib:title>Statistical Signal Processing</bib:title>
+	<bib:publisher>Addison-Wesley</bib:publisher>
+	<bib:year>1991</bib:year>
+      </bib:book>
+    </bib:entry>
+  </bib:file>
+</document>

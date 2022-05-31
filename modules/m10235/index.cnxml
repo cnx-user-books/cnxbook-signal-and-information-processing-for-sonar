@@ -1,0 +1,2358 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Introduction to Stochastic Processes</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>bc2ea7c8-1634-4664-882a-9f91765e78e3</md:uuid>
+</metadata>
+
+  <content>
+
+    <section id="s1">
+      <title>Definitions, distributions, and stationarity</title>
+
+      <definition id="def1">
+	<term>Stochastic Process</term>
+
+	<meaning id="idm2126928">
+	  Given a sample space, a stochastic process is an indexed collection
+	  of random variables defined for each
+
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:in/>
+              <m:ci>ω</m:ci>
+              <m:ci>Ω</m:ci>
+	    </m:apply>
+	  </m:math>.
+
+	  <equation id="eq01">
+	    <m:math display="block">
+	      <m:apply>
+		<m:forall/>
+		<m:bvar><m:ci>t</m:ci></m:bvar>
+		<m:condition>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci>t</m:ci>
+		    <m:reals/>
+		  </m:apply>
+		</m:condition>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>X</m:mi>
+		      <m:mi>t</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>ω</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</meaning>
+      </definition>
+
+      <example id="example1">
+	<para id="para1">
+	  Received signal at an antenna as in <link target-id="fig1"/>.
+	</para>
+
+	<figure id="fig1">
+	  <media id="idm6814544" alt=""><image src="../../media/Figure3-1.png" mime-type="image/png"/></media>
+	</figure>
+
+      </example>
+
+      <para id="para2">
+	For a given <m:math><m:ci>t</m:ci></m:math>, 
+
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">
+	      <m:msub>
+		<m:mi>X</m:mi>
+		<m:mi>t</m:mi>
+	      </m:msub>
+	    </m:ci>
+	    <m:ci>ω</m:ci>
+	  </m:apply>
+	</m:math>
+
+	is a random variable with a distribution
+
+	<equation id="eq02">
+	  <title>First-order distribution</title>
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci type="fn">
+                  <m:msub>
+                    <m:mi>F</m:mi>
+                    <m:msub>
+                      <m:mi>X</m:mi>
+                      <m:mi>t</m:mi>
+                    </m:msub>
+                  </m:msub>
+                </m:ci>
+                <m:ci>b</m:ci>
+              </m:apply>
+              <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:apply>
+		    <m:leq/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>X</m:mi>
+			<m:mi>t</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>b</m:ci>
+		  </m:apply>
+		</m:apply>
+              <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+                <m:set>
+                  <m:bvar>
+                    <m:apply>
+                      <m:in/>
+		      <m:ci>ω</m:ci>
+		      <m:ci>Ω</m:ci>
+                    </m:apply>
+                  </m:bvar>
+                  <m:condition>
+                    <m:apply>
+                      <m:leq/>
+		      <m:apply>
+			<m:ci type="fn">
+			  <m:msub>
+			    <m:mi>X</m:mi>
+			    <m:mi>t</m:mi>
+			  </m:msub>
+			</m:ci>
+			<m:ci>ω</m:ci>
+		      </m:apply>
+		      <m:ci>b</m:ci>
+                    </m:apply>
+                  </m:condition>
+                </m:set>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <definition id="def2">
+	<term>First-order stationary process</term>
+
+	<meaning id="idm12940672">
+	  If
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>F</m:mi>
+		  <m:msub>
+		    <m:mi>X</m:mi>
+		    <m:mi>t</m:mi>
+		  </m:msub>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>b</m:ci>
+	    </m:apply>
+	  </m:math>
+	  is not a function of time then
+	  
+	  <m:math display="inline">
+	    <m:ci>
+	      <m:msub>
+		<m:mi>X</m:mi>
+		<m:mi>t</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>
+	  is called a first-order stationary process.
+	</meaning>
+      </definition>
+
+      <para id="para3">
+	<equation id="eq03">
+	  <title>Second-order distribution</title>
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>F</m:mi>
+		    <m:mrow>
+		      <m:msub>
+			<m:mi>X</m:mi>
+			<m:msub>
+			  <m:mi>t</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:msub>
+		      <m:mo>,</m:mo>
+		      <m:msub>
+			<m:mi>X</m:mi>
+			<m:msub>
+			  <m:mi>t</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:msub>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>b</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:ci>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>b</m:mi>
+		      <m:mn>2</m:mn>
+		  </m:msub>
+		  </m:ci>
+	      </m:apply>
+	      <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:leq/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>X</m:mi>
+		      <m:msub>
+			<m:mi>t</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>b</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:leq/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>X</m:mi>
+		      <m:msub>
+			<m:mi>t</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>b</m:mi>
+		      <m:mn>2</m:mn>
+		      </m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	for all
+
+	<m:math display="inline">
+	  <m:apply>
+	    <m:in/>
+	      <m:ci>
+	        <m:msub>
+	          <m:mi>t</m:mi>
+	          <m:mn>1</m:mn>
+	        </m:msub>
+	      </m:ci>
+	      <m:reals/>
+	  </m:apply>
+	</m:math>,
+
+	<m:math display="inline">
+	  <m:apply>
+	    <m:in/>
+	      <m:ci>
+	        <m:msub>
+	          <m:mi>t</m:mi>
+	          <m:mn>2</m:mn>
+	        </m:msub>
+	      </m:ci>
+	      <m:reals/>
+	  </m:apply>
+	</m:math>,	
+
+	<m:math display="inline">
+	  <m:apply>
+	    <m:in/>
+	      <m:ci>
+	        <m:msub>
+	          <m:mi>b</m:mi>
+	          <m:mn>1</m:mn>
+	        </m:msub>
+	      </m:ci>
+	      <m:reals/>
+	  </m:apply>
+	</m:math>,
+
+	<m:math display="inline">
+	  <m:apply>
+	    <m:in/>
+	      <m:ci>
+	        <m:msub>
+	          <m:mi>b</m:mi>
+	          <m:mn>2</m:mn>
+	        </m:msub>
+	      </m:ci>
+	      <m:reals/>
+	  </m:apply>
+	</m:math>
+	
+	<equation id="eq04">
+	  <title>Nth-order distribution</title>
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci type="fn">
+                  <m:msub>
+                    <m:mi>F</m:mi>
+                    <m:mrow>
+                      <m:msub>
+                        <m:mi>X</m:mi>
+                        <m:msub>
+                          <m:mi>t</m:mi>
+                          <m:mn>1</m:mn>
+                        </m:msub>
+                      </m:msub>
+                      <m:mo>,</m:mo>
+                      <m:msub>
+                        <m:mi>X</m:mi>
+                        <m:msub>
+                          <m:mi>t</m:mi>
+                          <m:mn>2</m:mn>
+                        </m:msub>
+                      </m:msub>
+                      <m:mo>,</m:mo>
+                      <m:mi>…</m:mi>
+                      <m:mo>,</m:mo>
+                      <m:msub>
+                        <m:mi>X</m:mi>
+                        <m:msub>
+                          <m:mi>t</m:mi>
+                          <m:mi>N</m:mi>
+                        </m:msub>
+                      </m:msub>
+                    </m:mrow>
+                  </m:msub>
+                </m:ci>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>b</m:mi>
+                    <m:mn>1</m:mn>
+                  </m:msub>
+                </m:ci>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>b</m:mi>
+                    <m:mn>2</m:mn>
+                  </m:msub>
+                </m:ci>
+                <m:ci>…</m:ci>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>b</m:mi>
+                    <m:mi>N</m:mi>
+                  </m:msub>
+                </m:ci>
+              </m:apply>
+              <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+                <m:apply>
+                  <m:leq/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>X</m:mi>
+		      <m:msub>
+			<m:mi>t</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>b</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:ci>
+                </m:apply>
+                <m:ci>…</m:ci>
+                <m:apply>
+                  <m:leq/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>X</m:mi>
+		      <m:msub>
+			<m:mi>t</m:mi>
+			<m:mi>N</m:mi>
+		      </m:msub>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>b</m:mi>
+		      <m:mi>N</m:mi>
+		    </m:msub>
+		  </m:ci>
+                </m:apply>
+              </m:apply>                     
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+      </para>
+
+      <para id="def3">
+          <m:math><m:ci>N</m:ci></m:math>th-order stationary : A
+          random process is stationary of order
+          <m:math><m:ci>N</m:ci></m:math> if
+	<equation id="eq05">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+                      <m:mi>F</m:mi>
+                      <m:mrow>
+		      <m:msub>
+			<m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>1</m:mn>
+                          </m:msub>
+                        </m:msub>
+                        <m:mo>,</m:mo>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>2</m:mn>
+                          </m:msub>
+                        </m:msub>
+                        <m:mo>,</m:mo>
+                        <m:mi>…</m:mi>
+                        <m:mo>,</m:mo>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mi>N</m:mi>
+                          </m:msub>
+                        </m:msub>
+                      </m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>b</m:mi>
+                      <m:mn>1</m:mn>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>b</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>…</m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>b</m:mi>
+                      <m:mi>N</m:mi>
+                    </m:msub>
+                  </m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>F</m:mi>
+                      <m:mrow>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:mrow>
+                            <m:msub>
+                              <m:mi>t</m:mi>
+                              <m:mn>1</m:mn>
+                            </m:msub>
+                            <m:mo>+</m:mo>
+                            <m:mi>T</m:mi>
+                          </m:mrow>
+                        </m:msub>
+                        <m:mo>,</m:mo>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:mrow>
+                            <m:msub>
+                              <m:mi>t</m:mi>
+                              <m:mn>2</m:mn>
+                            </m:msub>
+                            <m:mo>+</m:mo>
+                            <m:mi>T</m:mi>
+                          </m:mrow>
+                        </m:msub>
+                        <m:mo>,</m:mo>
+                        <m:mi>…</m:mi>
+                        <m:mi>,</m:mi>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:mrow>
+                            <m:msub>
+                              <m:mi>t</m:mi>
+                              <m:mi>N</m:mi>
+                            </m:msub>
+                            <m:mo>+</m:mo>
+                            <m:mi>T</m:mi>
+                          </m:mrow>
+                        </m:msub>
+                      </m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>b</m:mi>
+                      <m:mn>1</m:mn>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>b</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>…</m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>b</m:mi>
+                      <m:mi>N</m:mi>
+                    </m:msub>
+                  </m:ci>
+                </m:apply>      
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+      </para>
+
+      <para id="def4">
+	Strictly stationary : A process is strictly stationary if it
+	is <m:math><m:ci>N</m:ci></m:math>th order stationary for all
+	<m:math><m:ci>N</m:ci></m:math>.
+      </para>
+
+      <example id="example2">
+	<para id="para4">
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+              <m:ci>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>t</m:mi>
+                </m:msub>
+              </m:ci>
+              <m:apply>
+                <m:cos/>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>f</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">Θ</m:ci>
+		    <m:ci>ω</m:ci>
+		  </m:apply>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+
+	  where
+
+	  <m:math display="inline">
+	    <m:ci>
+	      <m:msub>
+		<m:mi>f</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>
+	  
+	  is the deterministic carrier frequency and 
+          <m:math>
+              <m:apply>
+                <m:ci type="fn">Θ</m:ci>
+                <m:ci>ω</m:ci>
+              </m:apply>
+              <m:mo>:</m:mo>
+              <m:apply>
+                <m:mo>→</m:mo>
+                <m:ci>Ω</m:ci>
+                <m:reals/>
+              </m:apply>
+          </m:math>
+          is a random variable defined over
+	  
+	  <m:math display="inline">
+	    <m:interval>
+	      <m:apply>
+		<m:minus/>
+                <m:pi/>
+	      </m:apply>
+	      <m:pi/>
+	    </m:interval>
+	  </m:math>
+	  
+	  and is assumed to be a uniform random variable;
+	  <foreign>i.e.</foreign>,
+	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci type="fn">
+                  <m:msub>
+                    <m:mi>f</m:mi>
+                    <m:mi>Θ</m:mi>
+                  </m:msub>
+                </m:ci>
+                <m:ci>θ</m:ci>
+              </m:apply>
+              <m:piecewise>
+                <m:piece>
+                  <m:apply>
+                    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		    </m:apply>
+                  </m:apply>
+                  <m:apply>
+                    <m:in/>
+                      <m:ci>θ</m:ci>
+                      <m:interval>
+                        <m:apply>
+                          <m:minus/>
+		          <m:pi/>
+                        </m:apply>
+                        <m:pi/>
+                      </m:interval>
+                  </m:apply>
+                </m:piece>
+                <m:otherwise>
+                  <m:cn>0</m:cn>
+                </m:otherwise>
+              </m:piecewise>
+	    </m:apply>
+	  </m:math>
+
+	  
+	  <equation id="eq06">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>F</m:mi>
+                      <m:msub>
+                        <m:mi>X</m:mi>
+                        <m:mi>t</m:mi>
+                      </m:msub>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>b</m:ci>
+                </m:apply>
+                <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+                  <m:apply>
+                    <m:leq/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>X</m:mi>
+			<m:mi>t</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>b</m:ci>
+                  </m:apply>
+                </m:apply>
+                <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+                  <m:apply>
+                    <m:leq/>
+		    <m:apply>
+		      <m:cos/>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>f</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+			<m:ci>Θ</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci>b</m:ci>
+                  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  
+	  <equation id="eq07">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>F</m:mi>
+                      <m:msub>
+                        <m:mi>X</m:mi>
+                        <m:mi>t</m:mi>
+                      </m:msub>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>b</m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:plus/>
+		  <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:apply>
+		      <m:leq/>
+		      <m:apply>
+			<m:minus/>
+			<m:pi/>
+		      </m:apply>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>f</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+			<m:ci>Θ</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:arccos/>
+			  <m:ci>b</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:apply>
+		      <m:leq/>
+		      <m:apply>
+			<m:arccos/>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>f</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+			<m:ci>Θ</m:ci>
+		      </m:apply>
+		      <m:pi/>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  <equation id="eq08">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>F</m:mi>
+		      <m:msub>
+		        <m:mi>X</m:mi>
+		        <m:mi>t</m:mi>
+		      </m:msub>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>b</m:ci>
+		</m:apply>
+                <m:apply>
+                  <m:plus/>
+		  <m:apply>
+		    <m:int/>
+		    <m:bvar>
+		      <m:ci>θ</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:minus/>
+			  <m:pi/>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>f</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:minus/>
+			  <m:apply>
+			    <m:arccos/>
+			    <m:ci>b</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>f</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:int/>
+		    <m:bvar>
+		      <m:ci>θ</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:apply>
+			<m:minus/>                          
+			<m:apply>
+			  <m:arccos/>
+			  <m:ci>b</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>f</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:apply>
+			<m:minus/>
+			<m:pi/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>f</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+                <m:apply>
+                  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:apply>
+			<m:arccos/>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+
+	  <equation id="eq09">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>f</m:mi>
+                      <m:msub>
+                        <m:mi>X</m:mi>
+                        <m:mi>t</m:mi>
+                      </m:msub>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>x</m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:diff/>
+		  <m:bvar>
+		    <m:ci>x</m:ci>
+		  </m:bvar>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:divide/>
+			<m:cn>1</m:cn>
+			<m:pi/>
+		      </m:apply>
+		      <m:apply>
+			<m:arccos/>
+			<m:ci>x</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+                <m:piecewise>
+                  <m:piece>
+                    <m:apply>
+                      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:times/>
+			<m:pi/>
+			<m:apply>
+			  <m:root/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:cn>1</m:cn>
+			    <m:apply>
+			      <m:power/>
+			      <m:ci>x</m:ci>
+			      <m:cn>2</m:cn>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+                    </m:apply>
+                    <m:apply>
+                      <m:leq/>
+		      <m:apply>
+			<m:abs/>
+			<m:ci>x</m:ci>
+		      </m:apply>
+		      <m:cn>1</m:cn>
+                    </m:apply>
+                  </m:piece>
+                  <m:otherwise>
+                    <m:cn>0</m:cn>
+                  </m:otherwise>
+                </m:piecewise>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  This process is stationary of order 1.
+
+	</para>
+
+	<figure id="fig2">
+	  <media id="idm3328592" alt=""><image src="../../media/Figure3-3a.png" mime-type="image/png"/></media>
+	</figure>
+
+	<para id="para5">
+	  The second order stationarity can be determined by first considering
+	  conditional densities and the joint density.  Recall that
+	  
+	  <equation id="eq10">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>X</m:mi>
+                    <m:mi>t</m:mi>
+                  </m:msub>
+                </m:ci>
+                <m:apply>
+                  <m:cos/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>f</m:mi>
+			  <m:mn>0</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:ci>Θ</m:ci>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	    Then the relevant step is to find
+
+	    <equation id="eq11">
+	      <m:math display="block">
+                <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:condition>
+		    <m:apply>
+		      <m:eq/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>X</m:mi>
+			  <m:msub>
+			    <m:mi>t</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			  </m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:condition>
+		  
+		  <m:apply>
+		    <m:leq/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>X</m:mi>
+			<m:msub>
+			    <m:mi>t</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:msub>
+		      </m:ci>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>b</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	    Note that 
+
+	  <equation id="eq12">
+	    <m:math display="block">
+	      <m:apply>
+		<m:implies/>
+                <m:apply>
+                  <m:eq/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>X</m:mi>
+		      <m:msub>
+			<m:mi>t</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:ci>
+		  <m:apply>
+		    <m:cos/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>f</m:mi>
+			    <m:mn>0</m:mn>
+			  </m:msub>
+			</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:ci>Θ</m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+                <m:apply>
+                  <m:eq/>
+		  <m:ci>Θ</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:arccos/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>f</m:mi>
+			  <m:mn>0</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+
+	  <equation id="eq13">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>X</m:mi>
+                    <m:msub>
+                      <m:mi>t</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msub>
+                  </m:msub>
+                </m:ci>
+                <m:apply>
+                  <m:cos/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>f</m:mi>
+			  <m:mn>0</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>t</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:arccos/>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>f</m:mi>
+			    <m:mn>0</m:mn>
+			  </m:msub>
+			</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>t</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+                <m:apply>
+                  <m:cos/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>f</m:mi>
+			  <m:mn>0</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>t</m:mi>
+			    <m:mn>2</m:mn>
+			  </m:msub>
+			</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>t</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:arccos/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	</para>
+
+	<figure id="fig3">
+	  <media id="idm12587840" alt=""><image src="../../media/Figure3-3b.png" mime-type="image/png"/></media>
+	</figure>
+
+	<para id="para6">
+	  <equation id="eq14">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>F</m:mi>
+                      <m:mrow>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>2</m:mn>
+                          </m:msub>
+                        </m:msub>
+                        <m:mo>,</m:mo>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>1</m:mn>
+                          </m:msub>
+                        </m:msub>
+                      </m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>b</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>b</m:mi>
+                      <m:mn>1</m:mn>
+                    </m:msub>
+                  </m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:int/>
+		  <m:bvar>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:infinity/>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>b</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		      <m:apply>
+			<m:ci type="fn">
+			  <m:msub>
+			    <m:mi>f</m:mi>
+			    <m:msub>
+			      <m:mi>X</m:mi>
+			      <m:msub>
+				<m:mi>t</m:mi>
+				<m:mn>1</m:mn>
+			      </m:msub>
+			    </m:msub>
+			  </m:msub></m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		    <m:apply>
+			<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+			<m:condition>
+			  <m:apply>
+			    <m:eq/>
+			    <m:ci>
+			      <m:msub>
+				<m:mi>X</m:mi>
+				<m:msub>
+				  <m:mi>t</m:mi>
+				  <m:mn>1</m:mn>
+				</m:msub>
+			      </m:msub>
+			    </m:ci>
+			    <m:ci>
+			      <m:msub>
+				<m:mi>x</m:mi>
+				<m:mn>1</m:mn>
+			      </m:msub>
+			    </m:ci>
+			  </m:apply>
+			</m:condition>
+			<m:apply>
+			  <m:leq/>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>X</m:mi>
+			      <m:msub>
+				<m:mi>t</m:mi>
+				<m:mn>2</m:mn>
+			      </m:msub>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>b</m:mi>
+			      <m:mn>2</m:mn>
+			    </m:msub>
+			  </m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  
+	  Note that this is only a function of
+	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:minus/>
+	        <m:ci>
+	          <m:msub>
+	            <m:mi>t</m:mi>
+	            <m:mn>2</m:mn>
+	          </m:msub>
+	        </m:ci>
+	        <m:ci>
+	          <m:msub>
+	            <m:mi>t</m:mi>
+	            <m:mn>1</m:mn>
+	          </m:msub>
+	        </m:ci>	
+	    </m:apply>
+	  </m:math>.
+	</para>
+
+      </example>
+
+      <example id="example3">
+	<para id="para7">
+	  Every <m:math><m:ci>T</m:ci></m:math> seconds, a fair coin
+	  is tossed.  If heads, then
+	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+              <m:ci>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>t</m:mi>
+                </m:msub>
+              </m:ci>
+              <m:cn>1</m:cn>
+	    </m:apply>
+	  </m:math>
+	  
+	  for
+	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:leq/>
+              <m:apply>
+                <m:times/>
+		<m:ci>n</m:ci>
+		<m:ci>T</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:lt/>
+		<m:ci>t</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>n</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>T</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  
+	  If tails, then
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+              <m:ci>
+                <m:msub>
+                  <m:mi>X</m:mi>
+                  <m:mi>t</m:mi>
+                </m:msub>
+              </m:ci>
+		<m:cn>-1</m:cn>
+	    </m:apply>
+	  </m:math>
+	  for
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:leq/>
+              <m:apply>
+                <m:times/>
+		<m:ci>n</m:ci>
+		<m:ci>T</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:lt/>
+		<m:ci>t</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>n</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>T</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>.
+	</para>
+
+	<figure id="fig4">
+	  <media id="idm13534032" alt=""><image src="../../media/Figure3-4.png" mime-type="image/png"/></media>
+	</figure>
+
+	<para id="para8">
+	  <equation id="eq15">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>p</m:mi>
+                      <m:msub>
+                        <m:mi>X</m:mi>
+                        <m:mi>t</m:mi>
+                      </m:msub>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>x</m:ci>
+                </m:apply>
+                <m:piecewise>
+                  <m:piece>
+                    <m:apply>
+                      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:cn>2</m:cn>
+                    </m:apply>
+                    <m:apply>
+                      <m:eq/>
+		      <m:ci>x</m:ci>
+		      <m:cn>1</m:cn>
+                    </m:apply>
+                  </m:piece>
+                  <m:piece>
+                    <m:apply>
+                      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:cn>2</m:cn>
+                    </m:apply>
+                    <m:apply>
+                      <m:eq/>
+		      <m:ci>x</m:ci>
+		      <m:cn>-1</m:cn>
+                    </m:apply>
+                  </m:piece>
+                </m:piecewise>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  for all
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:in/>
+	        <m:ci>t</m:ci>
+	        <m:reals/>
+	    </m:apply>
+	  </m:math>.
+
+	  <m:math display="inline">
+	    <m:ci>
+	      <m:msub>
+		<m:mi>X</m:mi>
+		<m:mi>t</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>
+	  is stationary of order 1.
+	</para>
+
+	<para id="para9">
+	  Second order probability mass function
+
+	  <equation id="eq16">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>p</m:mi>
+                      <m:mrow>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>1</m:mn>
+                          </m:msub>
+                        </m:msub>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>2</m:mn>
+                          </m:msub>
+                        </m:msub>
+                      </m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>x</m:mi>
+                      <m:mn>1</m:mn>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>x</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msub>
+                  </m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>p</m:mi>
+			<m:mrow>
+			  <m:msub>
+			    <m:mi>X</m:mi>
+			    <m:msub>
+			      <m:mi>t</m:mi>
+			      <m:mn>2</m:mn>
+			    </m:msub>
+			  </m:msub>
+			  <m:mo>|</m:mo>
+			  <m:msub>
+			    <m:mi>X</m:mi>
+			    <m:msub>
+			      <m:mi>t</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub>
+			  </m:msub>
+			</m:mrow>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>
+		      <m:mrow>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+			<m:mo>|</m:mo>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:mrow>
+		    </m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>p</m:mi>
+			<m:msub>
+			  <m:mi>X</m:mi>
+			  <m:msub>
+			    <m:mi>t</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub>
+			</m:msub>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	</para>
+
+	<para id="para10">
+	  The conditional pmf
+
+	  <equation id="eq17">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>p</m:mi>
+                      <m:mrow>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>2</m:mn>
+                          </m:msub>
+                        </m:msub>
+                        <m:mo>|</m:mo>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>1</m:mn>
+                          </m:msub>
+                        </m:msub>
+                      </m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:mrow>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub> 
+		      </m:ci>
+                     <m:mo>|</m:mo>
+		    <m:ci>
+		      <m:msub>
+                        <m:mi>x</m:mi>
+                        <m:mn>1</m:mn>
+                      </m:msub>
+		    </m:ci>
+                 </m:mrow>
+                </m:apply>
+                <m:piecewise>
+                  <m:piece>
+                    <m:cn>0</m:cn>
+                    <m:apply>
+                      <m:neq/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+                    </m:apply>
+                  </m:piece>
+                  <m:piece>
+                    <m:cn>1</m:cn>
+                    <m:apply>
+                      <m:eq/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+                    </m:apply>
+                  </m:piece>
+                </m:piecewise>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  when
+	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:leq/>
+              <m:apply>
+                <m:times/>
+		<m:ci>n</m:ci>
+		<m:ci>T</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:lt/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>t</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>n</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>T</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	  
+	  and
+	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:leq/>
+              <m:apply>
+                <m:times/>
+		<m:ci>n</m:ci>
+		<m:ci>T</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:lt/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>t</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>n</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>T</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	  for some <m:math><m:ci>n</m:ci></m:math>.
+
+	  <equation id="eq18">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>p</m:mi>
+                      <m:mrow>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>2</m:mn>
+                          </m:msub>
+                        </m:msub>
+                        <m:mo>|</m:mo>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>1</m:mn>
+                          </m:msub>
+                        </m:msub>
+                      </m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:mrow>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+                    <m:mo>|</m:mo>
+		    <m:ci>
+		      <m:msub>
+                        <m:mi>x</m:mi>
+                        <m:mn>1</m:mn>
+                      </m:msub>
+		    </m:ci>
+                  </m:mrow>
+                </m:apply>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>p</m:mi>
+                      <m:msub>
+                        <m:mi>X</m:mi>
+                        <m:msub>
+                          <m:mi>t</m:mi>
+                          <m:mi>2</m:mi>
+                        </m:msub>
+                      </m:msub>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>x</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msub>
+                  </m:ci>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  for all
+	  <m:math display="inline">
+	    <m:ci>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>
+	  and for all
+	  <m:math display="inline">
+	    <m:ci>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>
+	  when
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:leq/>
+              <m:apply>
+                <m:times/>
+		<m:ci>n</m:ci>
+		<m:ci>T</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:lt/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>t</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>n</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>T</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	  and
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:leq/>
+              <m:apply>
+                <m:times/>
+		<m:ci>m</m:ci>
+		<m:ci>T</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:lt/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>t</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>m</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>T</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	  with
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:neq/>
+              <m:ci>n</m:ci>
+              <m:ci>m</m:ci>
+	    </m:apply>
+	  </m:math>
+
+	  <equation id="eq19">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+                  <m:ci type="fn">
+                    <m:msub>
+                      <m:mi>p</m:mi>
+                      <m:mrow>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>2</m:mn>
+                          </m:msub>
+                        </m:msub>
+                        <m:msub>
+                          <m:mi>X</m:mi>
+                          <m:msub>
+                            <m:mi>t</m:mi>
+                            <m:mn>1</m:mn>
+                          </m:msub>
+                        </m:msub>
+                      </m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>x</m:mi>
+                      <m:mn>2</m:mn>
+                    </m:msub>
+                  </m:ci>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>x</m:mi>
+                      <m:mn>1</m:mn>
+                    </m:msub>
+                  </m:ci>
+                </m:apply>
+                <m:piecewise>
+                  <m:piece>
+                    <m:cn>0</m:cn>
+		      <m:mrow>
+			<m:apply>
+			  <m:neq/>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mn>2</m:mn>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>
+			    <m:msub>
+			    <m:mi>x</m:mi>
+			      <m:mn>1</m:mn>
+			  </m:msub>
+			  </m:ci>
+			</m:apply>
+			<m:mrow>
+			  <m:mtext>for </m:mtext>
+			  <m:apply>
+			    <m:leq/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci>n</m:ci>
+			      <m:ci>T</m:ci>
+			    </m:apply>
+			    <m:ci>
+			      <m:msub>
+				<m:mi>t</m:mi>
+				<m:mn>1</m:mn>
+			      </m:msub>
+			    </m:ci>
+			  </m:apply>
+			  <m:mo>,</m:mo>
+			  <m:apply>
+			    <m:lt/>
+			    <m:ci>
+			      <m:msub>
+				<m:mi>t</m:mi>
+				<m:mn>2</m:mn>
+			      </m:msub>
+			    </m:ci>
+			    <m:apply>
+			      <m:times/>
+			      <m:apply>
+				<m:plus/>
+				<m:ci>n</m:ci>
+				<m:cn>1</m:cn>
+			      </m:apply>
+			      <m:ci>T</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:mrow>
+		      </m:mrow>
+		    </m:piece>
+		    <m:piece>
+		      <m:apply>
+                      <m:ci type="fn">
+			  <m:msub>
+			    <m:mi>p</m:mi>
+			    <m:msub>
+			      <m:mi>X</m:mi>
+			      <m:msub>
+				<m:mi>t</m:mi>
+				<m:mn>1</m:mn>
+			      </m:msub>
+			    </m:msub>
+			  </m:msub>
+			</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mn>1</m:mn>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		      <m:mrow>
+			<m:apply>
+			  <m:eq/>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mn>2</m:mn>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub>
+			  </m:ci>
+			</m:apply>
+			<m:mrow>
+			  <m:mtext>for </m:mtext>
+			  <m:apply>
+			    <m:leq/>
+			    <m:apply>
+			      <m:times/>
+			      <m:ci>n</m:ci>
+			      <m:ci>T</m:ci>
+			    </m:apply>
+			    <m:ci>
+			      <m:msub>
+				<m:mi>t</m:mi>
+				<m:mn>1</m:mn>
+			      </m:msub>
+			    </m:ci>
+			  </m:apply>
+			  <m:mo>,</m:mo>
+			  <m:apply>
+			    <m:lt/>
+			    <m:ci>
+			      <m:msub>
+				<m:mi>t</m:mi>
+				<m:mn>2</m:mn>
+			      </m:msub>
+			    </m:ci>
+			    <m:apply>
+			      <m:times/>
+			      <m:apply>
+				<m:plus/>
+				<m:ci>n</m:ci>
+				<m:cn>1</m:cn>
+			      </m:apply>
+			      <m:ci>T</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:mrow>
+		      </m:mrow>
+		    </m:piece>
+		    <m:piece>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>p</m:mi>
+			      <m:msub>
+				<m:mi>X</m:mi>
+				<m:msub>
+				  <m:mi>t</m:mi>
+				  <m:mn>1</m:mn>
+				</m:msub>
+			      </m:msub>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub>
+			  </m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>p</m:mi>
+			      <m:msub>
+				<m:mi>X</m:mi>
+				<m:msub>
+				  <m:mi>t</m:mi>
+				  <m:mn>2</m:mn>
+				</m:msub>
+			      </m:msub>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mn>2</m:mn>
+			    </m:msub>
+			  </m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:mrow>
+			<m:apply>
+			  <m:neq/>
+			  <m:ci>n</m:ci>
+			  <m:ci>m</m:ci>
+			</m:apply>
+			<m:mtext>for </m:mtext>
+			<m:apply>
+			  <m:and/>
+			  <m:apply>
+			    <m:lt/>
+			    <m:apply>
+			      <m:leq/>
+			      <m:apply>
+				<m:times/>
+				<m:ci>n</m:ci>
+				<m:ci>T</m:ci>
+			      </m:apply>
+			      <m:ci>
+				<m:msub>
+				  <m:mi>t</m:mi>
+				  <m:mn>1</m:mn>
+				</m:msub>
+			      </m:ci>
+			    </m:apply>
+			    <m:apply>
+			      <m:times/>
+			      <m:apply>
+				<m:plus/>
+				<m:ci>n</m:ci>
+				<m:cn>1</m:cn>
+			      </m:apply>
+			      <m:ci>T</m:ci>
+			    </m:apply>
+			  </m:apply>
+			  <m:apply>
+			    <m:lt/>
+			    <m:apply>
+			      <m:leq/>
+			      <m:apply>
+				<m:times/>
+				<m:ci>m</m:ci>
+				<m:ci>T</m:ci>
+			      </m:apply>
+			      <m:ci>
+				<m:msub>
+				  <m:mi>t</m:mi>
+				  <m:mn>2</m:mn>
+				</m:msub>
+			      </m:ci>
+			    </m:apply>
+			    <m:apply>
+			      <m:times/>
+			      <m:apply>
+				<m:plus/>
+				<m:ci>m</m:ci>
+				<m:cn>1</m:cn>
+			      </m:apply>
+			      <m:ci>T</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+		      </m:mrow>
+		    </m:piece>
+		  </m:piecewise>
+		</m:apply>
+	      </m:math>
+	    </equation>
+
+	</para>
+
+      </example>
+
+    </section>
+
+  </content>
+</document>

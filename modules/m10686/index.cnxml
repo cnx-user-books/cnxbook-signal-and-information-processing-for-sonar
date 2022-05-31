@@ -1,0 +1,784 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Crosscorrelation of Random Processes</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>4552460e-4331-44a5-94ad-44ed9ead7b65</md:uuid>
+</metadata>
+
+  <content>
+    <para id="intro">
+      Before diving into a more complex statistical analysis of <link document="m10649" strength="3">random signals and
+      processes</link>, let us quickly review the idea of <link document="m10673" strength="3">correlation</link>.  Recall that
+      the correlation of two signals or variables is the expected
+      value of the product of those two variables.  Since our main
+      focus is to discover more about random processes, a collection
+      of random signals, we will deal with two random processes in
+      this discussion, where in this case we will deal with samples
+      from two <emphasis>different</emphasis> random processes.  We
+      will analyze the <link document="m10656" target-id="sec1" strength="3">expected value</link> of the product of these two
+      variables and how they correlate to one another, where the
+      argument to this correlation function will be the time
+      difference.  For the correlation of signals from the same random
+      process, look at the <link document="m10676" strength="3">autocorrelation function</link>.
+    </para>
+
+    <section id="cross_sec">
+      <title>Crosscorrelation Function</title>
+      <para id="p1_crs">
+	When dealing with multiple random processes, it is also
+	important to be able to describe the relationship, if any,
+	between the processes.  For example, this may occur if more
+	than one random signal is applied to a system.  In order to do
+	this, we use the <term>crosscorrelation function</term>, where
+	the variables are instances from two different wide sense
+	stationary random processes.
+	
+<!-- ***************** -->
+<!-- LINK: ADD WSS LINK ABOVE ****** -->
+
+
+	<definition id="def_crs">
+	  <term>Crosscorrelation</term>
+	  <meaning id="idp5406032">
+	    if two processes are wide sense stationary, the expected
+	    value of the product of a random variable from one random
+	    process with a time-shifted, random variable from a
+	    different random process
+	  </meaning>
+	</definition>
+
+	Looking at the generalized formula for the crosscorrelation,
+	we will represent our two random processes by allowing 
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>U</m:ci>
+	    <m:apply>
+	      <m:ci type="fn">U</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>	  
+	  </m:apply>
+	</m:math> and 
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/> 
+	    <m:ci>V</m:ci>
+	    <m:apply>
+	      <m:ci type="fn">V</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>t</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.  We will define the crosscorrelation function as 
+
+	<equation id="eq_crs1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mrow>
+		      <m:mi>u</m:mi>
+		      <m:mi>v</m:mi>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+		<m:ci>t</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>t</m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>U</m:ci>
+		  <m:ci>V</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>u</m:ci>
+		</m:bvar>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>v</m:ci>
+		  </m:bvar>
+		  <m:uplimit>
+		    <m:infinity/>
+		  </m:uplimit>
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:infinity/>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>u</m:ci>
+		    <m:ci>v</m:ci>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>u</m:ci>
+		      <m:ci>v</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	
+	Just as the case with the autocorrelation function, if our
+	input and output, denoted as 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">U</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:math> and 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">V</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:math>, are at least jointly wide sense stationary, then the
+	crosscorrelation does not depend on absolute time; it is just
+	a function of the time difference.  This means we can simplify
+	our writing of the above function as
+
+	<equation id="eq_crs2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mrow>
+		      <m:mi>u</m:mi>
+		      <m:mi>v</m:mi>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>U</m:ci>
+		  <m:ci>V</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	or if we deal with two real signal sequences, 
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci type="fn" class="discrete">x</m:ci>
+	    <m:ci>n</m:ci>
+	  </m:apply>
+	</m:math> and 
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci type="fn" class="discrete">y</m:ci>
+	    <m:ci>n</m:ci>
+	  </m:apply>
+	</m:math>, then we arrive at a more commonly seen formula for
+	the discrete crosscorrelation function.  See the formula below
+	and notice the similarities between it and the <link document="m10087" strength="2">convolution</link> of two
+	signals:
+	
+	<equation id="eq_crs_dis">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mrow>
+		      <m:mi>x</m:mi>
+		      <m:mi>y</m:mi>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+		<m:ci>n</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>n</m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mrow>
+		      <m:mi>x</m:mi>
+		      <m:mi>y</m:mi>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+		<m:ci>m</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>n</m:ci>
+		</m:bvar>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">x</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">y</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>n</m:ci>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>	
+      </para>
+
+      <section id="sub1_crs">
+	<title>Properties of Crosscorrelation</title>
+	<para id="p1_sub1">
+	  Below we will look at several properties of the
+	  crosscorrelation function that hold for two <emphasis>wide
+	  sense stationary (WSS)</emphasis> random processes.
+	  
+	  <list id="l_crs_props">
+	    <item>
+	      Crosscorrelation is <emphasis>not</emphasis> an even
+	      function; however, it does have a unique symmetry
+	      property:
+
+	      <equation id="eq_prop1">
+		<m:math display="block">
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mrow>
+			    <m:mi>x</m:mi>
+			    <m:mi>y</m:mi>
+			  </m:mrow>
+			</m:msub>
+		      </m:ci>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mrow>
+			    <m:mi>y</m:mi>
+			    <m:mi>x</m:mi>
+			  </m:mrow>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </equation>
+	    </item>
+	    
+	    <item>
+	      The maximum value of the crosscorrelation is not always
+	      when the shift equals zero; however, we can prove the
+	      following property revealing to us what value the
+	      maximum cannot exceed.
+
+	      <equation id="eq_prop2">
+		<m:math display="block">
+		  <m:apply>
+		    <m:leq/>
+		    <m:apply>
+		      <m:abs/>
+		      <m:apply>
+			<m:ci type="fn">
+			  <m:msub>
+			    <m:mi>R</m:mi>
+			    <m:mrow>
+			      <m:mi>x</m:mi>
+			      <m:mi>y</m:mi>
+			    </m:mrow>
+			  </m:msub>
+			</m:ci>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:root/>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>R</m:mi>
+			      <m:mrow>
+				<m:mi>x</m:mi>
+				<m:mi>x</m:mi>
+			      </m:mrow>
+			    </m:msub>
+			  </m:ci>
+			  <m:cn>0</m:cn>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>R</m:mi>
+			      <m:mrow>
+				<m:mi>y</m:mi>
+				<m:mi>y</m:mi>
+			      </m:mrow>
+			    </m:msub>
+			  </m:ci>
+			  <m:cn>0</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </equation>
+	    </item>
+
+	    <item>
+	      When two random processes are statistically independent
+	      then we have
+
+	      <equation id="eq_prop3">
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mrow>
+			    <m:mi>x</m:mi>
+			    <m:mi>y</m:mi>
+			  </m:mrow>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mrow>
+			    <m:mi>y</m:mi>
+			    <m:mi>x</m:mi>
+			  </m:mrow>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </equation>
+	    </item>
+	  </list>
+
+	</para>
+      </section>      
+    </section>
+
+    <section id="example">
+      <title>Examples</title>
+      
+      <exercise id="eg1">
+	<problem id="idm559344">
+	  <para id="p1_eg1">
+	    Let us begin by looking at a simple example showing the
+	    relationship between two sequences.  Using <link target-id="eq_crs_dis" strength="3"/>, find the
+	    crosscorrelation of the sequences
+	    
+	    <m:math display="block">
+	      <m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">x</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:set>
+		      <m:ci>…</m:ci>
+		      <m:cn>0</m:cn>
+		      <m:cn>0</m:cn>
+		      <m:cn>2</m:cn>
+		      <m:cn>-3</m:cn>
+		      <m:cn>6</m:cn>
+		      <m:cn>1</m:cn>
+		      <m:cn>3</m:cn>
+		      <m:cn>0</m:cn>
+		      <m:cn>0</m:cn>
+		      <m:ci>…</m:ci>
+		    </m:set>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">y</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:set>
+		      <m:ci>…</m:ci>
+		      <m:cn>0</m:cn>
+		      <m:cn>0</m:cn>
+		      <m:cn>1</m:cn>
+		      <m:cn>-2</m:cn>
+		      <m:cn>4</m:cn>
+		      <m:cn>1</m:cn>
+		      <m:cn>-3</m:cn>
+		      <m:cn>0</m:cn>
+		      <m:cn>0</m:cn>
+		      <m:ci>…</m:ci>
+		    </m:set>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+
+	      for each of the following possible time shifts: 
+	      <m:math display="inline">
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>m</m:ci>
+		  <m:apply>
+		    <m:set>
+		      <m:cn>0</m:cn>
+		      <m:cn>3</m:cn>
+		      <m:cn>-1</m:cn>
+		    </m:set>
+		  </m:apply>
+		</m:apply>
+	      </m:math>.
+	  </para>
+	</problem>
+
+	<solution id="idp7665936">
+	  <para id="p1_sol1">
+	    <list id="sol_list" list-type="enumerated">
+	      <item>
+		For 
+		<m:math display="inline">
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>m</m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		</m:math>, we should begin by finding the product
+		sequence 
+		<m:math display="inline">
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn" class="discrete">s</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn" class="discrete">x</m:ci>
+			<m:ci>n</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn" class="discrete">y</m:ci>
+			<m:ci>n</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>.  Doing this we get the following sequence:
+
+		<m:math display="block">
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn" class="discrete">s</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:set>
+			<m:ci>…</m:ci>
+			<m:cn>0</m:cn>
+			<m:cn>0</m:cn>
+			<m:cn>2</m:cn>
+			<m:cn>6</m:cn>
+			<m:cn>24</m:cn>
+			<m:cn>1</m:cn>
+			<m:cn>-9</m:cn>
+			<m:cn>0</m:cn>
+			<m:cn>0</m:cn>
+			<m:ci>…</m:ci>
+		      </m:set>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+
+		and so from the sum in our crosscorrelation function
+		we arrive at the answer of
+		
+		<m:math display="block">
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mrow>
+			    <m:mi>x</m:mi>
+			    <m:mi>y</m:mi>
+			  </m:mrow>
+			</m:msub>
+		      </m:ci>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		    <m:cn>22</m:cn>
+		  </m:apply>
+		</m:math>
+	      </item>
+
+	      <item>
+		For 
+		<m:math display="inline">
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>m</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		</m:math>, we will approach it the same was we did
+		above; however, we will now shift 
+		<m:math display="inline">
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">y</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply> 
+		</m:math>
+
+		to the right.  Then we can find the product sequence
+
+		<m:math display="inline">
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn" class="discrete">s</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn" class="discrete">x</m:ci>
+			<m:ci>n</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn" class="discrete">y</m:ci>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>n</m:ci>
+			  <m:cn>3</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>, which yields
+		
+		<m:math display="block">
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn" class="discrete">s</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:set>
+			<m:ci>…</m:ci>
+			<m:cn>0</m:cn>
+			<m:cn>0</m:cn>
+			<m:cn>0</m:cn>
+			<m:cn>0</m:cn>
+			<m:cn>0</m:cn>
+			<m:cn>1</m:cn>
+			<m:cn>-6</m:cn>
+			<m:cn>0</m:cn>
+			<m:cn>0</m:cn>
+			<m:ci>…</m:ci>
+		      </m:set>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+
+		and from the crosscorrelation function we arrive at
+		the answer of
+		
+		<m:math display="block">
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mrow>
+			    <m:mi>x</m:mi>
+			    <m:mi>y</m:mi>
+			  </m:mrow>
+			</m:msub>
+		      </m:ci>
+		      <m:cn>3</m:cn>
+		    </m:apply>
+		    <m:cn>-6</m:cn>
+		  </m:apply>
+		</m:math>
+	      </item>
+
+	      <item>
+		For 
+		<m:math display="inline">
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>m</m:ci>
+		    <m:cn>-1</m:cn>
+		  </m:apply>
+		</m:math>, we will again take the same approach;
+		however, we will now shift
+		<m:math display="inline">
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">y</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply> 
+		</m:math>
+
+		to the left.  Then we can find the product sequence
+
+		<m:math display="inline">
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn" class="discrete">s</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn" class="discrete">x</m:ci>
+			<m:ci>n</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn" class="discrete">y</m:ci>
+			<m:apply>
+			  <m:plus/>
+			  <m:ci>n</m:ci>
+			  <m:cn>1</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>, which yields
+		
+		<m:math display="block">
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn" class="discrete">s</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:set>
+			<m:ci>…</m:ci>
+			<m:cn>0</m:cn>
+			<m:cn>0</m:cn>
+			<m:cn>-4</m:cn>
+			<m:cn>-12</m:cn>
+			<m:cn>6</m:cn>
+			<m:cn>-3</m:cn>
+			<m:cn>0</m:cn>
+			<m:cn>0</m:cn>
+			<m:cn>0</m:cn>
+			<m:ci>…</m:ci>
+		      </m:set>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+
+		and from the crosscorrelation function we arrive at
+		the answer of
+		
+		<m:math display="block">
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mrow>
+			    <m:mi>x</m:mi>
+			    <m:mi>y</m:mi>
+			  </m:mrow>
+			</m:msub>
+		      </m:ci>
+		      <m:cn>-1</m:cn>
+		    </m:apply>
+		    <m:cn>-13</m:cn>
+		  </m:apply>
+		</m:math>
+	      </item>
+	    </list>
+
+	  </para>
+	</solution>
+      </exercise>
+
+    </section>
+    
+  </content>
+</document>

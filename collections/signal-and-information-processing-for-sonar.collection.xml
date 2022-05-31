@@ -1,0 +1,68 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col10422</md:content-id>
+    <md:title>Signal and Information Processing for Sonar</md:title>
+    <md:language>en</md:language>
+    <md:license url="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution License</md:license>
+    <md:uuid>1c67703e-164d-4956-9547-14613a9d3979</md:uuid>
+<md:slug>signal-and-information-processing-for-sonar</md:slug>
+</metadata>
+  <col:content>
+    <col:subcollection>
+      <md:title>Introduction</md:title>
+      <col:content>
+        <col:module document="m14747"/>
+        <col:module document="m12452"/>
+        <col:module document="m11245"/>
+        <col:module document="m10224"/>
+        <col:module document="m11948"/>
+        <col:module document="m0062"/>
+        <col:module document="m10055"/>
+        <col:module document="m11947"/>
+        <col:module document="m10649"/>
+        <col:module document="m10235"/>
+        <col:module document="m11253"/>
+        <col:module document="m11254"/>
+        <col:module document="m10684"/>
+        <col:module document="m10673"/>
+        <col:module document="m10676"/>
+        <col:module document="m10686"/>
+        <col:module document="m10757"/>
+        <col:module document="m11537"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Detection Theory</md:title>
+      <col:content>
+        <col:module document="m11244"/>
+        <col:module document="m11280"/>
+        <col:module document="m11531"/>
+        <col:module document="m11548"/>
+        <col:module document="m11281"/>
+        <col:module document="m11234"/>
+        <col:module document="m11533"/>
+        <col:module document="m11481"/>
+        <col:module document="m11229"/>
+        <col:module document="m11605"/>
+        <col:module document="m11238"/>
+        <col:module document="m11282"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Estimation Theory</md:title>
+      <col:content>
+        <col:module document="m11263"/>
+        <col:module document="m11243"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Active Sonar Processing</md:title>
+      <col:content>
+        <col:module document="m14548"/>
+        <col:module document="m15589"/>
+        <col:module document="m14603"/>
+        <col:module document="m14745"/>
+      </col:content>
+    </col:subcollection>
+  </col:content>
+</col:collection>

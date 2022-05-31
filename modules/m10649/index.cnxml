@@ -1,0 +1,194 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Introduction to Random Signals and Processes</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>c5443d79-ef1d-4981-b314-492a302e3152</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">
+      Before now, you have probably dealt strictly with the theory
+      behind signals and systems, as well as look at some the basic
+      characteristics of <link document="m10057" strength="2">signals</link> and <link document="m10084" strength="2">systems</link>.  In doing so you have developed an
+      important foundation; however, most electrical engineers do not
+      get to work in this type of fantasy world.  In many cases the
+      signals of interest are very complex due to the randomness of
+      the world around them, which leaves them noisy and often
+      corrupted.  This often causes the information contained in the
+      signal to be hidden and distorted.  For this reason, it is
+      important to understand these random signals and how to recover
+      the necessary information.
+    </para>
+
+    <section id="sec1">
+      <title>Signals: Deterministic vs. Stochastic</title> 
+      <para id="p1_sec1">
+	For this study of signals and systems, we will divide signals
+	into two groups: those that have a fixed behavior and those
+	that change randomly.  As most of you have probably already
+	dealt with the first type, we will focus on introducing you to
+	random signals.  Also, note that we will be dealing strictly
+	with discrete-time signals since they are the signals we deal
+	with in DSP and most real-world computations, but these same
+	ideas apply to continuous-time signals.
+      </para>
+      
+      <section id="det">
+	<title>Deterministic Signals</title>
+	<para id="p1_det">
+	  Most introductions to signals and systems deal strictly with
+	  <term>deterministic signals</term>.  Each value of these
+	  signals are fixed and can be determined by a mathematical
+	  expression, rule, or table.  Because of this, future values
+	  of any deterministic signal can be calculated from past
+	  values.  For this reason, these signals are relatively easy
+	  to analyze as they do not change, and we can make accurate
+	  assumptions about their past and future behavior.
+	</para>
+
+	<figure id="fig1">
+	  <title>Deterministic Signal</title>
+	  <media id="idp1918208" alt=""><image src="../../media/ran_sin.png" mime-type="image/png"/></media>
+	  <caption>
+	    An example of a deterministic signal, the sine wave.
+	  </caption>
+	</figure>
+
+      </section>
+      
+      <section id="sto">
+	<title>Stochastic Signals</title>
+	<para id="p1_sto">
+	  Unlike deterministic signals, <term>stochastic
+	  signals</term>, or <term>random signals</term>, are not so
+	  nice.  Random signals cannot be characterized by a simple,
+	  well-defined mathematical equation and their future values
+	  cannot be predicted.  Rather, we must use probability and
+	  statistics to analyze their behavior.  Also, because of
+	  their randomness, <link document="m10656" strength="3">average
+	  values</link> from a collection of signals are usually
+	  studied rather than analyzing one individual signal.
+	</para>
+
+	<figure id="fig2">
+	  <title>Random Signal</title>
+	  <media id="idm8168576" alt=""><image src="../../media/ran_nos.png" mime-type="image/png"/></media>
+	  <caption>
+	    We have taken the above sine wave and added random noise
+	    to it to come up with a noisy, or random, signal.  These
+	    are the types of signals that we wish to learn how to deal
+	    with so that we can recover the original sine wave.
+	  </caption>
+	</figure>
+
+      </section>
+    </section>
+
+    <section id="rp">
+      <title>Random Process</title>
+      <para id="p1_rp">
+	As mentioned above, in order to study random signals, we want
+	to look at a collection of these signals rather than just one
+	instance of that signal.  This collection of signals is called
+	a <term>random process</term>.
+
+	<definition id="def_rp">
+	  <term>random process</term>
+	  <meaning id="idp1191040">
+	    A family or ensemble of signals that correspond to every
+	    possible outcome of a certain signal measurement.  Each
+	    signal in this collection is referred to as a
+	    <term>realization</term> or <term>sample function</term>
+	    of the process.
+	  </meaning>
+	  <example id="rp_eg1">
+	    <para id="p1_eg1">
+	      As an example of a random process, let us look at the
+	      Random Sinusoidal Process below.  We use 
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">f</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>A</m:ci>
+		    <m:apply>
+		      <m:sin/>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:ci>ω</m:ci>
+			  <m:ci>n</m:ci>
+			</m:apply>
+			<m:ci>φ</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math> to represent the sinusoid with a given
+	      amplitude and phase.  Note that the phase and amplitude
+	      of each sinusoid is based on a random number, thus
+	      making this a random process.
+	    </para>
+	  </example>
+	</definition>
+      </para>
+
+      <figure id="fig3">
+	<title>Random Sinusoidal Process</title>
+	<media id="idp832544" alt=""><image src="../../media/ran_procC.png" mime-type="image/png"/></media>
+	<caption>
+	  A random sinusoidal process, with the amplitude and phase
+	  being random numbers.
+	</caption>
+      </figure>
+      
+      <para id="p2_rp">   
+	A random process is usually denoted by
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">X</m:ci><m:ci>t</m:ci>
+	  </m:apply>
+	</m:math> or 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn" class="discrete">X</m:ci><m:ci>n</m:ci>
+	  </m:apply>
+	</m:math>, with  
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">x</m:ci><m:ci>t</m:ci>
+	  </m:apply>
+	</m:math> or 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn" class="discrete">x</m:ci><m:ci>n</m:ci>
+	  </m:apply>
+	</m:math> used to represent an individual signal or waveform
+	from this process.  
+      </para>
+
+      <para id="p3_rp">
+	In many notes and books, you might see the following notation
+	and terms used to describe different types of random
+	processes.  For a <term>discrete random process</term>,
+	sometimes just called a <term>random sequence</term>,
+	<m:math><m:ci>t</m:ci></m:math> represents time that has a
+	finite number of values.  If <m:math><m:ci>t</m:ci></m:math>
+	can take on any value of time, we have a <term>continuous
+	random process</term>.  Often times discrete and continuous
+	refer to the amplitude of the process, and process or sequence
+	refer to the nature of the time variable.  For this study, we
+	often just use <term>random process</term> to refer to a
+	general collection of discrete-time signals, as seen above in
+	<link target-id="fig3" strength="2"/>.
+      </para>
+      
+    </section>
+
+  </content>
+</document>

@@ -1,0 +1,1477 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Hypothesis Testing</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>0d11cd6d-acb3-4899-83c3-154991525521</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">Suppose you measure a collection of scalars
+      <m:math>
+	<m:mrow>
+	  <m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub>
+	  <m:mo>,</m:mo>
+	  <m:mi>…</m:mi>
+	  <m:mo>,</m:mo>
+	  <m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mi>N</m:mi>
+	  </m:msub>
+	</m:mrow>
+      </m:math>. You believe the data is distributed in one of two
+      ways. Your first model, call it
+      <m:math>
+	<m:msub>
+	  <m:mi>H</m:mi>
+	  <m:mn>0</m:mn>
+	</m:msub>
+      </m:math>, postulates the data to be governed by the density
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">
+	    <m:msub>
+	      <m:mi>f</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	  </m:ci>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math> (some fixed density). Your second model, 
+      <m:math>
+	<m:msub>
+	  <m:mi>H</m:mi>
+	  <m:mn>1</m:mn>
+	</m:msub>
+      </m:math>, postulates a different density
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">
+	    <m:msub>
+	      <m:mi>f</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	  </m:ci>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math>. These models, termed <term>hypotheses</term>, are
+      denoted as follows:
+      <m:math display="block">
+	<m:mrow>
+	  <m:msub>
+	    <m:mi>H</m:mi>
+	    <m:mn>0</m:mn>
+	  </m:msub>
+	  <m:mo>:</m:mo>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	    <m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mi>n</m:mi>
+	    </m:msub>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:mo>,</m:mo>
+	  <m:mi>n</m:mi>
+	  <m:mo>=</m:mo>
+	  <m:mn>1</m:mn>
+	  <m:mi>…</m:mi>
+	  <m:mi>N</m:mi>
+
+	</m:mrow>
+      </m:math>
+      <m:math display="block">
+	<m:mrow>
+	  
+	  <m:msub>
+	    <m:mi>H</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub>
+	  <m:mo>:</m:mo>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	    <m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mi>n</m:mi>
+	    </m:msub>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:mo>,</m:mo>
+	  <m:mi>n</m:mi>
+	  <m:mo>=</m:mo>
+	  <m:mn>1</m:mn>
+	  <m:mi>…</m:mi>
+	  <m:mi>N</m:mi>
+	</m:mrow>
+      </m:math>
+      A <term>hypothesis test</term> is a rule that, given a
+      measurement <m:math><m:ci type="vector">x</m:ci></m:math>, makes
+      a decision as to which hypothesis best "explains" the data.
+    </para>
+
+    <example id="ex1">
+      <para id="ex1para1">Suppose you are confident that your data is
+      normally distributed with variance 1, but you are uncertain about
+      the sign of the mean. You might postulate
+      <m:math display="block">
+	<m:mrow>
+	  <m:msub>
+	    <m:mi>H</m:mi>
+	    <m:mn>0</m:mn>
+	  </m:msub>
+	  <m:mo>:</m:mo>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	    <m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mi>n</m:mi>
+	    </m:msub>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+		<m:cn>-1</m:cn>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	<m:math display="block">
+	  <m:mrow>
+	    <m:msub>
+	      <m:mi>H</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	    <m:mo>:</m:mo>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mi>n</m:mi>
+	      </m:msub>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+		<m:cn>1</m:cn>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	These densities are depicted in <link target-id="fig1"/>.
+
+	<figure id="fig1">
+	  <media id="idm5405216" alt=""><image src="../../media/GaussOppMeanUnitVar.png" mime-type="image/png"/></media>
+	</figure>
+
+	Assuming each hypothesis is <foreign>a priori</foreign>
+	equally likely, an intuitively appealing hypothesis test is to
+	compute the sample mean
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:mean/>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:ci>N</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>n</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>N</m:ci>
+		</m:uplimit>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, and choose 
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>H</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub></m:ci>
+	</m:math> if 
+	<m:math>
+	  <m:apply>
+	    <m:leq/>
+	    <m:apply>
+	      <m:mean/>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>, and 
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>H</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math> if 
+	<m:math>
+	  <m:apply>
+	    <m:gt/>
+	    <m:apply>
+	      <m:mean/>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>. As we will see later, this test is in fact optimal
+	under certain assumptions.
+      </para>
+    </example>
+
+    <section id="GN">
+      <title>Generalizations and Nomenclature</title>
+      <para id="gn1">The concepts introduced above can be extended in
+      several ways. In what follows we provide more rigorous
+      definitions, describe different kinds of hypothesis testing, and
+      introduce terminology.
+      </para>
+
+      <section id="data">
+	<title>Data</title>
+	<para id="data1">In the most general setup, the observation is
+	a collection
+	  <m:math>
+	    <m:mrow>
+	      <m:ci type="vector">
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:mo>,</m:mo>
+	      <m:mi>…</m:mi>
+	      <m:mo>,</m:mo>
+	      <m:ci type="vector">
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>N</m:mi>
+		</m:msub></m:ci>
+	    </m:mrow>
+	  </m:math>
+	  of random vectors. A common assumption, which facilitates
+	  analysis, is that the data are independent and identically
+	  distributed (IID). The random vectors may be continuous,
+	  discrete, or in some cases mixed. It is generally assumed
+	  that all of the data is available at once, although for some
+	  applications, such as <link document="m11242">Sequential
+	  Hypothesis Testing</link>, the data is a never ending
+	  stream.
+	</para>
+      </section>
+
+      <section id="binary">
+	<title>Binary Versus M-ary Tests</title>
+	<para id="binary1">When there are two competing hypotheses, we
+	refer to a <term>binary</term> hypothesis test. When the
+	number of hypotheses is
+	  <m:math>
+	    <m:apply>
+	      <m:geq/>
+	      <m:ci>M</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:math>, we refer to an <term>M-ary</term> hypothesis
+	  test. Clearly, binary is a special case of
+	  <m:math><m:ci>M</m:ci></m:math>-ary, but binary tests are
+	  accorded a special status for certain reasons. These include
+	  their simplicity, their prevalence in applications, and
+	  theoretical results that do not carry over to the
+	  <m:math><m:ci>M</m:ci></m:math>-ary case.
+	</para>
+
+	<example id="psk">
+	  <section id="secpsk">
+	    <title>Phase-Shift Keying</title> <para id="psk1">Suppose we
+	    wish to transmit a binary string of length
+	    <m:math><m:ci>r</m:ci></m:math> over a noisy communication
+	    channel. We assign each of the
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>M</m:ci>
+		  <m:apply>
+		    <m:power/>
+		    <m:cn>2</m:cn>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math> possible bit sequences to a signal
+	      <m:math>
+		<m:ci type="vector">
+		  <m:msup>
+		    <m:mi>s</m:mi>
+		    <m:mi>k</m:mi>
+		  </m:msup></m:ci>
+	      </m:math>, 
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>k</m:ci>
+		  <m:set>
+		    <m:cn>1</m:cn>
+		    <m:ci>…</m:ci>
+		    <m:ci>M</m:ci>
+		  </m:set>
+		</m:apply>
+	      </m:math>
+	      where
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+		  <m:ci><m:msubsup>
+		      <m:mi>s</m:mi>
+		      <m:mi>n</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msubsup></m:ci>
+		  <m:apply>
+		    <m:cos/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:ci><m:msub>
+			    <m:mi>f</m:mi>
+			    <m:mn>0</m:mn>
+			  </m:msub></m:ci>
+			<m:ci>n</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:divide/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci>k</m:ci>
+			    <m:cn>1</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:ci>M</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	      This symboling scheme is known as <term>phase-shift
+	      keying</term> (PSK). After transmitting a signal across
+	      the noisy channel, the receiver faces an
+	      <m:math><m:ci>M</m:ci></m:math>-ary hypothesis testing
+	      problem:
+	      <m:math display="block">
+		<m:mrow>
+		  <m:msub>
+		    <m:mi>H</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub>
+		  <m:mo>:</m:mo>
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci type="vector">x</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci type="vector">
+			<m:msup>
+			  <m:mi>s</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msup></m:ci>
+		      <m:ci type="vector">w</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:mrow>
+	      </m:math>
+	      <m:math display="block"><m:ci>⋮</m:ci></m:math>
+	      <m:math display="block">
+		<m:mrow>
+		  <m:msub>
+		    <m:mi>H</m:mi>
+		    <m:mi>M</m:mi>
+		  </m:msub>
+		  <m:mo>:</m:mo>
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci type="vector">x</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci type="vector">
+			<m:msup>
+			  <m:mi>s</m:mi>
+			  <m:mi>M</m:mi>
+			</m:msup></m:ci>
+		      <m:ci type="vector">w</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:mrow>
+	      </m:math>
+	      where
+	      <m:math>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+		  <m:ci type="vector">w</m:ci>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+		    <m:ci type="vector">0</m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>σ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:ci type="matrix">I</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>.
+	    </para>
+	  </section>
+	</example>
+
+	<para id="binary2">In many binary hypothesis tests, one
+	  hypothesis represents the absence of a ceratin
+	  feature. In such cases, the hypothesis is usually
+	  labelled
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>H</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	  </m:math> and called the <term>null</term> hypothesis. 
+	  The other hypothesis is labelled 
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>H</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:math> and called the <term>alternative</term> 
+	  hypothesis.
+	</para>
+
+	<example id="exwd">
+	  <section id="wd">
+	    <title>Waveform Detection</title>
+	    
+	    <para id="wd1">Consider the problem of detecting a known
+	    signal
+	      <m:math display="inline">
+		<m:apply>
+		  <m:eq/>
+		  <m:ci type="vector">s</m:ci>
+		  <m:vector>
+		    <m:ci><m:msub>
+			<m:mi>s</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci>…</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>s</m:mi>
+			<m:mi>N</m:mi>
+		      </m:msub></m:ci>
+		  </m:vector>
+		</m:apply>
+	      </m:math> in additive white Gaussian noise (AWGN). This
+	      scenario is common in sonar and radar systems. Denoting
+	      the data as
+	      <m:math display="inline">
+		<m:apply>
+		  <m:eq/>
+		  <m:ci type="vector">x</m:ci>
+		  <m:vector>
+		    <m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		    <m:mi>…</m:mi>
+		    <m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>N</m:mi>
+		    </m:msub>
+		  </m:vector>
+		</m:apply>
+	      </m:math>, our hypothesis testing problem is
+	      <m:math display="block">
+		
+		<m:mrow>
+		  <m:msub>
+		    <m:mi>H</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub>
+		  <m:mo>:</m:mo>
+		</m:mrow>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci type="vector">x</m:ci>
+		  <m:ci type="vector">w</m:ci>
+		</m:apply>
+	      </m:math>
+	      <m:math display="block">
+		<m:mrow>
+		  <m:msub>
+		    <m:mi>H</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		  <m:mo>:</m:mo>
+		</m:mrow>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci type="vector">x</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci type="vector">s</m:ci>
+		    <m:ci type="vector">w</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	      where
+	      <m:math>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+		  <m:ci type="vector">w</m:ci>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+		    <m:ci type="vector">0</m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>σ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:ci type="matrix">I</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>.
+	      <m:math>
+		<m:ci><m:msub>
+		    <m:mi>H</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:math> is the null hypothesis, corresponding to 
+	      the absence of a signal.
+	    </para>
+	  </section>
+	</example>
+      </section>
+    
+      <section id="tdr">
+	<title>Tests and Decision Regions</title>
+
+	<para id="tdr1">Consider the general hypothesis testing
+	problem where we have <m:math><m:ci>N</m:ci></m:math>
+	<m:math><m:ci>d</m:ci></m:math>-dimensional observations
+	  <m:math>
+	    <m:mrow>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:mo>,</m:mo>
+	      <m:mi>…</m:mi>
+	      <m:mo>,</m:mo>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>N</m:mi>
+		</m:msub></m:ci>
+	    </m:mrow>
+	  </m:math> and <m:math><m:ci>M</m:ci></m:math> hypotheses. If
+	  the data are real-valued, for example, then a hypothesis
+	  test is a mapping
+	  <m:math display="block">
+	    <m:apply>
+	      <m:mo>→</m:mo>
+	      <m:mrow>
+		<m:ci type="fn">φ</m:ci>
+		<m:mo>:</m:mo>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:power/>
+		    <m:reals/>
+		    <m:ci>d</m:ci>
+		  </m:apply>
+		  <m:ci>N</m:ci>
+		</m:apply>
+	      </m:mrow>
+	      <m:set>
+		<m:cn>1</m:cn>
+		<m:ci>…</m:ci>
+		<m:ci>M</m:ci>
+	      </m:set>
+	    </m:apply>
+	  </m:math>
+	  For every possible realization of the input, the test
+	  outputs a hypothesis. The test
+	  <m:math><m:ci>φ</m:ci></m:math> partitions the input
+	  space into a disjoint collection
+	  <m:math>
+	    <m:mrow>
+	      <m:ci><m:msub>
+		  <m:mi>R</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:mo>,</m:mo>
+	      <m:mi>…</m:mi>
+	      <m:mo>,</m:mo>
+	      <m:ci><m:msub>
+		  <m:mi>R</m:mi>
+		  <m:mi>M</m:mi>
+		</m:msub></m:ci>
+	    </m:mrow>
+	  </m:math>, where
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci><m:msub>
+		  <m:mi>R</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub></m:ci>
+	      <m:set>
+		<m:mrow>
+		  <m:mo>(</m:mo>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:mo>,</m:mo>
+		  <m:mi>…</m:mi>
+		  <m:mo>,</m:mo>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>N</m:mi>
+		    </m:msub></m:ci>
+		  <m:mo>)</m:mo>
+		  <m:mo>|</m:mo>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">φ</m:ci>
+		      <m:ci type="vector"><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		      <m:mi>…</m:mi>
+		      <m:ci type="vector"><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mi>N</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:mi>k</m:mi>
+		  </m:apply>
+		</m:mrow>
+	      </m:set>
+	    </m:apply>
+	  </m:math>
+	  The sets
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>R</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub></m:ci>
+	  </m:math> 
+	  are called <term>decision regions</term>. The boundary
+	  between two decision regions is a <term>decision
+	  boundary</term>. <link target-id="fig2"/>
+	  depicts these concepts when
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>d</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:math>,
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>N</m:ci>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	  </m:math>, and
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>M</m:ci>
+	      <m:cn>3</m:cn>
+	    </m:apply>
+	  </m:math>.
+
+	  <figure id="fig2">
+	    <media id="idm48608" alt=""><image src="../../media/decisionRegions.png" mime-type="image/png"/></media>
+	  </figure>
+
+	</para>
+      </section>
+
+      <section id="svch">
+	<title>Simple Versus Composite Hypotheses</title>
+	
+	<para id="svch1">If the distribution of the data under a
+	certain hypothesis is fully known, we call it a
+	<term>simple</term> hypothesis. All of the hypotheses in the
+	examples above are simple. In many cases, however, we only
+	know the distribution up to certain unknown parameters. For
+	example, in a Gaussian noise model we may not know the
+	variance of the noise. In this case, a hypothesis is said to
+	be <term>composite</term>.
+	</para>
+
+	<example id="exnext">
+	  <para id="exnext1">Consider the problem of detecting the signal
+	    <m:math display="block">
+	      
+	      <m:apply>
+		<m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:cos/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		    <m:ci><m:msub>
+			<m:mi>f</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub></m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>n</m:ci>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:forall/>
+		<m:bvar>
+		  <m:ci>n</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>n</m:ci>
+		  <m:set>
+		    <m:cn>1</m:cn>
+		    <m:ci>…</m:ci>
+		    <m:ci>N</m:ci>
+		  </m:set>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	    where <m:math><m:ci>k</m:ci></m:math> is an unknown delay
+	    parameter. Then
+	    <m:math display="block">
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub>
+		<m:mo>:</m:mo>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci type="vector">x</m:ci>
+		  <m:ci type="vector">w</m:ci>
+		</m:apply>
+	      </m:mrow>
+	    </m:math>
+	    <m:math display="block">
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+		<m:mo>:</m:mo>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci type="vector">x</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci type="vector">s</m:ci>
+		    <m:ci type="vector">w</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:mrow>
+	    </m:math>
+	    is a binary test of a simple hypothesis 
+	    (<m:math>
+	      <m:ci><m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:math>) versus a composite alternative. Here we 
+	    are assuming
+	    <m:math>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>w</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+		  <m:cn>0</m:cn>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>σ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>, with
+	    <m:math>
+	      <m:apply>
+		<m:power/>
+		<m:ci>σ</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:math> known.
+	  </para>
+	</example>
+
+	<para id="paraagain">Often a test involving a composite
+	hypothesis has the form
+	  <m:math display="block">
+	    <m:mrow>
+	      <m:msub>
+		<m:mi>H</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	      <m:mo>:</m:mo>
+	      <m:apply>
+		<m:eq/>
+		<m:ci type="vector">θ</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>θ</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:mrow>
+	  </m:math>
+	  <m:math display="block">
+	    <m:mrow>
+	      <m:msub>
+		<m:mi>H</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	      <m:mo>:</m:mo>
+	      <m:apply>
+		<m:neq/>
+		<m:ci type="vector">θ</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>θ</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:mrow>
+	  </m:math>
+	  where 
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>θ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	  </m:math> is fixed. Such problems are called 
+	  <term>two-sided</term> because the composite 
+	  alternative "lies on both sides of
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>H</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	  </m:math>." When <m:math>
+	    <m:ci type="vector">θ</m:ci></m:math> is a scalar, 
+	  the test
+	  <m:math display="block">
+	    <m:mrow>
+	      <m:msub>
+		<m:mi>H</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	      <m:mo>:</m:mo>
+	      <m:apply>
+		<m:leq/>
+		<m:ci>θ</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>θ</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:mrow>
+	  </m:math>
+	  <m:math display="block">
+	    <m:mrow>
+	      <m:msub>
+		<m:mi>H</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	      <m:mo>:</m:mo>
+	      <m:apply>
+		<m:gt/>
+		<m:ci>θ</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>θ</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:mrow>
+	  </m:math> is called <term>one-sided</term>. Here, both
+	  hypotheses are composite.
+	</para>
+	  
+	<example id="coin">
+	  <para id="coin1">Suppose a coin turns up heads with
+	  probability <m:math><m:ci>p</m:ci></m:math>. We want to
+	  assess whether the coin is fair 
+	    (<m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>p</m:ci>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:math>). We toss the coin
+	    <m:math><m:ci>N</m:ci></m:math> times and record
+	    <m:math>
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+		<m:mo>,</m:mo>
+		<m:mi>…</m:mi>
+		<m:mo>,</m:mo>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>N</m:mi>
+		</m:msub>
+	      </m:mrow>
+	    </m:math>
+	    (<m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:math> means heads and 
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>n</m:mi>
+		  </m:msub></m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math> means tails). Then
+	    <m:math display="block">
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub>
+		<m:mo>:</m:mo>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>p</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:mrow>
+	    </m:math>
+	    <m:math display="block">
+	      <m:mrow>
+		<m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+		<m:mo>:</m:mo>
+		<m:apply>
+		  <m:neq/>
+		  <m:ci>p</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:mrow>
+	    </m:math>
+	    is a binary test of a simple hypothesis 
+	    (<m:math>
+	      <m:ci><m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:math>) versus a composite alternative. This is 
+	    also a two-sided test.
+	  </para>
+	</example>
+      </section>
+    </section>
+
+    <section id="enp">
+      <title>Errors and Probabilities</title>
+
+      <para id="enp1">In binary hypothesis testing, assuming at least
+      one of the two models does indeed correspond to reality, there
+      are four possible scenarios:
+	<list id="list1" list-type="labeled-item">
+	  <item><label>Case 1</label>
+	    
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:math> is true, and we declare 
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:math> to be true
+	  </item>
+
+	  <item><label>Case 2</label>
+	    
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:math> is true, but we declare 
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:math> to be true
+	  </item>
+
+	  <item><label>Case 3</label>
+	    
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:math> is true, and we declare 
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:math> to be true
+	  </item>
+
+	  <item><label>Case 4</label>
+	    
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:math> is true, but we declare 
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:math> to be true
+	  </item>
+	</list>
+	In cases 2 and 4, errors occur. The names given to these
+	errors depend on the area of application. In statistics, they
+	are called <term>type I</term> and <term>type II errors</term>
+	respectively, while in signal processing they are known as a
+	<term>false alarm</term> or a <term>miss</term>.
+      </para>
+
+      <para id="enp2">Consider the general binary hypothesis testing
+      problem
+	<m:math display="block">
+	  <m:mrow>
+	    
+	    <m:msub>
+	      <m:mi>H</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	    <m:mo>:</m:mo>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	      <m:ci type="vector">x</m:ci>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mi>θ</m:mi>
+		  </m:msub></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:mo>,</m:mo>
+	    <m:apply>
+	      <m:in/>
+	      <m:mi>θ</m:mi>
+	      <m:msub>
+		<m:mi>Θ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	<m:math display="block">
+	  <m:mrow>
+	    
+	    <m:msub>
+	      <m:mi>H</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	    <m:mo>:</m:mo>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	      <m:ci type="vector">x</m:ci>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mi>θ</m:mi>
+		  </m:msub></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:mo>,</m:mo>
+	    <m:apply>
+	      <m:in/>
+	      <m:mi>θ</m:mi>
+	      <m:msub>
+		<m:mi>Θ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	If 
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>H</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub></m:ci>
+	</m:math> is simple, that is, 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>Θ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	    <m:set>
+	      <m:ci><m:msub>
+		  <m:mi>θ</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:set>
+	  </m:apply>
+	</m:math>, then the <term>size</term> (denoted
+	<m:math><m:ci>α</m:ci></m:math>), also called the
+	<term>false-alarm probability</term>
+	(<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi>
+	      <m:mi>F</m:mi>
+	    </m:msub></m:ci>
+	</m:math>), is defined to be
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>α</m:ci>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>F</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:bvar>
+		<m:ci><m:msub>
+		    <m:mi>θ</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:bvar>
+	      <m:mrow>
+		<m:mtext>declare </m:mtext>
+		<m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:mrow>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	When 
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>Θ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub></m:ci>
+	</m:math> is composite, we define
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>α</m:ci>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>F</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>sup</m:mi>
+		  <m:mrow>
+		    <m:mi>θ</m:mi>
+		    <m:mo>∈</m:mo>
+		    <m:msub>
+		      <m:mi>Θ</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub>
+		  </m:mrow>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:bvar>
+		  <m:ci>θ</m:ci>
+		</m:bvar>
+		<m:mrow>
+		  <m:mtext>declare </m:mtext>
+		  <m:msub>
+		    <m:mi>H</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:mrow>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	For 
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci>θ</m:ci>
+	    <m:ci><m:msub>
+		<m:mi>Θ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:math>, the <term>power</term> (denoted
+	<m:math><m:ci>β</m:ci></m:math>), or <term>detection
+	probability</term>
+	(<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi>
+	      <m:mi>D</m:mi>
+	    </m:msub></m:ci>
+	</m:math>), is defined to be
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>β</m:ci>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>D</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:bvar>
+		<m:ci>θ</m:ci>
+	      </m:bvar>
+	      <m:mrow>
+		<m:mtext>declare </m:mtext>
+		<m:msub>
+		  <m:mi>H</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:mrow>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	The probability of a type II error, also called the <term>miss
+	probability</term>, is
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>M</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:ci><m:msub>
+		  <m:mi>P</m:mi>
+		  <m:mi>D</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	If 
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>H</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math> is composite, then 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>β</m:ci>
+	    <m:apply>
+	      <m:ci type="fn">β</m:ci>
+	      <m:ci>θ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> is viewed as a function of
+	<m:math><m:ci>θ</m:ci></m:math>.
+      </para>
+    </section>
+
+    <section id="cht">
+      <title>Criteria in Hypothesis Testing</title>
+
+      <para id="cht1">The design of a hypothesis test/detector often
+      involves constructing the solution to an optimization
+      problem. The optimality criteria used fall into two classes:
+      Bayesian and frequent.
+      </para>
+   
+
+      <para id="cht2">Representing the former approach is the <link document="m11533">Bayes Risk Criterion</link>. Representing the
+      latter is the <link document="m11548">Neyman-Pearson
+      Criterion</link>. These two approaches are developed at length
+      in separate modules.
+      </para>
+    </section>
+  
+    <section id="svel">
+      <title>Statistics Versus Engineering Lingo</title>
+
+      <para id="snel1">The following table, adapted from <cite target-id="kay"><cite-title>Kay, p.65</cite-title></cite>, summarizes the different terminology for
+      hypothesis testing from statistics and signal processing:
+
+	  
+	<table frame="all" id="table1" summary="">
+	  <tgroup cols="2" colsep="1" rowsep="1">
+	    <thead>
+	      <row>
+		<entry>Statistics</entry>
+		<entry>Signal Processing</entry>
+	      </row>
+	    </thead>
+	    <tbody>
+	      <row>
+		<entry>Hypothesis Test</entry>
+		<entry>Detector</entry>
+	      </row>
+	      <row>
+		<entry>Null Hypothesis</entry>
+		<entry>Noise Only Hypothesis</entry>
+	      </row>
+	      <row>
+		<entry>Alternate Hypothesis</entry>
+		<entry>Signal + Noise Hypothesis</entry>
+	      </row>
+	      <row>
+		<entry>Critical Region</entry>
+		<entry>Signal Present Decision Region</entry>
+	      </row>
+	      <row>
+		<entry>Type I Error</entry>
+		<entry>False Alarm</entry>
+	      </row>
+	      <row>
+		<entry>Type II Error</entry>
+		<entry>Miss</entry>
+	      </row>
+	      <row>
+		<entry>Size of Test
+		(<m:math><m:ci>α</m:ci></m:math>)</entry>
+		<entry>Probability of False Alarm
+		  (<m:math>
+		    <m:ci><m:msub>
+			<m:mi>P</m:mi>
+			<m:mi>F</m:mi>
+		      </m:msub></m:ci>
+		  </m:math>)
+		</entry>
+	      </row>
+	      <row>
+		<entry>Power of Test
+		  (<m:math><m:ci>β</m:ci></m:math>)</entry>
+		<entry>Probability of Detection
+		  (<m:math>
+		    <m:ci><m:msub>
+			<m:mi>P</m:mi>
+			<m:mi>D</m:mi>
+		      </m:msub></m:ci>
+		  </m:math>)</entry>
+	      </row>
+	    </tbody>
+	  </tgroup>
+	</table>
+      </para>
+
+    </section>
+  </content>
+
+  <bib:file>
+    <bib:entry id="kay">
+      <bib:book>
+	<bib:author>S. Kay</bib:author>
+	<bib:title>Detection Theory</bib:title>
+	<bib:publisher>Prentice Hall</bib:publisher>
+	<bib:year>1998</bib:year>
+      </bib:book>
+    </bib:entry>
+  </bib:file>
+</document>

@@ -1,0 +1,70 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>The Gaussian Process</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>dd81a0e5-dc62-4df2-9bad-34dd1b96a0ae</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">
+      A random process 
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">X</m:ci>
+	  <m:ci>t</m:ci>
+	</m:apply>
+      </m:math> is Gaussian if the joint density of the
+      <m:math><m:ci>N</m:ci></m:math> amplitudes <m:math>
+	<m:set>
+	  <m:apply>
+	    <m:ci type="fn">X</m:ci>
+	    <m:ci><m:msub>
+		<m:mi>t</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:mo>…,</m:mo>
+	  <m:apply>
+	    <m:ci type="fn">X</m:ci>
+	    <m:ci><m:msub>
+		<m:mi>t</m:mi>
+		<m:mi>N</m:mi>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:set>
+      </m:math> comprise a Gaussian random vector.  The elements of
+      the required covariance matrix equal the covariance between the
+      appropriate amplitudes: <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:selector/>
+	    <m:ci type="matrix">K</m:ci>
+	    <m:ci>i</m:ci>
+	    <m:ci>j</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn"><m:msub>
+		<m:mi>K</m:mi>
+		<m:mi>X</m:mi>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>t</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	    <m:ci><m:msub>
+		<m:mi>t</m:mi>
+		<m:mi>j</m:mi>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  Assuming the mean is known, the entire structure of
+      the Gaussian random process is specified once the correlation
+      function or, equivalently, the power spectrum is known.  As
+      linear transformations of Gaussian random processes yield
+      another Gaussian process, linear operations such as
+      differentiation, integration, linear filtering, sampling, and
+      summation with other Gaussian processes result in a Gaussian
+      process.
+    </para>   
+  </content>
+  
+</document>

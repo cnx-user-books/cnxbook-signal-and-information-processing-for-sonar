@@ -1,0 +1,916 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>The Bayes Risk Criterion in Hypothesis Testing</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>21d773dc-d3ab-43c3-8cb6-b5a19d63c5a6</md:uuid>
+</metadata>
+
+  <content>
+    
+    <para id="cht1">The design of a hypothesis test/detector often
+      involves constructing the solution to an optimization
+      problem. The optimality criteria used fall into two classes:
+      Bayesian and frequent.
+    </para>
+    
+    <para id="cht2">In the Bayesian setup, it is assumed that the
+      <foreign>a priori</foreign> probability of
+      each hypothesis occuring
+      (<m:math>
+	<m:ci><m:msub>
+	    <m:mi>π</m:mi>
+	    <m:mi>i</m:mi>
+	  </m:msub></m:ci>
+      </m:math>) is known. A cost
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>C</m:mi>
+	    <m:mi>ij</m:mi>
+	  </m:msub></m:ci>
+      </m:math> is assigned to each possible outcome:
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>C</m:mi>
+	      <m:mi>ij</m:mi>
+	    </m:msub></m:ci>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	    <m:mrow>
+	      <m:mtext>say </m:mtext>
+	      <m:msub>
+		<m:mi>H</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub>
+	      <m:mtext> when </m:mtext>
+	      <m:msub>
+		<m:mi>H</m:mi>
+		<m:mi>j</m:mi>
+	      </m:msub>
+	      <m:mtext> true</m:mtext>
+	    </m:mrow>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      The optimal test/detector is the one that minimizes the Bayes
+      risk, which is defined to be the expected cost of an
+      experiment:
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:mean/>
+	    <m:ci>C</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar>
+	      <m:ci>i</m:ci>
+	    </m:bvar>
+	    <m:bvar>
+	      <m:ci>j</m:ci>
+	    </m:bvar>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>C</m:mi>
+		  <m:mi>ij</m:mi>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>π</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:mrow>
+		  <m:mtext>say </m:mtext>
+		  <m:msub>
+		    <m:mi>H</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		  <m:mtext> when </m:mtext>
+		  <m:msub>
+		    <m:mi>H</m:mi>
+		    <m:mi>j</m:mi>
+		  </m:msub>
+		  <m:mtext> true</m:mtext>
+		</m:mrow>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </para>
+
+    <para id="para1">
+      In the event that we have a binary problem, and both
+      hypotheses are <link document="m11531" target-id="svch">simple</link>, the decision rule that
+      minimizes the Bayes risk can be constructed explicitly. Let us
+      assume that the data is continuous (<foreign>i.e.</foreign>,
+      it has a density) under each hypothesis:
+      <m:math display="block">
+	<m:mrow>
+	  <m:msub>
+	    <m:mi>H</m:mi>
+	    <m:mn>0</m:mn>
+	  </m:msub>
+	  <m:mo>:</m:mo>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	    <m:ci type="vector">x</m:ci>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:mrow>
+      </m:math>
+      <m:math display="block">
+	<m:mrow>
+	  <m:msub>
+	    <m:mi>H</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub>
+	  <m:mo>:</m:mo>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	    <m:ci type="vector">x</m:ci>
+	    <m:apply>
+	      <m:ci type="fn"><m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:mrow>
+      </m:math>
+      Let 
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>R</m:mi>
+	    <m:mn>0</m:mn>
+	  </m:msub></m:ci>
+      </m:math> and
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>R</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math> 
+      denote the <link document="m11531" target-id="tdr">decision
+	regions</link> corresponding to the optimal test. Clearly,
+      the optimal test is specified once we specify
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>R</m:mi>
+	    <m:mn>0</m:mn>
+	  </m:msub></m:ci>
+      </m:math> and
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>R</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#complement"/>
+	    <m:ci><m:msub>
+		<m:mi>R</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+    </para>
+
+    <para id="para2">The Bayes risk may be written
+      <equation id="eqn1">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:mover>
+		<m:mi>C</m:mi>
+		<m:mo>-</m:mo>
+	      </m:mover></m:ci>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar>
+		<m:set>
+		  <m:ci>i</m:ci>
+		  <m:ci>j</m:ci>
+		</m:set>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>0</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:cn>1</m:cn>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mrow>
+		      <m:mi>i</m:mi>
+		      <m:mo>​</m:mo>
+		      <m:mi>j</m:mi>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>π</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci type="vector">x</m:ci>
+		  </m:bvar>
+		  <m:domainofapplication>
+		    <m:ci><m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:domainofapplication>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>f</m:mi>
+			<m:mi>j</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci type="vector">x</m:ci>
+	      </m:bvar>
+	      <m:domainofapplication>
+		<m:ci><m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:domainofapplication>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>00</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>π</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub></m:ci>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub>
+			<m:mi>f</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>01</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>π</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub>
+			<m:mi>f</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	     <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci type="vector">x</m:ci>
+	      </m:bvar>
+	      <m:domainofapplication>
+		<m:ci><m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:domainofapplication>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>10</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>π</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub></m:ci>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub>
+			<m:mi>f</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>C</m:mi>
+		      <m:mn>11</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>π</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:apply>
+		    <m:ci type="fn"><m:msub>
+			<m:mi>f</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      </equation>
+      Recall that 
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>R</m:mi>
+	    <m:mn>0</m:mn>
+	  </m:msub></m:ci>
+      </m:math> and
+      <m:math>
+	<m:ci><m:msub> 
+	    <m:mi>R</m:mi> 
+	    <m:mn>1</m:mn> 
+	  </m:msub></m:ci>
+      </m:math> 
+      <emphasis>partition</emphasis> the input space: they are
+      disjoint and their union is the full input space. Thus, every
+      possible input <m:math><m:ci type="vector">x</m:ci></m:math>
+      belongs to precisely one of these regions. In order to minimize
+      the Bayes risk, a measurement <m:math><m:ci type="vector">x</m:ci></m:math> should belong to the decision
+      region
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>R</m:mi>
+	    <m:mi>i</m:mi>
+	  </m:msub></m:ci>
+      </m:math> 
+      for which the corresponding integrand in the preceding equation
+      is smaller. Therefore, the Bayes risk is minimized by assigning
+      <m:math><m:ci type="vector">x</m:ci></m:math> to
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>R</m:mi>
+	    <m:mn>0</m:mn>
+	  </m:msub></m:ci>
+      </m:math> whenever
+      <m:math display="block">
+	<m:apply>
+	  <m:lt/>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>π</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>C</m:mi>
+		  <m:mn>00</m:mn>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:ci type="fn"><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>π</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>C</m:mi>
+		  <m:mn>01</m:mn>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:ci type="fn"><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>π</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>C</m:mi>
+		  <m:mn>10</m:mn>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:ci type="fn"><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>π</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>C</m:mi>
+		  <m:mn>11</m:mn>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:ci type="fn"><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      and assigning <m:math><m:ci type="vector">x</m:ci></m:math> to
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>R</m:mi>
+	    <m:mn>1</m:mn>
+	  </m:msub></m:ci>
+      </m:math> 
+      whenever this inequality is reversed. The resulting rule may be
+      expressed concisely as
+      <m:math display="block">
+	<m:mrow>
+	  <m:apply>
+	    <m:equivalent/>
+	    <m:apply>
+	      <m:ci type="fn">Λ</m:ci>
+	      <m:ci type="vector">x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:ci type="fn"><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn"><m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+
+	  <m:munderover>
+	    <m:mo>≷</m:mo>
+	    <m:msub>
+	      <m:mi>H</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	    <m:msub>
+	      <m:mi>H</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub>
+	  </m:munderover>
+
+	  <m:apply>
+	    <m:equivalent/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:times/>
+		<m:msub>
+		  <m:mi>π</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub>
+		<m:apply>
+		  <m:minus/>
+		  <m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>10</m:mn>
+		  </m:msub>
+		  <m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>00</m:mn>
+		  </m:msub>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:msub>
+		  <m:mi>π</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+		<m:apply>
+		  <m:minus/>
+		  <m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>01</m:mn>
+		  </m:msub>
+		  <m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>11</m:mn>
+		  </m:msub>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:mi>η</m:mi>
+	  </m:apply>
+	</m:mrow>
+      </m:math>
+      Here, 
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">Λ</m:ci>
+	  <m:ci type="vector">x</m:ci>
+	</m:apply>
+      </m:math> is called the <term>likelihood ratio</term>,
+      <m:math><m:ci>η</m:ci></m:math> is called the threshold, and
+      the overall decision rule is called the <link url="http://workshop.molecularevolution.org/resources/lrt.php">Likelihood Ratio Test</link> 
+      (LRT). The expression
+      on the right is called a <term>threshold</term>.
+    </para>
+      
+    <example id="studying">
+      <para id="grade">
+	An instructor in a course in detection theory wants to
+	determine if a particular student studied for his last test.
+	The observed quantity is the student's grade, which we
+	denote by
+	<m:math>
+	  <m:ci type="vector">r</m:ci>
+	</m:math>.  Failure may not indicate studiousness:
+	conscientious students may fail the test.  Define the models
+	as
+	<list id="list1">
+	  <item>
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:math>:   did not study</item>
+	  <item>
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:math>: did study</item>
+	</list> The conditional densities of the grade are shown in
+	<link target-id="gradefig"/>.
+
+	<figure id="gradefig">
+	  <media id="idm6878032" alt=""><image src="../../media/grade.png" mime-type="image/png"/></media>
+	  <caption>Conditional densities for the grade distributions
+	    assuming that a student did not study
+	    (<m:math>
+	      <m:ci><m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:math>) or did
+	    (<m:math>
+	      <m:apply>
+		<m:ci><m:msub>
+		    <m:mi>ℳ</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:math>) are shown in the top row.  The lower portion
+	    depicts the likelihood ratio formed from these densities.
+	  </caption>
+	</figure>
+	Based on knowledge of student behavior, the instructor
+	assigns <foreign>a priori</foreign> probabilities of
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>π</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:cn>4</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math> and
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>π</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>3</m:cn>
+	      <m:cn>4</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.  The costs
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>C</m:mi>
+	      <m:mrow>
+		<m:mi>i</m:mi>
+		<m:mo>​</m:mo>
+		<m:mi>j</m:mi>
+	      </m:mrow>
+	    </m:msub></m:ci>
+	</m:math> are chosen to reflect the instructor's sensitivity
+	to student feelings:
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>C</m:mi>
+		<m:mn>01</m:mn>
+	      </m:msub></m:ci>
+	    <m:cn>1</m:cn>
+	    <m:ci><m:msub>
+		<m:mi>C</m:mi>
+		<m:mn>10</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:math> (an erroneous decision either way is given the
+	same cost) and
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>C</m:mi>
+		<m:mn>00</m:mn>
+	      </m:msub></m:ci>
+	    <m:cn>0</m:cn>
+	    <m:ci><m:msub>
+		<m:mi>C</m:mi>
+		<m:mn>11</m:mn>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:math>.  The likelihood ratio is plotted in <link target-id="gradefig"/> and the threshold value
+	<m:math>
+	  <m:ci>η</m:ci>
+	</m:math>, which is computed from the <foreign>a
+	  priori</foreign> probabilities and the costs to be
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:cn>3</m:cn>
+	  </m:apply>
+	</m:math>, is indicated.  The calculations of this
+	comparison can be simplified in an obvious way.
+	<m:math display="block">
+	  <m:mrow>
+	    <m:apply>
+	      <m:divide/>
+	      <m:mi>r</m:mi>
+	      <m:mn>50</m:mn>
+	    </m:apply>
+
+	    <m:munderover>
+	      <m:mo>≷</m:mo>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:munderover>
+	    
+	    <m:apply>
+	      <m:divide/>
+	      <m:mn>1</m:mn>
+	      <m:mn>3</m:mn>
+	    </m:apply>
+	  </m:mrow>
+	</m:math> or
+	<m:math display="block">
+	  <m:mrow>
+	    <m:mi>r</m:mi>
+
+	    <m:munderover>
+	      <m:mo>≷</m:mo>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:munderover>
+
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:divide/>
+		<m:mn>50</m:mn>
+		<m:mn>3</m:mn>
+	      </m:apply>
+	      <m:mn>16.7</m:mn>
+	    </m:apply>
+	  </m:mrow>
+	</m:math> The multiplication by the factor of 50 is a simple
+	illustration of the reduction of the likelihood ratio to a
+	sufficient statistic.  Based on the assigned costs and
+	<foreign>a priori</foreign> probabilities, the optimum
+	decision rule says the instructor must assume that the
+	student did not study if the student's grade is less than
+	16.7; if greater, the student is assumed to have studied
+	despite receiving an abysmally low grade such as 20.  Note
+	that as the densities given by each model overlap entirely:
+	the possibility of making the wrong interpretation
+	<emphasis>always</emphasis> haunts the instructor.  However,
+	no other procedure will be better!
+      </para>
+    </example>
+
+    <para id="parafinal">
+      A special case of the minimum Bayes risk rule, the <link document="m11534">minimum probability of error rule</link>, is
+      used extensively in practice, and is discussed at length in
+      another module.
+    </para>
+
+    <section id="probs">
+      <title>Problems</title>
+
+      <exercise id="ex1">
+	<problem id="idm6897984">
+	  <para id="ex1para1">Denote
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>α</m:ci>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:mrow>
+		    <m:mtext>declare </m:mtext>
+		    <m:msub>
+		      <m:mi>H</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		    <m:mtext> when </m:mtext>
+		    <m:msub>
+		      <m:mi>H</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub>
+		    <m:mtext> true</m:mtext>
+		  </m:mrow>
+		</m:apply>
+	      </m:apply>
+	    </m:math> and 
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>β</m:ci>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:mrow>
+		    <m:mtext>declare </m:mtext>
+		    <m:msub>
+		      <m:mi>H</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		    <m:mtext> when </m:mtext>
+		    <m:msub>
+		      <m:mi>H</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		    <m:mtext> true</m:mtext>
+		  </m:mrow>
+		</m:apply>
+	      </m:apply>
+	    </m:math>. Express the Bayes risk
+	    <m:math>
+	      <m:ci><m:mover>
+		  <m:mi>C</m:mi>
+		  <m:mo>-</m:mo>
+		</m:mover></m:ci>
+	    </m:math> in terms of <m:math><m:ci>α</m:ci>
+	    </m:math> and <m:math><m:ci>β</m:ci></m:math>, 
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>C</m:mi>
+		  <m:mrow>
+		    <m:mi>i</m:mi>
+		    <m:mo>​</m:mo>
+		    <m:mi>j</m:mi>
+		  </m:mrow>
+		</m:msub></m:ci>
+	    </m:math>, and 
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>π</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	    </m:math>. Argue that the optimal decision rule is not 
+	    altered by setting
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>00</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>C</m:mi>
+		    <m:mn>11</m:mn>
+		  </m:msub></m:ci>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math>.
+	  </para>
+	</problem>
+      </exercise>
+
+      <exercise id="ex2">
+	<problem id="idp1029312">
+	  <para id="ex2para1">Suppose we observe
+	    <m:math>
+	      <m:ci type="vector">x</m:ci>
+	    </m:math> such that
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">Λ</m:ci>
+		  <m:ci type="vector">x</m:ci>
+		</m:apply>
+		<m:ci>η</m:ci>
+	      </m:apply>
+	    </m:math>. Argue that it doesn't matter whether we assign
+	    <m:math>
+	      <m:ci type="vector">x</m:ci>
+	    </m:math> to 
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>R</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:math> or
+	    <m:math>
+	      <m:ci><m:msub>
+		  <m:mi>R</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:math>.
+	  </para>
+	</problem>
+      </exercise>
+    </section>
+  </content>
+  
+</document>

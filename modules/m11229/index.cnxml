@@ -1,0 +1,105 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Detection in the Presence of Unknowns</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>fdca3cf2-ddf5-4edd-8e2b-e062a1e9bbc5</md:uuid>
+</metadata>
+
+  <content>
+    <para id="weassumed">
+      We assumed in the previous sections that we have a few
+      well-specified models (hypotheses) for a set of observations.
+      These models were probabilistic; to apply the techniques of
+      statistical hypothesis testing, the models take the form of
+      conditional probability densities.  In many interesting
+      circumstances, the exact nature of these densities may not be
+      known.  For example, we may know <foreign>a priori</foreign>
+      that the mean is either zero or some constant (as in the
+      Gaussian example).  However, the variance of the observations
+      may not be known or the value of the non-zero mean may be in
+      doubt.  In an array processing context, these respective
+      situations could occur when the background noise level is
+      unknown (a likely possibility in applications) or when the
+      signal amplitude is not known because of far-field range
+      uncertainties (the further the source of propagating energy, the
+      smaller its received energy at each sensor).  In an extreme
+      case, we can question the exact nature of the probability
+      densities (everything is not necessarily Gaussian!).  The model
+      evaluation problem can still be posed for these situations; we
+      classify the "unknown" aspects of a model testing problem as
+      either <term>parametric</term> (the variance is not known, for
+      example) or <term>nonparametric</term> (the formula for the
+      density is in doubt).  The former situation has a relatively
+      long history compared to the latter; many techniques can be used
+      to approach parametric problems while the latter is a subject of
+      current research (<cite target-id="gibson"><cite-title>Gibson and Melsa</cite-title></cite>).
+      We concentrate on parametric problems here.
+    </para>
+    <para id="wedescribe">
+      We describe the dependence of the conditional density on a set
+      of parameters by incorporating the parameter vector
+      <m:math>
+	<m:ci type="vector">θ</m:ci>
+      </m:math>
+      as part of the condition.  We write the likelihood function as
+      <m:math>
+	<m:apply>
+	  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+	  <m:bvar>
+	    <m:ci type="vector">r</m:ci>
+	  </m:bvar>
+	  <m:condition>
+	      <m:ci><m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	  </m:condition>
+	  <m:condition>
+	      <m:ci>θ</m:ci>
+	  </m:condition>
+	  <m:ci type="vector">r</m:ci>
+	</m:apply>
+      </m:math>
+      for the parametric problem.  In statistics, this situation is
+      said to be a <term>composite hypothesis</term> (<cite target-id="cramer"><cite-title>Cramér</cite-title></cite>).  Such situations can be
+      further categorized according to whether the parameters are
+      <emphasis>random</emphasis> or <emphasis>nonrandom</emphasis>.
+      For a parameter to be random, we have an expression for its
+      <foreign>a priori</foreign> density, which could depend on the
+      particular model.  As stated many times, a specification of a
+      density usually expresses some knowledge about the range of
+      values a parameter may assume <emphasis>and</emphasis> the
+      relative probability of those values.  Saying that a parameter
+      has a uniform distribution implies that the values it assumes
+      <emphasis>are</emphasis> equally likely,
+      <emphasis>not</emphasis> that we have no idea what the values
+      might be and express this ignorance by a uniform distribution.
+      If we are ignorant of the underlying probability distribution
+      that describes the values of a parameter, we will characterize
+      them simply as being <emphasis>unknown</emphasis> (not random).
+      Once we have considered the <link document="m11605">random
+      parameter</link> case, <link document="m11238">nonrandom but
+      unknown parameters</link> will be discussed.
+    </para>
+  </content>
+
+  <bib:file>
+    <bib:entry id="gibson">
+      <bib:book>
+   	<bib:author>J.D. Gibson and J.L. Melsa</bib:author>
+    	<bib:title>Introduction to Non-Parametric Detection with Applications</bib:title>
+    	<bib:publisher>Academic Press</bib:publisher>
+    	<bib:year>1975</bib:year>
+    	<bib:address>New York</bib:address>
+      </bib:book>
+    </bib:entry>
+
+    <bib:entry id="cramer">
+      <bib:book>
+   	<bib:author>H. Cramér</bib:author>
+    	<bib:title>Mathematical Methods of Statistics</bib:title>
+    	<bib:publisher>Princeton University Press</bib:publisher>
+    	<bib:year>1946</bib:year>
+    	<bib:address>Princeton, NJ</bib:address>
+      </bib:book>
+    </bib:entry>
+  </bib:file>
+</document>

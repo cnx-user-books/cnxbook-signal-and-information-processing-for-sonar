@@ -1,0 +1,738 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Stationary and Nonstationary Random Processes</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>1943439f-b59f-4b44-a27f-c77e17818889</md:uuid>
+</metadata>
+
+  <content>
+    
+    <section id="int">
+      <title>Introduction</title>
+      <para id="intro">
+	From the definition of a <link document="m10649" strength="2">random process</link>, we know that all random
+	processes are composed of random variables, each at its own
+	unique point in time.  Because of this, random processes have
+	all the properties of random variables, such as mean,
+	correlation, variances, etc..  When dealing with groups of
+	signals or sequences it will be important for us to be able to
+	show whether of not these statistical properties hold true for
+	the entire random process.  To do this, the concept of
+	<term>stationary processes</term> has been developed.  The
+	general definition of a stationary process is:
+
+	<definition id="station">
+	  <term>stationary process</term>
+	  <meaning id="idp7395232">
+	    a random process where all of its statistical properties
+	    do not vary with time	    
+	  </meaning>
+	</definition>
+
+	Processes whose statistical properties do change are referred
+	to as <term>nonstationary</term>. 
+      </para>
+
+      <para id="p2_int">
+	Understanding the basic idea of stationarity will help you to be
+	able to follow the more concrete and mathematical definition
+	to follow.  Also, we will look at various levels of
+	stationarity used to describe the various types of
+	stationarity characteristics a random process can have.
+      </para>
+    </section>
+
+  
+<!-- **************************************************************  -->
+<!-- Should probably have one module for information below and then  -->
+<!-- just briefly touch on the VERY basics of the dist/den functions -->
+<!-- below.                                                          -->
+<!-- **************************************************************  -->
+
+    <section id="dens_func">
+      <title>Distribution and Density Functions</title>
+      <para id="p1_dens">
+	In order to properly define what it means to be stationary
+	from a mathematical standpoint, one needs to be somewhat
+	familiar with the concepts of distribution and density
+	functions.  If you can remember your statistics then feel free
+	to skip this section!
+      </para>
+
+      <para id="p2_dens">
+	Recall that when dealing with a single random variable, the
+	<term>probability distribution function</term> is a simply
+	tool used to identify the probability that our observed random
+	variable will be less than or equal to a given number.  More
+	precisely, let <m:math><m:ci>X</m:ci></m:math> be our random
+	variable, and let <m:math><m:ci>x</m:ci></m:math> be our given
+	value; from this we can define the distribution function as
+
+	<equation id="eq1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>F</m:mi>
+		    <m:mi>x</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:leq/>
+		  <m:ci>X</m:ci>
+		  <m:ci>x</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	This same idea can be applied to instances where we have
+	multiple random variables as well.  There may be situations
+	where we want to look at the probability of event
+	<m:math><m:ci>X</m:ci></m:math> <emphasis>and</emphasis>
+	<m:math><m:ci>Y</m:ci></m:math> both occurring.  For example,
+	below is an example of a second-order <term>joint distribution
+	function</term>.
+
+	<equation id="eq2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>F</m:mi>
+		    <m:mi>x</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>x</m:ci>
+		<m:ci>y</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:leq/>
+		  <m:ci>X</m:ci>
+		  <m:ci>x</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:leq/>
+		  <m:ci>Y</m:ci>
+		  <m:ci>y</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <para id="p3_dens">
+	While the distribution function provides us with a full view
+	of our variable or processes probability, it is not always the
+	most useful for calculations.  Often times we will want to
+	look at its derivative, the <term>probability density
+	function (pdf)</term>.  We define the the pdf as 
+
+	<equation id="eq3">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>f</m:mi>
+		    <m:mi>x</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:diff/>
+		<m:bvar>
+		  <m:ci>x</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>F</m:mi>
+		      <m:mi>x</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>x</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	<equation id="eq4">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	       <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mi>x</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>x</m:ci>
+		</m:apply>
+		<m:ci>dx</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:leq/>
+		  <m:apply>
+		    <m:lt/>
+		    <m:ci>x</m:ci>
+		    <m:ci>X</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>x</m:ci>
+		    <m:ci>dx</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	<link target-id="eq4" strength="3"/> reveals some of the physical
+	significance of the density function.  This equations tells
+	us the probability that our random variable falls within a
+	given interval can be approximated by
+	<m:math display="inline">
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mi>x</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:ci>dx</m:ci>
+	  </m:apply>
+	</m:math>.  From the pdf, we can now use our knowledge of
+	integrals to evaluate probabilities from the above
+	approximation.  Again we can also define a <term>joint density
+	function</term> which will include multiple random variables
+	just as was done for the distribution function.  The density
+	function is used for a variety of calculations, such as finding
+	the expected value or proving a random variable is stationary,
+	to name a few.
+      </para>
+
+      <para id="p4_dens">
+	<note type="note" id="idp7310672">
+	  The above examples explain the distribution and density
+	  functions in terms of a single random variable, <m:math>
+	    <m:ci>X</m:ci></m:math>.  When we are dealing with signals and
+	  random processes, remember that we will have a set of random
+	  variables where a different random variable will occur at each
+	  time instance of the random process,
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn">X</m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>t</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:math>.  In other words, the distribution and density
+	  function will also need to take into account the choice of
+	  time.
+	</note>
+      </para>
+    </section>
+
+
+    <section id="station_sec">
+      <title>Stationarity</title>
+      <para id="p1_stat">
+	Below we will now look at a more in depth and mathematical
+	definition of a stationary process.  As was mentioned
+	previously, various levels of stationarity exist and we will
+	look at the most common types.   
+      </para>
+
+      <section id="sub1">
+	<title>First-Order Stationary Process</title>
+	<para id="p1_sub1">
+	  A random process is classified as <term>first-order
+	  stationary</term> if its first-order probability density
+	  function remains equal regardless of any shift in time to
+	  its time origin.  If we let 
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:msub>
+		<m:mi>t</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:msub></m:ci>
+	  </m:math> represent a given value at time 
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+	      <m:mi>t</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  </m:math>, then we define a first-order stationary as one
+	  that satisfies the following equation:
+	  
+	  <equation id="eq5">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mi>x</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:msub>
+		      <m:mi>t</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mi>x</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mrow>
+		      <m:msub>
+			<m:mi>t</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		      <m:mo>+</m:mo>
+		      <m:mi>τ</m:mi>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  The physical significance of this equation is that our
+	  density function, 
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>f</m:mi>
+		  <m:mi>x</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:msub>
+		  <m:mi>t</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:msub></m:ci>
+	    </m:apply>
+	  </m:math>, is completely independent of
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+	      <m:mi>t</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  </m:math> and thus any time shift, 
+
+	  <m:math><m:ci>τ</m:ci></m:math>.  
+	</para>
+	
+	<para id="p2_sub1">
+	  The most important result of this statement, and the
+	  identifying characteristic of any first-order stationary
+	  process, is the fact that the mean is a constant,
+	  independent of any time shift.  Below we show the results
+	  for a random process, <m:math><m:ci>X</m:ci></m:math>, that
+	  is a discrete-time signal,
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn" class="discrete">x</m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  
+	  <equation id="eq6">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:mean/>
+		  <m:ci>X</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn" class="discrete">
+		    <m:msub>
+		      <m:mi>m</m:mi>
+		      <m:mi>x</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>n</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">x</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci>constant (independent of n)</m:ci>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	</para>
+      </section>
+
+
+      <section id="sub2">
+	<title>Second-Order and Strict-Sense Stationary Process</title>
+	<para id="p1_sub2">
+	  A random process is classified as <term>second-order
+	  stationary</term> if its second-order probability density
+	  function does not vary over any time shift applied to both
+	  values.  In other words, for values
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:msub>
+		<m:mi>t</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:msub></m:ci>
+	  </m:math> and
+	  <m:math display="inline">
+	    <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:msub>
+		<m:mi>t</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub>
+	    </m:msub></m:ci>
+	  </m:math> then we will have the following be equal for an
+	  arbitrary time shift <m:math><m:ci>τ</m:ci></m:math>.  
+
+	  <equation id="eq7">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mi>x</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:msub>
+		      <m:mi>t</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:msub></m:ci>
+		  <m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:msub>
+		      <m:mi>t</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub>
+		  </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>f</m:mi>
+		      <m:mi>x</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mrow>
+		      <m:msub>
+			<m:mi>t</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		      <m:mo>+</m:mo>
+		      <m:mi>τ</m:mi>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		  <m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mrow>
+		      <m:msub>
+			<m:mi>t</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub>
+		      <m:mo>+</m:mo>
+		      <m:mi>τ</m:mi>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  From this equation we see that the absolute time does not
+	  affect our functions, rather it only really depends on the
+	  time difference between the two variables.  Looked at another
+	  way, this equation can be described as
+
+	  <equation id="eq8">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:apply>
+		    <m:leq/>
+		    <m:apply>
+		      <m:ci type="fn">X</m:ci>
+		      <m:ci><m:msub>
+			<m:mi>t</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:leq/>
+		    <m:apply>
+		      <m:ci type="fn">X</m:ci>
+		      <m:ci><m:msub>
+			<m:mi>t</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		    </m:apply>
+		    <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:apply>
+		    <m:leq/>
+		    <m:apply>
+		      <m:ci type="fn">X</m:ci>
+		      <m:apply>
+			<m:plus/>
+			<m:ci><m:msub>
+			  <m:mi>t</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:leq/>
+		    <m:apply>
+		      <m:ci type="fn">X</m:ci>
+		      <m:apply>
+			<m:plus/>
+			<m:ci><m:msub>
+			  <m:mi>t</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub></m:ci>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	</para>
+	
+	<para id="p2_sub2">
+	  These random processes are often referred to as <term>strict
+	  sense stationary (SSS)</term> when <emphasis>all</emphasis>
+	  of the distribution functions of the process are unchanged
+	  regardless of the time shift applied to them.  	  
+	</para>
+
+	<para id="p3_sub3">
+	  For a second-order stationary process, we need to look at
+	  the <link document="m10676" strength="3">autocorrelation
+	  function</link> to see its most important property.  Since
+	  we have already stated that a second-order stationary
+	  process depends only on the time difference, then all of
+	  these types of processes have the following property:
+
+	  <equation id="eq9">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mrow>
+			<m:mi>x</m:mi>
+			<m:mi>x</m:mi>
+		      </m:mrow>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>t</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>t</m:ci>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		  <m:apply>
+		    <m:ci type="fn">X</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">X</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mrow>
+			<m:mi>x</m:mi>
+			<m:mi>x</m:mi>
+		      </m:mrow>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	</para>
+      </section>
+      
+      <section id="sub3">
+	<title>Wide-Sense Stationary Process</title>
+	<para id="p1_sub3">
+	  As you begin to work with random processes, it will become
+	  evident that the strict requirements of a SSS process is
+	  more than is often necessary in order to adequately
+	  approximate our calculations on random processes.  We define
+	  a final type of stationarity, referred to as
+	  <term>wide-sense stationary (WSS)</term>, to have slightly
+	  more relaxed requirements but ones that are still enough to
+	  provide us with adequate results.  In order to be WSS a
+	  random process only needs to meet the following two
+	  requirements.
+
+	  <list id="wss" list-type="enumerated">
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:mean/>
+		    <m:ci>X</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		    <m:apply>
+		      <m:ci type="fn" class="discrete">x</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>constant</m:ci>
+		</m:apply>
+	      </m:math>	      
+	    </item>
+
+	    <item>	      
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		    <m:apply>
+		      <m:ci type="fn">X</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">X</m:ci>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>t</m:ci>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>R</m:mi>
+			<m:mrow>
+			  <m:mi>x</m:mi>
+			  <m:mi>x</m:mi>
+			</m:mrow>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>	      
+	    </item>
+	  </list>	  
+
+	  Note that a second-order (or SSS) stationary process will
+	  always be WSS; however, the reverse will not always hold
+	  true.
+	</para>
+      </section>
+
+    </section>
+
+  </content>
+</document>

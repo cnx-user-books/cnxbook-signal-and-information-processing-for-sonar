@@ -1,0 +1,1019 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Autocorrelation of Random Processes</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>722965a9-cf22-40ea-b0d0-ac7a8912c4db</md:uuid>
+</metadata>
+
+  <content>
+    <para id="intro">
+      Before diving into a more complex statistical analysis of <link document="m10649" strength="3">random signals and
+      processes</link>, let us quickly review the idea of <link document="m10673" strength="3">correlation</link>.  Recall that
+      the correlation of two signals or variables is the expected
+      value of the product of those two variables.  Since our focus
+      will be to discover more about a random process, a collection of
+      random signals, then imagine us dealing with two samples of a
+      random process, where each sample is taken at a different point
+      in time.  Also recall that the key property of these random
+      processes is that they are now functions of time; imagine them
+      as a collection of signals.  The <link document="m10656" strength="3">expected value</link> of the product of these two
+      variables (or samples) will now depend on how quickly they
+      change in regards to <emphasis>time</emphasis>.  For example, if
+      the two variables are taken from almost the same time period,
+      then we should expect them to have a high correlation.  We will
+      now look at a correlation function that relates a pair of random
+      variables from the same process to the time separations between
+      them, where the argument to this correlation function will be
+      the time difference.  For the correlation of signals from two
+      different random process, look at the <link document="m10686" strength="3">crosscorrelation function</link>.
+    </para>
+
+    <section id="autoc">
+      <title>Autocorrelation Function</title>
+      <para id="p1_auot">
+	The first of these correlation functions we will discuss is
+	the <term>autocorrelation</term>, where each of the random
+	variables we will deal with come from the same random process.
+
+	<definition id="def_auto">
+	  <term>Autocorrelation</term>
+	  <meaning id="idm6418912">
+	    the expected value of the product of a random variable or
+	    signal realization with a time-shifted version of itself
+	  </meaning>
+	</definition>
+
+	With a simple calculation and analysis of the autocorrelation
+	function, we can discover a few important characteristics
+	about our random process.  These include:
+	
+	<list id="l1" list-type="enumerated">
+	  <item>
+	    How quickly our random signal or processes changes with
+	    respect to the time function
+	  </item>
+	  <item>
+	    Whether our process has a periodic component and what the
+	    expected frequency might be
+	  </item>
+	</list>
+
+	As was mentioned above, the autocorrelation function is simply
+	the expected value of a product.  Assume we have a pair of
+	random variables from the same process, 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>X</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:ci type="fn">X</m:ci>
+	      <m:apply>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>t</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> and 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>X</m:mi>
+		<m:mn>2</m:mn>
+	      </m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:ci type="fn">X</m:ci>
+	      <m:apply>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>t</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, then the autocorrelation is often written as 
+
+	<equation id="eq_au1">
+	  <m:math>
+	    <m:apply>
+ 	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>t</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:ci>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>t</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>X</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>X</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:ci>
+		</m:bvar>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub>
+		    </m:ci>
+		  </m:bvar>
+		  <m:uplimit>
+		    <m:infinity/>
+		  </m:uplimit>
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:infinity/>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mn>2</m:mn>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	The above equation is valid for stationary and nonstationary
+	random processes.  For <link document="m10684" strength="3">stationary processes</link>, we can generalize
+	this expression a little further.  Given a wide-sense
+	stationary processes, it can be proven that the expected
+	values from our random process will be independent of the
+	origin of our time function.  Therefore, we can say that our
+	autocorrelation function will depend on the time difference
+	and not some absolute time.  For this discussion, we will let
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>τ</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>t</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>t</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, and thus we generalize our autocorrelation
+	expression as
+
+	<equation id="eq_au2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>t</m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>t</m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+	      </m:apply>
+	        <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn">X</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">X</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	for the continuous-time case.  In most DSP course we will be
+	more interested in dealing with real signal sequences, and thus
+	we will want to look at the discrete-time case of the
+	autocorrelation function.  The formula below will prove to be
+	more common and useful than <link target-id="eq_au1" strength="2"/>:
+
+	<equation id="eq_au_dis">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn" class="discrete">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>n</m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>n</m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>n</m:ci>
+		</m:bvar>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">x</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">x</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>n</m:ci>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>	
+
+	And again we can generalize the notation for our
+	autocorrelation function as
+
+	<equation id="eq_au3">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn" class="discrete">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>n</m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>n</m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	        <m:apply>
+		<m:ci type="fn" class="discrete">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>m</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">X</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">X</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>n</m:ci>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+      </para>
+
+      <section id="sub1_auto">
+	<title>Properties of Autocorrelation</title>
+	<para id="p1_sub1">
+	  Below we will look at several properties of the
+	  autocorrelation function that hold for
+	  <emphasis>stationary</emphasis> random processes.
+
+	  <list id="l_auto_props">
+	    
+	      <item>
+	      Autocorrelation is an even function for <m:math><m:ci>τ</m:ci>
+	      </m:math>
+	      
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>xx</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		   <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>xx</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </item>
+
+	    <item>
+	      The mean-square value can be found by evaluating the
+	      autocorrelation where 
+	      <m:math display="inline">
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>τ</m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:math>, which gives us
+
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>xx</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:mean/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>X</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </item>
+	    
+	    <item>
+	      The autocorrelation function will have its largest value
+	      when 
+	      <m:math display="inline">
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>τ</m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:math>.  This value can appear again, for example in
+	      a periodic function at the values of the equivalent
+	      periodic points, but will never be exceeded.
+
+	       <m:math display="block">
+		<m:apply>
+		  <m:geq/>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>R</m:mi>
+			<m:mi>xx</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:abs/>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>R</m:mi>
+			  <m:mi>xx</m:mi>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>	    
+	    </item>
+
+	    <item>
+	      If we take the autocorrelation of a period function,
+	      then  
+	      <m:math display="inline">
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>R</m:mi>
+		      <m:mi>xx</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+	      </m:math> will also be periodic with the same frequency.
+	    </item>
+
+	  </list>
+	</para>
+      </section>
+
+      <section id="sub2_au">
+	<title>Estimating the Autocorrleation with Time-Averaging</title>
+	<para id="p1_sub2">
+	  Sometimes the whole random process is not available to us.
+	  In these cases, we would still like to be able to find out
+	  some of the characteristics of the stationary random
+	  process, even if we just have part of one sample function.
+	  In order to do this we can <emphasis>estimate</emphasis> the
+	  autocorrelation from a given interval,
+	  <m:math><m:cn>0</m:cn> </m:math> to <m:math><m:ci>T</m:ci>
+	  </m:math> seconds, of the sample function.
+
+	  <equation id="eq_estau">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>		
+		<m:apply>		 
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>Ř</m:mi>
+		      <m:mi>xx</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>T</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:int/>
+		    <m:bvar>
+		      <m:ci>t</m:ci>
+		    </m:bvar>
+		    <m:uplimit>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>T</m:ci>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:uplimit>
+		    <m:lowlimit>
+		      <m:cn>0</m:cn>
+		    </m:lowlimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn">x</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">x</m:ci>
+			<m:apply>
+			  <m:plus/>
+			  <m:ci>t</m:ci>
+			  <m:ci>τ</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>		
+	      </m:apply>
+	    </m:math>
+	  </equation>		
+
+	  However, a lot of times we will not have sufficient
+	  information to build a complete continuous-time function of
+	  one of our random signals for the above analysis.  If this
+	  is the case, we can treat the information we do know about
+	  the function as a discrete signal and use the discrete-time
+	  formula for estimating the autocorrelation.
+
+	   <equation id="eq_estau_dis">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>		
+		<m:apply>		 
+		  <m:ci type="fn" class="discrete">
+		    <m:msub>
+		      <m:mi>Ř</m:mi>
+		      <m:mi>xx</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>N</m:ci>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:sum/>
+		    <m:bvar>
+		      <m:ci>n</m:ci>
+		    </m:bvar>
+		    <m:uplimit>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>N</m:ci>
+			  <m:ci>m</m:ci>
+			</m:apply>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:uplimit>
+		    <m:lowlimit>
+		      <m:cn>0</m:cn>
+		    </m:lowlimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn" class="discrete">x</m:ci>
+			<m:ci>n</m:ci>
+		      </m:apply>
+		       <m:apply>
+			<m:ci type="fn" class="discrete">x</m:ci>
+			<m:apply>
+			  <m:plus/>
+			  <m:ci>n</m:ci>
+			  <m:ci>m</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	</para>
+      </section>
+
+    </section>
+
+    <section id="sec3_eg">
+      <title>Examples</title>
+      <para id="p1_sec3">
+	Below we will look at a variety of examples that use the
+	autocorrelation function.  We will begin with a simple example
+	dealing with Gaussian White Noise (GWN) and a few basic
+	statistical properties that will prove very useful in these
+	and future calculations.
+      </para>
+
+      <example id="eg1">
+	<para id="p1_eg1">
+	  We will let 
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn" class="discrete">x</m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:math> represent our GWN.  For this problem, it is
+	  important to remember the following fact about the mean of a
+	  GWN function:
+
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:ci type="fn" class="discrete">x</m:ci>
+		  <m:ci>n</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>
+	</para>
+
+	<figure id="fig1">
+	  <media id="idp3404496" alt=""><image src="../../media/GWN.png" mime-type="image/png"/></media>
+	  <caption>
+	    Gaussian density function.  By examination, can easily see
+	    that the above statement is true - the mean equals zero.
+	  </caption>
+	</figure>
+	
+	<para id="p2_eg1">
+	  Along with being <emphasis>zero-mean</emphasis>, recall that
+	  GWN is always <emphasis>independent</emphasis>.  With these
+	  two facts, we are now ready to do the short calculations
+	  required to find the autocorrelation.
+	  
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>		 
+		<m:ci type="fn" class="discrete">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>n</m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>n</m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">x</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">x</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>n</m:ci>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>	      
+	    </m:apply>
+	  </m:math>
+
+	  Since the function,  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn" class="discrete">x</m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:math>, is independent, then we can take the product of
+	  the individual expected values of both functions.
+
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>		 
+		<m:ci type="fn" class="discrete">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>n</m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>n</m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">x</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">x</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>n</m:ci>
+		      <m:ci>m</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+
+	  Now, looking at the above equation we see that we can break
+	  it up further into two conditions: one when
+	  <m:math><m:ci>m</m:ci> </m:math> and
+	  <m:math><m:ci>n</m:ci></m:math> are equal and one when they
+	  are not equal.  When they are equal we can combine the
+	  expected values.  We are left with the following piecewise
+	  function to solve:
+
+	    <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>		 
+		<m:ci type="fn" class="discrete">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>n</m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>n</m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:piecewise>
+		  <m:piece>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+			<m:apply>
+			  <m:ci type="fn" class="discrete">x</m:ci>
+			  <m:ci>n</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+			<m:apply>
+			  <m:ci type="fn" class="discrete">x</m:ci>
+			  <m:apply>
+			    <m:plus/>
+			    <m:ci>n</m:ci>
+			    <m:ci>m</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:neq/>
+		      <m:ci>m</m:ci>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		  </m:piece>
+		  <m:piece>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		      <m:apply>
+
+<!-- FIX: SHOULD BE DISCRETE BELOW -->
+
+			<m:power/>
+			<m:apply>
+			  <m:ci type="fn" class="discrete">x</m:ci>
+			  <m:ci>n</m:ci>
+			</m:apply>
+			<m:cn>2</m:cn>
+
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:eq/>
+		      <m:ci>m</m:ci>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		  </m:piece>
+		</m:piecewise>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+		  
+	  We can now solve the two parts of the above equation.  The
+	  first equation is easy to solve as we have already stated
+	  that the expected value of 
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn" class="discrete">x</m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+	  </m:math> will be zero.  For the second part, you should
+	  recall from statistics that the expected value of the square
+	  of a function is equal to the variance.  Thus we get the
+	  following results for the autocorrelation:
+	  
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>		 
+		<m:ci type="fn" class="discrete">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>n</m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>n</m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:piecewise>
+		  <m:piece>
+		    <m:cn>0</m:cn>
+		    <m:apply>
+		      <m:neq/>
+		      <m:ci>m</m:ci>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		  </m:piece>
+		  <m:piece>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>σ</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:eq/>
+		      <m:ci>m</m:ci>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		  </m:piece>
+		</m:piecewise>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+
+	  Or in a more concise way, we can represent the results as
+
+	   <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>		 
+		<m:ci type="fn" class="discrete">
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mi>xx</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>n</m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>n</m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>σ</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn" class="discrete">δ</m:ci>
+		  <m:ci>m</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>		  
+
+	</para>
+      </example>
+      
+    </section>
+    
+  </content>
+</document>

@@ -1,0 +1,3893 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Review of Linear Algebra</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>f409cb26-f1ba-4724-aa36-6c82f199f8b5</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">Vector spaces are the principal object of study
+    in linear algebra. A vector space is always defined with respect
+    to a field of scalars.
+    </para>   
+
+    <section id="field">
+      <title>Fields</title>
+      <para id="f1">A field is a set <m:math><m:ci type="set">F</m:ci></m:math> equipped with two operations, addition and
+      mulitplication, and containing two special members 0 and 1
+	(<m:math>
+	  <m:apply>
+	    <m:neq/>
+	    <m:cn>0</m:cn>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>), such that for all
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:set>
+	      <m:ci>a</m:ci>
+	      <m:ci>b</m:ci>
+	      <m:ci>c</m:ci>
+	    </m:set>
+	    <m:ci type="set">F</m:ci>
+	  </m:apply>
+	</m:math>
+	<list id="list1" list-type="enumerated">
+	  <item>
+	    <list id="l1a" list-type="enumerated">
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:in/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>a</m:ci>
+		      <m:ci>b</m:ci>
+		    </m:apply>
+		    <m:ci type="set">F</m:ci>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>a</m:ci>
+		      <m:ci>b</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>b</m:ci>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:mrow>
+		      <m:mo>(</m:mo>
+		      <m:mi>a</m:mi>
+		      <m:mo>+</m:mo>
+		      <m:mi>b</m:mi>
+		      <m:mo>)</m:mo>
+		      <m:mo>+</m:mo>
+		      <m:mi>c</m:mi>
+		    </m:mrow>
+		    <m:mrow>
+		      <m:mi>a</m:mi>
+		      <m:mo>+</m:mo>
+		      <m:mo>(</m:mo>
+		      <m:mi>b</m:mi>
+		      <m:mo>+</m:mo>
+		      <m:mi>c</m:mi>
+		      <m:mo>)</m:mo>
+		    </m:mrow>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>a</m:ci>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>there exists
+		<m:math>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:math> such that
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>a</m:ci>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>a</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		</m:math>
+	      </item>
+	    </list>
+	  </item>
+
+	  <item>
+	    <list id="list1b" list-type="enumerated">
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:in/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>a</m:ci>
+		      <m:ci>b</m:ci>
+		    </m:apply>
+		    <m:ci type="set">F</m:ci>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>a</m:ci>
+		      <m:ci>b</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>b</m:ci>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>a</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:ci>c</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>a</m:ci>
+		      <m:apply>
+			<m:times/>
+			<m:ci>b</m:ci>
+			<m:ci>c</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:mrow>
+		      <m:mi>a</m:mi>
+		      <m:mo>·</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>there exists 
+		<m:math>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:ci>a</m:ci>
+		  </m:apply>
+		</m:math> such that
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>a</m:ci>
+		      <m:apply>
+			<m:inverse/>
+			<m:ci>a</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:math>
+	      </item>
+	    </list>
+	  </item>
+	  <item>
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>a</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>b</m:ci>
+		    <m:ci>c</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>b</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>c</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	</list>
+	More concisely
+	<list id="list2" list-type="enumerated">
+	  <item><m:math><m:ci type="set">F</m:ci></m:math> is an
+	    abelian group under addition
+	  </item>
+	  <item><m:math><m:ci type="set">F</m:ci></m:math> is an
+	    abelian group under multiplication
+	  </item>
+	  <item>multiplication distributes over addition</item>
+	</list>
+      </para>
+      <section id="subsec">
+	<title>Examples</title>
+	<para id="subsec1">ℚ, ℝ, ℂ</para>
+      </section>
+    </section>
+
+    <section id="vs">
+      <title>Vector Spaces</title>
+      <para id="vs1">Let <m:math><m:ci>F</m:ci></m:math> be
+      a field, and <m:math><m:ci type="set">V</m:ci></m:math> a
+      set. We say <m:math><m:ci type="set">V</m:ci></m:math>
+      <emphasis>is a vector space over</emphasis>
+      <m:math><m:ci>F</m:ci>
+	</m:math> if there exist two operations, defined for all 
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci>a</m:ci>
+	    <m:ci>F</m:ci>
+	  </m:apply>
+	</m:math>, 
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">u</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math> and
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">v</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>:
+	<list id="list3">
+	  <item>
+	    vector addition: (<m:math><m:ci type="vector">u</m:ci></m:math>, <m:math><m:ci type="vector">v</m:ci></m:math>) →
+	    <m:math>
+	      <m:apply>
+		<m:in/>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci type="vector">u</m:ci>
+		  <m:ci type="vector">v</m:ci>
+		</m:apply>
+		<m:ci type="set">V</m:ci>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	  <item>
+	    scalar multiplication:
+	    (<m:math><m:ci>a</m:ci></m:math>,<m:math><m:ci type="vector">v</m:ci></m:math>) →
+	    <m:math>
+	      <m:apply>
+		<m:in/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>a</m:ci>
+		  <m:ci type="vector">v</m:ci>
+		</m:apply>
+		<m:ci type="set">V</m:ci>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	</list>
+	and if there exists an element denoted
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">0</m:ci>
+	    <m:ci>V</m:ci>
+	  </m:apply>
+	</m:math>, such that the following hold for all
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci>a</m:ci>
+	    <m:ci>F</m:ci>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci>b</m:ci>
+	    <m:ci>F</m:ci>
+	  </m:apply>
+	</m:math>, and
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">u</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">v</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>, and
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">w</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>
+	<list id="list4" list-type="enumerated">
+	  <item>
+	    <list id="list4a" list-type="enumerated">
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:mrow>
+		      <m:ci type="vector">u</m:ci>
+		      <m:mo>+</m:mo>
+		      <m:mo>(</m:mo>
+		      <m:ci type="vector">v</m:ci>
+		      <m:mo>+</m:mo>
+		      <m:ci type="vector">w</m:ci>
+		      <m:mo>)</m:mo>
+		    </m:mrow>
+		    <m:mrow>
+		      <m:mo>(</m:mo>
+		      <m:ci type="vector">u</m:ci>
+		      <m:mo>+</m:mo>
+		      <m:ci type="vector">v</m:ci>
+		      <m:mo>)</m:mo>
+		      <m:mo>+</m:mo>
+		      <m:ci type="vector">w</m:ci>
+		    </m:mrow>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci type="vector">u</m:ci>
+		      <m:ci type="vector">v</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci type="vector">v</m:ci>
+		      <m:ci type="vector">u</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci type="vector">u</m:ci>
+		      <m:ci type="vector">0</m:ci>
+		    </m:apply>
+		    <m:ci type="vector">u</m:ci>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>there exists
+		<m:math>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci type="vector">u</m:ci>
+		  </m:apply>
+		</m:math> such that
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci type="vector">u</m:ci>
+		      <m:apply>
+			<m:minus/>
+			<m:ci type="vector">u</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci type="vector">0</m:ci>
+		  </m:apply>
+		</m:math>
+	      </item>
+	    </list>
+	  </item>
+	  
+	  <item>
+	    <list id="list4b" list-type="enumerated">
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>a</m:ci>
+		      <m:apply>
+			<m:plus/>
+			<m:ci type="vector">u</m:ci>
+			<m:ci type="vector">v</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>a</m:ci>
+			<m:ci type="vector">u</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:ci>a</m:ci>
+			<m:ci type="vector">v</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:plus/>
+			<m:ci>a</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:ci type="vector">u</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>a</m:ci>
+			<m:ci type="vector">u</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:ci>b</m:ci>
+			<m:ci type="vector">u</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>a</m:ci>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		      <m:ci type="vector">u</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>a</m:ci>
+		      <m:apply>
+			<m:times/>
+			<m:ci>b</m:ci>
+			<m:ci type="vector">u</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:mrow>
+		      <m:mn>1</m:mn>
+		      <m:mo>·</m:mo>
+		      <m:ci type="vector">u</m:ci>
+		    </m:mrow>
+		    <m:ci type="vector">u</m:ci>
+		  </m:apply>
+		</m:math>
+	      </item>
+	    </list>
+	  </item>
+	</list>
+	More concisely,
+	<list id="list5" list-type="enumerated">
+	  <item>
+	    <m:math><m:ci type="set">V</m:ci></m:math> is an abelian
+	    group under plus
+	  </item>
+	  <item>Natural properties of scalar multiplication
+	  </item>
+	</list>
+      </para>
+      <section id="subsec2">
+	<title>Examples</title>
+	<para id="psubsec2">
+	  <list id="list6">
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:power/>
+		  <m:reals/>
+		  <m:ci>N</m:ci>
+		</m:apply>
+	      </m:math> is a vector space over ℝ
+	    </item>
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:power/>
+		  <m:complexes/>
+		  <m:ci>N</m:ci>
+		</m:apply>
+	      </m:math> is a vector space over ℂ
+	    </item>
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:power/>
+		  <m:complexes/>
+		  <m:ci>N</m:ci>
+		</m:apply>
+	      </m:math> is a vector space over ℝ
+	    </item>
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:power/>
+		  <m:reals/>
+		  <m:ci>N</m:ci>
+		</m:apply>
+	      </m:math> is <emphasis>not</emphasis> a vector space
+	      over ℂ
+	    </item>
+	  </list>
+	  The elements of <m:math><m:ci type="set">V</m:ci></m:math>
+	  are called <term>vectors</term>.
+	</para>
+      </section>
+    </section>
+
+    <section id="ES">
+      <title>Euclidean Space</title>
+      <para id="es1">Throughout this course we will think of a signal
+      as a vector
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="vector">x</m:ci>
+	    <m:vector>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>⋮</m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>N</m:mi>
+		</m:msub></m:ci>
+	    </m:vector>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>…</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>N</m:mi>
+		    </m:msub></m:ci>
+		</m:matrixrow>
+	      </m:matrix>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	The samples 
+	<m:math>
+	  <m:set>
+	    <m:ci><m:msub>
+		<m:mi>x</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	  </m:set>
+	</m:math> could be samples from a finite duration, continuous
+	time signal, for example.
+      </para>
+
+      <para id="es2">A signal will belong to one of two vector spaces:
+      </para>	
+      <section id="es2a">
+	<title>Real Euclidean space</title>
+	<para id="es2ap">
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci type="vector">x</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:reals/>
+		<m:ci>N</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> (over ℝ)
+	</para>
+      </section>
+      <section id="es2b">
+	<title>Complex Euclidean space</title>
+	<para id="es2bp">
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci type="vector">x</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:complexes/>
+		<m:ci>N</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> (over ℂ)
+	</para>
+      </section>
+    </section>
+
+    <section id="subspaces">
+      <title>Subspaces</title>
+      <para id="ss1">Let <m:math><m:ci type="set">V</m:ci></m:math> be a vector
+      space over <m:math><m:ci>F</m:ci></m:math>.
+      </para>
+      <para id="ss2">A subset
+	<m:math>
+	  <m:apply>
+	    <m:subset/>
+	    <m:ci type="set">S</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math> is called a <term>subspace</term> of <m:math><m:ci type="set">V</m:ci></m:math> if <m:math><m:ci type="set">S</m:ci></m:math> is a vector space over
+	<m:math><m:ci>F</m:ci></m:math> in its own right.
+      </para>
+      <example id="ex1">
+	<para id="ex1p1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="set">V</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:reals/>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>, 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>F</m:ci>
+	      <m:reals/>
+	    </m:apply>
+	  </m:math>, 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>S</m:ci>
+	      <m:mtext>any line though the origin</m:mtext>
+	    </m:apply>
+	  </m:math>.
+	</para>
+	
+	<figure id="fig1">
+	  <media id="idm418000" alt=""><image src="../../media/subspace.png" mime-type="image/png"/></media>
+	  <caption><m:math><m:ci>S</m:ci></m:math> is any line 
+	    through the origin.
+	  </caption>
+	</figure>
+
+	<para id="ss3">Are there other subspaces?</para>
+      </example>
+      
+      <rule type="theorem" id="thm1">
+	<statement id="idm255024">
+	  <para id="thm1p1">
+	    <m:math>
+	      <m:apply>
+		<m:subset/>
+		<m:ci type="set">S</m:ci>
+		<m:ci type="set">V</m:ci>
+	      </m:apply>
+	    </m:math> is a subspace if and only if for all
+	    <m:math>
+	      <m:apply>
+		<m:in/>
+		<m:ci>a</m:ci>
+		<m:ci>F</m:ci>
+	      </m:apply>
+	    </m:math> and
+	    <m:math>
+	      <m:apply>
+		<m:in/>
+		<m:ci>b</m:ci>
+		<m:ci>F</m:ci>
+	      </m:apply>
+	    </m:math> and for all
+	    <m:math>
+	      <m:apply>
+		<m:in/>
+		<m:ci type="vector">s</m:ci>
+		<m:ci type="set">S</m:ci>
+	      </m:apply>
+	    </m:math> and
+	    <m:math>
+	      <m:apply>
+		<m:in/>
+		<m:ci type="vector">t</m:ci>
+		<m:ci type="set">S</m:ci>
+	      </m:apply>
+	    </m:math>,
+	    <m:math>
+	      <m:apply>
+		<m:in/>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci type="vector">s</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>b</m:ci>
+		    <m:ci type="vector">t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci type="set">S</m:ci>
+	      </m:apply>
+	    </m:math>
+	  </para> 
+	</statement>
+      </rule>
+    </section>
+
+    <section id="li">
+      <title>Linear Independence</title>
+      <para id="li1">Let
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:mrow>
+	      <m:msub>
+		<m:ci type="vector">u</m:ci>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	      <m:mo>,</m:mo>
+	      <m:mi>…</m:mi>
+	      <m:mo>,</m:mo>
+	      <m:msub>
+		<m:ci type="vector">u</m:ci>
+		<m:mi>k</m:mi>
+	      </m:msub>
+	    </m:mrow>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>.
+      </para>
+
+      <para id="li2">We say that these vectors are <term>linearly
+      dependent</term> if there exist scalars
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:mrow>
+	      <m:msub>
+		<m:mi>a</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	      <m:mo>,</m:mo>
+	      <m:mi>…</m:mi>
+	      <m:mo>,</m:mo>
+	      <m:msub>
+		<m:mi>a</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub>
+	    </m:mrow>
+	    <m:ci>F</m:ci>
+	  </m:apply>
+	</m:math> such that
+	<equation id="eqn1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>i</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>k</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>a</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>u</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci type="vector">0</m:ci>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	and at least one
+	<m:math>
+	  <m:apply>
+	    <m:neq/>
+	    <m:ci><m:msub>
+		<m:mi>a</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>.
+      </para>
+      
+      <para id="li3">If <link target-id="eqn1"/> only holds for the case
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>a</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub></m:ci>
+	    <m:ci>…</m:ci>
+	    <m:ci><m:msub>
+		<m:mi>a</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub></m:ci>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>, we say that the vectors are <term>linearly
+	independent</term>.
+      </para>
+
+      <example id="ex2">
+	<para id="ex2p2">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>1</m:cn>
+		    <m:vector>
+		      <m:cn>1</m:cn>
+		      <m:cn>-1</m:cn>
+		      <m:cn>2</m:cn>
+		    </m:vector>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:vector>
+		      <m:cn>-2</m:cn>
+		      <m:cn>3</m:cn>
+		      <m:cn>0</m:cn>
+		    </m:vector>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>1</m:cn>
+		  <m:vector>
+		    <m:cn>-5</m:cn>
+		    <m:cn>7</m:cn>
+		    <m:cn>-2</m:cn>
+		  </m:vector>
+		</m:apply>
+	      </m:apply>
+	      <m:ci type="vector">0</m:ci>
+	    </m:apply>
+	  </m:math>
+	  so these vectors are linearly dependent in
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:reals/>
+	      <m:cn>3</m:cn>
+	    </m:apply>
+	  </m:math>.
+	</para>
+      </example>
+    </section>
+
+    <section id="spans">
+      <title>Spanning Sets</title>
+      <para id="span1">Consider the subset
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="set">S</m:ci>
+	    <m:set>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>…</m:ci>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub></m:ci>
+	    </m:set>
+	  </m:apply>
+	</m:math>. Define the <term>span</term> of <m:math><m:ci type="set">S</m:ci></m:math>
+	<m:math display="block">
+	  <m:apply>
+	    <m:equivalent/>
+	    <m:mrow>
+	      <m:mo>&lt;</m:mo>
+	      <m:mi>S</m:mi>
+	      <m:mo>&gt;</m:mo>
+	    </m:mrow>
+	    <m:apply>
+	      <m:ci type="fn">span</m:ci>
+	      <m:ci type="set">S</m:ci>
+	    </m:apply>
+	    <m:set>
+	      <m:bvar>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>i</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>k</m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>a</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci type="vector"><m:msub>
+			<m:mi>v</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>	
+	      </m:bvar>      
+	      <m:condition>
+		<m:apply>
+		  <m:in/>
+		  <m:ci><m:msub>
+		      <m:mi>a</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci>F</m:ci>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math>
+      </para>
+
+      <para id="span2"><emphasis>Fact:</emphasis>
+	<m:math>
+	  <m:mrow>
+	    <m:mo>&lt;</m:mo>
+	    <m:mi>S</m:mi>
+	    <m:mo>&gt;</m:mo>
+	  </m:mrow>
+	</m:math> is a subspace of <m:math><m:ci type="set">V</m:ci></m:math>.
+      </para>
+      
+      <example id="ex3">
+	<para id="ex3p1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="set">V</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:reals/>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>, 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>F</m:ci>
+	      <m:reals/>
+	    </m:apply>
+	  </m:math>,
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="set">S</m:ci>
+	      <m:set>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>v</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>v</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:set>
+	    </m:apply>
+	  </m:math>,
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:vector>
+		<m:cn>1</m:cn>
+		<m:cn>0</m:cn>
+		<m:cn>0</m:cn>
+	      </m:vector>
+	    </m:apply>
+	  </m:math>,
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:vector>
+		<m:cn>0</m:cn>
+		<m:cn>1</m:cn>
+		<m:cn>0</m:cn>
+	      </m:vector>
+	    </m:apply>
+	  </m:math>
+	  ⇒
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:mrow>
+		<m:mo>&lt;</m:mo>
+		<m:mi>S</m:mi>
+		<m:mo>&gt;</m:mo>
+	      </m:mrow>
+	      <m:mtext>xy-plane</m:mtext>
+	    </m:apply>
+	  </m:math>.
+	</para>
+	
+	<figure id="fig2">
+	  <media id="idp10221840" alt=""><image src="../../media/span.png" mime-type="image/png"/></media>
+	  <caption>
+	    <m:math>
+	      <m:mrow>
+		<m:mo>&lt;</m:mo>
+		<m:mi>S</m:mi>
+		<m:mo>&gt;</m:mo>
+	      </m:mrow>
+	    </m:math> is the xy-plane.
+	  </caption>
+	</figure>
+      </example>
+
+      <section id="ss4">
+	<title>Aside</title>
+	<para id="ss2p1">If <m:math><m:ci type="set">S</m:ci></m:math> is infinite, the notions of
+	  linear independence and span are easily generalized:
+	  </para>
+	<para id="ss2p2">We say <m:math><m:ci type="set">S</m:ci></m:math> is linearly independent if, for
+	every finite collection 
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:mrow>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>u</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:mo>,</m:mo>
+		<m:mi>…</m:mi>
+		<m:mo>,</m:mo>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>u</m:mi>
+		    <m:mi>k</m:mi>
+		  </m:msub></m:ci>
+	      </m:mrow>
+	      <m:ci type="set">S</m:ci>
+	    </m:apply>
+	  </m:math>, (<m:math><m:ci>k</m:ci></m:math> arbitrary) we
+	  have
+	  <m:math display="block">
+	    <m:apply>
+	      <m:implies/>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>i</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>k</m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci><m:msub>
+			<m:mi>a</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci type="vector"><m:msub>
+			<m:mi>u</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:ci type="vector">0</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:forall/>
+		<m:bvar>
+		  <m:ci>i</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci><m:msub>
+		      <m:mi>a</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  The span of <m:math><m:ci type="set">S</m:ci></m:math> is
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:mrow>
+		<m:mo>&lt;</m:mo>
+		<m:mi>S</m:mi>
+		<m:mo>&gt;</m:mo>
+	      </m:mrow>
+	      <m:set>
+		<m:bvar>
+		  <m:apply>
+		    <m:sum/>
+		    <m:bvar>
+		      <m:ci>i</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:cn>1</m:cn>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:ci>k</m:ci>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci><m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		      <m:ci type="vector"><m:msub>
+			  <m:mi>u</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:bvar>
+		<m:condition>
+		  <m:apply>
+		    <m:and/>
+		    <m:apply>
+		      <m:in/>
+		      <m:ci><m:msub>
+			  <m:mi>a</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		      <m:ci>F</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:in/>
+		      <m:ci type="vector"><m:msub>
+			  <m:mi>u</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		      <m:ci type="set">S</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:lt/>
+		      <m:ci>k</m:ci>
+		      <m:infinity/>
+		    </m:apply>
+		  </m:apply>
+		</m:condition>
+	      </m:set>
+	    </m:apply>
+	  </m:math>
+	  <note id="idm31088">In both definitions, we only consider
+	  <term>finite</term> sums.</note>
+	</para>
+      </section>
+    </section>
+
+    <section id="bases">
+      <title>Bases</title>
+
+      <para id="base1">A set
+	<m:math>
+	  <m:apply>
+	    <m:subset/>
+	    <m:ci type="set">B</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math> is called a <term>basis</term> for <m:math><m:ci type="set">V</m:ci></m:math> over
+	<m:math><m:ci>F</m:ci></m:math> if and only if
+	<list list-type="enumerated" id="baselist">
+	  <item><m:math>
+	      <m:ci type="set">B</m:ci>
+	    </m:math> is linearly independent
+	  </item>
+
+	  <item><m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:mrow>
+		  <m:mo>&lt;</m:mo>
+		  <m:mi>B</m:mi>
+		  <m:mo>&gt;</m:mo>
+		</m:mrow>
+		<m:ci type="set">V</m:ci>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	</list>
+	Bases are of fundamental importance in signal processing. They
+	allow us to decompose a signal into building blocks (basis
+	vectors) that are often more easily understood.
+      </para>
+      <example id="exbase">
+	<para id="exbase1"><m:math><m:ci type="set">V</m:ci></m:math> = (real or complex) Euclidean
+	  space, 
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:reals/>
+	      <m:ci>N</m:ci>
+	    </m:apply>
+	  </m:math> or
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:complexes/>
+	      <m:ci>N</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  
+	  <m:math display="block">
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:eq/>
+		<m:ci type="set">B</m:ci>
+		<m:set>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>e</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>…</m:ci>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>e</m:mi>
+		      <m:mi>N</m:mi>
+		    </m:msub></m:ci>
+		</m:set>
+	      </m:apply>
+	      <m:mtext>standard basis</m:mtext>
+	    </m:apply>
+	  </m:math>
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector"><m:msub>
+		  <m:ci>e</m:ci>
+		  <m:ci>i</m:ci>
+		</m:msub></m:ci>
+	      <m:vector>
+		<m:cn>0</m:cn>
+		<m:ci>⋮</m:ci>
+		<m:cn>1</m:cn>
+		<m:ci>⋮</m:ci>
+		<m:cn>0</m:cn>
+	      </m:vector>
+	    </m:apply>
+	  </m:math> where the 1 is in the
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>i</m:ci>
+	      <m:ci>th</m:ci>
+	    </m:apply>
+	  </m:math> position.
+	</para>
+      </example>
+      <example id="baseex">
+	<para id="baseex2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="set">V</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:complexes/>
+		<m:ci>N</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> over ℂ.
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="set">B</m:ci>
+	      <m:set>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>u</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci>…</m:ci>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>u</m:mi>
+		    <m:mi>N</m:mi>
+		  </m:msub>
+		</m:ci>
+	      </m:set>
+	    </m:apply>
+	  </m:math> which is the DFT basis.
+
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>u</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub></m:ci>
+	      <m:vector>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>k</m:ci>
+			<m:ci>N</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:ci>⋮</m:ci>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>k</m:ci>
+			<m:ci>N</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>N</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:vector>
+	    </m:apply>
+	  </m:math>
+	  where 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:imaginaryi/>
+	      <m:apply>
+		<m:root/>
+		<m:cn>-1</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	 </para>
+      </example>
+      <section id="keyfact">
+	<title>Key Fact</title>
+	<para id="key1">If <m:math><m:ci type="set">B</m:ci></m:math>
+	is a basis for <m:math><m:ci type="set">V</m:ci></m:math>,
+	then every
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci type="vector">v</m:ci>
+	      <m:ci type="set">V</m:ci>
+	    </m:apply>
+	  </m:math> can be written uniquely (up to order of terms) in
+	  the form
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector">v</m:ci>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>i</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>N</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>a</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>v</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  where 
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci><m:msub>
+		  <m:mi>a</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	      <m:ci>F</m:ci>
+	    </m:apply>
+	  </m:math> and
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	      <m:ci type="set">B</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</para>
+      </section>
+
+      <section id="other">
+	<title>Other Facts</title>
+	<para id="other1">
+	  <list id="otherlist">
+	    <item>If <m:math><m:ci type="set">S</m:ci></m:math> is a
+	    linearly independent set, then <m:math><m:ci type="set">S</m:ci></m:math> can be extended to a basis.
+	    </item>
+
+	    <item>If
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:mrow>
+		    <m:mo>&lt;</m:mo>
+		    <m:ci type="set">S</m:ci>
+		    <m:mo>&gt;</m:mo>
+		  </m:mrow>
+		  <m:ci type="set">V</m:ci>
+		</m:apply>
+	      </m:math>, then <m:math><m:ci type="set">S</m:ci></m:math> contains a basis.
+	    </item>
+	  </list>
+	</para>
+      </section>
+    </section>
+
+    <section id="dim">
+      <title>Dimension</title>
+      <para id="dim1">Let <m:math><m:ci type="set">V</m:ci></m:math>
+      be a vector space with basis <m:math><m:ci type="set">B</m:ci></m:math>. The dimension of <m:math><m:ci type="set">V</m:ci></m:math>, denoted 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">dim</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>, is the cardinality of <m:math><m:ci type="set">B</m:ci></m:math>.
+      </para>
+      <rule type="theorem" id="dimthm1">
+	<statement id="idp9267888">
+	  <para id="dimthm1p1">Every vector space has a basis.
+	  </para>
+	</statement>
+      </rule>
+      
+      <rule type="theorem" id="dimthm2">
+	<statement id="idp9636592">
+	  <para id="dimthm2p1">Every basis for a vector space has
+	    the same cardinality.
+	  </para>
+	</statement>
+      </rule>
+      <para id="dim2">
+	<m:math>
+	  <m:apply>
+	    <m:implies/>
+	    <m:ci/>
+	    <m:apply>
+	      <m:ci type="fn">dim</m:ci>
+	      <m:ci type="set">V</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> is <term>well-defined</term>.
+      </para>
+
+      <para id="dim3">If
+	<m:math>
+	  <m:apply>
+	    <m:lt/>
+	    <m:apply>
+	      <m:ci type="fn">dim</m:ci>
+	      <m:ci type="set">V</m:ci>
+	    </m:apply>
+	    <m:infinity/>
+	  </m:apply>
+	</m:math>, we say <m:math><m:ci type="set">V</m:ci></m:math>
+	is <term>finite dimensional</term>.
+      </para>
+      <section id="dimexes">
+	<title>Examples</title>
+	<table frame="all" id="table1" summary="">
+	  <tgroup cols="3" align="center" colsep="1" rowsep="1">
+	  <thead>
+	    <row>
+	      <entry>vector space</entry>
+	      <entry>field of scalars</entry>
+	      <entry>dimension</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry align="center">
+		<m:math>
+		  <m:apply>
+		    <m:power/>
+		    <m:reals/>
+		    <m:ci>N</m:ci>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	      <entry align="center">
+		<m:math><m:reals/></m:math>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry align="center">
+		<m:math>
+		  <m:apply>
+		    <m:power/>
+		    <m:complexes/>
+		    <m:ci>N</m:ci>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	      <entry align="center">
+		<m:math><m:complexes/></m:math>
+	      </entry>
+	    </row>
+	    <row>
+	      <entry align="center">
+		<m:math>
+		  <m:apply>
+		    <m:power/>
+		    <m:complexes/>
+		    <m:ci>N</m:ci>
+		  </m:apply>
+		</m:math>
+	      </entry>
+	      <entry align="center">
+		<m:math><m:reals/></m:math>
+	      </entry>
+	    </row>
+	  </tbody>
+	  </tgroup>
+	</table>
+	<para id="dimexes1">Every subspace is a vector space, and
+	therefore has its own dimension.
+	</para>
+
+	<example id="dimexs1">
+	  <para id="dimexsp1">Suppose
+	    <m:math>
+	      <m:apply>
+		<m:subset/>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci type="set">S</m:ci>
+		  <m:set>
+		    <m:ci type="vector"><m:msub>
+			<m:mi>u</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>…</m:ci>
+		    <m:ci type="vector"><m:msub>
+			<m:mi>u</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub></m:ci>
+		  </m:set>
+		</m:apply>
+		<m:ci type="set">V</m:ci>
+	      </m:apply>
+	    </m:math> is a linearly independent set. Then
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">dim</m:ci>
+		  <m:mrow>
+		    <m:mo>&lt;</m:mo>
+		    <m:ci type="set">S</m:ci>
+		    <m:mo>&gt;</m:mo>
+		  </m:mrow>
+		</m:apply>
+		<m:ci/>
+	      </m:apply>
+	    </m:math>
+	  </para>
+	</example>
+      </section>
+
+      <list id="factlist">
+	<title>Facts</title>
+	<item>If <m:math><m:ci type="set">S</m:ci></m:math> 
+	  is a subspace of <m:math><m:ci type="set">V</m:ci></m:math>, 
+	  then
+	  <m:math>
+	    <m:apply>
+	      <m:leq/>
+	      <m:apply>
+		<m:ci type="fn">dim</m:ci>
+		<m:ci type="set">S</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">dim</m:ci>
+		<m:ci type="set">V</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	</item>
+
+	<item>If 
+	  <m:math>
+	    <m:apply>
+	      <m:lt/>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">dim</m:ci>
+		  <m:ci type="set">S</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">dim</m:ci>
+		  <m:ci type="set">V</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:infinity/>
+	    </m:apply>
+	  </m:math>, then
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="set">S</m:ci>
+	      <m:ci type="set">V</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</item>
+      </list>
+    </section>
+    
+    <section id="dsums">
+      <title>Direct Sums</title>
+      <para id="dsum1">Let <m:math><m:ci type="set">V</m:ci></m:math>
+      be a vector space, and let 
+	<m:math>
+	  <m:apply>
+	    <m:subset/>
+	    <m:ci type="set">S</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math> and
+	<m:math>
+	  <m:apply>
+	    <m:subset/>
+	    <m:ci type="set">T</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math> be subspaces.
+      </para>
+      <para id="dsum2">We say <m:math><m:ci type="set">V</m:ci></m:math> is the <term>direct sum</term> of
+      <m:math><m:ci type="set">S</m:ci></m:math> and <m:math><m:ci type="set">T</m:ci></m:math>, written
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="set">V</m:ci>
+	    <m:apply>
+	      <m:mo>⊕</m:mo>
+	      <m:ci type="set">S</m:ci>
+	      <m:ci type="set">T</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, if and only if for every 
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">v</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>, there exist unique
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">s</m:ci>
+	    <m:ci type="set">S</m:ci>
+	  </m:apply>
+	</m:math> and
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">t</m:ci>
+	    <m:ci type="set">T</m:ci>
+	  </m:apply>
+	</m:math> such that
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="vector">v</m:ci>
+	    <m:apply>
+	      <m:plus/>
+	      <m:ci type="vector">s</m:ci>
+	      <m:ci type="vector">t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+      </para>
+
+      <para id="dsum3">If
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="set">V</m:ci>
+	    <m:apply>
+	      <m:mo>⊕</m:mo>
+	      <m:ci type="set">S</m:ci>
+	      <m:ci type="set">T</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, then
+	<m:math><m:ci type="set">T</m:ci></m:math> is called a
+	<term>complement</term> of <m:math><m:ci type="set">S</m:ci></m:math>.
+      </para>
+
+      <example id="dsumex">
+	<para id="dsumex1">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="set">V</m:ci>
+	      <m:ci type="set"><m:msup>
+		  <m:mi>C</m:mi>
+		  <m:mi>′</m:mi>
+		</m:msup>
+	      </m:ci>
+	      <m:mrow>
+		<m:mo>{</m:mo>
+		<m:mi>f</m:mi>
+		<m:mo>:</m:mo>
+		<m:reals/>
+		<m:mo>→</m:mo>
+		<m:reals/>
+		<m:mo>|</m:mo>
+		<m:mi>f</m:mi>
+		<m:mtext> is continuous</m:mtext>
+		<m:mo>}</m:mo>
+	      </m:mrow>
+	    </m:apply>
+	  </m:math>
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="set">S</m:ci>
+	      <m:mrow>
+		<m:mtext>even funcitons in </m:mtext>
+		<m:msup>
+		  <m:mi>C</m:mi>
+		  <m:mi>′</m:mi>
+		</m:msup>
+	      </m:mrow>
+	    </m:apply>
+	  </m:math>
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="set">T</m:ci>
+	      <m:mrow>
+		<m:mtext>odd funcitons in </m:mtext>
+		<m:msup>
+		  <m:mi>C</m:mi>
+		  <m:mi>′</m:mi>
+		</m:msup>
+	      </m:mrow>
+	    </m:apply>
+	  </m:math>
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">f</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">f</m:ci>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  If
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="fn">f</m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:ci type="fn">g</m:ci>
+		<m:ci type="fn">h</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:ci type="fn"><m:msup>
+		    <m:mi>g</m:mi>
+		    <m:mi>′</m:mi>
+		  </m:msup></m:ci>
+		<m:ci type="fn"><m:msup>
+		    <m:mi>h</m:mi>
+		    <m:mi>′</m:mi>
+		  </m:msup></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>, 
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci>g</m:ci>
+	      <m:ci type="set">S</m:ci>
+	    </m:apply>
+	  </m:math> and
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci><m:msup>
+		  <m:mi>g</m:mi>
+		  <m:mi>′</m:mi>
+		</m:msup></m:ci>
+	      <m:ci type="set">S</m:ci>
+	    </m:apply>
+	  </m:math>,
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci>h</m:ci>
+	      <m:ci type="set">T</m:ci>
+	    </m:apply>
+	  </m:math> and
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci><m:msup>
+		  <m:mi>h</m:mi>
+		  <m:mi>′</m:mi>
+		</m:msup></m:ci>
+	      <m:ci type="set">T</m:ci>
+	    </m:apply>
+	  </m:math>, then
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>g</m:ci>
+		<m:ci><m:msup>
+		    <m:mi>g</m:mi>
+		    <m:mi>′</m:mi>
+		  </m:msup></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:ci><m:msup>
+		    <m:mi>h</m:mi>
+		    <m:mi>′</m:mi>
+		  </m:msup></m:ci>
+		<m:ci>h</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> is odd and even, which implies
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>g</m:ci>
+	      <m:ci><m:msup>
+		  <m:mi>g</m:mi>
+		  <m:mi>′</m:mi>
+		</m:msup></m:ci>
+	    </m:apply>
+	  </m:math> and
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>h</m:ci>
+	      <m:ci><m:msup>
+		  <m:mi>h</m:mi>
+		  <m:mi>′</m:mi>
+		</m:msup></m:ci>
+	    </m:apply>
+	  </m:math>.
+	</para>
+      </example>
+      <section id="dsumfax">
+	<title>Facts</title>
+	<list list-type="enumerated" id="dsumlist">
+	  <item>Every subspace has a complement</item>
+	  <item><m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="set">V</m:ci>
+	    <m:apply>
+	      <m:mo>⊕</m:mo>
+	      <m:ci type="set">S</m:ci>
+	      <m:ci type="set">T</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> if and only if
+	    <list id="dsumsublist" list-type="enumerated">
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:intersect/>
+		      <m:ci type="set">S</m:ci>
+		      <m:ci type="set">T</m:ci>
+		    </m:apply>
+		    <m:set>
+		      <m:ci type="vector">0</m:ci>
+		    </m:set>
+		  </m:apply>
+		</m:math>
+	      </item>
+	      <item>
+		<m:math>
+		  <m:apply>
+		    <m:eq/>
+		    <m:mrow>
+		      <m:mo>&lt;</m:mo>
+		      <m:ci type="set">S</m:ci>
+		      <m:mo>,</m:mo>
+		      <m:ci type="set">T</m:ci>
+		      <m:mo>&gt;</m:mo>
+		    </m:mrow>
+		    <m:ci type="set">V</m:ci>
+		  </m:apply>
+		</m:math>
+	      </item>
+	    </list>
+	  </item>
+	  <item>If
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:ci type="set">V</m:ci>
+		<m:apply>
+		  <m:mo>⊕</m:mo>
+		  <m:ci type="set">S</m:ci>
+		  <m:ci type="set">T</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>, and 
+	    <m:math>
+	      <m:apply>
+		<m:lt/>
+		<m:apply>
+		  <m:ci type="fn">dim</m:ci>
+		  <m:ci type="set">V</m:ci>
+		</m:apply>
+		<m:infinity/>
+	      </m:apply>
+	    </m:math>, then
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci type="fn">dim</m:ci>
+		  <m:ci type="set">V</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:ci type="fn">dim</m:ci>
+		    <m:ci type="set">S</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">dim</m:ci>
+		    <m:ci type="set">T</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	</list>
+      </section>
+      <section id="dsumproof">
+	<title>Proofs</title>
+	<para id="dsumproof1">Invoke a basis.
+	</para>
+      </section>
+    </section>
+
+    <section id="norm">
+      <title>Norms</title>
+      <para id="norm1">Let <m:math><m:ci type="set">V</m:ci></m:math>
+      be a vector space over <m:math><m:ci>F</m:ci></m:math>. A norm
+      is a mapping
+	<m:math>
+	  <m:apply>
+	    <m:mo>→</m:mo>
+	    <m:ci type="set">V</m:ci>
+	    <m:ci>F</m:ci>
+	  </m:apply>
+	</m:math>, denoted by
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	    <m:ci type="vector">·</m:ci>
+	  </m:apply>
+	</m:math>, such that forall
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">u</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">v</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>, and
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci>λ</m:ci>
+	    <m:ci>F</m:ci>
+	  </m:apply>
+	</m:math>
+	<list id="normlist" list-type="enumerated">
+	  <item>
+	    <m:math>
+	      <m:apply>
+		<m:gt/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		  <m:ci type="vector">u</m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math> if
+	    <m:math>
+	      <m:apply>
+		<m:neq/>
+		<m:ci type="vector">u</m:ci>
+		<m:ci type="vector">0</m:ci>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	  <item>
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>λ</m:ci>
+		    <m:ci type="vector">u</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>λ</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		    <m:ci type="vector">u</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </item>
+
+	  <item>
+	    <m:math>
+	      <m:apply>
+		<m:leq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci type="vector">u</m:ci>
+		    <m:ci type="vector">v</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		    <m:ci type="vector">u</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		    <m:ci type="vector">v</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	</list>
+      </para>
+      
+      <section id="normex">
+	<title>Examples</title>
+	<para id="normex1">Euclidean norms:</para>
+	<para id="normex1a">
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci type="vector">x</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:reals/>
+		<m:ci>N</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>:
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>i</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>N</m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci type="vector">x</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:complexes/>
+		<m:ci>N</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>:
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>i</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>N</m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:abs/>
+		      <m:ci><m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</para>
+      </section>
+
+      <section id="normim">
+	<title>Induced Metric</title>
+	<para id="normim1">Every norm induces a metric on <m:math><m:ci type="set">V</m:ci></m:math> 
+	  <m:math display="block">
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:ci type="fn">d</m:ci>
+		<m:ci type="vector">u</m:ci>
+		<m:ci type="vector">v</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci type="vector">u</m:ci>
+		  <m:ci type="vector">v</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> which leads to a notion of "distance" between vectors.
+	</para>
+      </section>
+    </section>
+
+    <section id="ip">
+      <title>Inner products</title>
+      <para id="ip1">Let 
+	<m:math>
+	  <m:ci>V</m:ci>
+	</m:math> be a vector space over <m:math><m:ci type="set">F</m:ci></m:math>, 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="set">F</m:ci>
+	    <m:reals/>
+	  </m:apply>
+	</m:math> or
+	<m:math><m:complexes/></m:math>. An inner product is a mapping
+	<m:math>
+	  <m:apply>
+	    <m:cartesianproduct/>
+	    <m:ci>V</m:ci>
+	    <m:ci>V</m:ci>
+	  </m:apply>
+	  <m:mrow>
+	    <m:mo>→</m:mo>
+	    <m:ci type="set">F</m:ci>
+	  </m:mrow>
+	</m:math>, denoted
+	<m:math>
+	  <m:apply>
+	    <m:scalarproduct/>
+	    <m:ci>·</m:ci>
+	    <m:ci>·</m:ci>
+	  </m:apply>
+	</m:math>, such that
+	<list list-type="enumerated" id="listip">
+	  <item>
+	    <m:math>
+	      <m:apply>
+		<m:geq/>
+		<m:apply>
+		  <m:scalarproduct/>
+		  <m:ci type="vector">v</m:ci>
+		  <m:ci type="vector">v</m:ci>
+		</m:apply>
+		<m:cn>0</m:cn>
+	      </m:apply>
+	    </m:math>, and
+	    <m:math>
+	      <m:apply>
+		<m:mo>⇔</m:mo>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:scalarproduct/>
+		    <m:ci type="vector">v</m:ci>
+		    <m:ci type="vector">v</m:ci>
+		  </m:apply>
+		  <m:cn>0</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci type="vector">v</m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </item>
+
+	  <item>
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:scalarproduct/>
+		  <m:ci type="vector">u</m:ci>
+		  <m:ci type="vector">v</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:conjugate/>
+		  <m:apply>
+		    <m:scalarproduct/>
+		    <m:ci type="vector">v</m:ci>
+		    <m:ci type="vector">u</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </item>
+
+	  <item>
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:scalarproduct/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>a</m:ci>
+		      <m:ci type="vector">u</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>b</m:ci>
+		      <m:ci type="vector">v</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci type="vector">w</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:apply>
+		      <m:scalarproduct/>
+		      <m:ci type="vector">u</m:ci>
+		      <m:ci type="vector">w</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>b</m:ci>
+		    <m:apply>
+		      <m:scalarproduct/>
+		      <m:ci type="vector">v</m:ci>
+		      <m:ci type="vector">w</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	</list>
+      </para>
+
+      <section id="ipex">
+	<title>Examples</title>
+
+	<para id="ipex1">
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:reals/>
+	      <m:ci>N</m:ci>
+	    </m:apply>
+	  </m:math> over ℝ:
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:scalarproduct/>
+		<m:ci type="vector">x</m:ci>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:transpose/>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		  <m:ci type="vector">y</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>i</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>N</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</para>
+	<para id="ipex2">
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:complexes/>
+	      <m:ci>N</m:ci>
+	    </m:apply>
+	  </m:math> over ℂ:
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:scalarproduct/>
+		<m:ci type="vector">x</m:ci>
+		<m:ci type="vector">y</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		    <m:ci type="vector">x</m:ci>
+		  </m:apply>
+		  <m:ci type="vector">y</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>i</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>1</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>N</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:conjugate/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</para>
+	<para id="ipex3">If
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:in/>
+	      <m:apply>
+		<m:eq/>
+		<m:ci type="vector">x</m:ci>
+		<m:vector>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>…</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>N</m:mi>
+		    </m:msub></m:ci>
+		</m:vector>
+	      </m:apply>
+	      <m:complexes/>
+	    </m:apply>
+	  </m:math>, then
+	  <m:math display="block">
+	    <m:apply>
+	      <m:equivalent/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		<m:ci type="vector">x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:transpose/>
+		<m:vector>
+		  <m:apply>
+		    <m:conjugate/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci>⋮</m:ci>
+		  <m:apply>
+		    <m:conjugate/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>N</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:vector>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> is called the "Hermitian," or "conjugate
+	  transpose" of <m:math><m:ci type="vector">x</m:ci></m:math>.
+	</para>
+      </section>
+    </section>
+
+    <section id="ti">
+      <title>Triangle Inequality</title>
+      <para id="ti1">If we define
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	      <m:ci type="vector">u</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:scalarproduct/>
+	      <m:ci type="vector">u</m:ci>
+	      <m:ci type="vector">u</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, then
+	<m:math display="block">
+	  <m:apply>
+	    <m:leq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	      <m:apply>
+		<m:plus/>
+		<m:ci type="vector">u</m:ci>
+		<m:ci type="vector">v</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		<m:ci type="vector">u</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		<m:ci type="vector">v</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>Hence, every inner product induces a norm.
+      </para>
+    </section>
+
+    <section id="csi">
+      <title>Cauchy-Schwarz Inequality</title>
+      <para id="csi1">For all
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">u</m:ci>
+	    <m:ci>V</m:ci>
+	  </m:apply>
+	</m:math>, 
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">v</m:ci>
+	    <m:ci>V</m:ci>
+	  </m:apply>
+	</m:math>, 
+	<m:math display="block">
+	  <m:apply>
+	    <m:leq/>
+	    <m:apply>
+	      <m:abs/>
+	      <m:apply>
+		<m:scalarproduct/>
+		<m:ci type="vector">u</m:ci>
+		<m:ci type="vector">v</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		<m:ci type="vector">u</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		<m:ci type="vector">v</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> In inner product spaces, we have a notion of the
+	angle between two vectors:
+	<m:math display="block">
+	  <m:apply>
+	    <m:in/>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">∠</m:ci>
+		<m:ci type="vector">u</m:ci>
+		<m:ci type="vector">v</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:arccos/>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:scalarproduct/>
+		    <m:ci type="vector">u</m:ci>
+		    <m:ci type="vector">v</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		      <m:ci type="vector">u</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+		      <m:ci type="vector">v</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:interval closure="closed-open">
+	      <m:cn>0</m:cn>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+	      </m:apply>
+	    </m:interval>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+
+    <section id="orth">
+      <title>Orthogonality</title>
+      <para id="orth1"><m:math><m:ci type="vector">u</m:ci></m:math>
+      and <m:math><m:ci type="vector">v</m:ci></m:math> are
+      <term>orthogonal</term> if 
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:scalarproduct/>
+	      <m:ci type="vector">u</m:ci>
+	      <m:ci type="vector">v</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>Notation:
+	<m:math>
+	  <m:apply>
+	    <m:mo>⊥</m:mo>
+	    <m:ci type="vector">u</m:ci>
+	    <m:ci type="vector">v</m:ci>
+	  </m:apply>
+	</m:math>.
+      </para>
+      <para id="orth2">If in addition
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	      <m:ci type="vector">u</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	      <m:ci type="vector">v</m:ci>
+	    </m:apply>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>, we say <m:math><m:ci type="vector">u</m:ci></m:math> and <m:math><m:ci type="vector">v</m:ci></m:math> are <term>orthonormal</term>.
+      </para>
+
+      <para id="orth3">In an orthogonal (orthonormal)
+      <emphasis>set</emphasis>, each pair of vectors is orthogonal
+      (orthonormal).</para> 
+
+      <figure id="fig3">
+	<media id="idp650528" alt=""><image src="../../media/orthogonal.png" mime-type="image/png"/></media>
+	<caption>Orthogonal vectors in
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:reals/>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:math>.
+	</caption>
+      </figure>
+    </section>
+
+    <section id="ob">
+      <title>Orthonormal Bases</title>
+      <para id="ob1">An Orthonormal basis is a basis
+	<m:math>
+	  <m:set>
+	    <m:ci type="vector"><m:msub>
+		<m:mi>v</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	  </m:set>
+	</m:math> such that
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:scalarproduct/>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:ci><m:msub>
+		<m:mi>δ</m:mi>
+		<m:mrow>
+		  <m:mi>i</m:mi>
+		  <m:mo>​</m:mo>
+		  <m:mi>j</m:mi>
+		</m:mrow>
+	      </m:msub></m:ci>
+	    <m:piecewise>
+	      <m:piece>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>i</m:ci>
+		  <m:ci>j</m:ci>
+		</m:apply>
+	      </m:piece>
+	      <m:piece>
+		<m:cn>0</m:cn>
+		<m:apply>
+		  <m:neq/>
+		  <m:ci>i</m:ci>
+		  <m:ci>j</m:ci>
+		</m:apply>
+	      </m:piece>
+	    </m:piecewise>
+	  </m:apply>
+	</m:math>
+      </para>
+      <example id="obex1">
+	<para id="obexp1">The standard basis for 
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:reals/>
+	      <m:ci>N</m:ci>
+	    </m:apply>
+	  </m:math> or
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:complexes/>
+	      <m:ci>N</m:ci>
+	    </m:apply>
+	  </m:math>
+	</para>
+      </example>
+
+      <example id="obex2">
+	<para id="obexp2">The normalized DFT basis
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>u</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:root/>
+		    <m:ci>N</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:vector>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:apply>
+			  <m:divide/>
+			  <m:ci>k</m:ci>
+			  <m:ci>N</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>⋮</m:ci>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:apply>
+			  <m:divide/>
+			  <m:ci>k</m:ci>
+			  <m:ci>N</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>N</m:ci>
+			  <m:cn>1</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:vector>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</para>
+      </example>
+    </section>
+
+    <section id="ec">
+      <title>Expansion Coefficients</title>
+      <para id="ec1">If the representation of <m:math><m:ci type="vector">v</m:ci></m:math> with respect to
+	<m:math>
+	  <m:set>
+	    <m:ci type="vector"><m:msub>
+		<m:mi>v</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	  </m:set>
+	</m:math> is
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="vector">v</m:ci>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar>
+		<m:ci>i</m:ci>
+	      </m:bvar>
+	      <m:apply>
+		<m:times/>
+		<m:ci><m:msub>
+		    <m:mi>a</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub></m:ci>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>v</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math> then
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>a</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:scalarproduct/>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	      <m:ci type="vector">v</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+
+    <section id="gs">
+      <title>Gram-Schmidt</title>
+      <para id="gs1">Every inner product space has an orthonormal
+      basis. Any (countable) basis can be made orthogonal by the
+      Gram-Schmidt orthogonalization process.
+      </para>
+    </section>
+
+    <section id="oc">
+      <title>Orthogonal Compliments</title>
+      <para id="oc1">Let
+	<m:math>
+	  <m:apply>
+	    <m:subset/>
+	    <m:ci type="set">S</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math> be a subspace. The <term>orthogonal
+	compliment</term> <m:math><m:ci type="set">S</m:ci></m:math> is
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msup>
+		<m:ci type="set">S</m:ci>
+		<m:mo>⊥</m:mo>
+	      </m:msup></m:ci>
+	    <m:set>
+	      <m:bvar>
+		<m:ci type="vector">u</m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply>
+		  <m:and/>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci type="vector">u</m:ci>
+		    <m:ci type="set">V</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:scalarproduct/>
+		      <m:ci type="vector">u</m:ci>
+		      <m:ci type="vector">v</m:ci>
+		    </m:apply>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:forall/>
+		    <m:bvar>
+		      <m:ci type="vector">v</m:ci>
+		    </m:bvar>
+		    <m:apply>
+		      <m:in/>
+		      <m:ci type="vector">v</m:ci>
+		      <m:ci type="set">S</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math>
+	<m:math>
+	  <m:ci><m:msup>
+	      <m:ci type="set">S</m:ci>
+	      <m:mo>⊥</m:mo>
+	    </m:msup></m:ci>
+	</m:math> is easily seen to be a subspace. 
+      </para>
+      <para id="paranextoc">If
+	<m:math>
+	  <m:apply>
+	    <m:lt/>
+	    <m:apply>
+	      <m:ci type="fn">dim</m:ci>
+	      <m:ci type="set">v</m:ci>
+	    </m:apply>
+	    <m:infinity/>
+	  </m:apply>
+	</m:math>, then 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="set">V</m:ci>
+	    <m:apply>
+	      <m:mo>⊕</m:mo>
+	      <m:ci type="set">S</m:ci>
+	      <m:ci><m:msup>
+		  <m:ci type="set">S</m:ci>
+		  <m:mo>⊥</m:mo>
+		</m:msup></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+	<note type="Aside" id="idp8995600"><label>Aside</label>If
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">dim</m:ci>
+		<m:ci type="set">v</m:ci>
+	      </m:apply>
+	      <m:infinity/>
+	    </m:apply>
+	  </m:math>, then in order to have 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci type="set">V</m:ci>
+	      <m:apply>
+		<m:mo>⊕</m:mo>
+		<m:ci type="set">S</m:ci>
+		<m:ci><m:msup>
+		    <m:ci type="set">S</m:ci>
+		    <m:mo>⊥</m:mo>
+		  </m:msup></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> we require <m:math><m:ci type="set">V</m:ci></m:math> to be a <term>Hilbert
+	  Space</term>.
+	</note>
+      </para>
+    </section>
+
+    <section id="lt">
+      <title>Linear Transformations</title>
+      <para id="lt1">Loosely speaking, a linear transformation is a
+      mapping from one vector space to another that
+      <emphasis>preserves</emphasis> vector space operations.
+      </para>
+      <para id="lt2">More precisely, let <m:math><m:ci type="set">V</m:ci></m:math>, <m:math><m:ci type="set">W</m:ci></m:math> be vector spaces over the same
+      field <m:math><m:ci>F</m:ci></m:math>. A <term>linear
+      transformation</term> is a mapping
+	<m:math>
+	  <m:mrow>
+	    <m:ci>T</m:ci>
+	    <m:mo>:</m:mo>
+	    <m:ci type="set">V</m:ci>
+	    <m:mo>→</m:mo>
+	    <m:ci type="set">W</m:ci>
+	  </m:mrow>
+	</m:math> such that
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">T</m:ci>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>a</m:ci>
+		  <m:ci type="vector">u</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>b</m:ci>
+		  <m:ci type="vector">v</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>a</m:ci>
+		<m:apply>
+		  <m:ci type="fn">T</m:ci>
+		  <m:ci type="vector">u</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci>b</m:ci>
+		<m:apply>
+		  <m:ci type="fn">T</m:ci>
+		  <m:ci type="vector">v</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	for all
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci>a</m:ci>
+	    <m:ci>F</m:ci>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci>b</m:ci>
+	    <m:ci>F</m:ci>
+	  </m:apply>
+	</m:math> and
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">u</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:in/>
+	    <m:ci type="vector">v</m:ci>
+	    <m:ci type="set">V</m:ci>
+	  </m:apply>
+	</m:math>.
+      </para>
+
+      <para id="lt3">In this class we will be concerned with linear
+      transformations between (real or complex) <emphasis>Euclidean
+      spaces</emphasis>, or subspaces thereof.
+      </para>
+    </section>
+
+    <section id="image">
+      <title>Image</title>
+      <para id="image1">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:image/>
+	      <m:ci>T</m:ci>
+	    </m:apply>
+	    <m:set>
+	      <m:bvar>
+		<m:ci type="vector">w</m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply>
+		  <m:and/>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci type="vector">w</m:ci>
+		    <m:ci type="set">W</m:ci>
+		  </m:apply>
+		  <m:mrow>
+		    <m:apply>
+		      <m:eq/>
+		      <m:apply>
+			<m:ci type="fn">T</m:ci>
+			<m:ci type="vector">v</m:ci>
+		      </m:apply>
+		      <m:ci type="vector">w</m:ci>
+		    </m:apply>
+		    <m:mtext>for some </m:mtext>
+		    <m:ci type="vector">v</m:ci>
+		  </m:mrow>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+
+    <section id="nullspace">
+      <title>Nullspace</title>
+      <para id="null1">Also known as the kernel:
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">ker</m:ci>
+	      <m:ci>T</m:ci>
+	    </m:apply>
+	    <m:set>
+	      <m:bvar>
+		<m:ci type="vector">v</m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply>
+		  <m:and/>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci type="vector">v</m:ci>
+		    <m:ci type="set">V</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		      <m:ci type="fn">T</m:ci>
+		      <m:ci type="vector">v</m:ci>
+		    </m:apply>
+		    <m:ci type="vector">0</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:condition>
+	    </m:set>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+
+    <para id="paraA">Both the image and the nullspace are easily seen
+    to be subspaces.</para>
+
+    <section id="rank">
+      <title>Rank</title>
+      <para id="rank1">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">rank</m:ci>
+	      <m:ci>T</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">dim</m:ci>
+	      <m:apply>
+		<m:image/>
+		<m:ci>T</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+
+    <section id="nullity">
+      <title>Nullity</title>
+      <para id="nullity1">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">null</m:ci>
+	      <m:ci>T</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">dim</m:ci>
+	      <m:apply>
+		<m:ci type="fn">ker</m:ci>
+		<m:ci>T</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+    
+    <section id="rpnt">
+      <title>Rank plus nullity theorem</title>
+
+      <para id="rpnt1">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:ci type="fn">rank</m:ci>
+		<m:ci>T</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">null</m:ci>
+		<m:ci>T</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">dim</m:ci>
+	      <m:ci type="set">V</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+
+    <section id="matrices">
+      <title>Matrices</title>
+      <para id="matrices1">Every linear transformation
+      <m:math><m:ci>T</m:ci></m:math> has a <term>matrix
+      representation</term>. If
+	<m:math>
+	  <m:mrow>
+	    <m:mi>T</m:mi>
+	    <m:mo>:</m:mo>
+	    <m:msup>
+	      <m:ci>𝔼</m:ci>
+	      <m:mi>N</m:mi>
+	    </m:msup>
+	    <m:mo>→</m:mo>
+	    <m:msup>
+	      <m:mi>𝔼</m:mi>
+	      <m:mi>M</m:mi>
+	    </m:msup>
+	  </m:mrow>
+	</m:math>, 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>𝔼</m:ci>
+	    <m:reals/>
+	  </m:apply>
+	</m:math> or <m:math><m:complexes/></m:math>, then
+	<m:math><m:ci>T</m:ci></m:math> is represented by an 
+	<m:math>
+	  <m:apply>
+	    <m:cartesianproduct/>
+	    <m:ci>M</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math> matrix
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:ci><m:msub>
+		    <m:mi>a</m:mi>
+		    <m:mrow>
+		      <m:mn>1</m:mn>
+		      <m:mo>​</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		<m:ci>…</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>a</m:mi>
+		    <m:mrow>
+		      <m:mn>1</m:mn>
+		      <m:mo>​</m:mo>
+		      <m:mi>N</m:mi>
+		    </m:mrow>
+		  </m:msub></m:ci>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:ci>⋮</m:ci>
+		<m:ci>⋱</m:ci>
+		<m:ci>⋮</m:ci>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:ci><m:msub>
+		    <m:mi>a</m:mi>
+		    <m:mrow>
+		      <m:mi>M</m:mi>
+		      <m:mo>​</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		<m:ci>…</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>a</m:mi>
+		    <m:mrow>
+		      <m:mi>M</m:mi>
+		      <m:mo>​</m:mo>
+		      <m:mi>N</m:mi>
+		    </m:mrow>
+		  </m:msub></m:ci>
+	      </m:matrixrow>
+	    </m:matrix>
+	  </m:apply>
+	</m:math>
+	where
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+	    <m:vector>
+	      <m:ci><m:msub>
+		  <m:mi>a</m:mi>
+		  <m:mrow>
+		    <m:mn>1</m:mn>
+		    <m:mo>​</m:mo>
+		    <m:mi>i</m:mi>
+		  </m:mrow>
+		</m:msub></m:ci>
+	      <m:ci>…</m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>a</m:mi>
+		  <m:mrow>
+		    <m:mi>M</m:mi>
+		    <m:mo>​</m:mo>
+		    <m:mi>i</m:mi>
+		  </m:mrow>
+		</m:msub></m:ci>
+	    </m:vector>
+	    <m:apply>
+	      <m:ci type="fn">T</m:ci>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>e</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> and
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci type="vector"><m:msub>
+		<m:mi>e</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	    <m:vector>
+	      <m:cn>0</m:cn>
+	      <m:ci>…</m:ci>
+	      <m:cn>1</m:cn>
+	      <m:ci>…</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:vector>
+	  </m:apply>
+	</m:math> is the 
+	<m:math>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>i</m:ci>
+	    <m:ci>th</m:ci>
+	  </m:apply>
+	</m:math> <term>standard basis</term> vector.
+	<note type="Aside" id="idp14101520"><label>Aside</label>A linear transformation can be represented
+	with respect to any bases of 
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>𝔼</m:ci>
+	      <m:ci>N</m:ci>
+	    </m:apply>
+	  </m:math>
+	  and
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>𝔼</m:ci>
+	      <m:ci>M</m:ci>
+	    </m:apply>
+	  </m:math>, leading to a different <m:math><m:ci type="matrix">A</m:ci></m:math>. We will always represent a
+	  linear transformation using the standard bases.
+	</note>
+      </para>
+    </section>
+
+    <section id="colspan">
+      <title>Column span</title>
+      <para id="colspan1">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">colspan</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:mrow>
+	      <m:mo>&lt;</m:mo>
+	      <m:mi>A</m:mi>
+	      <m:mo>&gt;</m:mo>
+	    </m:mrow>
+	    <m:apply>
+	      <m:image/>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+
+    <section id="duality">
+      <title>Duality</title>
+      <para id="dual1">If
+	<m:math>
+	  <m:mrow>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:mo>:</m:mo>
+	    <m:msup>
+	      <m:reals/>
+	      <m:mi>N</m:mi>
+	    </m:msup>
+	    <m:mo>→</m:mo>
+	    <m:msup>
+	      <m:reals/>
+	      <m:mi>M</m:mi>
+	    </m:msup>
+	  </m:mrow>
+	</m:math>, then
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:power/>
+	      <m:apply>
+		<m:ci type="fn">ker</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:ci>⊥</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:image/>
+	      <m:apply>
+		<m:transpose/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+
+      <figure id="fig4">
+	<media id="idp13534272" alt=""><image src="../../media/dual.png" mime-type="image/png"/></media>
+      </figure>
+      
+      <para id="dual2">If
+	<m:math>
+	  <m:mrow>
+	    <m:ci type="matrix">A</m:ci>
+	    <m:mo>:</m:mo>
+	    <m:msup>
+	      <m:complexes/>
+	      <m:mi>N</m:mi>
+	    </m:msup>
+	    <m:mo>→</m:mo>
+	    <m:msup>
+	      <m:complexes/>
+	      <m:mi>M</m:mi>
+	    </m:msup>
+	  </m:mrow>
+	</m:math>, then
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:power/>
+	      <m:apply>
+		<m:ci type="fn">ker</m:ci>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	      <m:ci>⊥</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:image/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		<m:ci type="matrix">A</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </para>
+    </section>
+
+    <section id="inverses">
+      <title>Inverses</title>
+      <para id="inverses1">The linear transformation/matrix
+      <m:math><m:ci type="matrix">A</m:ci></m:math> is
+      <term>invertible</term> if and only if there exists a matrix
+      <m:math><m:ci type="matrix">B</m:ci></m:math> such that
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">A</m:ci>
+	      <m:ci type="matrix">B</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci type="matrix">B</m:ci>
+	      <m:ci type="matrix">A</m:ci>
+	    </m:apply>
+	    <m:ci type="matrix">I</m:ci>
+	  </m:apply>
+	</m:math> (identity).
+      </para>
+      <para id="inverses2">Only <emphasis>square</emphasis> matrices
+      can be invertible.
+	<rule type="theorem" id="equivalents">
+	  <statement id="idp10921472">
+	    <para id="thm4">Let
+	      <m:math>
+		<m:mrow>
+		  <m:ci type="matrix">A</m:ci>
+		  <m:mo>:</m:mo>
+		  <m:msup>
+		    <m:mi>𝔽</m:mi>
+		    <m:mi>N</m:mi>
+		  </m:msup>
+		  <m:mo>→</m:mo>
+		  <m:msup>
+		    <m:mi>𝔽</m:mi>
+		    <m:mi>N</m:mi>
+		  </m:msup>
+		</m:mrow>
+	      </m:math> be linear, 
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>𝔽</m:ci>
+		  <m:reals/>
+		</m:apply>
+	      </m:math> or <m:math><m:complexes/></m:math>. The
+	      following are equivalent:
+	      <list id="inverselist" list-type="enumerated">
+		<item><m:math><m:ci type="matrix">A</m:ci></m:math> is
+		invertible (nonsingular)
+		</item>
+		<item>
+		  <m:math>
+		    <m:apply>
+		      <m:eq/>
+		      <m:apply>
+			<m:ci type="fn">rank</m:ci>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		      <m:ci>N</m:ci>
+		    </m:apply>
+		  </m:math>
+		</item>
+		<item>
+		  <m:math>
+		    <m:apply>
+		      <m:eq/>
+		      <m:apply>
+			<m:ci type="fn">null</m:ci>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		  </m:math>
+		</item>
+		<item>
+		  <m:math>
+		    <m:apply>
+		      <m:neq/>
+		      <m:apply>
+			<m:determinant/>
+			<m:ci type="matrix">A</m:ci>
+		      </m:apply>
+		      <m:cn>0</m:cn>
+		    </m:apply>
+		  </m:math>
+		</item>
+		<item>The columns of <m:math><m:ci type="matrix">A</m:ci></m:math> form a basis.</item>
+	      </list>
+	    </para>
+	  </statement>
+	</rule>
+      </para>
+    </section>
+
+    <para id="paraB">If
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:inverse/>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:transpose/>
+	    <m:ci type="matrix">A</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math> (or 
+      <m:math>
+	<m:apply>
+	  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+	  <m:ci type="matrix">A</m:ci>
+	</m:apply>
+      </m:math> in the complex case), we say <m:math><m:ci type="matrix">A</m:ci></m:math> is <term>orthogonal</term> (or
+      <term>unitary</term>). 
+    </para>
+
+  </content>
+  
+</document>

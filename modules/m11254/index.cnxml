@@ -1,0 +1,215 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Sampling and Random Sequences</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a71d12e9-f894-4cf3-9341-1ccaebf1b6d7</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">
+      The usual Sampling Theorem applies to random processes, with the
+      spectrum of interest beign the power spectrum.  If stationary
+      process 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">X</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:math> is bandlimited - <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn"><m:msub>
+		<m:mi>𝒮</m:mi>
+		<m:mi>X</m:mi>
+	      </m:msub></m:ci>
+	    <m:ci>ω</m:ci>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>, 
+	<m:math>
+	  <m:apply>
+	    <m:gt/>
+	    <m:apply>
+	      <m:abs/>
+	      <m:ci>ω</m:ci>
+	    </m:apply>
+	    <m:ci>W</m:ci>
+	  </m:apply>
+      </m:math>, as long as the sampling interval
+      <m:math><m:ci>T</m:ci></m:math> satisfies the classic constraint
+      <m:math>
+	<m:apply>
+	  <m:lt/>
+	  <m:ci>T</m:ci>
+	  <m:apply>
+	    <m:divide/>
+	    <m:pi/>
+	    <m:ci>W</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math> the sequence <m:math>
+	<m:apply>
+	  <m:ci type="fn">X</m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>l</m:ci>
+	    <m:ci>T</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math> represents the original process.  A sampled process is
+      itself a random process defined over discrete time.  Hence, all
+      of the random process notions introduced in the <link document="m11253">previous section</link> apply to the random sequence <m:math>
+	<m:apply>
+	  <m:equivalent/>
+	  <m:apply>
+	    <m:ci type="fn"><m:mover>
+		<m:mi>X</m:mi>
+		<m:mo>∼</m:mo>
+	      </m:mover></m:ci>
+	    <m:ci>l</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">X</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>l</m:ci>
+	      <m:ci>T</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  The correlation functions of these two processes are
+      related as
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn"><m:msub>
+		<m:mi>R</m:mi>
+		<m:mover>
+		  <m:mi>X</m:mi>
+		  <m:mo>∼</m:mo>
+		</m:mover>
+	      </m:msub></m:ci>
+	    <m:ci>k</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn"><m:mover>
+		    <m:mi>X</m:mi>
+		    <m:mo>∼</m:mo>
+		  </m:mover></m:ci>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn"><m:mover>
+		    <m:mi>X</m:mi>
+		    <m:mo>∼</m:mo>
+		  </m:mover></m:ci>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>l</m:ci>
+		  <m:ci>k</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn"><m:msub>
+		<m:mi>R</m:mi>
+		<m:mi>X</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>k</m:ci>
+	      <m:ci>T</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </para>
+
+    <para id="para2">
+      We note especially that for distinct samples of a random process
+      to be uncorrelated, the correlation function <m:math>
+	<m:apply>
+	  <m:ci type="fn"><m:msub>
+	      <m:mi>R</m:mi>
+	      <m:mi>X</m:mi>
+	    </m:msub></m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>k</m:ci>
+	    <m:ci>T</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math> must equal zero for all non-zero
+      <m:math><m:ci>k</m:ci></m:math>.  This requirement places severe
+      restrictions on the correlation function (hence the power
+      spectrum) of the original process.  One correlation function
+      satisfying this property is derived from the random process
+      which has a bandlimited, constant-valued power spectrum over
+      precisely the frequency region needed to satisfy the sampling
+      criterion.  <emphasis>No other power spectrum satisfying the
+      sampling criterion has this property</emphasis>.  Hence,
+      sampling does not normally yield uncorrelated amplitudes,
+      meaning that <term>discrete-time white noise</term> is a rarity.
+      White noise has a correlation function given by <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn"><m:msub>
+		<m:mi>R</m:mi>
+		<m:mover>
+		  <m:mi>X</m:mi>
+		  <m:mo>∼</m:mo>
+		</m:mover>
+	      </m:msub></m:ci>
+	    <m:ci>k</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>σ</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">δ</m:ci>
+	      <m:ci>k</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>, where <m:math>
+	<m:apply>
+	  <m:ci type="fn">δ</m:ci>
+	  <m:ci>·</m:ci>
+	</m:apply>
+      </m:math> is the unit sample.  The power spectrum of white noise
+      is a constant: <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn"><m:msub>
+		<m:mi>𝒮</m:mi>
+		<m:mover>
+		  <m:mi>X</m:mi>
+		  <m:mo>∼</m:mo>
+		</m:mover>
+	      </m:msub></m:ci>
+	    <m:ci>ω</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>σ</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+
+    </para>
+  </content>
+  
+</document>

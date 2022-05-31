@@ -1,0 +1,2197 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title> White Gaussian Noise</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>8bcaef14-338b-4b1a-8951-8f32492bd296</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">
+      By far the easiest detection problem to solve occurs when the
+      noise vector consists of statistically independent, identically
+      distributed, Gaussian random variables. In this book, a
+      <term>white sequence</term> consists of statistically
+      independent random variables. The white sequence's mean is
+      usually taken to be zero
+
+      <footnote id="idm7260896">The zero-mean assumption is realistic for
+      the detection problem. If the mean were non-zero, simply
+      subtracting it from the observed sequence results in a zero-mean
+      noise component. </footnote>
+
+      and each component's variance is 
+      <m:math>
+	<m:apply>
+	  <m:power/>
+	  <m:ci>σ</m:ci>
+	  <m:cn>2</m:cn>
+	</m:apply>
+      </m:math>. The equal-variance assumption implies the noise
+      characteristics are unchanging throughout the entire set of
+      observations. The probability density of the zero-mean noise
+      vector evaluated at
+
+      <m:math>
+	<m:apply> 
+	  <m:minus/>
+	  <m:ci type="vector">r</m:ci>
+	  <m:ci type="vector"><m:msub>
+	      <m:mi>s</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>
+
+      equals that of Gaussian random vector having independent components (
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix">K</m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>σ</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:ci type="matrix">I</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>) with mean 
+      <m:math>
+	<m:ci type="vector"><m:msub>
+	    <m:mi>s</m:mi>
+	    <m:mi>i</m:mi>
+	  </m:msub></m:ci>
+      </m:math>.
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+	    <m:bvar>
+	      <m:ci type="vector">n</m:ci>
+	    </m:bvar>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci type="vector">r</m:ci>
+	      <m:ci><m:msub>
+		  <m:ci type="vector">s</m:ci>
+		  <m:mi>i</m:mi>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:power/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>σ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>L</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>σ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:transpose/>
+		    <m:apply> 
+		      <m:minus/>
+		      <m:ci type="vector">r</m:ci>
+		      <m:ci type="vector"><m:msub>
+			  <m:mi>s</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply> 
+		    <m:minus/>
+		    <m:ci type="vector">r</m:ci>
+		    <m:ci type="vector"><m:msub>
+			<m:mi>s</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      The resulting detection problem is similar to the Gaussian
+      example examined so frequently in the hypothesis testing
+      sections, with the distinction here being a non-zero mean under
+      both models. The logarithm of the likelihood ratio becomes
+      
+      <m:math display="block">
+	<m:mrow>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:times/>		  
+	      <m:apply>
+		<m:transpose/>
+		<m:apply> 
+		  <m:minus/>
+		  <m:ci type="vector">r</m:ci>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply> 
+		<m:minus/>
+		<m:ci type="vector">r</m:ci>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>		  
+	      <m:apply>
+		<m:transpose/>
+		<m:apply> 
+		  <m:minus/>
+		  <m:ci type="vector">r</m:ci>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply> 
+		<m:minus/>
+		<m:ci type="vector">r</m:ci>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+
+	  <m:munder>
+	    <m:mover>
+	      <m:mo>≷</m:mo>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:mover>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	  </m:munder>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>2</m:cn>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>σ</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:ln/>
+	      <m:ci>η</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:mrow>
+      </m:math>
+
+      and the usual simplifications yield in
+
+      <m:math display="block">
+	<m:mrow>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:transpose/>
+		  <m:ci type="vector">r</m:ci>
+		</m:apply>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:transpose/>
+		    <m:ci type="vector"><m:msub>
+			<m:mi>s</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:transpose/>
+		  <m:ci type="vector">r</m:ci>
+		</m:apply>
+		<m:ci type="vector"><m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:transpose/>
+		    <m:ci type="vector"><m:msub>
+			<m:mi>s</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci type="vector"><m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+
+	  <m:munder>
+	    <m:mover>
+	      <m:mo>≷</m:mo>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:mover>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	  </m:munder>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>σ</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:ln/>
+	      <m:ci>η</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:mrow>
+      </m:math>
+
+      The quantities in parentheses express the signal processing
+      operations for each model. If more than two signals were assumed
+      possible, quantities such as these would need to be computed for
+      each signal and the largest selected. This decision rule is
+      optimum for the additive, white Gaussian noise problem.
+    </para>
+
+    <para id="para2">
+      Each term in the computations for the optimum detector has a
+      signal processing interpretation. When expanded, the term
+
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:apply>
+	    <m:transpose/>
+	    <m:ci type="vector"><m:msub>
+		<m:mi>s</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:ci type="vector"><m:msub>
+	      <m:mi>s</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>
+      
+      equals
+      <m:math>
+	<m:apply>
+	  <m:sum/>
+	  <m:bvar>
+	    <m:ci>l</m:ci>
+	  </m:bvar>
+	  <m:lowlimit>
+	    <m:cn>0</m:cn>
+	  </m:lowlimit>
+	  <m:uplimit>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci>L</m:ci>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	  </m:uplimit>
+	  <m:apply>
+	    <m:power/>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>s</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>l</m:ci>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math>, which is the <term>signal energy</term> 
+
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>E</m:mi>
+	    <m:mi>i</m:mi>
+	  </m:msub></m:ci>
+      </m:math>.
+
+      The remaining term -  
+
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:apply>
+	    <m:transpose/>
+	    <m:ci type="vector">r</m:ci>
+	  </m:apply>
+	  <m:ci type="vector"><m:msub>
+	      <m:mi>s</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>
+
+      - is the only one involving the observations and hence
+        constitutes the sufficient statistic
+      
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">
+	    <m:msub>
+	      <m:mi>ϒ</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub>
+	  </m:ci>
+	  <m:ci type="vector">r</m:ci>
+	</m:apply>
+      </m:math>
+      
+      for the additive white Gaussian noise detection problem.
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">
+	      <m:msub>
+		<m:mi>ϒ</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub>
+	    </m:ci>
+	    <m:ci type="vector">r</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:ci type="vector">r</m:ci>
+	    </m:apply>
+	    <m:ci type="vector"><m:msub>
+		<m:mi>s</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      An abstract, but physically relevant, interpretation of this
+      important quantity comes from the theory of linear vector
+      spaces. There, the quantity
+
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:apply>
+	    <m:transpose/>
+	    <m:ci type="vector">r</m:ci>
+	  </m:apply>
+	  <m:ci type="vector"><m:msub>
+	      <m:mi>s</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>
+
+      would be termed the <term>dot product</term> between
+      <m:math><m:ci type="vector">r</m:ci></m:math> and
+
+      <m:math>
+	<m:ci type="vector"><m:msub>
+	    <m:mi>s</m:mi>
+	    <m:mi>i</m:mi>
+	  </m:msub></m:ci>
+      </m:math> 
+
+      or the <term>projection</term> of <m:math><m:ci type="vector">r</m:ci></m:math> onto
+      
+      <m:math>
+	<m:ci type="vector"><m:msub>
+	    <m:mi>s</m:mi>
+	    <m:mi>i</m:mi>
+	  </m:msub></m:ci>
+      </m:math>
+
+      . By employing the Schwarz inequality, the largest value of this
+      quantity occurs when these vectors are proportional to each
+      other. Thus, a dot product computation measures how much alike
+      two vectors are: they are completely alike when they are
+      parallel (proportional) and completely dissimilar when
+      orthogonal (the dot product is zero). More precisely, the dot
+      product removes those components from the observations which are
+      orthogonal to the signal. The dot product thereby generalizes
+      the familiar notion of filtering a signal contaminated by
+      broadband noise. In filtering, the signal-to-noise ratio of a
+      bandlimited signal can be drastically improved by lowpass
+      filtering; the output would consist only of the signal and
+      "in-band" noise. The dot product serves a similar role, ideally
+      removing those "out-of-band" components (the orthogonal ones)
+      and retaining the "in-band" ones (those parallel to the signal).
+    </para>
+
+    <para id="para3">
+      Expanding the dot product, 
+
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:transpose/>
+	      <m:ci type="vector">r</m:ci>
+	    </m:apply>
+	    <m:ci type="vector"><m:msub>
+		<m:mi>s</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub></m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar>
+	      <m:ci>l</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:cn>0</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      another signal processing interpretation emerges. The dot
+      product now describes a finite impulse response (FIR) filtering
+      operation evaluated at a specific index. To demonstrate this
+      interpretation, let
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">h</m:ci>
+	  <m:ci>l</m:ci>
+	</m:apply>
+      </m:math> 
+
+      be the unit-sample response of a linear, shift-invariant filter
+      where
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">h</m:ci>
+	    <m:ci>l</m:ci>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math> 
+      
+      for 
+      <m:math>
+	<m:apply>
+	  <m:lt/>
+	  <m:ci>l</m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>
+      and 
+
+      <m:math>
+	<m:apply>
+	  <m:geq/>
+	  <m:ci>l</m:ci>
+	  <m:ci>L</m:ci>
+	</m:apply>
+      </m:math>. Letting 
+
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">r</m:ci>
+	  <m:ci>l</m:ci>
+	</m:apply>
+      </m:math> be the filter's input sequence, the convolution sum
+      expresses the output.
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+	    <m:apply>
+	      <m:ci type="fn">r</m:ci>
+	      <m:ci>k</m:ci>
+	    </m:apply>  
+	    <m:apply>
+	      <m:ci type="fn">h</m:ci>
+	      <m:ci>k</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar>
+	      <m:ci>l</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>k</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>L</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:ci>k</m:ci>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">h</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>k</m:ci>
+		  <m:ci>l</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      Letting 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>k</m:ci>
+	  <m:apply>
+	    <m:minus/>
+	    <m:ci>L</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math>, the index at which the unit-sample response's last
+      value overlaps the input's value at the origin, we have
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+	    <m:bvar>
+	      <m:ci>k</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:lowlimit>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>k</m:ci>
+	      </m:apply>  
+	      <m:apply>
+		<m:ci type="fn">h</m:ci>
+		<m:ci>k</m:ci>
+	      </m:apply> 
+	    </m:apply>
+	  </m:apply>
+	  
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar>
+	      <m:ci>l</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:cn>0</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">h</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>l</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      If we set the unit-sample response equal to the index-reversed,
+      then delayed signal
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">h</m:ci>
+	    <m:ci>l</m:ci>
+	  </m:apply>
+
+	  <m:apply>
+	    <m:ci type="fn">
+	      <m:msub>
+		<m:mi>s</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	      <m:ci>l</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>, we have
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+	    <m:bvar>
+	      <m:ci>k</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:lowlimit>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>k</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>k</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar>
+	      <m:ci>l</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:cn>0</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      which equals the observation-dependent component of the optimal
+      detector's sufficient statistic. <link target-id="matched-filter" strength="3"/> depicts these computations graphically.
+    </para>
+    
+    <figure id="matched-filter">
+      <media id="idm6219568" alt=""><image src="../../media/mf.png" mime-type="image/png"/></media>
+      <caption>
+	The detector for signals contained in additive, white Gaussian
+	noise consists of a matched filter, whose output is sampled at
+	the duration of the signal and half of the signal energy is
+	subtracted from it. The optimum detector incorporates a
+	matched filter for each signal compares their outputs to
+	determine the largest.
+      </caption>
+    </figure>
+    
+    <para id="para4">
+      The sufficient statistic for the
+      <m:math>
+	<m:msup>
+	  <m:mi>i</m:mi>
+	  <m:mi>th</m:mi>
+	</m:msup>
+      </m:math> 
+
+      signal is thus expressed in signal processing notation as 
+
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+	    <m:bvar>
+	      <m:ci>k</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:lowlimit>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>k</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>k</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci><m:msub>
+		<m:mi>E</m:mi> 
+		<m:mi>i</m:mi> 
+	      </m:msub></m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  The filtering term is called a <term>matched
+	filter</term> because the observations are passed through a
+	filter whose unit-sample response "matches" that of the signal
+	being sought. We sample the matched filter's output at the
+	precise moment when all of the observations fall within the
+	filter's memory and then adjust this value by half the signal
+	energy. The adjusted values for the two assumed signals are
+	subtracted and compared to a threshold.
+    </para>
+  
+    <para id="para5">
+      To compute the performance probabilities, the expressions should
+      be simplified in the ways discussed in the hypothesis testing
+      sections.  As the energy terms are known <foreign>a
+      priori</foreign> they can be incorporated into the threshold
+      with the result
+      
+      <m:math display="block">
+	<m:mrow>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar>
+	      <m:ci>l</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:cn>0</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:ci>	
+		  <m:ci>l</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub>
+		  </m:ci>	
+		  <m:ci>l</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+
+	  <m:munder>
+	    <m:mover>
+	      <m:mi>≷</m:mi>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>1</m:mn>
+	      </m:msub>
+	    </m:mover>
+	    <m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub>
+	  </m:munder>
+	  <m:apply>
+	    <m:plus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>σ</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:ln/>
+		<m:ci>η</m:ci>
+	      </m:apply>
+	    </m:apply>
+
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:minus/>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>E</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:mrow>
+      </m:math>
+      The left term constitutes the sufficient statistic for the binary
+      detection problem. Because the additive noise is presumed Gaussian,
+      the sufficient statistic is a Gaussian random variable no matter
+      which model is assumed. Under
+
+      <m:math>
+	<m:ci><m:msub>
+	    <m:mi>ℳ</m:mi>
+	    <m:mi>i</m:mi>
+	  </m:msub></m:ci>
+      </m:math>
+
+      , the specifics of this probability distribution are
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#distributedin"/>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar>
+	      <m:ci>l</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:cn>0</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:ci>	
+		  <m:ci>l</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub>
+		  </m:ci>	
+		  <m:ci>l</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#normaldistribution"/>
+	    <m:apply>
+	      <m:sum/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub>
+		  </m:ci>	
+		  <m:ci>l</m:ci>
+		</m:apply>
+		
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>s</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub>
+		    </m:ci>	
+		    <m:ci>l</m:ci>
+		  </m:apply>
+		  
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>s</m:mi>
+			<m:mn>0</m:mn>
+		      </m:msub>
+		    </m:ci>	
+		    <m:ci>l</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>σ</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>s</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub>
+		      </m:ci>	
+		      <m:ci>l</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>s</m:mi>
+			  <m:mn>0</m:mn>
+			</m:msub>
+		      </m:ci>	
+		      <m:ci>l</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      The false-alarm probability is given by
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi>
+	      <m:mi>F</m:mi>
+	    </m:msub></m:ci>
+	  <m:apply>
+	    <m:ci type="fn">Q</m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>σ</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ln/>
+		    <m:ci>η</m:ci>
+		  </m:apply>
+		</m:apply>
+
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci><m:msub>
+			  <m:mi>E</m:mi>
+			  <m:mn>1</m:mn>
+			</m:msub></m:ci>
+		      <m:ci><m:msub>
+			  <m:mi>E</m:mi>
+			  <m:mn>0</m:mn>
+			</m:msub></m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:sum/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn">
+			  <m:msub>
+			    <m:mi>s</m:mi>
+			    <m:mn>0</m:mn>
+			  </m:msub>
+			</m:ci>	
+			<m:ci>l</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci>σ</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:sum/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>1</m:ci> 
+		    <m:ci>2</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      The signal-related terms in the numerator of this expression can
+      be manipulated with the false-alarm probability (and the
+      detection probability) for the optimal white Gaussian noise
+      detector succinctly expressed by
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi>
+	      <m:mi>F</m:mi>
+	    </m:msub></m:ci>
+	  
+	  <m:apply>
+	    <m:ci type="fn">Q</m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:ln/>
+		  <m:ci>η</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>σ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:sum/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:ci>σ</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:sum/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn> 
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>P</m:mi>
+	      <m:mi>F</m:mi>
+	    </m:msub></m:ci>
+	  
+	  <m:apply>
+	    <m:ci type="fn">Q</m:ci>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:ln/>
+		  <m:ci>η</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>σ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:sum/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:ci>σ</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:sum/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>1</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>s</m:mi>
+			      <m:mn>0</m:mn>
+			    </m:msub>
+			  </m:ci>	
+			  <m:ci>l</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>1</m:ci> 
+		    <m:ci>2</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+    </para>
+
+    <para id="para6">
+      Note that the <emphasis>only</emphasis> signal-related quantity
+      affecting this performance probability (and all of the others)
+      is the <emphasis> ratio of energy in the difference signal to
+      the noise variance.</emphasis> The larger this ratio, the better
+      (smaller) the performance probabilities become. Note that the
+      details of the signal waveforms do not greatly affect the energy
+      of the difference signal. For example, consider the case where
+      the two signal energies are equal
+
+      (<m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>E</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>E</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci>E</m:ci>
+	</m:apply>
+      </m:math>); the energy of the difference signal is given by
+      
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>2</m:cn>
+	    <m:ci>E</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>2</m:cn>
+	    <m:apply>
+	      <m:sum/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub>
+		  </m:ci>	
+		  <m:ci>l</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">
+		    <m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub>
+		  </m:ci>	
+		  <m:ci>l</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>. The largest value of this energy occurs when the
+      signals are negatives of each other, with the difference-signal
+      energy equaling
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:cn>4</m:cn>
+	  <m:ci>E</m:ci>
+	</m:apply>
+      </m:math>. Thus, equal-energy but opposite-signed signals such
+      as sine waves, square-waves, Bessel functions,
+      etc. <emphasis>all</emphasis> yield exactly the same performance
+      levels. The essential signal properties that do yield good
+      performance values are elucidated by an alternate
+      interpretation. The term
+
+      <m:math>
+	<m:apply>
+	  <m:sum/>
+	  <m:apply>
+	    <m:power/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub>
+		</m:ci>	
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">
+		  <m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub>
+		</m:ci>	
+		<m:ci>l</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      equals
+
+      <m:math>
+	<m:apply>
+	  <m:power/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>s</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci type="vector"><m:msub>
+		  <m:mi>s</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:cn>2</m:cn>
+	</m:apply>
+      </m:math>, the
+      
+      <m:math>
+	<m:apply> 
+	  <m:power/>
+	  <m:ci>L</m:ci>
+	  <m:cn>2</m:cn>
+	</m:apply>
+      </m:math> norm of the difference signal. Geometrically, the
+      difference-signal energy is the same quantity as the square of
+      the Euclidean distance between the two signals. In these terms,
+      a larger distance between the two signals will mean better
+      performance.
+    </para>
+
+    <example id="ex1">
+      <title>Detection, Gaussian example </title>
+      <para id="para7">
+	A common detection problem in array processing is to determine
+	whether a signal is present (
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math>) or not (
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub></m:ci>
+	</m:math>
+	) in the array output.  In this case,
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>s</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub>
+	      </m:ci>	
+	      <m:ci>l</m:ci>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+
+	The optimal detector relies on filtering the array output with
+	a matched filter having an impulse response based on the
+	assumed signal.  Letting the signal under
+
+	<m:math>
+	  <m:ci><m:msub>
+	      <m:mi>ℳ</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:math>
+
+	be denoted simply by 
+
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">s</m:ci>	
+	    <m:ci>l</m:ci>
+	  </m:apply>
+	</m:math>, the optimal detector consists of
+	
+	<m:math display="block">
+	  <m:mrow>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+		<m:bvar>
+		  <m:ci>l</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:lowlimit>
+
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:ci>l</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">s</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>L</m:ci>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		      <m:ci>l</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>E</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+
+	    <m:munder>
+	      <m:mover>
+		<m:mi>≷</m:mi>
+		<m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:mover>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	    </m:munder>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>σ</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:ln/>
+		<m:ci>η</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:mrow>
+	</m:math>
+	or
+	<m:math display="block">
+	  <m:mrow>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/>
+	      <m:bvar>
+		<m:ci>l</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>L</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:lowlimit>
+
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+		<m:apply>
+		  <m:ci type="fn">r</m:ci>
+		  <m:ci>l</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">s</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>L</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		    <m:ci>l</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:munder>
+	      <m:mover>
+		<m:mi>≷</m:mi>
+		<m:msub>
+		  <m:mi>ℳ</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:mover>
+	      <m:msub>
+		<m:mi>ℳ</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	    </m:munder>
+	    <m:ci>γ</m:ci>
+	  </m:mrow>
+	</m:math>
+	The false-alarm and detection probabilities are given by
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>F</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:ci type="fn">Q</m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>γ</m:ci>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>E</m:ci>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>σ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>D</m:mi>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:ci type="fn">Q</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:ci type="fn">Q</m:ci>
+		  </m:apply>
+		  <m:ci><m:msub>
+		      <m:mi>P</m:mi>
+		      <m:mi>F</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:root/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>E</m:ci>
+		    <m:ci>σ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	<link target-id="fig2"/> displays the probability of detection as a
+	function of the signal-to-noise ratio
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>E</m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>σ</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	for several values of false-alarm probability.  Given an
+	estimate of the expected signal-to-noise ratio, these curves
+	can be used to assess the trade-off between the false-alarm
+	and detection probabilities.
+      </para>
+
+      <figure id="fig2">
+	<media id="idp3055216" alt=""><image src="../../media/pdformanypf.png" mime-type="image/png"/></media>
+	<caption>
+	  The probability of detection is plotted versus
+	  signal-to-noise ratio for various values of the false-alarm
+	  probability
+	  <m:math>
+	    <m:ci><m:msub>
+		<m:mi>P</m:mi>
+		<m:mi>F</m:mi>
+	      </m:msub></m:ci>
+	  </m:math>. False-alarm probabilities range from 
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:cn>10</m:cn>
+	      <m:cn>-1</m:cn>
+	    </m:apply>
+	  </m:math> down to
+	  <m:math>
+	    <m:apply>
+	      <m:power/>
+	      <m:cn>10</m:cn>
+	      <m:cn>-6</m:cn>
+	    </m:apply>
+	  </m:math> by decades. The matched filter receiver was used
+	  since the noise is white and Gaussian. Note how the range of
+	  signal-to-noise ratios over which the detection probability
+	  changes shrinks as the false-alarm probability decreases. This
+	  effect is a consequence of the non-linear nature of the
+	  function
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">Q</m:ci>
+	      <m:ci>·</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</caption>
+      </figure>
+      
+    </example>
+    
+    <para id="paranext">
+      The important parameter determining detector performance derived
+      in this example is the <term>signal-to-noise ratio</term>
+      <m:math>
+	<m:apply>
+	  <m:divide/>
+	  <m:ci>E</m:ci>
+	  <m:apply>
+	    <m:power/>
+	    <m:ci>σ</m:ci>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math>: the larger it is, the smaller the false-alarm
+      probability is (generally speaking). Signal-to-noise ratios can be
+      measured in many different ways. For example, one measure might be
+      the ratio of the rms signal amplitude to the rms noise
+      amplitude. Note that the important one for the detection problem
+      is much different. The signal portion is the
+      <emphasis>sum</emphasis> of the squared signal values over the
+      <emphasis>entire</emphasis> set of observed values - the signal
+      energy; the noise portion is the variance of
+      <emphasis>each</emphasis> noise component - the noise power. Thus,
+      energy can be increased in two ways that increase the
+      signal-to-noise ratio: the signal can be made larger
+      <emphasis>or</emphasis> the observations can be extended to
+      encompass a larger number of values.
+    </para>
+
+    <para id="paranext2">
+      To illustrate this point, two signals having the same energy are
+      shown in <link target-id="fig3"/>. When these signals are shown in
+      the presence of additive noise, the signal is visible on the
+      left because its amplitude is larger; the one on the right is
+      much more difficult to discern. The instantaneous
+      signal-to-noise ratio-the ratio of signal amplitude to average
+      noise amplitude - is the important visual cue. However, the kind
+      of signal-to-noise ratio that determines detection performance
+      belies the eye. The matched filter outputs have similar maximal
+      values, indicating that total signal energy rather than
+      amplitude determines the performance of a matched filter
+      detector.
+    </para>
+    <figure id="fig3">
+      <media id="idm7278560" alt=""><image src="../../media/mfout.png" mime-type="image/png"/></media>
+      <caption>
+	Two signals having the same energy are shown at the top of the
+	figure. The one on the left equals one cycle of a sinusoid
+	having ten samples/period (
+	<m:math>
+	  <m:apply>
+	    <m:sin/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>ω</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>l</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> with
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub>
+		<m:mi>ω</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:pi/>
+	      <m:cn>0.1</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>). On the right, ten cycles of similar signal is shown,
+	with an amplitude a factor of
+	<m:math>
+	  <m:apply>
+	    <m:root/>
+	    <m:cn>10</m:cn>
+	  </m:apply>
+	</m:math> smaller. The middle portion of the figure shows these
+	signals with the same noise signal added; the duration of this
+	signal is 200 samples. The lower portion depicts the outputs of
+	matched filters for each signal. The detection threshold was set
+	by specifying a false-alarm probability of
+	<m:math>
+	  <m:apply>
+	    <m:power/>
+	    <m:cn>10</m:cn>
+	    <m:cn>-2</m:cn>
+	  </m:apply>
+	</m:math>.
+      </caption>
+    </figure>
+
+    <section id="vwna">
+      <title>Validity of the White Noise Assumption</title>
+      <para id="vwna1">
+	The optimal detection paradigm for the additive, white
+	Gaussian noise problem has a relatively simple solution:
+	construct FIR filters whose unit-sample responses are related
+	to the presumed signals and compare the filtered outputs with
+	a threshold. We may well wonder which assumptions made in this
+	problem are most questionable in "real-world"
+	applications. noise is additive in most cases. In many
+	situation, the additive noise present in observed data is
+	Gaussian. Because of the Central Limit Theorem, if numerous
+	noise sources impinge on a measuring device, their
+	superposition will be Gaussian to a great extent. As we know
+	from the discussion on <link document="m11251">the Central
+	Limit Theorem</link>, glibly appealing to the Central Limit
+	Theorem is not without hazards; the non-Gaussian detection
+	problem will be discussed in some detail later. Interestingly,
+	the weakest assumption is the "whiteness" of the noise. Note
+	that the observation sequence is obtained as a result of
+	<emphasis>sampling</emphasis> the sensor outputs. Assuming
+	white noise samples does <emphasis>not</emphasis> mean that
+	the continuous-time noise was white. White noise in continuous
+	time has infinite variance and cannot be sampled;
+	discrete-time white noise has a finite variance with a
+	constant power spectrum. The Sampling Theorem suggests that a
+	signal is represented accurately by its samples only if we
+	choose a sampling frequency commensurate with the signal's
+	bandwidth. One should note that fidelity of representation
+	does <emphasis>not</emphasis> mean that the sample values are
+	independent. In most cases, satisfying the Sampling Theorem
+	means that the samples are correlated. As shown in <link document="m11254">Sampling and Random Sequences</link>, the
+	correlation function of sampled noise equals samples of the
+	original correlation function. For the sampled noise to be
+	white,
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn">n</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>l</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>T</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">n</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub>
+		      <m:mi>l</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>T</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math> for
+      <m:math>
+	<m:apply>
+	  <m:neq/>
+	  <m:ci><m:msub>
+	      <m:mi>l</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>l</m:mi>
+	      <m:mn>2</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>: the samples of the correlation function at locations
+      other than the origin must all be zero. While some correlation
+      functions have this property, <emphasis>many examples satisfy
+      the sampling theorem but do not yield uncorrelated
+      samples</emphasis>. In many practical situations,
+      <emphasis>undersampling</emphasis> the noise will reduce
+      inter-sample correlation. Thus, we obtain uncorrelated samples
+      either by deliberately undersampling, which wastes signal
+      energy, or by imposing anti-aliasing filters that have a
+      bandwidth larger than the signal and sampling at the signal's
+      Nyquist rate. Since the noise power spectrum usually extends to
+      higher frequencies than the signal, this intentional
+      undersampling can result in larger noise variance. in either
+      case, by trying to make the problem at hand match the solution,
+      we are actually reducing performance!  We need a
+      <emphasis>direct</emphasis> approach to attacking the correlated
+      noise issue that arises in virtually <emphasis>all</emphasis>
+      sampled-data detection problems rather than trying to work
+      around it.
+    </para>
+
+    </section>
+  </content>
+    
+</document>

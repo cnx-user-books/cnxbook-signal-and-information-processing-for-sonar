@@ -1,0 +1,1400 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Review of Probability Theory</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a6b27a5e-610f-4fb9-a36a-3773569bcb2f</md:uuid>
+</metadata>
+
+  <content>
+    <!-- module still contains small mathml issues including the lack of a -->
+    <!-- mapsto function and a way to express dependent on -->
+
+    <para id="para1">
+      The focus of this course is on digital communication, which
+      involves transmission of information, in its most general sense,
+      from source to destination using digital technology.
+      Engineering such a system requires modeling both the information
+      and the transmission media. Interestingly, modeling both digital
+      or analog information and many physical media requires a
+      probabilistic setting. In this chapter and in the next one we
+      will review the theory of probability, model random signals, and
+      characterize their behavior as they traverse through
+      deterministic systems disturbed by noise and interference.  In
+      order to develop practical models for random phenomena we start
+      with carrying out a random experiment. We then introduce
+      definitions, rules, and axioms for modeling within the context
+      of the experiment.  The outcome of a random experiment is
+      denoted by <m:math><m:ci>ω</m:ci></m:math>.  The sample
+      space <m:math><m:ci>Ω</m:ci></m:math> is the set of
+      all possible outcomes of a random experiment.  Such outcomes
+      could be an abstract description in words. A scientific
+      experiment should indeed be repeatable where each outcome could
+      naturally have an associated probability of occurrence. This is
+      defined formally as the ratio of the number of times the outcome
+      occurs to the total number of times the experiment is repeated.
+    </para>
+
+    <section id="s1">
+      <title>Random Variables</title>
+      <para id="para2">
+	A random variable is the assignment of a real number to each
+	outcome of a random experiment.
+      </para>
+
+      <figure id="fig1">
+	<media id="idm6297600" alt=""><image src="../../media/Figure2-1.png" mime-type="image/png"/></media>
+      </figure>
+
+      <example id="example1">
+	<para id="para3">
+	  Roll a dice. Outcomes
+	  <m:math display="inline">
+	    <m:set>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>ω</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>ω</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>ω</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>ω</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>ω</m:mi>
+		  <m:mn>5</m:mn>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>ω</m:mi>
+		  <m:mn>6</m:mn>
+		</m:msub>
+	      </m:ci>
+	    </m:set>
+	  </m:math>
+	</para>
+	<para id="para4">
+	  <m:math display="inline">
+	    <m:ci>
+	      <m:msub>
+		<m:mi>ω</m:mi>
+		<m:mi>i</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>
+	  = <m:math><m:ci>i</m:ci></m:math> dots on the face of the
+	  dice.
+	</para>
+
+	<para id="para5">
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci type="fn">X</m:ci>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>ω</m:mi>
+                    <m:mi>i</m:mi>
+                  </m:msub>
+                </m:ci>
+              </m:apply>
+              <m:ci>i</m:ci>
+	    </m:apply>
+	  </m:math>
+	</para>
+
+      </example>
+    </section>
+    
+    <section id="s2">
+      <title>Distributions</title>
+      
+      <para id="para7">
+	Probability assignments on intervals
+	<m:math display="inline">
+	  <m:apply>
+	    <m:lt/>
+	    <m:ci>a</m:ci>
+	    <m:apply>
+	      <m:leq/>
+	      <m:ci>X</m:ci>
+	      <m:ci>b</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+      </para>
+
+      <definition id="def1">
+	<term>Cumulative distribution</term>
+
+	<meaning id="idp2234704">
+	  The cumulative distribution function of a random variable
+	  <m:math><m:ci>X</m:ci></m:math> is a function
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+	      <m:bvar>
+		<m:ci>X</m:ci>
+	      </m:bvar>
+	      <m:apply>
+		<m:ci><m:mo>↦</m:mo></m:ci>
+		<m:reals/>
+		<m:reals/>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	  such that
+	  <equation id="eq01">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+		  <m:bvar>
+		    <m:ci>X</m:ci>
+		  </m:bvar>
+                  <m:ci>b</m:ci>
+                </m:apply>
+                <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+                  <m:apply>
+                    <m:leq/>
+		    <m:ci>X</m:ci>
+		    <m:ci>b</m:ci>
+                  </m:apply>
+                </m:apply>
+                <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+                  <m:set>
+                    <m:bvar>
+                      <m:apply>
+                        <m:in/>
+			<m:ci>ω</m:ci>
+			<m:ci>Ω</m:ci>
+                      </m:apply>
+                    </m:bvar>
+                    <m:condition>
+                      <m:apply>
+                        <m:leq/>
+			<m:apply>
+			  <m:ci type="fn">X</m:ci>
+			  <m:ci>ω</m:ci>
+			</m:apply>
+			<m:ci>b</m:ci>
+                      </m:apply>
+                    </m:condition>
+                  </m:set>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	</meaning>
+      </definition>
+
+      <figure id="fig2">
+	<media id="idp1296512" alt=""><image src="../../media/Figure2-2.png" mime-type="image/png"/></media>
+      </figure>
+
+      <definition id="def2">
+	<term>Continuous Random Variable</term>
+
+	<meaning id="idm7038944">
+	  A random variable <m:math><m:ci>X</m:ci></m:math> is
+	  continuous if the cumulative distribution function can be
+	  written in an integral form, or
+	  <equation id="eq2">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+		  <m:bvar>
+		    <m:ci>X</m:ci>
+		  </m:bvar>
+                  <m:ci>b</m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:int/>
+		  <m:bvar>
+		    <m:ci>x</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:infinity/>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>b</m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		    <m:bvar>
+		      <m:ci>X</m:ci>
+		    </m:bvar>
+		    <m:ci>x</m:ci>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  and
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+	      <m:bvar>
+		<m:ci>X</m:ci>
+	      </m:bvar>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>
+	  is the probability density function (pdf) (<foreign>e.g.</foreign>,
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+	      <m:bvar>
+		<m:ci>X</m:ci>
+	      </m:bvar>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>
+	  is differentiable and
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+                <m:ci>x</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:diff/>
+		<m:bvar>
+		  <m:ci>x</m:ci>
+		</m:bvar>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+		  <m:bvar>
+		    <m:ci>X</m:ci>
+		  </m:bvar>
+		  <m:ci>x</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>)
+	</meaning>
+      </definition>
+
+      <definition id="def3">
+	<term>Discrete Random Variable</term>
+
+	<meaning id="idp39376">
+	  A random variable <m:math><m:ci>X</m:ci></m:math> is
+	  discrete if it only takes at most countably many points
+	  (<foreign>i.e.</foreign>,
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+	      <m:bvar>
+		<m:ci>X</m:ci>
+	      </m:bvar>
+	      <m:ci>·</m:ci>
+	    </m:apply>
+	  </m:math>
+	  is piecewise constant).  The probability mass function (pmf) is
+	  defined as
+	  <equation id="eq03">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+                <m:apply>
+		  <m:csymbol class="discrete" definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		  <m:bvar>
+		    <m:ci>X</m:ci>
+		  </m:bvar>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>x</m:mi>
+                      <m:mi>k</m:mi>
+                    </m:msub>
+                  </m:ci>
+                </m:apply>
+                <m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+                  <m:apply>
+                    <m:eq/>
+		    <m:ci>X</m:ci>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub>
+		    </m:ci>
+                  </m:apply>
+                </m:apply>
+                <m:apply>
+                  <m:minus/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+		    <m:bvar>
+		      <m:ci>X</m:ci>
+		    </m:bvar>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:limit/>
+		    <m:bvar>
+		      <m:ci>x</m:ci>
+		    </m:bvar>
+		    <m:condition>
+		      <m:apply>
+			<m:and/>
+			<m:apply>
+			  <m:tendsto/>
+			  <m:ci>x</m:ci>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mi>k</m:mi>
+			    </m:msub>
+			  </m:ci>
+			</m:apply>
+			<m:apply>
+			  <m:lt/>
+			  <m:ci>x</m:ci>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>x</m:mi>
+			      <m:mi>k</m:mi>
+			    </m:msub>
+			  </m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:condition>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+		      <m:bvar>
+			<m:ci>X</m:ci>
+		      </m:bvar>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	</meaning>
+      </definition>
+
+      <para id="para8">
+	Two random variables defined on an experiment have joint distribution
+	<equation id="eq04">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+                <m:ci>a</m:ci>
+                <m:ci>b</m:ci>
+              </m:apply>
+              <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+                <m:apply>
+                  <m:leq/>
+		  <m:ci>X</m:ci>
+		  <m:ci>a</m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:leq/>
+		  <m:ci>Y</m:ci>
+		  <m:ci>b</m:ci>
+                </m:apply>
+              </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:set>
+		  <m:bvar>
+		    <m:apply>
+		      <m:in/>
+		      <m:ci>ω</m:ci>
+		      <m:ci>Ω</m:ci>
+		    </m:apply>
+		  </m:bvar>
+		  <m:condition>
+		    <m:apply>
+		      <m:and/>
+		      <m:apply>
+			<m:leq/>
+			<m:apply>
+			  <m:ci type="fn">X</m:ci>
+			  <m:ci>ω</m:ci>
+			</m:apply>
+			<m:ci>a</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:leq/>
+			<m:apply>
+			  <m:ci type="fn">Y</m:ci>
+			  <m:ci>ω</m:ci>
+			</m:apply>
+			<m:ci>b</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:condition>
+		</m:set>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <figure id="fig3">
+	<media id="idp7411488" alt=""><image src="../../media/Figure2-4.png" mime-type="image/png"/></media>
+      </figure>
+
+      <para id="para9">
+	Joint pdf can be obtained if they are jointly continuous
+	<equation id="eq06">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+                <m:ci>a</m:ci>
+                <m:ci>b</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:int/>
+		<m:bvar>
+		  <m:ci>y</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>b</m:ci>
+		</m:uplimit>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>x</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:infinity/>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>a</m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+		    <m:ci>x</m:ci>
+		    <m:ci>y</m:ci>
+		  </m:apply>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	(<foreign>e.g.</foreign>, 
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+              <m:ci>x</m:ci>
+              <m:ci>y</m:ci>
+            </m:apply>
+            <m:apply>
+              <m:partialdiff/>
+	      <m:bvar>
+		<m:ci>x</m:ci>
+	      </m:bvar>
+	      <m:bvar>
+		<m:ci>y</m:ci>
+	      </m:bvar>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#cdf">F</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+		<m:ci>x</m:ci>
+		<m:ci>y</m:ci>
+	      </m:apply>
+            </m:apply>
+	  </m:apply>
+	</m:math>)
+      </para>
+
+      <para id="para10">
+	Joint pmf if they are jointly discrete
+
+	<equation id="eq07">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>x</m:mi>
+                    <m:mi>k</m:mi>
+                  </m:msub>
+                </m:ci>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>y</m:mi>
+                    <m:mi>l</m:mi>
+                  </m:msub>
+                </m:ci>
+              </m:apply>
+              <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+                <m:apply>
+                  <m:eq/>
+		  <m:ci>X</m:ci>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub>
+		  </m:ci>
+                </m:apply>
+                <m:apply>
+                  <m:eq/>
+		  <m:ci>Y</m:ci>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mi>l</m:mi>
+		    </m:msub>
+		  </m:ci>
+                </m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+
+      <para id="para11">
+	Conditional density function
+
+	<equation id="eq08">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci type="fn">
+                  <m:msub>
+                    <m:mi>f</m:mi>
+		    <m:mrow>
+		      <m:mi>Y</m:mi>
+		      <m:mo>|</m:mo>
+		      <m:mi>X</m:mi>
+		    </m:mrow>
+                  </m:msub>
+                </m:ci>
+                <m:ci>
+                  <m:mrow>
+		    <m:mi>y</m:mi>
+		    <m:mo>|</m:mo>
+		    <m:mi>x</m:mi>
+                  </m:mrow>
+                </m:ci>
+              </m:apply>
+              <m:apply>
+                <m:divide/>
+		<m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+		  <m:ci>x</m:ci>
+		  <m:ci>y</m:ci>
+		</m:apply>
+		<m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		  <m:ci>x</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	for all <m:math display="inline"><m:ci>x</m:ci></m:math> with
+	<m:math display="inline">
+	  <m:apply>
+	    <m:gt/>
+            <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+              <m:ci>x</m:ci>
+            </m:apply>
+            <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	
+	otherwise conditional density is not defined for those values
+	of <m:math><m:ci>x</m:ci></m:math> with
+	
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+              <m:ci>x</m:ci>
+            </m:apply>
+            <m:cn>0</m:cn>
+          </m:apply>
+        </m:math>
+
+      </para>
+
+      <para id="para12">
+	Two random variables are <term>independent</term> if
+	<equation id="eq09">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+                <m:ci>x</m:ci>
+                <m:ci>y</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:times/>
+		<m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		  <m:ci>x</m:ci>
+		</m:apply>
+		<m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+		  <m:ci>y</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	for all
+	<m:math display="inline">
+	  <m:apply>
+	    <m:in/>
+            <m:ci>x</m:ci>
+            <m:reals/>
+	  </m:apply>
+	</m:math>
+	and
+	<m:math display="inline">
+	  <m:apply>
+	    <m:in/>
+            <m:ci>y</m:ci>
+            <m:reals/>
+	  </m:apply>
+	</m:math>.
+	For discrete random variables,
+
+	<equation id="eq10">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>x</m:mi>
+                    <m:mi>k</m:mi>
+                  </m:msub>
+                </m:ci>
+                <m:ci>
+                  <m:msub>
+                    <m:mi>y</m:mi>
+                    <m:mi>l</m:mi>
+                  </m:msub>
+                </m:ci>
+              </m:apply>
+              <m:apply>
+                <m:times/>
+		<m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+		<m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mi>l</m:mi>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+              </m:apply>
+            </m:apply>
+	  </m:math>
+	</equation>
+	for all <m:math><m:ci>k</m:ci></m:math> and <m:math><m:ci>l</m:ci></m:math>.
+      </para>
+
+    </section>
+
+    <section id="s3">
+      <title>Moments</title>
+
+      <para id="para13">
+	Statistical quantities to represent some of the
+	characteristics of a random variable.
+
+	<equation id="eq11">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:mean/>
+		<m:apply>
+		  <m:ci type="fn">g</m:ci>
+		  <m:ci>X</m:ci>
+		</m:apply>
+              </m:apply>
+              <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+                <m:apply>
+                  <m:ci type="fn">g</m:ci>
+                  <m:ci>X</m:ci>
+                </m:apply>
+              </m:apply>
+              <m:piecewise>
+                <m:piece>
+                  <m:apply>
+                    <m:int/>
+		    <m:bvar>
+		      <m:ci>x</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:apply>
+			<m:minus/>
+			<m:infinity/>
+		      </m:apply>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:infinity/>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn">g</m:ci>
+			<m:ci>x</m:ci>
+		      </m:apply>
+		      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+			<m:ci>x</m:ci>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+                  <m:mtext>continuous</m:mtext>
+                </m:piece>
+                <m:piece>
+                  <m:apply>
+                    <m:sum/>
+		    <m:bvar>
+		      <m:ci>k</m:ci>
+		    </m:bvar>
+		    <m:condition>
+		      <m:ci>k</m:ci>
+		    </m:condition>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn">g</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mi>k</m:mi>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mi>k</m:mi>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+                  <m:mtext>discrete</m:mtext>
+                </m:piece>
+              </m:piecewise>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	<list id="list1">
+	  <item>
+	    Mean
+	    <equation id="eq13">
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>μ</m:mi>
+                      <m:mi>X</m:mi>
+                    </m:msub>
+                  </m:ci>
+                  <m:apply>
+                    <m:mean/>
+		    <m:ci>X</m:ci>
+                  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  </item>
+	  <item>
+	    Second moment
+	    <equation id="eq14">
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+                  <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+                    <m:apply>
+                      <m:power/>
+		      <m:ci>X</m:ci>
+		      <m:cn>2</m:cn>
+                    </m:apply>
+                  </m:apply>                        
+                  <m:apply>
+                    <m:mean/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>X</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  </item>
+	  <item>
+	    Variance
+	    <equation id="eq15">
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+                  <m:apply>
+                    <m:ci type="fn">Var</m:ci>
+                    <m:ci>X</m:ci>
+                  </m:apply>
+                  <m:apply>
+                    <m:variance/>
+		    <m:ci>X</m:ci>
+                  </m:apply>
+                  <m:apply>
+                    <m:mean/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>X</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>μ</m:mi>
+			    <m:mi>X</m:mi>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+                  </m:apply>
+                  <m:apply>
+                    <m:minus/>
+		    <m:apply>
+		      <m:mean/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>X</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>μ</m:mi>
+			  <m:mi>X</m:mi>
+			</m:msub>
+		      </m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  </item>
+	  <item>
+	    Characteristic function
+	    <equation id="eq16">
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+                  <m:apply>
+                    <m:ci type="fn">
+                      <m:msub>
+                        <m:mi>Φ</m:mi>
+                        <m:mi>X</m:mi>
+                      </m:msub>
+                    </m:ci>
+                    <m:ci>u</m:ci>
+                  </m:apply>
+                  <m:apply>
+                    <m:mean/>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:ci>u</m:ci>
+			<m:ci>X</m:ci>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	    for 
+	    <m:math display="inline">
+	      <m:apply>
+		<m:in/>
+                <m:ci>u</m:ci>
+                <m:reals/>
+	      </m:apply>
+	    </m:math>,
+	    where
+	    <m:math display="inline">
+	      <m:apply>
+		<m:eq/>
+                <m:imaginaryi/>
+                <m:apply>
+                  <m:root/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+                </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </item>
+	  <item>
+	    Correlation between two random variables
+	    <equation id="eq17">
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>R</m:mi>
+		      <m:mrow>
+			<m:mi>X</m:mi>
+			<m:mi>Y</m:mi>
+		      </m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:apply>
+                    <m:mean/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>X</m:ci>
+		      <m:ci>
+			<m:msup>
+			  <m:mi>Y</m:mi>
+			  <m:mo>*</m:mo>
+			</m:msup>
+		      </m:ci>
+		    </m:apply>
+                  </m:apply>
+                  <m:piecewise>
+                    <m:piece>
+                      <m:apply>
+                        <m:int/>
+			<m:bvar>
+			  <m:ci>y</m:ci>
+			</m:bvar>
+			<m:lowlimit>
+			  <m:apply>
+			    <m:minus/>
+			    <m:infinity/>
+			  </m:apply>
+			</m:lowlimit>
+			<m:uplimit>
+			  <m:infinity/>
+			</m:uplimit>
+			<m:apply>
+			  <m:int/>
+			  <m:bvar>
+			    <m:ci>x</m:ci>
+			  </m:bvar>
+			  <m:lowlimit>
+			    <m:apply>
+			      <m:minus/>
+			      <m:infinity/>
+			    </m:apply>
+			  </m:lowlimit>
+			  <m:uplimit>
+			    <m:infinity/>
+			  </m:uplimit>
+			  <m:apply>
+			    <m:times/>
+			    <m:ci>x</m:ci>
+			    <m:ci>
+			      <m:msup>
+				<m:mi>y</m:mi>
+				<m:mo>*</m:mo>
+			      </m:msup>
+			    </m:ci>
+			    <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">f</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+			      <m:ci>x</m:ci>
+			      <m:ci>y</m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>
+                      </m:apply>
+                      <m:ci><m:mtext> X and Y are jointly continuous</m:mtext></m:ci>
+                    </m:piece>
+                    <m:piece>
+                      <m:apply>
+                        <m:sum/>
+			<m:bvar>
+			  <m:ci>k</m:ci>
+			</m:bvar>
+			<m:condition>
+			  <m:ci>k</m:ci>
+			</m:condition>
+			<m:apply>
+			  <m:sum/>
+			  <m:bvar>
+			    <m:ci>l</m:ci>
+			  </m:bvar>
+			  <m:condition>
+			    <m:ci>l</m:ci>
+			  </m:condition>
+			  <m:apply>
+			    <m:times/>
+			    <m:ci>
+			      <m:msub>
+				<m:mi>x</m:mi>
+				<m:mi>k</m:mi>
+			      </m:msub>
+			    </m:ci>
+			    <m:ci>
+			      <m:msubsup>
+				<m:mi>y</m:mi>
+				<m:mi>l</m:mi>
+				<m:mi>*</m:mi>
+			      </m:msubsup>
+			    </m:ci>
+			    <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:bvar>
+		  <m:ci>Y</m:ci>
+		</m:bvar>
+			      <m:ci>
+				<m:msub>
+				  <m:mi>x</m:mi>
+				  <m:mi>k</m:mi>
+				</m:msub>
+			      </m:ci>
+			      <m:ci>
+				<m:msub>
+				  <m:mi>y</m:mi>
+				  <m:mi>l</m:mi>
+				</m:msub>
+			      </m:ci>
+			    </m:apply>
+			  </m:apply>
+			</m:apply>                  
+                      </m:apply>
+                      <m:ci><m:mtext>X and Y are jointly discrete</m:mtext></m:ci>
+                    </m:piece>
+                  </m:piecewise>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  </item>
+	  <item>
+	    Covariance
+	    <equation id="eq18">
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>C</m:mi>
+		      <m:mrow>
+                      <m:mi>X</m:mi>
+                      <m:mi>Y</m:mi>
+		      </m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:apply>
+                    <m:ci type="fn">Cov</m:ci>
+                    <m:ci>X</m:ci>
+                    <m:ci>Y</m:ci>
+                  </m:apply>
+                  <m:apply>
+                    <m:mean/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>X</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>μ</m:mi>
+			    <m:mi>X</m:mi>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>Y</m:ci>
+			  <m:ci>
+			    <m:msub>
+			      <m:mi>μ</m:mi>
+			      <m:mi>Y</m:mi>
+			    </m:msub>
+			  </m:ci>
+			</m:apply>
+			<m:ci>*</m:ci>
+		      </m:apply>
+		    </m:apply>
+                  </m:apply>
+                  <m:apply>
+                    <m:minus/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>R</m:mi>
+			<m:mrow>
+			  <m:mi>X</m:mi>
+			  <m:mi>Y</m:mi>
+			</m:mrow>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>μ</m:mi>
+			  <m:mi>X</m:mi>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>
+			<m:msubsup>
+			  <m:mi>μ</m:mi>
+			  <m:mi>Y</m:mi>
+			  <m:mi>*</m:mi>
+			</m:msubsup>
+		      </m:ci>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  </item>
+	  <item>
+	    Correlation coefficient
+	    <equation id="eq19">
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+                  <m:ci>
+                    <m:msub>
+                      <m:mi>ρ</m:mi>
+			<m:mrow>
+			  <m:mi>X</m:mi>
+			  <m:mi>Y</m:mi>
+			</m:mrow>
+                    </m:msub>
+                  </m:ci>
+                  <m:apply>
+                    <m:divide/>
+		    <m:apply>
+		      <m:ci type="fn">Cov</m:ci>
+		      <m:ci>X</m:ci>
+		      <m:ci>Y</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>σ</m:mi>
+			  <m:mi>X</m:mi>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>σ</m:mi>
+			  <m:mi>Y</m:mi>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+                  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  </item>
+	</list>
+      </para>
+
+      <definition id="def4">
+	<term>Uncorrelated random variables</term>
+
+	<meaning id="idm40544">
+	  Two random variables <m:math><m:ci>X</m:ci></m:math> and
+	  <m:math><m:ci>Y</m:ci></m:math> are uncorrelated if
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+              <m:ci>
+                <m:msub>
+                  <m:mi>ρ</m:mi>
+		  <m:mrow>
+		    <m:mi>X</m:mi>
+		    <m:mi>Y</m:mi>
+		  </m:mrow>
+                </m:msub>
+              </m:ci>
+              <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>.
+	</meaning>
+      </definition>
+
+    </section>
+
+  </content>
+</document>

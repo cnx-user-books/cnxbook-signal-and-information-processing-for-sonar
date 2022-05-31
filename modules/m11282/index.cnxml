@@ -1,0 +1,1221 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Spectral Detection</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>b286f2cc-8ab9-4761-9d71-eec7fed1087f</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">
+      From the results presented in the previous sections, the <link document="m11260">colored noise problem</link> was found to be
+      pervasive, but required a computationally difficult detector.
+      The simplest detector structure occurs when the additive noise
+      is white; this notion leads to the idea of whitening the
+      observations, thereby transforming the data into a simpler form
+      (as far as detection theory is concerned).  However, the
+      required whitening filter is often time-varying and can have a
+      long-duration unit-sample response.  Other, more computationally
+      expedient, approaches to whitening are worth considering.  An
+      only slightly more complicated detection problem occurs when we
+      have a diagonal noise covariance matrix, as in the white noise
+      case, but unequal values on the diagonal.  In terms of the
+      observations, this situation means that they are contaminated by
+      noise having statistically independent, but unequal variance
+      components: the noise would thus be non-stationary.  Few
+      problems fall directly into this category; however, the colored
+      noise problem can be recast into the white, unequal-variance
+      problem by calculating the discrete Fourier Transform (DFT) of
+      the observations and basing the detector on the resulting
+      spectrum.  The resulting <term>spectral detectors</term> greatly
+      simplify detector structures for discrete-time problems
+      <emphasis>if</emphasis> the qualifying assumptions described in
+      sequel hold.
+    </para>
+
+    <para id="para2">
+      Let <m:math><m:ci type="matrix">W</m:ci></m:math> be the
+      so-called <m:math>
+	<m:apply>
+	  <m:mo>×</m:mo>
+	  <m:ci>L</m:ci>
+	  <m:ci>L</m:ci>
+	</m:apply>
+      </m:math> "DFT matrix"
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix">W</m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:cn>1</m:cn>
+	      <m:cn>1</m:cn>
+	      <m:cn>1</m:cn>
+	      <m:ci>…</m:ci>
+	      <m:cn>1</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>1</m:cn>
+	      <m:ci>W</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:ci>W</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:ci>…</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:ci>W</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>L</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:power/>
+		<m:ci>W</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:power/>
+		<m:ci>W</m:ci>
+		<m:cn>4</m:cn>
+	      </m:apply>
+	      <m:ci>…</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:ci>W</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:ci>⋮</m:ci>
+	      <m:ci>⋮</m:ci>
+	      <m:ci>⋮</m:ci>
+	      <m:ci>⋮</m:ci>
+	      <m:ci>⋮</m:ci>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:power/>
+		<m:ci>W</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>L</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:power/>
+		<m:ci>W</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>…</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:ci>W</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>
+      where <m:math><m:ci>W</m:ci></m:math> is the elementary complex
+      exponential <m:math>
+	<m:apply>
+	  <m:exp/>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:times/>
+	      <m:imaginaryi/>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		</m:apply>
+		<m:ci>L</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  The discrete Fourier Transform of the sequence
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">r</m:ci>
+	  <m:ci>l</m:ci>
+	</m:apply>
+      </m:math>, usually written as <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">R</m:ci>
+	    <m:ci>k</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar><m:ci>l</m:ci></m:bvar>
+	    <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	    <m:uplimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn">r</m:ci>
+		<m:ci>l</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:ci>l</m:ci>
+			<m:ci>k</m:ci>
+		      </m:apply>
+		      <m:ci>L</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>, can be written in matrix form as <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix">R</m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci type="matrix">W</m:ci>
+	    <m:ci type="vector">r</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  To analyze the effect of evaluating the DFT of the
+      observations, we describe the computations in matrix form for
+      analytic simplicity.  The first critical assumption has been
+      made: take special note that the length of the transform
+      <emphasis>equals</emphasis> the duration of the observations.
+      In many signal processing applications, the transform length can
+      differ from the data length, being either longer or shorter.
+      The statistical properties developed in the following discussion
+      are critically sensitive to the equality of these lengths.  The
+      covariance matrix <m:math> <m:ci type="matrix"><m:msub>
+      <m:mi>K</m:mi> <m:mi>R</m:mi> </m:msub></m:ci> </m:math> of
+      <m:math><m:ci type="matrix">R</m:ci></m:math> is given by
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:ci type="matrix">W</m:ci>
+	  <m:ci type="matrix"><m:msub>
+	      <m:mi>K</m:mi>
+	      <m:mi>r</m:mi>
+	    </m:msub></m:ci>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+	    <m:ci type="matrix">W</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  Symmetries of these matrices - the Vandermonde form
+      of <m:math><m:ci type="matrix">W</m:ci></m:math> and the
+      Hermitian, Toeplitz form of <m:math> <m:ci type="matrix"><m:msub> <m:mi>K</m:mi> <m:mi>r</m:mi>
+      </m:msub></m:ci> </m:math> - leads to many simplifications in
+      evaluating this product.  The entries no the main diagonal are
+      given by
+      <footnote id="idp2702976">The curious index <m:math>
+	  <m:apply>
+	    <m:plus/>
+	    <m:ci>l</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math> on the matrix arises because rows and columns of
+	matrices are traditionally indexed beginning with one instead
+	of zero.</footnote>
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+          <m:apply>
+            <m:selector/>
+	    <m:ci><m:msup>
+	        <m:mi>K</m:mi>
+                <m:mi>R</m:mi>
+              </m:msup></m:ci>
+	    <m:ci>K</m:ci>
+	    <m:ci>K</m:ci>
+	  </m:apply> 
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar><m:ci>l</m:ci></m:bvar>
+	    <m:lowlimit>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>L</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>L</m:ci>
+		<m:apply>
+		  <m:abs/>
+		  <m:ci>l</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci><m:msubsup>
+		  <m:mi>K</m:mi>
+		  <m:mrow>
+		    <m:mn>1</m:mn>
+		    <m:mo>,</m:mo>
+		    <m:mrow>
+		      <m:mrow>
+			<m:mo>|</m:mo>
+			<m:mi>l</m:mi>
+			<m:mo>|</m:mo>
+		      </m:mrow>
+		      <m:mo>+</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:mrow>
+		  <m:mi>r</m:mi>
+		</m:msubsup></m:ci>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:ci>l</m:ci>
+			<m:ci>k</m:ci>
+		      </m:apply>
+		      <m:ci>L</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      The <term>variance</term> of the <m:math> <m:ci><m:msup>
+      <m:mi>k</m:mi> <m:mtext>th</m:mtext> </m:msup></m:ci> </m:math>
+      term in the discrete Fourier Transform of the noise thus equals
+      the discrete Fourier Transform of the <term>windowed</term>
+      covariance function.  This window has a triangular shape;
+      colloquially termed the "rooftop" window, its technical name is
+      the <term>Bartlett window</term> and it occurs frequently in
+      array processing and spectral estimation.  We have found that
+      the variance equals the smoothed noise power spectrum evaluated
+      at a particular frequency.  The off-diagonal terms of <m:math>
+	<m:ci type="matrix"><m:msub>
+	    <m:mi>K</m:mi>
+	    <m:mi>R</m:mi>
+	  </m:msub></m:ci>
+      </m:math> are not easily written; the complicated result is
+      <equation id="eqn1">
+	<m:math display="block">
+	  <m:apply>
+	    <m:forall/>
+	    <m:bvar><m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci></m:bvar>
+	    <m:bvar><m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci></m:bvar>
+	    <m:condition>
+	      <m:apply>
+		<m:neq/>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:condition>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:selector/>
+		<m:ci><m:msup>
+		    <m:mi>K</m:mi>
+		    <m:mi>R</m:mi>
+		  </m:msup></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply> 
+	    
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>l</m:ci></m:bvar>
+		<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		<m:uplimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>L</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msubsup>
+		      <m:mi>K</m:mi>
+		      <m:mrow>
+			<m:mn>1</m:mn>
+			<m:mo>,</m:mo>
+			<m:mrow>
+			  <m:mi>l</m:mi>
+			  <m:mo>+</m:mo>
+			  <m:mn>1</m:mn>
+			</m:mrow>
+		      </m:mrow>
+		      <m:mi>r</m:mi>
+		    </m:msubsup></m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:power/>
+			<m:cn>-1</m:cn>
+			<m:apply>
+			  <m:plus/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci><m:msub>
+				<m:mi>k</m:mi>
+				<m:mn>1</m:mn>
+			      </m:msub></m:ci>
+			    <m:ci><m:msub>
+				<m:mi>k</m:mi>
+				<m:mn>2</m:mn>
+			      </m:msub></m:ci>
+			  </m:apply>
+			  <m:cn>1</m:cn>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:sin/>
+			<m:apply>
+			  <m:divide/>
+			  <m:apply>
+			    <m:times/>
+			    <m:pi/>
+			    <m:ci>l</m:ci>
+			    <m:apply>
+			      <m:minus/>
+			      <m:ci><m:msub>
+				  <m:mi>k</m:mi>
+				  <m:mn>1</m:mn>
+				</m:msub></m:ci>
+			      <m:ci><m:msub>
+				  <m:mi>k</m:mi>
+				  <m:mn>2</m:mn>
+				</m:msub></m:ci>
+			    </m:apply>
+			  </m:apply>
+			  <m:ci>L</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:sin/>
+		      <m:apply>
+			<m:divide/>
+			<m:apply>
+			  <m:times/>
+			  <m:pi/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:ci><m:msub>
+				<m:mi>k</m:mi>
+				<m:mn>1</m:mn>
+			      </m:msub></m:ci>
+			    <m:ci><m:msub>
+				<m:mi>k</m:mi>
+				<m:mn>2</m:mn>
+			      </m:msub></m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:ci>L</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:times/>
+			  <m:imaginaryi/>
+			  <m:apply>
+			    <m:divide/>
+			  <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>l</m:ci>
+			      <m:ci><m:msub>
+				  <m:mi>k</m:mi>
+				  <m:mn>1</m:mn>
+				</m:msub></m:ci>
+			    </m:apply>
+			    <m:ci>L</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:minus/>
+			<m:apply>
+			  <m:times/>
+			  <m:imaginaryi/>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>l</m:ci>
+			      <m:ci><m:msub>
+				  <m:mi>k</m:mi>
+				  <m:mn>2</m:mn>
+				</m:msub></m:ci>
+			    </m:apply>
+			    <m:ci>L</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      The complex exponential terms indicate that each off-diagonal
+      term consists of the sum of two Fourier Transforms: one at the
+      frequency index <m:math>
+	<m:ci><m:msub>
+	    <m:mi>k</m:mi>
+	    <m:mn>2</m:mn>
+	  </m:msub></m:ci>
+      </m:math> and the other negative index <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:ci><m:msub>
+	      <m:mi>k</m:mi>
+	      <m:mn>1</m:mn>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>.  In addition, the transform is evaluated only
+      over non-negative lags.  The transformed quantity again equals a
+      windowed version of the noise covariance function, but with a
+      <emphasis>sinusoidal</emphasis> window whose frequency depends
+      on the indices <m:math> <m:ci><m:msub> <m:mi>k</m:mi>
+      <m:mn>1</m:mn> </m:msub></m:ci> </m:math> and <m:math>
+      <m:ci><m:msub> <m:mi>k</m:mi> <m:mn>2</m:mn> </m:msub></m:ci>
+      </m:math>.  This window can be negative-valued!  In contrast to
+      the Bartlett window encountered in evaluating the on-diagonal
+      terms, the maximum value achieved by the window is not large
+      (<m:math>
+	<m:apply>
+	  <m:divide/>
+	  <m:cn>1</m:cn>
+	  <m:apply>
+	    <m:sin/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:times/>
+		<m:pi/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>k</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>k</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:ci>L</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> compared to <m:math><m:ci>L</m:ci></m:math>).
+      Furthermore, this window is <emphasis>always</emphasis> zero at
+      the origin, the location of the maximum value of any covariance
+      function.  The largest magnitudes of the off-diagonal terms tend
+      to occur when the indices <m:math> <m:ci><m:msub> <m:mi>k</m:mi>
+      <m:mn>1</m:mn> </m:msub></m:ci> </m:math> and <m:math>
+      <m:ci><m:msub> <m:mi>k</m:mi> <m:mn>2</m:mn> </m:msub></m:ci>
+      </m:math> are nearly equal.  Let their difference be one; if the
+      covariance function of the noise tends toward zero well within
+      the number of observations, <m:math><m:ci>L</m:ci></m:math>,
+      then the Bartlett window has little effect on the covariance
+      function while the sinusoidal window greatly reduces it.  This
+      condition on the covariance function can be interpreted
+      physically: the noise in this case is wideband and any
+      correlation between noise values does not extend over
+      significant portion of the observation record.  On the other
+      hand, if the width of the covariance function is comparable to
+      <m:math><m:ci>L</m:ci></m:math>, the off-diagonal terms will be
+      significant.  This situation occurs when the noise bandwidth is
+      smaller than or comparable to the reciprocal of the observation
+      interval's duration.  This condition on the duration of the
+      observation interval relative to the width of the noise
+      correlation function forms the second critical assumption of
+      spectral detection.  The off-diagonal terms will thus be much
+      smaller than corresponding terms on the main diagonal 
+      <m:math>
+	<m:apply>
+	  <m:mo>≪</m:mo>
+	  <m:apply>
+	    <m:power/>
+	    <m:apply>
+	      <m:abs/>
+	      <m:apply>
+		<m:selector/>
+		<m:ci><m:msup>
+		    <m:mi>K</m:mi>
+		    <m:mi>R</m:mi>
+		  </m:msup></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:ci><m:msub>
+		    <m:mi>k</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:selector/>
+	      <m:ci><m:msup>
+		  <m:mi>K</m:mi>
+		  <m:mi>R</m:mi>
+		</m:msup></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:selector/>
+	      <m:ci><m:msup>
+		  <m:mi>K</m:mi>
+		  <m:mi>R</m:mi>
+		</m:msup></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>k</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+    </para>
+
+    <para id="para3">
+      In the simplest case, the covariance matrix of the discrete
+      Fourier Transform of the observations can be well approximated
+      by a diagonal matrix.
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci type="matrix"><m:msub>
+	      <m:mi>K</m:mi>
+	      <m:mi>R</m:mi>
+	    </m:msub></m:ci>
+	  <m:matrix>
+	    <m:matrixrow>
+	      <m:apply>
+		<m:power/>
+		<m:ci><m:msub>
+		    <m:mi>σ</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	      <m:ci>…</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:apply>
+		<m:power/>
+		<m:ci><m:msub>
+		    <m:mi>σ</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	      <m:ci>⋮</m:ci>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:ci>⋮</m:ci>
+	      <m:cn>0</m:cn>
+	      <m:ci>⋱</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:matrixrow>
+	    <m:matrixrow>
+	      <m:cn>0</m:cn>
+	      <m:ci>…</m:ci>
+	      <m:cn>0</m:cn>
+	      <m:apply>
+		<m:power/>
+		<m:ci><m:msub>
+		    <m:mi>σ</m:mi>
+		    <m:mrow>
+		      <m:mi>L</m:mi>
+		      <m:mo>-</m:mo>
+		      <m:mn>1</m:mn>
+		    </m:mrow>
+		  </m:msub></m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:matrixrow>
+	  </m:matrix>
+	</m:apply>
+      </m:math>
+      The non-zero components <m:math>
+	<m:apply>
+	  <m:power/>
+	  <m:ci><m:msub>
+	      <m:mi>σ</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub></m:ci>
+	  <m:cn>2</m:cn>
+	</m:apply>
+      </m:math> of this matrix constitute the noise power spectrum at
+      the various frequencies.  The signal component of the
+      transformed observations <m:math><m:ci type="matrix">R</m:ci></m:math> is represented by <m:math> <m:ci type="matrix"><m:msub> <m:mi>S</m:mi> <m:mi>i</m:mi>
+      </m:msub></m:ci> </m:math>, the DFT of the signal <m:math>
+      <m:ci><m:msub> <m:mi>s</m:mi> <m:mi>i</m:mi> </m:msub></m:ci>
+      </m:math>, while the noise component has this diagonal
+      covariance matrix structure.  <note type="important" id="idp574816">In the
+      frequency domain, the colored noise problem can be approximately
+      converted to a white noise problem where the components of the
+      noise have unequal variances.</note> To recap, the critical
+      assumptions of spectral detection are
+      <list id="list1">
+	<item>The transform length equals that of the observations.
+	In particular, the observations cannot be "padded" to force
+	the transform length to equal a "nice" number (like a power of
+	two).</item>
+
+	<item>The noise's correlation structure should be much less
+	than the duration of the observations.  Equivalently, a narrow
+	correlation function means the corresponding power spectrum
+	varies slowly with frequency.  If either condition fails to
+	hold, calculating the Fourier Transform of the observations
+	will not necessarily yield a simpler noise covariance matrix.
+	</item>
+      </list>
+      The optimum spectral detector computes, for each possible
+      signal, the quantity 
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:apply>
+	    <m:real/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		<m:ci type="matrix">R</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci type="matrix"><m:msub>
+		    <m:mi>K</m:mi>
+		    <m:mi>R</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">
+		<m:msub>
+		  <m:mi>S</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:divide/>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		<m:ci type="matrix">
+		  <m:msub>
+		    <m:mi>S</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci type="matrix"><m:msub>
+		    <m:mi>K</m:mi>
+		    <m:mi>R</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">
+		<m:msub>
+		  <m:mi>S</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math> <footnote id="idp2107376">The real part in the statistic
+      emerges because <m:math><m:ci type="matrix">R</m:ci></m:math>
+      and
+	<m:math>
+	  <m:ci type="matrix"><m:msub>
+	      <m:mi>S</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	</m:math>
+      are complex quantities.</footnote>.  Because of the covariance
+      matrix's simple form, this sufficient statistic for the spectral
+      detection problem has the simple form
+      <equation id="eqn1a">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:real/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		    <m:ci type="matrix">R</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:inverse/>
+		    <m:ci type="matrix"><m:msub>
+			<m:mi>K</m:mi>
+			<m:mi>R</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci type="matrix">
+		    <m:msub>
+		      <m:mi>S</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		  <m:ci type="matrix">
+		    <m:msub>
+		      <m:mi>S</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:inverse/>
+		  <m:ci type="matrix"><m:msub>
+		      <m:mi>K</m:mi>
+		      <m:mi>R</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci type="matrix">
+		  <m:msub>
+		    <m:mi>S</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar><m:ci>k</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:uplimit>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>L</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:uplimit>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:real/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:conjugate/>
+			<m:apply>
+			  <m:ci type="fn">R</m:ci>
+			  <m:ci>k</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:ci type="fn">
+			  <m:msub>
+			    <m:mi>S</m:mi>
+			    <m:mi>i</m:mi>
+			  </m:msub>
+			</m:ci>
+			<m:ci>k</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci><m:msub>
+			<m:mi>σ</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub></m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:abs/>
+			<m:apply>
+			  <m:ci type="fn">
+			    <m:msub>
+			      <m:mi>S</m:mi>
+			      <m:mi>i</m:mi>
+			    </m:msub>
+			  </m:ci>
+			  <m:ci>k</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci><m:msub>
+			  <m:mi>σ</m:mi>
+			  <m:mi>k</m:mi>
+			</m:msub></m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      Each term in the dot product between the discrete Fourier
+      Transform of the observations and the signal is weighted by the
+      reciprocal of the noise power spectrum at that frequency.  This
+      computation is much simpler than the equivalent time domain
+      version and, because of algorithms such as the fast Fourier
+      Transform, the initial transformation (the multiplication by
+      <m:math><m:ci type="matrix">W</m:ci></m:math> or the discrete
+      Fourier Transform) can be evaluated expeditiously.
+    </para>
+
+    <para id="para4">
+      Sinusoidal signals are particularly well-suited to the spectral
+      detection approach.  <emphasis>If</emphasis> the signal's
+      frequency equals one of the analysis frequencies in the Fourier
+      Transform (<m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci><m:msub>
+	      <m:mi>ω</m:mi>
+	      <m:mn>0</m:mn>
+	    </m:msub></m:ci>
+	  <m:apply>
+	    <m:divide/>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:pi/>
+	      <m:ci>k</m:ci>
+	    </m:apply>
+	    <m:ci>L</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math> for some <m:math><m:ci>k</m:ci></m:math>), then the
+      sequence <m:math>
+	<m:apply>
+	  <m:ci type="fn"><m:msub>
+	      <m:mi>S</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	  <m:ci>k</m:ci>
+	</m:apply>
+      </m:math> is non-zero only at this frequency index, only one
+      term in the sufficient statistic's summation need be computed,
+      and the noise power is no longer explicitly needed by the
+      detector (it can be merged into the threshold).
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:real/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		  <m:ci type="matrix">R</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:inverse/>
+		  <m:ci type="matrix"><m:msub>
+		      <m:mi>K</m:mi>
+		      <m:mi>R</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:ci type="matrix">
+		  <m:msub>
+		    <m:mi>S</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#adjoint"/>
+		<m:ci type="matrix">
+		  <m:msub>
+		    <m:mi>S</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci type="matrix"><m:msub>
+		    <m:mi>K</m:mi>
+		    <m:mi>R</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:ci type="matrix">
+		<m:msub>
+		  <m:mi>S</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:apply>
+		<m:real/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:conjugate/>
+		    <m:apply>
+		      <m:ci type="fn">R</m:ci>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>S</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:power/>
+		<m:ci><m:msub>
+		    <m:mi>σ</m:mi>
+		    <m:mi>k</m:mi>
+		  </m:msub></m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>S</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>σ</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      If the signal's frequency does not correspond to one of the
+      analysis frequencies, spectral energy will be maximal at the
+      nearest analysis frequency but will extend to nearby frequencies
+      also.  This effect is termed "leakage" and has been well
+      studied.  Exact formulation of the signal's DFT is usually
+      complicated in this case; approximations which utilize only the
+      maximal-energy frequency component will be sub-optimal
+      (<foreign>i.e.</foreign>, yield a smaller detection
+      probability).  The performance reduction may be small, however,
+      justifying the reduced amount of computation.
+    </para>
+  </content>
+  
+</document>
