@@ -272,7 +272,7 @@
                 <m:mrow>
                   <m:mtable>
                     <m:mtr>
-                      <m:mrow>
+                      <m:mtd>
                         <m:mstyle fontsize="12pt">
                           <m:mrow>
                             <m:mrow>
@@ -373,10 +373,10 @@
                           </m:mrow>
                         </m:mstyle>
                         <m:mrow/>
-                      </m:mrow>
+                      </m:mtd>
                     </m:mtr>
                     <m:mtr>
-                      <m:mrow>
+                      <m:mtd>
                         <m:mstyle fontstyle="italic">
                           <m:mrow>
                             <m:msub>
@@ -524,7 +524,7 @@
                           </m:mrow>
                         </m:mstyle>
                         <m:mrow/>
-                      </m:mrow>
+                      </m:mtd>
                     </m:mtr>
                   </m:mtable>
                   <m:mrow/>
@@ -835,7 +835,7 @@
                 <m:mrow>
                   <m:mtable>
                     <m:mtr>
-                      <m:mrow>
+                      <m:mtd>
                         <m:mstyle fontsize="12pt">
                           <m:mrow>
                             <m:mrow>
@@ -956,10 +956,10 @@
                           </m:mrow>
                         </m:mstyle>
                         <m:mrow/>
-                      </m:mrow>
+                      </m:mtd>
                     </m:mtr>
                     <m:mtr>
-                      <m:mrow>
+                      <m:mtd>
                         <m:mstyle fontstyle="italic">
                           <m:mrow>
                             <m:msub>
@@ -1142,7 +1142,7 @@
                           </m:mstyle>
                         </m:mrow>
                         <m:mrow/>
-                      </m:mrow>
+                      </m:mtd>
                     </m:mtr>
                   </m:mtable>
                   <m:mrow/>
@@ -1176,7 +1176,7 @@
               <m:mrow>
                 <m:mtable>
                   <m:mtr>
-                    <m:mrow>
+                    <m:mtd>
                       <m:mstyle fontsize="12pt">
                         <m:mrow>
                           <m:mrow>
@@ -1280,10 +1280,10 @@
                         </m:mrow>
                       </m:mstyle>
                       <m:mrow/>
-                    </m:mrow>
+                    </m:mtd>
                   </m:mtr>
                   <m:mtr>
-                    <m:mrow>
+                    <m:mtd>
                       <m:msqrt>
                         <m:msub>
                           <m:mi>E</m:mi>
@@ -1362,7 +1362,7 @@
                       </m:mrow>
                       <m:mi>u</m:mi>
                       <m:mrow/>
-                    </m:mrow>
+                    </m:mtd>
                   </m:mtr>
                 </m:mtable>
                 <m:mrow/>
@@ -2111,7 +2111,7 @@
           <m:semantics>
             <m:mtable>
               <m:mtr>
-                <m:mrow>
+                <m:mtd>
                   <m:mrow>
                     <m:munderover>
                       <m:mo stretchy="false">∫</m:mo>
@@ -2181,10 +2181,10 @@
                     <m:mi>σ</m:mi>
                     <m:mi>'</m:mi>
                   </m:msup>
-                </m:mrow>
+                </m:mtd>
               </m:mtr>
               <m:mtr>
-                <m:mrow>
+                <m:mtd>
                   <m:mstyle fontsize="12pt">
                     <m:mrow>
                       <m:mrow>
@@ -2213,7 +2213,7 @@
                     </m:mrow>
                   </m:mstyle>
                   <m:mrow/>
-                </m:mrow>
+                </m:mtd>
               </m:mtr>
             </m:mtable>
             <m:annotation encoding="StarMath 5.0"> size 12{Φ \( t,φ \) = lline  Int cSub { size 8{ -  infinity } }  cSup { size 8{ infinity } }  {y \( t+ { {σ}} sup { ' } \) w \(  { {σ}} sup { ' } \) e rSup { size 8{ - j2 ital "πφ {" ital {σ}} sup { ' }} } d { {σ}} sup { ' }}  rline  rSup { size 8{2} } } {}</m:annotation>
@@ -5053,7 +5053,7 @@
                 <m:mrow>
                   <m:mtable>
                     <m:mtr>
-                      <m:mrow>
+                      <m:mtd>
                         <m:mstyle fontsize="12pt">
                           <m:mrow>
                             <m:mrow>
@@ -5089,10 +5089,10 @@
                           </m:mrow>
                         </m:mstyle>
                         <m:mrow/>
-                      </m:mrow>
+                      </m:mtd>
                     </m:mtr>
                     <m:mtr>
-                      <m:mrow>
+                      <m:mtd>
                         <m:msub>
                           <m:mi>E</m:mi>
                           <m:mstyle fontsize="8pt">
@@ -5300,7 +5300,7 @@
                           </m:mrow>
                         </m:mrow>
                         <m:mrow/>
-                      </m:mrow>
+                      </m:mtd>
                     </m:mtr>
                   </m:mtable>
                   <m:mrow/>
